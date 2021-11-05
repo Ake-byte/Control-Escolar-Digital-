@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:fragment="head">
+<meta charset="UTF-8" />
+<title th:text="${titulo}"></title>
+<link th:href="@{/css/jquery-ui.min.css}" rel="stylesheet" />
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+
+</head>
+<body>
+	<header th:fragment="header">
+
+		<div class="container py-4">
+			<div id="navs" class="card-header mb-3 text-center">
+			<ul class="nav nav-pills justify-content-center">
+					<li><a class="nav-link"
+						th:classappend="${#httpServletRequest.getRequestURI() == '/index' ? 'active':''}"
+						aria-current="page" th:href="@{/index}">Inicio</a></li>
+					<li><a class="nav-link"
+						th:classappend="${#httpServletRequest.getRequestURI() == '/Personal/InformacionPersonal' ? 'active':''}"
+						th:href="@{/Personal/InformacionPersonal}">Informaci&oacute;n Personal</a>
+					</li>
+					<li sec:authorize="hasRole('ROLE_USER2')"><a class="nav-link"
+						th:classappend="${#httpServletRequest.getRequestURI() == '/Academica/InformacionAcademica' ? 'active':''}"
+						th:href="@{/Academica/InformacionAcademica}">Informaci&oacute;n Acad&eacute;mica</a></li>
+					<li sec:authorize="hasRole('ROLE_USER2')"><a class="nav-link"
+						th:classappend="${#httpServletRequest.getRequestURI() == '/Expediente/MiExpediente' ? 'active':''}"
+						th:href="@{/Expediente/MiExpediente}">Expediente</a></li>
+					<li sec:authorize="hasRole('ROLE_USER2')"><a class="nav-link"
+						th:classappend="${#httpServletRequest.getRequestURI() == '/Productividad/ListadoProductividad' ? 'active':''}"
+						th:href="@{/Productividad/ListadoProductividad}">Productividad
+					</a></li>
+					<li sec:authorize="hasRole('ROLE_ADMIN')"><a class="nav-link"
+						th:classappend="${#httpServletRequest.getRequestURI() == '/PersonalAutorizado/ListadoUsuarios' ? 'active':''}"
+						th:href="@{/PersonalAutorizado/ListadoUsuarios}">Usuarios</a></li>
+					<li sec:authorize="hasRole('ROLE_ADMIN')"><a class="nav-link"
+						th:classappend="${#httpServletRequest.getRequestURI() == '/PersonalAutorizado/TramitesSIP' ? 'active':''}"
+						th:href="@{/PersonalAutorizado/TramitesSIP}">Tr&aacute;mites SIP</a></li>
+					<li sec:authorize="hasRole('ROLE_ADMIN')"><a class="nav-link"
+						th:classappend="${#httpServletRequest.getRequestURI() == '/PersonalAutorizado/TramitesInternos' ? 'active':''}"
+						th:href="@{/PersonalAutorizado/TramitesInternos}">Tr&aacute;mites internos</a></li>
+					<li sec:authorize="hasRole('ROLE_ADMIN')"><a class="nav-link"
+					 	th:classappend="${#httpServletRequest.getRequestURI() == '/PersonalAutorizado/Expedientes' ? 'active':''}"
+					 	th:href="@{/PersonalAutorizado/Expedientes}">Expedientes</a></li>
+				<li sec:authorize="hasRole('ROLE_ADMIN')"><a class="nav-link"
+						 th:classappend="${#httpServletRequest.getRequestURI() == '/PersonalAutorizado/ActasYNombramientos' ? 'active':''}"
+						 th:href="@{/PersonalAutorizado/ActasYNombramientos}">Actas y nombremientos</a></li>
+				<li sec:authorize="hasRole('ROLE_ADMIN')"><a class="nav-link"
+						 th:classappend="${#httpServletRequest.getRequestURI() == '/PersonalAutorizado/Informes' ? 'active':''}"
+						 th:href="@{/PersonalAutorizado/Informes}">Informes</a></li>
+				</ul>
+			</div>
+		</div>
+
+	</header>
+
+</body>
+</html>

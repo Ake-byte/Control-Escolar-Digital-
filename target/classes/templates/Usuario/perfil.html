@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+
+	<div class="container" style="width: 92rem;">
+		<div class="card bg-light">
+			<div class="card-header" th:text="${titulo}"></div>
+			<div class="card-body" th:each="usuario: ${usuario}">
+
+				<div class="container">
+					<div class="card bg-light">
+						<ul class="nav nav-tabs" id="myTab" role="tablist">
+							<li class="nav-item"><a class="nav-link active"
+								id="info-tab" data-toggle="tab" href="#info" role="tab"
+								aria-controls="home" aria-selected="true">Informaci&oacute;n
+									Personal</a></li>
+							<li class="nav-item"><a class="nav-link"
+								id="datosSistema-tab" data-toggle="tab" href="#datosSistema"
+								role="tab" aria-controls="datosSistema" aria-selected="false">Informaci&oacute;n
+									Acad&eacute;mica</a></li>
+							<li class="nav-item"><a class="nav-link" id="expediente-tab"
+								data-toggle="tab" href="#expediente" role="tab"
+								aria-controls="expediente" aria-selected="false">Expediente</a></li>
+							<li class="nav-item"><a class="nav-link"
+								id="productividad-tab" data-toggle="tab" href="#productividad"
+								role="tab" aria-controls="productividad" aria-selected="false">Productividad</a></li>
+						</ul>
+						<div class="card-body ">
+							<div class="tab-content" id="myTabContent">
+								<div class="tab-pane fade show active" id="info" role="tabpanel"
+									aria-labelledby="info-tab">
+									<div class="card bg-light">
+										
+									</div>
+									
+
+								</div>
+								<div class="tab-pane fade" id="datosSistema" role="tabpanel"
+									aria-labelledby="datosSistema">
+									<div class="card bg-light">
+										
+
+								</div>
+								<div class="tab-pane fade" id="expediente" role="tabpanel"
+									aria-labelledby="expediente">
+									<div class="card bg-light">
+
+										
+									</div>
+								</div>
+								<div class="tab-pane fade" id="productividad" role="tabpanel"
+									aria-labelledby="productividad">
+									<div class="card bg-light">
+																			</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+
+	<div class="container" style="width: 92rem;">
+		<div class="card bg-light">
+			<div class="card-header" th:text="${titulo}"></div>
+			<div class="card-body" th:each="usuario: ${usuario}">
+
+				<div class="container">
+					<div class="card bg-light">
+						<div class="card-body">
+
+							<div th:if="${#lists.isEmpty(usuario.productos)}"
+								class="alert alert-info my-4 text-center"
+								th:text="'No has agregado ning&uacute;n producto.'">
+							</div>
+
+							<div class="container">
+								<nav class="navbar navbar-light bg-light">
+									<div class="container-fluid">
+										<a th:href="@{/Productividad/formProductividad}"
+											class="btn btn-primary btn-xs">Agregar Producto</a>
+									</div>
+								</nav>
+								<table class="table table-striped">
+									<thead>
+										<tr>
+											<th>Tipo de producto</th>
+											<th>Descripci&oacute;n</th>
+											<th>Archivo</th>
+											<th>Editar</th>
+											<th>Eliminar</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr th:each="producto: ${usuario.productos}">
+											<td th:text="${producto.nombreProducto}"></td>
+											<td th:text="${producto.descripcionProducto}"></td>
+											<td
+												th:if="${producto.archivoProducto == null || producto.archivoProducto == ''}">No
+												hay archivo</td>
+											<td
+												th:unless="${producto.archivoProducto == null || producto.archivoProducto == ''}"
+												th:text="${producto.archivoProducto}"></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

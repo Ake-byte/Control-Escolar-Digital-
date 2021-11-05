@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+	<div class="container">
+		<div class="card bg-light mb-3" style="border-color: #4169E1">
+			<div class="card-header mb-3 text-white text-center"
+				style="background: #4169E1">
+				<h3 th:text="${titulo}"></h3>
+			</div>
+				<div class="container">
+					<form th:action="@{/PersonalAutorizado/formUsuario}" th:object="${usuario}" method="post">
+						<div class="form-group row">
+							<label for="nombre" class="col-sm-2 col-form-label">Nombre</label>
+							<div class="col-sm-6">
+								<input type="text" class="form-control" th:errorclass="'form-control alert-danger'"
+									th:field="*{nombre}" readonly/>
+							</div>
+						</div>
+						<br>
+						<div class="form-group row">
+							<label for="nombre" class="col-sm-2 col-form-label">Apellido Paterno</label>
+							<div class="col-sm-6">
+								<input type="text" class="form-control" th:errorclass="'form-control alert-danger'"
+									th:field="*{apellidoPaterno}" readonly/>
+							</div>
+						</div>
+						<br>
+						<div class="form-group row">
+							<label for="nombre" class="col-sm-2 col-form-label">Apellido Materno</label>
+							<div class="col-sm-6">
+								<input type="text" class="form-control" th:errorclass="'form-control alert-danger'"
+									th:field="*{apellidoMaterno}" readonly/>
+							</div>
+						</div>
+						<br>
+						<div class="form-group row">
+							<label for="nombre" class="col-sm-2 col-form-label">Email</label>
+							<div class="col-sm-6">
+								<input type="text" class="form-control" th:errorclass="'form-control alert-danger'"
+									th:field="*{email}" readonly/>
+							</div>
+						</div>
+						<br>	
+						<div class="form-group row">
+							<label for="nombre" class="col-sm-2 col-form-label">Directores</label>
+							<div class="col-sm-6">
+								
+							</div>
+						</div>
+						<br>
+						<div class="form-group row">
+							<label class="col-sm-2 col-form-label">Permisos en el Sistema
+							</label>
+							<div class="col-sm-6">
+								<select id="rol" name="rol"
+									th:field="*{roles.authorityName}">
+									<option th:each="permisos : ${permisos}"
+										th:value="${permisos}"
+										th:utext="${permisos}" />
+								</select>
+							</div>
+						</div>
+						<br>
+						<div class="form-group row">
+							<div class="col-sm-1">
+								<input type="submit" value="Guardar" class="btn btn-primary" />
+							</div>
+							<div class="col-sm-1">
+								<a class="btn btn-danger"
+									th:href="@{/PersonalAutorizado/listarRoles}"
+									th:text="'Cancelar'"> </a>
+							</div>
+						</div>
+						<br>
+						<input type="hidden" th:field="*{id}" />
+						<input type="hidden" th:field="*{password}" />
+						<input type="hidden" th:field="*{enabled}" />
+						<input type="hidden" th:field="*{roles}" />
+
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

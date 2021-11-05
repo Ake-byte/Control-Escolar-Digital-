@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="layout/layout :: head"></head>
+<body>
+<header th:replace="layout/layout :: header"></header>
+
+<div class="container" style="width: 96rem;">
+    <div class="card bg-light mb-3">
+        <div class="card-header mb-3 text-white text-center">
+            <h3 th:text="${titulo}"></h3>
+        </div>
+        <div class="card-body" th:each="usuario: ${usuario}">
+
+            <div class="container">
+                <div class="card bg-light">
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item"><a class="nav-link active"
+                                                id="infoPersonalAlumno-tab" data-toggle="tab" href="#infoPersonalAlumno" role="tab"
+                                                aria-controls="home" aria-selected="true">Informaci&oacute;n Personal del Alumno</a></li>
+                        <li class="nav-item"><a
+                                class="nav-link"
+                                id="infoAcademicaAlumno-tab" data-toggle="tab" href="#infoAcademicaAlumno"
+                                role="tab" aria-controls="infoAcademicaAlumno" aria-selected="false">Informaci&oacute;n Acad&eacute;mica del Alumno</a></li>
+                        <li class="nav-item"><a
+                                class="nav-link"
+                                id="expedienteAlumno-tab" data-toggle="tab" href="#expedienteAlumno"
+                                role="tab" aria-controls="expedienteAlumno" aria-selected="false">
+                            Expediente del Alumno</a></li>
+                        <li class="nav-item"><a
+                                class="nav-link"
+                                id="productividadAlumno-tab" data-toggle="tab" href="#productividadAlumno"
+                                role="tab" aria-controls="productividadAlumno" aria-selected="false">
+                            Produdictivad del Alumno</a></li>
+                    </ul>
+                    <div class="card-body">
+                        <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade show active" id="infoPersonalAlumno" role="tabpanel"
+                                 aria-labelledby="infoPersonalAlumno-tab">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="form-group row">
+                                            <label class="col-sm-6 col-form-label">Nombre(s):</label>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control"
+                                                       th:field="${usuario.nombre}" readonly />
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="form-group row">
+                                            <label class="col-sm-6 col-form-label">Apellido
+                                                Paterno:</label>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control"
+                                                       th:field="${usuario.apellidoPaterno}" readonly />
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="form-group row">
+                                            <label class="col-sm-6 col-form-label">Apellido
+                                                Materno</label>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control"
+                                                       th:field="${usuario.apellidoMaterno}" readonly />
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="form-group row">
+                                            <label class="col-sm-6 col-form-label">Fecha
+                                                de nacimiento</label>
+                                            <div class="col-sm-6">
+                                                <input th:field="${usuario.fechaNacimiento}" type="text"
+                                                       class="form-control" readonly />
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="form-group row">
+                                            <label class="col-sm-6 col-form-label">Pa&iacute;s
+                                                de nacimiento</label>
+                                            <div class="col-sm-6">
+                                                <input th:field="${usuario.paisNacimiento}" type="text"
+                                                       class="form-control" readonly />
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="form-group row">
+                                            <label  class="col-sm-6 col-form-label">Estado</label>
+                                            <div class="col-sm-6">
+                                                <input th:field="${usuario.estadoNacimiento}" type="text"
+                                                       class="form-control" readonly />
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="form-group row">
+                                            <label  class="col-sm-6 col-form-label">Clave
+                                                CURP</label>
+                                            <div class="col-sm-6">
+                                                <input th:field="${usuario.claveCURP}" type="text"
+                                                       class="form-control" readonly />
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="form-group row">
+                                            <label  class="col-sm-6 col-form-label">Tel&eacute;fono
+                                                celular</label>
+                                            <div class="col-sm-6">
+                                                <input th:field="${usuario.telefonoCelular}" type="text"
+                                                       class="form-control" readonly />
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="form-group row">
+                                            <label  class="col-sm-6 col-form-label">Direcci&oacute;n
+                                                (en CDMX)</label>
+                                            <div class="col-sm-6">
+                                                <input th:field="${usuario.direccionCDMX}" type="text"
+                                                       class="form-control" readonly />
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="form-group row">
+                                            <label  class="col-sm-6 col-form-label">G&eacute;nero</label>
+                                            <div class="col-sm-6">
+                                                <input type="text" th:field="${usuario.genero}"
+                                                       class="form-control" readonly />
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="form-group row">
+                                            <label  class="col-sm-6 col-form-label">Lengua
+                                                ind&iacute;gena</label>
+                                            <div class="placeholder col-6">
+                                                <input class="placeholder col-8" th:if="${usuario.lenguaIndigena == false || usuario.lenguaIndigena == null || usuario.lenguaIndigena == ''}" placeholder="No" readonly>
+                                                <input th:unless="${usuario.lenguaIndigena == false || usuario.lenguaIndigena == null || usuario.lenguaIndigena == ''}" th:placeholder="${usuario.nombreLenguaIndigena}" readonly>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="form-group row">
+                                            <label for="nombre" class="col-sm-6 col-form-label">Discapacidad</label>
+                                            <div class="col-sm-6">
+                                                <input th:if="${usuario.discapacidad == false || usuario.discapacidad == null || usuario.discapacidad == ''}" placeholder="No" readonly>
+                                                <input th:unless="${usuario.discapacidad == false || usuario.discapacidad == null || usuario.discapacidad == ''}" th:placeholder="${usuario.discapacidad}" readonly>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="form-group row">
+                                            <label for="nombre" class="col-sm-6 col-form-label">Enfermedad
+                                                permanente</label>
+                                            <div class="col-sm-6">
+                                                <input th:if="${usuario.enfermedadPermanente == false || usuario.enfermedadPermanente == null || usuario.enfermedadPermanente == ''}" placeholder="No" readonly>
+                                                <input th:unless="${usuario.enfermedadPermanente == false || usuario.enfermedadPermanente == null || usuario.enfermedadPermanente == ''}" th:placeholder="${usuario.enfermedadPermanente}" readonly>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="form-group row">
+                                            <label for="nombre" class="col-sm-6 col-form-label">Correo
+                                                electr&oacute;nico IPN</label>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control"
+                                                       th:field="${usuario.email}" readonly />
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-sm-8">
+                                                <div class="card bg-light">
+                                                    <div class="card-body">
+                                                        <br>
+                                                        <div class="form-group row">
+                                                            <label class="col-sm-4 col-form-label">Foto
+                                                                actual (fondo blanco)</label>
+                                                            <div class="col-sm-4">
+                                                                <input th:if="${usuario.fotoActual == null || usuario.fotoActual == ''}" placeholder="No hay archivo" readonly>
+                                                                <input th:unless="${usuario.fotoActual == null || usuario.fotoActual == ''}" th:placeholder="${usuario.fotoActual}" readonly>
+                                                            </div>
+                                                        </div>
+                                                        <br>
+                                                        <div class="form-group row">
+                                                            <label class="col-sm-4 col-form-label">Acta
+                                                                de Nacimiento</label>
+                                                            <div class="col-sm-4">
+                                                                <input th:if="${usuario.actaNacimiento == null || usuario.actaNacimiento == ''}" placeholder="No hay archivo" readonly>
+                                                                <input th:unless="${usuario.actaNacimiento == null || usuario.actaNacimiento == ''}" th:placeholder="${usuario.actaNacimiento}" readonly>
+                                                            </div>
+                                                        </div>
+                                                        <br>
+                                                        <br>
+                                                        <div class="form-group row">
+                                                            <label class="col-sm-4 col-form-label">Pasaporte
+                                                                (ext) / INE(mex)</label>
+                                                            <div class="col-sm-4">
+                                                                <input th:if="${usuario.pasaporte == null || usuario.pasaporte == ''}" placeholder="No hay archivo" readonly>
+                                                                <input th:unless="${usuario.pasaporte == null || usuario.pasaporte == ''}" th:placeholder="${usuario.pasaporte}" readonly>
+                                                            </div>
+                                                        </div>
+                                                        <br>
+                                                        <div class="form-group row">
+                                                            <label class="col-sm-4 col-form-label">C&eacute;dula
+                                                                CURP</label>
+                                                            <div class="col-sm-4">
+                                                                <input th:if="${usuario.cedulaCURP == null || usuario.cedulaCURP == ''}" placeholder="No hay archivo" readonly>
+                                                                <input th:unless="${usuario.cedulaCURP == null || usuario.cedulaCURP == ''}" th:placeholder="${usuario.cedulaCURP}" readonly>
+                                                            </div>
+                                                        </div>
+                                                        <br>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="card bg-light">
+                                                    <div class="card-body">
+                                                        <table>
+                                                            <thead>
+                                                            <tr>
+                                                                <td>Status</td>
+                                                                <td>Validar</td>
+                                                                <td>Invalidar</td>
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            <tr>
+                                                                <td><div class="traffic-light">
+                                                                    <div th:if="${usuario.fotoStatus == T(com.controldigital.app.models.entity.FileStatus).RED}" class="bulb">ERROR</div>
+                                                                    <div th:if="${usuario.fotoStatus == T(com.controldigital.app.models.entity.FileStatus).YELLOW}" class="bulb">PROCESANDO</div>
+                                                                    <div th:if="${usuario.fotoStatus == T(com.controldigital.app.models.entity.FileStatus).GREEN}" class="bulb">OK</div>
+                                                                </div></td>
+                                                                <td><a class="btn btn-success"
+                                                                       th:href="@{/PersonalAutorizado/validarArchivo/} + ${usuario.id} + '/fotoStatus'"
+                                                                       onclick="return confirm('&iquest;Est&aacute; seguro de invalidar este archivo?');">
+                                                                    <img th:src="@{/images/validado.png}" width="55"
+                                                                         height="55"></a></td>
+                                                                <td><a class="btn btn-danger"
+                                                                       th:href="@{/PersonalAutorizado/invalidarArchivo/} + ${usuario.id} + '/fotoStatus'"
+                                                                       onclick="return confirm('&iquest;Est&aacute; seguro de invalidar este archivo?');">
+                                                                    <img th:src="@{/images/noValidado.png}" width="55"
+                                                                         height="55"></a></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><div class="traffic-light">
+                                                                    <div th:if="${usuario.actaStatus == T(com.controldigital.app.models.entity.FileStatus).RED}" class="bulb">ERROR</div>
+                                                                    <div th:if="${usuario.actaStatus == T(com.controldigital.app.models.entity.FileStatus).YELLOW}" class="bulb">PROCESANDO</div>
+                                                                    <div th:if="${usuario.actaStatus == T(com.controldigital.app.models.entity.FileStatus).GREEN}" class="bulb">OK</div>
+                                                                </div></td>
+                                                                <td><a class="btn btn-success"
+                                                                       th:href="@{/PersonalAutorizado/validarArchivo/} + ${usuario.id} + '/actaStatus'"
+                                                                       onclick="return confirm('&iquest;Est&aacute; seguro de validar este archivo?');">
+                                                                    <img th:src="@{/images/validado.png}" width="55"
+                                                                         height="55"></a></td>
+                                                                <td><a class="btn btn-danger"
+                                                                       th:href="@{/PersonalAutorizado/invalidarArchivo/} + ${usuario.id} + '/actaStatus'"
+                                                                       onclick="return confirm('&iquest;Est&aacute; seguro de validar este archivo?');">
+                                                                    <img th:src="@{/images/noValidado.png}" width="55"
+                                                                         height="55"></a></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><div class="traffic-light">
+                                                                    <div th:if="${usuario.pasaporteStatus == T(com.controldigital.app.models.entity.FileStatus).RED}" class="bulb">ERROR</div>
+                                                                    <div th:if="${usuario.pasaporteStatus == T(com.controldigital.app.models.entity.FileStatus).YELLOW}" class="bulb">PROCESANDO</div>
+                                                                    <div th:if="${usuario.pasaporteStatus == T(com.controldigital.app.models.entity.FileStatus).GREEN}" class="bulb">OK</div>
+                                                                </div></td>
+                                                                <td><a class="btn btn-success"
+                                                                       th:href="@{/PersonalAutorizado/validarArchivo/} + ${usuario.id} + '/pasaporteStatus'"
+                                                                       onclick="return confirm('&iquest;Est&aacute; seguro de validar este archivo?');">
+                                                                    <img th:src="@{/images/validado.png}" width="55"
+                                                                         height="55"></a></td>
+                                                                <td><a class="btn btn-danger"
+                                                                       th:href="@{/PersonalAutorizado/invalidarArchivo/} + ${usuario.id} + '/pasaporteStatus'"
+                                                                       onclick="return confirm('&iquest;Est&aacute; seguro de validar este archivo?');">
+                                                                    <img th:src="@{/images/noValidado.png}" width="55"
+                                                                         height="55"></a></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><div class="traffic-light">
+                                                                    <div th:if="${usuario.curpStatus == T(com.controldigital.app.models.entity.FileStatus).RED}" class="bulb">ERROR</div>
+                                                                    <div th:if="${usuario.curpStatus == T(com.controldigital.app.models.entity.FileStatus).YELLOW}" class="bulb">PROCESANDO</div>
+                                                                    <div th:if="${usuario.curpStatus == T(com.controldigital.app.models.entity.FileStatus).GREEN}" class="bulb">OK</div>
+                                                                </div></td>
+                                                                <td><a class="btn btn-success"
+                                                                       th:href="@{/PersonalAutorizado/validarArchivo/} + ${usuario.id} + '/curpStatus'"
+                                                                       onclick="return confirm('&iquest;Est&aacute; seguro de validar este archivo?');">
+                                                                    <img th:src="@{/images/validado.png}" width="55"
+                                                                         height="55"></a></td>
+                                                                <td><a class="btn btn-danger"
+                                                                       th:href="@{/PersonalAutorizado/invalidarArchivo/} + ${usuario.id} + '/curpStatus'"
+                                                                       onclick="return confirm('&iquest;Est&aacute; seguro de validar este archivo?');">
+                                                                    <img th:src="@{/images/noValidado.png}" width="55"
+                                                                         height="55"></a></td>
+                                                            </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="infoAcademicaAlumno" role="tabpanel"
+                                 aria-labelledby="infoAcademicaAlumno">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="form-group row">
+                                            <label for="nombre" class="col-sm-6 col-form-label">Licenciatura
+                                                (t&iacute;tulo)</label>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control" readonly />
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="form-group row">
+                                            <label for="nombre" class="col-sm-6 col-form-label">Insituci&oacute;n
+                                                de licenciatura</label>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control" readonly />
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="form-group row">
+                                            <label for="nombre" class="col-sm-6 col-form-label">Pa&iacute;s
+                                                de estudios licenciatura</label>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control" readonly />
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="form-group row">
+                                            <label for="nombre" class="col-sm-6 col-form-label">Promedio
+                                                final licenciatura</label>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control" readonly />
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="form-group row">
+                                            <label for="nombre" class="col-sm-6 col-form-label">Calificaciones
+                                                de licenciatura</label>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control" readonly />
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="form-group row">
+                                            <label for="nombre" class="col-sm-6 col-form-label">Diploma
+                                                de licenciatura</label>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control" readonly />
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="form-group row">
+                                            <label for="nombre" class="col-sm-6 col-form-label">C&eacute;dula
+                                                profesional licenciatura</label>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control" readonly />
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="form-group row">
+                                            <label for="nombre" class="col-sm-6 col-form-label">Acreditaci&oacute;n
+                                                de ingl&eacute;s</label>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control" readonly />
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="form-group row">
+                                            <label for="nombre" class="col-sm-6 col-form-label">Maestr&iacute;a
+                                                (nombre)</label>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control" readonly />
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="form-group row">
+                                            <label for="nombre" class="col-sm-6 col-form-label">Instituci&oacute;
+                                                de maestr&iacute;a</label>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control" readonly />
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="form-group row">
+                                            <label for="nombre" class="col-sm-6 col-form-label">Pa&iacute;s
+                                                de estudios maestr&iacute;a</label>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control" readonly />
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="form-group row">
+                                            <label for="nombre" class="col-sm-6 col-form-label">Promedio
+                                                final maestr&iacute;a</label>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control" readonly />
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="form-group row">
+                                            <label for="nombre" class="col-sm-6 col-form-label">Calificaciones
+                                                de maestr&iacute;a</label>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control" readonly />
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="form-group row">
+                                            <label for="nombre" class="col-sm-6 col-form-label">Acta
+                                                de examen maestr&iacute;a</label>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control" readonly />
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="form-group row">
+                                            <label for="nombre" class="col-sm-6 col-form-label">Diploma
+                                                de maestr&iacute;a</label>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control" readonly />
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="form-group row">
+                                            <label for="nombre" class="col-sm-6 col-form-label">C&eacute;dula
+                                                profesional maestr&iacute;a</label>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control" readonly />
+                                            </div>
+                                        </div>
+                                        <br>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="expedienteAlumno" role="tabpanel"
+                                 aria-labelledby="expedienteAlumno">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="form-group row">
+                                            <label for="nombre" class="col-sm-6 col-form-label">
+                                                N&uacute;mero de Registro</label>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control" readonly />
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="form-group row">
+                                            <label for="nombre" class="col-sm-6 col-form-label">Semestre
+                                            </label>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control" readonly />
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="form-group row">
+                                            <label for="nombre" class="col-sm-6 col-form-label">CVU
+                                                CONACYT </label>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control" readonly />
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="form-group row">
+                                            <label for="nombre" class="col-sm-6 col-form-label">Con
+                                                beca CONACYT? </label>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control" readonly />
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="form-group row">
+                                            <label for="nombre" class="col-sm-6 col-form-label">Asesor
+                                                1 (CICATA):</label>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control" readonly />
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="form-group row">
+                                            <label for="nombre" class="col-sm-6 col-form-label">Asesor
+                                                2:</label>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control" readonly />
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="form-group row">
+                                            <label for="nombre" class="col-sm-6 col-form-label">T&iacute;tulo
+                                                de la tesis </label>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control" readonly />
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="form-group row">
+                                            <label for="nombre" class="col-sm-6 col-form-label">Comit&eacute;
+                                                tutorial 1 </label>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control" readonly />
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="form-group row">
+                                            <label for="nombre" class="col-sm-6 col-form-label">Comit&eacute;
+                                                tutorial 2 </label>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control" readonly />
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="form-group row">
+                                            <label for="nombre" class="col-sm-6 col-form-label">Comit&eacute;
+                                                tutorial 3 </label>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control" readonly />
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="form-group row">
+                                            <label for="nombre" class="col-sm-6 col-form-label">Comit&eacute;
+                                                tutorial 4 </label>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control" readonly />
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="form-group row">
+                                            <label for="nombre" class="col-sm-6 col-form-label">SIP-01
+                                            </label>
+                                            <div class="col-sm-6"></div>
+                                        </div>
+                                        <br>
+                                        <div class="form-group row">
+                                            <label for="nombre" class="col-sm-6 col-form-label">SIP-02
+                                            </label>
+                                            <div class="col-sm-6"></div>
+                                        </div>
+                                        <br>
+                                        <div class="form-group row">
+                                            <label for="nombre" class="col-sm-6 col-form-label">SIP-13
+                                            </label>
+                                            <div class="col-sm-6"></div>
+                                        </div>
+                                        <br>
+                                        <div class="form-group row">
+                                            <label for="nombre" class="col-sm-6 col-form-label">SIP-14
+                                            </label>
+                                            <div class="col-sm-6"></div>
+                                        </div>
+                                        <br>
+                                        <div class="form-group row">
+                                            <label for="nombre" class="col-sm-6 col-form-label">SIP-19
+                                            </label>
+                                            <div class="col-sm-6"></div>
+                                        </div>
+                                        <br>
+                                        <div class="form-group row">
+                                            <label for="nombre" class="col-sm-6 col-form-label">SIP-21
+                                            </label>
+                                            <div class="col-sm-6"></div>
+                                        </div>
+                                        <br>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="productividadAlumno" role="tabpanel"
+                                 aria-labelledby="productividadAlumno">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <table class="table table-striped">
+                                            <thead>
+                                            <tr>
+                                                <th>Tipo de producto</th>
+                                                <th>Descripci&oacute;n</th>
+                                                <th>Archivo</th>
+                                                <th>Editar</th>
+                                                <th>Eliminar</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr th:each="producto: ${usuario.productos}">
+                                                <td th:text="${producto.nombreProducto}"></td>
+                                                <td th:text="${producto.descripcionProducto}"></td>
+                                                <td
+                                                        th:if="${producto.archivoProducto == null || producto.archivoProducto == ''}">No
+                                                    hay archivo</td>
+                                                <td
+                                                        th:unless="${producto.archivoProducto == null || producto.archivoProducto == ''}"
+                                                        th:text="${producto.archivoProducto}"></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                                    </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

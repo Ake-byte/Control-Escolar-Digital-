@@ -1,0 +1,34 @@
+.card {
+  border-color: #69005E;
+}
+
+.card-header {
+  background: #69005E;
+}
+
+#navs {
+  background: threedhighlight;
+}
+
+#ver {
+  background: #4169E1;
+}
+
+#editar {
+  background-color: green;
+}
+
+#pdf {
+  background: red;
+}
+
+#login {
+  background: threedlightshadow;
+}
+
+.red {
+  color: red
+}
+.green {
+  color: green;
+}

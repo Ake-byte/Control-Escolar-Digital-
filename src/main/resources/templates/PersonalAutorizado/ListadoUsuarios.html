@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="layout/layout :: head"></head>
+
+<body>
+	<header th:replace="layout/layout :: header"></header>
+	<div class="container">
+		<div class="card bg-light mb-3">
+			<div class="card-header mb-3 text-white text-center">
+				<h3 th:text="${titulo}"></h3>
+			</div>
+			<div class="card-body">
+				<div class="container">
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th>Ver usuarios</th>
+								<th>Tipo de Usuario</th>
+								<th>Descripci&oacute;n del permiso que tiene cada usuario</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><a class="btn btn-xs" id="ver"
+									th:href="@{/PersonalAutorizado/verUsuariosRegistrados}"> <img
+										th:src="@{/images/ver.png}" width="35" height="25">
+								</a></td>
+								<td>Usuario Registrado</td>
+								<td>Usuarios que necesitan ser validados en el sistema.
+									Estos usuarios no pueden realizar ninguna funci&oacute;n en el
+									sistema. Personal autorizado debe de asignarles un permiso</td>
+							</tr>
+							<tr>
+								<td><a class="btn btn-xs" id="ver"
+									th:href="@{/PersonalAutorizado/verAlumnos}"> <img
+										th:src="@{/images/ver.png}" width="35" height="25">
+								</a></td>
+								<td>Alumno</td>
+								<td>Usuarios con este permiso pueden crear expedientes de
+									los compuestos</td>
+							</tr>
+							<tr>
+								<td><a class="btn btn-xs" id="ver"
+									th:href="@{/PersonalAutorizado/verPersonalAutorizado}"> <img
+										th:src="@{/images/ver.png}" width="35" height="25">
+								</a></td>
+								<td>Personal Autorizado</td>
+								<td>Usuario que puede asignar permisos a los usuarios y
+									modificar expedientes de los compuestos</td>
+							</tr>
+							<tr>
+								<td><a class="btn btn-xs" id="ver"
+									th:href="@{/PersonalAutorizado/verUsuariosInhabilitados}">
+										<img th:src="@{/images/ver.png}" width="35" height="25">
+								</a></td>
+								<td>Usuarios Inhabilitados</td>
+								<td>Usuarios que concluyeron sus estudios en el centro y ya
+									no pueden ingresar al sistema</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<footer th:replace="layout/layout :: footer"></footer>
+
+</body>
+</html>

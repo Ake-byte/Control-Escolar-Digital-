@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+
+	<div class="container" style="width: 92rem;">
+		<div class="card bg-light">
+			<div class="card-header" th:text="${titulo}"></div>
+			<div class="card-body" th:each="usuario: ${usuario}">
+
+				<div class="container">
+					<div class="card bg-light">
+						<div class="row">
+							<div class="col-sm-6">
+								<div class="card bg-light">
+									<div class="card-body">
+										<div class="form-group row">
+											<label class="col-sm-6 col-form-label">Nombre(s):</label>
+											<div class="col-sm-6">
+												<input type="text" class="form-control"
+													th:field="${usuario.nombre}" readonly />
+											</div>
+										</div>
+										<br>
+										<div class="form-group row">
+											<label class="col-sm-6 col-form-label">Apellido
+												Paterno:</label>
+											<div class="col-sm-6">
+												<input type="text" class="form-control"
+													th:field="${usuario.apellidoPaterno}" readonly />
+											</div>
+										</div>
+										<br>
+										<div class="form-group row">
+											<label class="col-sm-6 col-form-label">Apellido
+												Materno</label>
+											<div class="col-sm-6">
+												<input type="text" class="form-control"
+													th:field="${usuario.apellidoMaterno}" readonly />
+											</div>
+										</div>
+										<br>
+										<div class="form-group row">
+											<label class="col-sm-6 col-form-label">Fecha
+												de nacimiento</label>
+											<div class="col-sm-6">
+												<input th:field="${usuario.fechaNacimiento}" type="text"
+													class="form-control" readonly />
+											</div>
+										</div>
+										<br>
+										<div class="form-group row">
+											<label class="col-sm-6 col-form-label">Pa&iacute;s
+												de nacimiento</label>
+											<div class="col-sm-6">
+												<input th:field="${usuario.paisNacimiento}" type="text"
+													class="form-control" readonly />
+											</div>
+										</div>
+										<br>
+										<div class="form-group row">
+											<label for="nombre" class="col-sm-6 col-form-label">Estado</label>
+											<div class="col-sm-6">
+												<input th:field="${usuario.estadoNacimiento}" type="text"
+													class="form-control" readonly />
+											</div>
+										</div>
+										<br>
+										<div class="form-group row">
+											<label for="nombre" class="col-sm-6 col-form-label">Clave
+												CURP</label>
+											<div class="col-sm-6">
+												<input th:field="${usuario.claveCURP}" type="text"
+													class="form-control" readonly />
+											</div>
+										</div>
+										<br>
+										<div class="form-group row">
+											<label for="nombre" class="col-sm-6 col-form-label">Tel&eacute;fono
+												celular</label>
+											<div class="col-sm-6">
+												<input th:field="${usuario.telefonoCelular}" type="text"
+													class="form-control" readonly />
+											</div>
+										</div>
+										<br>
+										<div class="form-group row">
+											<label for="nombre" class="col-sm-6 col-form-label">Direcci&oacute;n
+												(en CDMX)</label>
+											<div class="col-sm-6">
+												<input th:field="${usuario.direccionCDMX}" type="text"
+													class="form-control" readonly />
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-6">
+								<div class="card bg-light">
+									<div class="card-body">
+										<div class="form-group row">
+											<label for="nombre" class="col-sm-6 col-form-label">G&eacute;nero</label>
+											<div class="col-sm-6">
+												<input type="text" th:field="${usuario.genero}"
+													class="form-control" readonly />
+											</div>
+										</div>
+										<br>
+										<div class="form-group row">
+											<label for="nombre" class="col-sm-6 col-form-label">Lengua
+												ind&iacute;gena</label>
+											<div class="placeholder col-6">
+												<input class="placeholder col-8" th:if="${usuario.lenguaIndigena == false || usuario.lenguaIndigena == null || usuario.lenguaIndigena == ''}" placeholder="No" readonly>
+												<input th:unless="${usuario.lenguaIndigena == false || usuario.lenguaIndigena == null || usuario.lenguaIndigena == ''}" th:placeholder="${usuario.nombreLenguaIndigena}" readonly>
+											</div>
+										</div>
+										<br>
+										<div class="form-group row">
+											<label for="nombre" class="col-sm-6 col-form-label">Discapacidad</label>
+											<div class="col-sm-6">
+												<input th:if="${usuario.discapacidad == false || usuario.discapacidad == null || usuario.discapacidad == ''}" placeholder="No" readonly>
+												<input th:unless="${usuario.discapacidad == false || usuario.discapacidad == null || usuario.discapacidad == ''}" th:placeholder="${usuario.discapacidad}" readonly>
+											</div>
+										</div>
+										<br>
+										<div class="form-group row">
+											<label for="nombre" class="col-sm-6 col-form-label">Enfermedad
+												permanente</label>
+											<div class="col-sm-6">
+												<input th:if="${usuario.enfermedadPermanente == false || usuario.enfermedadPermanente == null || usuario.enfermedadPermanente == ''}" placeholder="No" readonly>
+												<input th:unless="${usuario.enfermedadPermanente == false || usuario.enfermedadPermanente == null || usuario.enfermedadPermanente == ''}" th:placeholder="${usuario.enfermedadPermanente}" readonly>
+											</div>
+										</div>
+										<br>
+										<div class="form-group row">
+											<label for="nombre" class="col-sm-6 col-form-label">Correo
+												electr&oacute;nico IPN</label>
+											<div class="col-sm-6">
+												<input type="text" class="form-control"
+													th:field="${usuario.email}" readonly />
+											</div>
+										</div>
+										<br>
+										<div class="form-group row">
+											<label for="nombre" class="col-sm-6 col-form-label">Foto
+												actual (fondo blanco)</label>
+											<div class="col-sm-6">
+												<input th:field="${usuario.fotoActual}" type="text"
+													class="form-control" readonly />
+											</div>
+										</div>
+										<br>
+										<div class="form-group row">
+											<label for="nombre" class="col-sm-6 col-form-label">Acta
+												de Nacimiento</label>
+											<div class="col-sm-6">
+												<input th:field="${usuario.actaNacimiento}" type="text"
+													class="form-control" readonly />
+											</div>
+										</div>
+										<br>
+										<div class="form-group row">
+											<label for="nombre" class="col-sm-6 col-form-label">Pasaporte
+												(ext) / INE(mex)</label>
+											<div class="col-sm-6">
+												<input th:field="${usuario.pasaporte}" type="text"
+													class="form-control" readonly />
+											</div>
+										</div>
+										<br>
+										<div class="form-group row">
+											<label for="nombre" class="col-sm-6 col-form-label">C&eacute;dula
+												CURP</label>
+											<div class="col-sm-6">
+												<input type="text" class="form-control" readonly />
+											</div>
+										</div>
+
+									</div>
+								</div>
+							</div>
+						</div>
+
+
+					</div>
+				</div>
+				<br>
+				<div>
+					<p>
+						<a class="btn btn-primary btn-xs"
+						   th:href="@{/Personal/EditarInformacionPersonal}">Editar
+							Informaci&oacute;n Personal</a>
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

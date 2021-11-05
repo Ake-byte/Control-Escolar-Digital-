@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+
+	<div class="container" style="width: 92rem;">
+		<div class="card bg-light">
+			<div class="card-header" th:text="${titulo}"></div>
+			<div class="card-body" th:each="usuario: ${usuario}">
+
+				<div class="container">
+					<div class="card bg-light">
+						<div class="row">
+							<div class="col-sm-6">
+								<div class="card bg-light">
+									<div class="card-body">
+										<div class="form-group row">
+											<label for="nombre" class="col-sm-6 col-form-label">Licenciatura
+												(t&iacute;tulo)</label>
+											<div class="col-sm-6">
+												<input type="text" class="form-control" readonly />
+											</div>
+										</div>
+										<br>
+										<div class="form-group row">
+											<label for="nombre" class="col-sm-6 col-form-label">Insituci&oacute;n
+												de licenciatura</label>
+											<div class="col-sm-6">
+												<input type="text" class="form-control" readonly />
+											</div>
+										</div>
+										<br>
+										<div class="form-group row">
+											<label for="nombre" class="col-sm-6 col-form-label">Pa&iacute;s
+												de estudios licenciatura</label>
+											<div class="col-sm-6">
+												<input type="text" class="form-control" readonly />
+											</div>
+										</div>
+										<br>
+										<div class="form-group row">
+											<label for="nombre" class="col-sm-6 col-form-label">Promedio
+												final licenciatura</label>
+											<div class="col-sm-6">
+												<input type="text" class="form-control" readonly />
+											</div>
+										</div>
+										<br>
+										<div class="form-group row">
+											<label for="nombre" class="col-sm-6 col-form-label">Calificaciones
+												de licenciatura</label>
+											<div class="col-sm-6">
+												<input type="text" class="form-control" readonly />
+											</div>
+										</div>
+										<br>
+										<div class="form-group row">
+											<label for="nombre" class="col-sm-6 col-form-label">Diploma
+												de licenciatura</label>
+											<div class="col-sm-6">
+												<input type="text" class="form-control" readonly />
+											</div>
+										</div>
+										<br>
+										<div class="form-group row">
+											<label for="nombre" class="col-sm-6 col-form-label">C&eacute;dula
+												profesional licenciatura</label>
+											<div class="col-sm-6">
+												<input type="text" class="form-control" readonly />
+											</div>
+										</div>
+										<br>
+										<div class="form-group row">
+											<label for="nombre" class="col-sm-6 col-form-label">Acreditaci&oacute;n
+												de ingl&eacute;s</label>
+											<div class="col-sm-6">
+												<input type="text" class="form-control" readonly />
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-6">
+								<div class="card bg-light">
+									<div class="card-body">
+										<div class="form-group row">
+											<label for="nombre" class="col-sm-6 col-form-label">Maestr&iacute;a
+												(nombre)</label>
+											<div class="col-sm-6">
+												<input type="text" class="form-control" readonly />
+											</div>
+										</div>
+										<br>
+										<div class="form-group row">
+											<label for="nombre" class="col-sm-6 col-form-label">Instituci&oacute;n
+												de maestr&iacute;a</label>
+											<div class="col-sm-6">
+												<input type="text" class="form-control" readonly />
+											</div>
+										</div>
+										<br>
+										<div class="form-group row">
+											<label for="nombre" class="col-sm-6 col-form-label">Pa&iacute;s
+												de estudios maestr&iacute;a</label>
+											<div class="col-sm-6">
+												<input type="text" class="form-control" readonly />
+											</div>
+										</div>
+										<br>
+										<div class="form-group row">
+											<label for="nombre" class="col-sm-6 col-form-label">Promedio
+												final maestr&iacute;a</label>
+											<div class="col-sm-6">
+												<input type="text" class="form-control" readonly />
+											</div>
+										</div>
+										<br>
+										<div class="form-group row">
+											<label for="nombre" class="col-sm-6 col-form-label">Calificaciones
+												de maestr&iacute;a</label>
+											<div class="col-sm-6">
+												<input type="text" class="form-control" readonly />
+											</div>
+										</div>
+										<br>
+										<div class="form-group row">
+											<label for="nombre" class="col-sm-6 col-form-label">Acta
+												de examen maestr&iacute;a</label>
+											<div class="col-sm-6">
+												<input type="text" class="form-control" readonly />
+											</div>
+										</div>
+										<br>
+										<div class="form-group row">
+											<label for="nombre" class="col-sm-6 col-form-label">Diploma
+												de maestr&iacute;a</label>
+											<div class="col-sm-6">
+												<input type="text" class="form-control" readonly />
+											</div>
+										</div>
+										<br>
+										<div class="form-group row">
+											<label for="nombre" class="col-sm-6 col-form-label">C&eacute;dula
+												profesional maestr&iacute;a</label>
+											<div class="col-sm-6">
+												<input type="text" class="form-control" readonly />
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+					<br>
+					<div>
+						<p>
+							<a class="btn btn-primary btn-xs"
+							   th:href="@{/Academica/EditarInformacionAcademica/} + ${usuario.id}">Editar Informaci&oacute;n Acad&eacute;mica</a>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

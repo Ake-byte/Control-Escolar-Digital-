@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+	<div class="container">
+		<div class="card bg-light">
+			<div class="card-header" th:text="${titulo}"></div>
+			<div class="card-body">
+				<div class="container py-4">
+
+
+
+					<form autocomplete="off" th:action="@{/register}" th:object="${usuario}" method="post"
+						enctype="multipart/form-data">
+						<div class="form-group row">
+							<label for="nombre" class="col-sm-2 col-form-label">Nombre</label>
+							<div class="col-sm-6">
+								<input type="text" class="form-control" th:errorclass="'form-control alert-danger'"
+									th:field="*{nombre}" />
+							</div>
+						</div>
+						
+						<div class="form-group row">
+							<label for="apellidoPaterno" class="col-sm-2 col-form-label">Apellido Paterno</label>
+							<div class="col-sm-6">
+								<input type="text" class="form-control" th:errorclass="'form-control alert-danger'"
+									th:field="*{apellidoPaterno}" />
+							</div>
+						</div>
+						
+						<div class="form-group row">
+							<label for="apellidoMaterno" class="col-sm-2 col-form-label">Apellido Materno</label>
+							<div class="col-sm-6">
+								<input type="text" class="form-control" th:errorclass="'form-control alert-danger'"
+									th:field="*{apellidoMaterno}" />
+							</div>
+						</div>
+						
+						<div class="form-group row">
+							<label for="email" class="col-sm-2 col-form-label">Email</label>
+							<div class="col-sm-6">
+								<input type="email" class="form-control" th:errorclass="'form-control alert-danger'"
+									th:field="*{email}" />
+							</div>
+						</div>
+						
+						<div class="form-group row">
+							<label for="password" class="col-sm-2 col-form-label">Password</label>
+							<div class="col-sm-6">
+								<input type="password" class="form-control" th:errorclass="'form-control alert-danger'"
+									th:field="*{password}" />
+							</div>
+						</div>
+
+						<div class="form-group row">
+							<div class="col-sm-6">
+								<input type="submit" value="Guardar" class="btn-primary" />
+							</div>
+						</div>
+						
+						<!-- <div class="form-group row">
+							<label class="col-sm-2 col-form-label">Rol
+							</label>
+							<div class="col-sm-6">
+								<select id="rol" name="rol"
+									th:field="*{roles_usuarios}" >
+									<option th:each="roles_usuarios : ${rol}"
+										th:value="${roles_usuarios.id}"
+										th:utext="${roles_usuarios.id}" />
+								</select> 
+							</div>
+						</div>
+						-->
+						<input type="hidden" th:field="*{id}" />
+
+
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>
