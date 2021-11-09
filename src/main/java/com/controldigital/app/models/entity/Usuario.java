@@ -17,358 +17,632 @@ import javax.persistence.*;
 @Setter
 public class Usuario implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "user_id")
-	private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id")
+    private Long id;
 
-	@Column(name = "nombre")
-	private String nombre;
+    @Column(name = "nombre")
+    private String nombre;
 
-	@Column(name = "apellido_paterno")
-	private String apellidoPaterno;
+    @Column(name = "apellido_paterno")
+    private String apellidoPaterno;
 
-	@Column(name = "apellido_materno")
-	private String apellidoMaterno;
+    @Column(name = "apellido_materno")
+    private String apellidoMaterno;
 
-	@Column(name = "email", unique = true)
-	private String email;
+    @Column(name = "email", unique = true)
+    private String email;
 
-	@Column(name = "fecha_nacimiento")
-	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private Date fechaNacimiento;
-	
-	@Column(name = "acta_nacimiento")
-	private String actaNacimiento;
+    @Column(name = "fecha_nacimiento")
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date fechaNacimiento;
 
-	@Column(name = "acta_status")
-	private FileStatus actaStatus;
+    @Column(name = "acta_nacimiento")
+    private String actaNacimiento;
 
-	@Column(name = "pais_nacimiento")
-	private String paisNacimiento;
+    @Column(name = "acta_status")
+    private FileStatus actaStatus;
 
-	@Column(name = "estado_nacimiento")
-	private String estadoNacimiento;
+    @Column(name = "pais_nacimiento")
+    private String paisNacimiento;
 
-	@Column(name = "clave_CURP")
-	private String claveCURP;
-	
-	@Column(name = "cedula_CURP")
-	private String cedulaCURP;
+    @Column(name = "estado_nacimiento")
+    private String estadoNacimiento;
 
-	@Column(name = "curp_status")
-	private FileStatus curpStatus;
+    @Column(name = "clave_CURP")
+    private String claveCURP;
 
-	@Column(name = "telefono_celular")
-	private String telefonoCelular;
+    @Column(name = "cedula_CURP")
+    private String cedulaCURP;
 
-	@Column(name = "direccion_CDMX")
-	private String direccionCDMX;
+    @Column(name = "curp_status")
+    private FileStatus curpStatus;
 
-	private String genero;
+    @Column(name = "telefono_celular")
+    private String telefonoCelular;
 
-	@Column(name = "lengua_indigena")
-	private Boolean lenguaIndigena;
+    @Column(name = "direccion_CDMX")
+    private String direccionCDMX;
 
-	@Column(name = "nombre_lengua_indigena")
-	private String nombreLenguaIndigena;
+    private String genero;
 
-	@Column(name = "discapacidad")
-	private Boolean discapacidad;
+    @Column(name = "lengua_indigena")
+    private Boolean lenguaIndigena;
 
-	@Column(name = "nombre_discapacidad")
-	private String nombreDiscapacidad;
+    @Column(name = "nombre_lengua_indigena")
+    private String nombreLenguaIndigena;
 
-	@Column(name = "enfermedad_permanente")
-	private Boolean enfermedadPermanente;
+    @Column(name = "discapacidad")
+    private Boolean discapacidad;
 
-	@Column(name = "nombre_enfermedad_permanente")
-	private String nombreEnfermedadPermanente;
+    @Column(name = "nombre_discapacidad")
+    private String nombreDiscapacidad;
 
-	@Column(name = "foto_actual")
-	private String fotoActual;
+    @Column(name = "enfermedad_permanente")
+    private Boolean enfermedadPermanente;
 
-	@Column(name = "foto_status")
-	private FileStatus fotoStatus;
+    @Column(name = "nombre_enfermedad_permanente")
+    private String nombreEnfermedadPermanente;
 
-	@Column(name = "pasaporte")
-	private String pasaporte;
+    @Column(name = "foto_actual")
+    private String fotoActual;
 
-	@Column(name = "pasaporte_status")
-	private FileStatus pasaporteStatus;
+    @Column(name = "foto_status")
+    private FileStatus fotoStatus;
 
-	@Column(name = "pwd", length = 100)
-	private String password;
+    @Column(name = "pasaporte")
+    private String pasaporte;
 
-	private Boolean enabled;
+    @Column(name = "pasaporte_status")
+    private FileStatus pasaporteStatus;
 
-	@Column(name = "reset_password_token")
-	private String resetPasswordToken;
+    @Column(name = "pwd", length = 100)
+    private String password;
 
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "user_id")
-	private Role roles;
-	
-	@OneToMany(cascade = CascadeType.ALL)
+    private Boolean enabled;
+
+    private Integer edad;
+
+    @Column(name = "reset_password_token")
+    private String resetPasswordToken;
+
+    @Column(name = "nombre_licenciatura")
+    private String nombreLicenciatura;
+
+    @Column(name = "institucion_licenciatura")
+    private String institucionLicenciatura;
+
+    @Column(name = "pais_licenciatura")
+    private String paisLicenciatura;
+
+    @Column(name = "promedio_licenciatura")
+    private String promedioLicenciatura;
+
+    @Column(name = "calificaciones_licenciatura")
+    private String calificacionesLicenciatura;
+
+    @Column(name = "calificaciones_licenciatura_status")
+    private FileStatus calificacionesLicenciaturaStatus;
+
+    @Column(name = "diploma_licenciatura")
+    private String diplomaLicenciatura;
+
+    @Column(name = "diploma_licenciatura_status")
+    private FileStatus diplomaLicenciaturaStatus;
+
+    @Column(name = "cedula_licenciatura")
+    private String cedulaLicenciatura;
+
+    @Column(name = "cedula_licenciatura_status")
+    private FileStatus cedulaLicenciaturaStatus;
+
+    @Column(name = "acreditacion_ingles")
+    private String acreditacionIngles;
+
+    @Column(name = "acreditacion_ingles_status")
+    private FileStatus acreditacionInglesStatus;
+
+    @Column(name = "nombre_maestria")
+    private String nombreMaestria;
+
+    @Column(name = "institucion_maestria")
+    private String institucionMaestria;
+
+    @Column(name = "pais_maestria")
+    private String paisMaestria;
+
+    @Column(name = "promedio_maestria")
+    private String promedioMaestria;
+
+    @Column(name = "calificaciones_maestria")
+    private String calificacionesMaestria;
+
+    @Column(name = "calificaciones_maestria_status")
+    private FileStatus calificacionesMaestriaStatus;
+
+    @Column(name = "diploma_examen_maestria")
+    private String actaExamenMaestria;
+
+    @Column(name = "acta_examen_maestria_status")
+    private FileStatus actaExamenMaestriaStatus;
+
+    @Column(name = "diploma_maestria")
+    private String diplomaMaestria;
+
+    @Column(name = "diploma_maestria_status")
+    private FileStatus diplomaMaestriaStatus;
+
+    @Column(name = "cedula_maestria")
+    private String cedulaMaestria;
+
+    @Column(name = "cedula_maestria_status")
+    private FileStatus cedulaMaestriaStatus;
+
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
-	private List<Producto> productos;
+    private Role roles;
 
-	public Usuario() {
-		productos = new ArrayList<Producto>();
-	}
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
+    private List<Producto> productos;
 
-	public Role getRoles() {
-		return roles;
-	}
+    public Usuario() {
+        productos = new ArrayList<Producto>();
+    }
 
-	public void setRoles(Role roles) {
-		this.roles = roles;
-	}
-	
-	public List<Producto> getProductos() {
-		return productos;
-	}
+    public Role getRoles() {
+        return roles;
+    }
 
-	public void setProductos(List<Producto> productos) {
-		this.productos = productos;
-	}
+    public void setRoles(Role roles) {
+        this.roles = roles;
+    }
 
-	public void addProducto(Producto producto) {
-		productos.add(producto);
-	}
+    public List<Producto> getProductos() {
+        return productos;
+    }
 
-	public Long getId() {
-		return id;
-	}
+    public void setProductos(List<Producto> productos) {
+        this.productos = productos;
+    }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public void addProducto(Producto producto) {
+        productos.add(producto);
+    }
 
-	public String getNombre() {
-		return nombre;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public String getApellidoPaterno() {
-		return apellidoPaterno;
-	}
+    public String getNombre() {
+        return nombre;
+    }
 
-	public void setApellidoPaterno(String apellidoPaterno) {
-		this.apellidoPaterno = apellidoPaterno;
-	}
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 
-	public String getApellidoMaterno() {
-		return apellidoMaterno;
-	}
+    public String getApellidoPaterno() {
+        return apellidoPaterno;
+    }
 
-	public void setApellidoMaterno(String apellidoMaterno) {
-		this.apellidoMaterno = apellidoMaterno;
-	}
+    public void setApellidoPaterno(String apellidoPaterno) {
+        this.apellidoPaterno = apellidoPaterno;
+    }
 
-	public String getEmail() {
-		return email;
-	}
+    public String getApellidoMaterno() {
+        return apellidoMaterno;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    public void setApellidoMaterno(String apellidoMaterno) {
+        this.apellidoMaterno = apellidoMaterno;
+    }
 
-	public Date getFechaNacimiento() {
-		return fechaNacimiento;
-	}
+    public String getEmail() {
+        return email;
+    }
 
-	public void setFechaNacimiento(Date fechaNacimiento) {
-		this.fechaNacimiento = fechaNacimiento;
-	}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	public String getActaNacimiento() {
-		return actaNacimiento;
-	}
+    public Date getFechaNacimiento() {
+        return fechaNacimiento;
+    }
 
-	public void setActaNacimiento(String actaNacimiento) {
-		this.actaNacimiento = actaNacimiento;
-	}
+    public void setFechaNacimiento(Date fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
+    }
 
-	public String getPaisNacimiento() {
-		return paisNacimiento;
-	}
+    public String getActaNacimiento() {
+        return actaNacimiento;
+    }
 
-	public void setPaisNacimiento(String paisNacimiento) {
-		this.paisNacimiento = paisNacimiento;
-	}
+    public void setActaNacimiento(String actaNacimiento) {
+        this.actaNacimiento = actaNacimiento;
+    }
 
-	public String getEstadoNacimiento() {
-		return estadoNacimiento;
-	}
+    public String getPaisNacimiento() {
+        return paisNacimiento;
+    }
 
-	public void setEstadoNacimiento(String estadoNacimiento) {
-		this.estadoNacimiento = estadoNacimiento;
-	}
+    public void setPaisNacimiento(String paisNacimiento) {
+        this.paisNacimiento = paisNacimiento;
+    }
 
-	public String getClaveCURP() {
-		return claveCURP;
-	}
+    public String getEstadoNacimiento() {
+        return estadoNacimiento;
+    }
 
-	public void setClaveCURP(String claveCURP) {
-		this.claveCURP = claveCURP;
-	}
+    public void setEstadoNacimiento(String estadoNacimiento) {
+        this.estadoNacimiento = estadoNacimiento;
+    }
 
-	public String getCedulaCURP() {
-		return cedulaCURP;
-	}
+    public String getClaveCURP() {
+        return claveCURP;
+    }
 
-	public void setCedulaCURP(String cedulaCURP) {
-		this.cedulaCURP = cedulaCURP;
-	}
+    public void setClaveCURP(String claveCURP) {
+        this.claveCURP = claveCURP;
+    }
 
-	public String getTelefonoCelular() {
-		return telefonoCelular;
-	}
+    public String getCedulaCURP() {
+        return cedulaCURP;
+    }
 
-	public void setTelefonoCelular(String telefonoCelular) {
-		this.telefonoCelular = telefonoCelular;
-	}
+    public void setCedulaCURP(String cedulaCURP) {
+        this.cedulaCURP = cedulaCURP;
+    }
 
-	public String getDireccionCDMX() {
-		return direccionCDMX;
-	}
+    public String getTelefonoCelular() {
+        return telefonoCelular;
+    }
 
-	public void setDireccionCDMX(String direccionCDMX) {
-		this.direccionCDMX = direccionCDMX;
-	}
+    public void setTelefonoCelular(String telefonoCelular) {
+        this.telefonoCelular = telefonoCelular;
+    }
 
-	public String getGenero() {
-		return genero;
-	}
+    public String getDireccionCDMX() {
+        return direccionCDMX;
+    }
 
-	public void setGenero(String genero) {
-		this.genero = genero;
-	}
+    public void setDireccionCDMX(String direccionCDMX) {
+        this.direccionCDMX = direccionCDMX;
+    }
 
-	public Boolean getLenguaIndigena() {
-		return lenguaIndigena;
-	}
+    public String getGenero() {
+        return genero;
+    }
 
-	public void setLenguaIndigena(Boolean lenguaIndigena) {
-		this.lenguaIndigena = lenguaIndigena;
-	}
+    public void setGenero(String genero) {
+        this.genero = genero;
+    }
 
-	public String getNombreLenguaIndigena() {
-		return nombreLenguaIndigena;
-	}
+    public Boolean getLenguaIndigena() {
+        return lenguaIndigena;
+    }
 
-	public void setNombreLenguaIndigena(String nombreLenguaIndigena) {
-		this.nombreLenguaIndigena = nombreLenguaIndigena;
-	}
+    public void setLenguaIndigena(Boolean lenguaIndigena) {
+        this.lenguaIndigena = lenguaIndigena;
+    }
 
-	public Boolean getDiscapacidad() {
-		return discapacidad;
-	}
+    public String getNombreLenguaIndigena() {
+        return nombreLenguaIndigena;
+    }
 
-	public void setDiscapacidad(Boolean discapacidad) {
-		this.discapacidad = discapacidad;
-	}
+    public void setNombreLenguaIndigena(String nombreLenguaIndigena) {
+        this.nombreLenguaIndigena = nombreLenguaIndigena;
+    }
 
-	public String getNombreDiscapacidad() {
-		return nombreDiscapacidad;
-	}
+    public Boolean getDiscapacidad() {
+        return discapacidad;
+    }
 
-	public void setNombreDiscapacidad(String nombreDiscapacidad) {
-		this.nombreDiscapacidad = nombreDiscapacidad;
-	}
+    public void setDiscapacidad(Boolean discapacidad) {
+        this.discapacidad = discapacidad;
+    }
 
-	public Boolean getEnfermedadPermanente() {
-		return enfermedadPermanente;
-	}
+    public String getNombreDiscapacidad() {
+        return nombreDiscapacidad;
+    }
 
-	public void setEnfermedadPermanente(Boolean enfermedadPermanente) {
-		this.enfermedadPermanente = enfermedadPermanente;
-	}
+    public void setNombreDiscapacidad(String nombreDiscapacidad) {
+        this.nombreDiscapacidad = nombreDiscapacidad;
+    }
 
-	public String getNombreEnfermedadPermanente() {
-		return nombreEnfermedadPermanente;
-	}
+    public Boolean getEnfermedadPermanente() {
+        return enfermedadPermanente;
+    }
 
-	public void setNombreEnfermedadPermanente(String nombreEnfermedadPermanente) {
-		this.nombreEnfermedadPermanente = nombreEnfermedadPermanente;
-	}
+    public void setEnfermedadPermanente(Boolean enfermedadPermanente) {
+        this.enfermedadPermanente = enfermedadPermanente;
+    }
 
-	public String getFotoActual() {
-		return fotoActual;
-	}
+    public String getNombreEnfermedadPermanente() {
+        return nombreEnfermedadPermanente;
+    }
 
-	public void setFotoActual(String fotoActual) {
-		this.fotoActual = fotoActual;
-	}
+    public void setNombreEnfermedadPermanente(String nombreEnfermedadPermanente) {
+        this.nombreEnfermedadPermanente = nombreEnfermedadPermanente;
+    }
 
-	public String getPasaporte() {
-		return pasaporte;
-	}
+    public String getFotoActual() {
+        return fotoActual;
+    }
 
-	public void setPasaporte(String pasaporte) {
-		this.pasaporte = pasaporte;
-	}
+    public void setFotoActual(String fotoActual) {
+        this.fotoActual = fotoActual;
+    }
 
-	public String getPassword() {
-		return password;
-	}
+    public String getPasaporte() {
+        return pasaporte;
+    }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    public void setPasaporte(String pasaporte) {
+        this.pasaporte = pasaporte;
+    }
 
-	public Boolean getEnabled() {
-		return enabled;
-	}
+    public String getPassword() {
+        return password;
+    }
 
-	public void setEnabled(Boolean enabled) {
-		this.enabled = enabled;
-	}
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-	public String getResetPasswordToken() {
-		return resetPasswordToken;
-	}
+    public Boolean getEnabled() {
+        return enabled;
+    }
 
-	public void setResetPasswordToken(String resetPasswordToken) {
-		this.resetPasswordToken = resetPasswordToken;
-	}
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
+    }
 
-	public FileStatus getActaStatus() {
-		return actaStatus;
-	}
+    public String getResetPasswordToken() {
+        return resetPasswordToken;
+    }
 
-	public void setActaStatus(FileStatus actaStatus) {
-		this.actaStatus = actaStatus;
-	}
+    public void setResetPasswordToken(String resetPasswordToken) {
+        this.resetPasswordToken = resetPasswordToken;
+    }
 
-	public FileStatus getCurpStatus() {
-		return curpStatus;
-	}
+    public FileStatus getActaStatus() {
+        return actaStatus;
+    }
 
-	public void setCurpStatus(FileStatus curpStatus) {
-		this.curpStatus = curpStatus;
-	}
+    public void setActaStatus(FileStatus actaStatus) {
+        this.actaStatus = actaStatus;
+    }
 
-	public FileStatus getFotoStatus() {
-		return fotoStatus;
-	}
+    public FileStatus getCurpStatus() {
+        return curpStatus;
+    }
 
-	public void setFotoStatus(FileStatus fotoStatus) {
-		this.fotoStatus = fotoStatus;
-	}
+    public void setCurpStatus(FileStatus curpStatus) {
+        this.curpStatus = curpStatus;
+    }
 
-	public FileStatus getPasaporteStatus() {
-		return pasaporteStatus;
-	}
+    public FileStatus getFotoStatus() {
+        return fotoStatus;
+    }
 
-	public void setPasaporteStatus(FileStatus pasaporteStatus) {
-		this.pasaporteStatus = pasaporteStatus;
-	}
+    public void setFotoStatus(FileStatus fotoStatus) {
+        this.fotoStatus = fotoStatus;
+    }
+
+    public FileStatus getPasaporteStatus() {
+        return pasaporteStatus;
+    }
+
+    public void setPasaporteStatus(FileStatus pasaporteStatus) {
+        this.pasaporteStatus = pasaporteStatus;
+    }
+
+    public Integer getEdad() {
+        return edad;
+    }
+
+    public void setEdad(Integer edad) {
+        this.edad = edad;
+    }
+
+    public String getNombreLicenciatura() {
+        return nombreLicenciatura;
+    }
+
+    public void setNombreLicenciatura(String nombreLicenciatura) {
+        this.nombreLicenciatura = nombreLicenciatura;
+    }
+
+    public String getInstitucionLicenciatura() {
+        return institucionLicenciatura;
+    }
+
+    public void setInstitucionLicenciatura(String institucionLicenciatura) {
+        this.institucionLicenciatura = institucionLicenciatura;
+    }
+
+    public String getPaisLicenciatura() {
+        return paisLicenciatura;
+    }
+
+    public void setPaisLicenciatura(String paisLicenciatura) {
+        this.paisLicenciatura = paisLicenciatura;
+    }
+
+    public String getPromedioLicenciatura() {
+        return promedioLicenciatura;
+    }
+
+    public void setPromedioLicenciatura(String promedioLicenciatura) {
+        this.promedioLicenciatura = promedioLicenciatura;
+    }
+
+    public String getCalificacionesLicenciatura() {
+        return calificacionesLicenciatura;
+    }
+
+    public void setCalificacionesLicenciatura(String calificacionesLicenciatura) {
+        this.calificacionesLicenciatura = calificacionesLicenciatura;
+    }
+
+    public FileStatus getCalificacionesLicenciaturaStatus() {
+        return calificacionesLicenciaturaStatus;
+    }
+
+    public void setCalificacionesLicenciaturaStatus(FileStatus calificacionesLicenciaturaStatus) {
+        this.calificacionesLicenciaturaStatus = calificacionesLicenciaturaStatus;
+    }
+
+    public String getDiplomaLicenciatura() {
+        return diplomaLicenciatura;
+    }
+
+    public void setDiplomaLicenciatura(String diplomaLicenciatura) {
+        this.diplomaLicenciatura = diplomaLicenciatura;
+    }
+
+    public FileStatus getDiplomaLicenciaturaStatus() {
+        return diplomaLicenciaturaStatus;
+    }
+
+    public void setDiplomaLicenciaturaStatus(FileStatus diplomaLicenciaturaStatus) {
+        this.diplomaLicenciaturaStatus = diplomaLicenciaturaStatus;
+    }
+
+    public String getCedulaLicenciatura() {
+        return cedulaLicenciatura;
+    }
+
+    public void setCedulaLicenciatura(String cedulaLicenciatura) {
+        this.cedulaLicenciatura = cedulaLicenciatura;
+    }
+
+    public FileStatus getCedulaLicenciaturaStatus() {
+        return cedulaLicenciaturaStatus;
+    }
+
+    public void setCedulaLicenciaturaStatus(FileStatus cedulaLicenciaturaStatus) {
+        this.cedulaLicenciaturaStatus = cedulaLicenciaturaStatus;
+    }
+
+    public String getAcreditacionIngles() {
+        return acreditacionIngles;
+    }
+
+    public void setAcreditacionIngles(String acreditacionIngles) {
+        this.acreditacionIngles = acreditacionIngles;
+    }
+
+    public FileStatus getAcreditacionInglesStatus() {
+        return acreditacionInglesStatus;
+    }
+
+    public void setAcreditacionInglesStatus(FileStatus acreditacionInglesStatus) {
+        this.acreditacionInglesStatus = acreditacionInglesStatus;
+    }
+
+    public String getNombreMaestria() {
+        return nombreMaestria;
+    }
+
+    public void setNombreMaestria(String nombreMaestria) {
+        this.nombreMaestria = nombreMaestria;
+    }
+
+    public String getInstitucionMaestria() {
+        return institucionMaestria;
+    }
+
+    public void setInstitucionMaestria(String institucionMaestria) {
+        this.institucionMaestria = institucionMaestria;
+    }
+
+    public String getPaisMaestria() {
+        return paisMaestria;
+    }
+
+    public void setPaisMaestria(String paisMaestria) {
+        this.paisMaestria = paisMaestria;
+    }
+
+    public String getPromedioMaestria() {
+        return promedioMaestria;
+    }
+
+    public void setPromedioMaestria(String promedioMaestria) {
+        this.promedioMaestria = promedioMaestria;
+    }
+
+    public String getCalificacionesMaestria() {
+        return calificacionesMaestria;
+    }
+
+    public void setCalificacionesMaestria(String calificacionesMaestria) {
+        this.calificacionesMaestria = calificacionesMaestria;
+    }
+
+    public FileStatus getCalificacionesMaestriaStatus() {
+        return calificacionesMaestriaStatus;
+    }
+
+    public void setCalificacionesMaestriaStatus(FileStatus calificacionesMaestriaStatus) {
+        this.calificacionesMaestriaStatus = calificacionesMaestriaStatus;
+    }
+
+    public String getDiplomaMaestria() {
+        return diplomaMaestria;
+    }
+
+    public void setDiplomaMaestria(String diplomaMaestria) {
+        this.diplomaMaestria = diplomaMaestria;
+    }
+
+    public FileStatus getDiplomaMaestriaStatus() {
+        return diplomaMaestriaStatus;
+    }
+
+    public void setDiplomaMaestriaStatus(FileStatus diplomaMaestriaStatus) {
+        this.diplomaMaestriaStatus = diplomaMaestriaStatus;
+    }
+
+    public String getCedulaMaestria() {
+        return cedulaMaestria;
+    }
+
+    public void setCedulaMaestria(String cedulaMaestria) {
+        this.cedulaMaestria = cedulaMaestria;
+    }
+
+    public FileStatus getCedulaMaestriaStatus() {
+        return cedulaMaestriaStatus;
+    }
+
+    public void setCedulaMaestriaStatus(FileStatus cedulaMaestriaStatus) {
+        this.cedulaMaestriaStatus = cedulaMaestriaStatus;
+    }
+
+    public String getActaExamenMaestria() {
+        return actaExamenMaestria;
+    }
+
+    public void setActaExamenMaestria(String actaExamenMaestria) {
+        this.actaExamenMaestria = actaExamenMaestria;
+    }
+
+    public FileStatus getActaExamenMaestriaStatus() {
+        return actaExamenMaestriaStatus;
+    }
+
+    public void setActaExamenMaestriaStatus(FileStatus actaExamenMaestriaStatus) {
+        this.actaExamenMaestriaStatus = actaExamenMaestriaStatus;
+    }
 }

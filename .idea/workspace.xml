@@ -1,7 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="2727a93c-061d-4542-b678-8d61c3de17d4" name="Default Changelist" comment="" />
+    <list default="true" id="2727a93c-061d-4542-b678-8d61c3de17d4" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/PersonalAutorizado/BarChart.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/PersonalAutorizado/BarChart2.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/PersonalAutorizado/pieChart.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/controldigital/app/controllers/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/controldigital/app/controllers/AdminController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/controldigital/app/models/entity/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/controldigital/app/models/entity/Usuario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/import.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/import.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/color.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/css/color.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/Academica/EditarInformacionAcademica.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/Academica/EditarInformacionAcademica.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/PersonalAutorizado/Informes.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/PersonalAutorizado/Informes.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/PersonalAutorizado/ListadoUsuarios.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/PersonalAutorizado/ListadoUsuarios.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/PersonalAutorizado/VerUsuario.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/PersonalAutorizado/VerUsuario.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/controldigital/app/controllers/AdminController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/controldigital/app/controllers/AdminController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/controldigital/app/models/entity/Usuario.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/controldigital/app/models/entity/Usuario.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/import.sql" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/import.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/PersonalAutorizado/Informes.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/PersonalAutorizado/Informes.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/PersonalAutorizado/ListadoUsuarios.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/PersonalAutorizado/ListadoUsuarios.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/2fb5dfce-9d5c-4e06-a6bd-53031fba7a65_f.JPG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/314a55c7-d066-4722-a4df-bf1aaaff4426_CV Alan.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/4e214f79-3690-44d5-a507-36b359eb7cf5_cv.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/8528168a-207e-4077-bba0-4d423b7fb194_CV Alan.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/a756e3d3-dbf0-4f47-8cf7-7ef90ce41f43_Kardex.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/b04f46b9-4129-4a9a-8c45-8b99199001e9_CV Alan.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/cafcb821-60a4-41bf-b393-a6ac9a2244ec_FAVO620831HDFRRC01.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/d61482cb-643a-4dd7-a200-ded41b1aef6a_cv.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/eb500f3e-74f0-4741-8f75-cd5f2ecfb8c4_CV Alan.pdf" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -14,7 +61,11 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="1zmrqNFW2uRfW1BDIvYCZFkPXMh" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -68,19 +119,31 @@
   <component name="UnknownFeatures">
     <option featureType="com.intellij.fileTypeFactory" implementationName="*.sql" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
   <component name="WindowStateProjectService">
     <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1634765535653">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1634765535653" />
-    <state x="905" y="217" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1635195813596">
+    <state x="905" y="217" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1636335482430">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="905" y="217" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.824@0.0.1536.824" timestamp="1635195813596" />
-    <state x="574" y="119" key="#com.intellij.ide.util.MemberChooser" timestamp="1635863625428">
+    <state x="905" y="217" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.824@0.0.1536.824" timestamp="1636335482430" />
+    <state x="574" y="119" key="#com.intellij.ide.util.MemberChooser" timestamp="1636423757379">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="574" y="119" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1635863625428" />
+    <state x="574" y="119" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1636423757379" />
     <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1635873391048">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -89,26 +152,46 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="933" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1635688836440" />
-    <state width="1493" height="255" key="GridCell.Tab.0.bottom" timestamp="1636086685547">
+    <state width="1493" height="195" key="GridCell.Tab.0.bottom" timestamp="1636432026276">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="255" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1636086685547" />
-    <state width="1493" height="255" key="GridCell.Tab.0.center" timestamp="1636086685546">
+    <state width="1493" height="195" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1636432026276" />
+    <state width="1493" height="195" key="GridCell.Tab.0.center" timestamp="1636432026275">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="255" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1636086685546" />
-    <state width="1493" height="255" key="GridCell.Tab.0.left" timestamp="1636086685546">
+    <state width="1493" height="195" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1636432026275" />
+    <state width="1493" height="195" key="GridCell.Tab.0.left" timestamp="1636432026275">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="255" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1636086685546" />
-    <state width="1493" height="255" key="GridCell.Tab.0.right" timestamp="1636086685547">
+    <state width="1493" height="195" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1636432026275" />
+    <state width="1493" height="195" key="GridCell.Tab.0.right" timestamp="1636432026275">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="255" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1636086685547" />
+    <state width="1493" height="195" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1636432026275" />
     <state x="249" y="0" key="SettingsEditor" timestamp="1635692454656">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="249" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1635692454656" />
+    <state x="-6" y="0" width="610" height="830" key="dock-window-1" timestamp="1636412162406">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="-6" y="0" width="610" height="830" key="dock-window-1/0.0.1536.824@0.0.1536.824" timestamp="1636412162406" />
+    <state x="294" y="0" width="781" height="830" key="dock-window-2" timestamp="1636422675573">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="294" y="0" width="781" height="830" key="dock-window-2/0.0.1536.824@0.0.1536.824" timestamp="1636422675573" />
+    <state x="-6" y="0" width="781" height="830" key="dock-window-3" timestamp="1636424113023">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="-6" y="0" width="781" height="830" key="dock-window-3/0.0.1536.824@0.0.1536.824" timestamp="1636424113023" />
+    <state x="-6" y="0" width="533" height="830" key="dock-window-4" timestamp="1636424113023">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="-6" y="0" width="533" height="830" key="dock-window-4/0.0.1536.824@0.0.1536.824" timestamp="1636424113023" />
+    <state x="-6" y="0" width="781" height="830" key="dock-window-5" timestamp="1636425127644">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="-6" y="0" width="781" height="830" key="dock-window-5/0.0.1536.824@0.0.1536.824" timestamp="1636425127644" />
     <state x="478" y="145" width="579" height="534" key="find.popup" timestamp="1635734848062">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

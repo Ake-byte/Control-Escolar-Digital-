@@ -5,7 +5,7 @@
 <body>
 <header th:replace="layout/layout :: header"></header>
 
-<div class="container" style="width: 96rem;">
+<div class="container">
     <div class="card bg-light mb-3">
         <div class="card-header mb-3 text-white text-center">
             <h3 th:text="${titulo}"></h3>
@@ -297,136 +297,318 @@
                             </div>
                             <div class="tab-pane fade" id="infoAcademicaAlumno" role="tabpanel"
                                  aria-labelledby="infoAcademicaAlumno">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="form-group row">
-                                            <label for="nombre" class="col-sm-6 col-form-label">Licenciatura
-                                                (t&iacute;tulo)</label>
-                                            <div class="col-sm-6">
-                                                <input type="text" class="form-control" readonly />
+                                <div class="card bg-light">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="card bg-light">
+                                                <div class="card-body">
+                                                    <div class="form-group row">
+                                                        <label class="col-sm-6 col-form-label">Licenciatura
+                                                            (t&iacute;tulo)</label>
+                                                        <div class="col-sm-6">
+                                                            <input type="text" class="form-control" th:field="${usuario.nombreLicenciatura}" readonly />
+                                                        </div>
+                                                    </div>
+                                                    <br>
+                                                    <div class="form-group row">
+                                                        <label class="col-sm-6 col-form-label">Insituci&oacute;n
+                                                            de licenciatura</label>
+                                                        <div class="col-sm-6">
+                                                            <input type="text" class="form-control" th:field="${usuario.institucionLicenciatura}" readonly />
+                                                        </div>
+                                                    </div>
+                                                    <br>
+                                                    <div class="form-group row">
+                                                        <label class="col-sm-6 col-form-label">Pa&iacute;s
+                                                            de estudios licenciatura</label>
+                                                        <div class="col-sm-6">
+                                                            <input type="text" class="form-control" th:field="${usuario.paisLicenciatura}" readonly />
+                                                        </div>
+                                                    </div>
+                                                    <br>
+                                                    <div class="form-group row">
+                                                        <label class="col-sm-6 col-form-label">Promedio
+                                                            final licenciatura</label>
+                                                        <div class="col-sm-6">
+                                                            <input type="text" class="form-control" th:field="${usuario.promedioLicenciatura}" readonly />
+                                                        </div>
+                                                    </div>
+                                                    <br>
+                                                </div>
                                             </div>
                                         </div>
-                                        <br>
-                                        <div class="form-group row">
-                                            <label for="nombre" class="col-sm-6 col-form-label">Insituci&oacute;n
-                                                de licenciatura</label>
-                                            <div class="col-sm-6">
-                                                <input type="text" class="form-control" readonly />
+                                        <div class="col-sm-6">
+                                            <div class="card bg-light">
+                                                <div class="card-body">
+                                                    <div class="form-group row">
+                                                        <label for="nombre" class="col-sm-6 col-form-label">Maestr&iacute;a
+                                                            (nombre)</label>
+                                                        <div class="col-sm-6">
+                                                            <input type="text" class="form-control" readonly />
+                                                        </div>
+                                                    </div>
+                                                    <br>
+                                                    <div class="form-group row">
+                                                        <label for="nombre" class="col-sm-6 col-form-label">Instituci&oacute;
+                                                            de maestr&iacute;a</label>
+                                                        <div class="col-sm-6">
+                                                            <input type="text" class="form-control" readonly />
+                                                        </div>
+                                                    </div>
+                                                    <br>
+                                                    <div class="form-group row">
+                                                        <label for="nombre" class="col-sm-6 col-form-label">Pa&iacute;s
+                                                            de estudios maestr&iacute;a</label>
+                                                        <div class="col-sm-6">
+                                                            <input type="text" class="form-control" readonly />
+                                                        </div>
+                                                    </div>
+                                                    <br>
+                                                    <div class="form-group row">
+                                                        <label for="nombre" class="col-sm-6 col-form-label">Promedio
+                                                            final maestr&iacute;a</label>
+                                                        <div class="col-sm-6">
+                                                            <input type="text" class="form-control" readonly />
+                                                        </div>
+                                                    </div>
+                                                    <br>
+                                                </div>
                                             </div>
                                         </div>
-                                        <br>
-                                        <div class="form-group row">
-                                            <label for="nombre" class="col-sm-6 col-form-label">Pa&iacute;s
-                                                de estudios licenciatura</label>
-                                            <div class="col-sm-6">
-                                                <input type="text" class="form-control" readonly />
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-8">
+                                            <div class="card bg-light">
+                                                <div class="card-body">
+                                                    <br>
+                                                    <div class="form-group row">
+                                                        <label class="col-sm-6 col-form-label">Calificaciones
+                                                            de licenciatura</label>
+                                                        <div class="col-sm-6">
+                                                            <input th:if="${usuario.calificacionesLicenciatura == null || usuario.calificacionesLicenciatura == ''}" placeholder="No hay archivo" readonly>
+                                                            <input th:unless="${usuario.calificacionesLicenciatura == null || usuario.calificacionesLicenciatura == ''}" th:placeholder="${usuario.calificacionesLicenciatura}" readonly>
+                                                        </div>
+                                                    </div>
+                                                    <br>
+                                                    <div class="form-group row">
+                                                        <label class="col-sm-6 col-form-label">Diploma
+                                                            de licenciatura</label>
+                                                        <div class="col-sm-6">
+                                                            <input th:if="${usuario.diplomaLicenciatura == null || usuario.diplomaLicenciatura == ''}" placeholder="No hay archivo" readonly>
+                                                            <input th:unless="${usuario.diplomaLicenciatura == null || usuario.diplomaLicenciatura == ''}" th:placeholder="${usuario.diplomaLicenciatura}" readonly>
+                                                        </div>
+                                                    </div>
+                                                    <br>
+                                                    <div class="form-group row">
+                                                        <label class="col-sm-6 col-form-label">C&eacute;dula
+                                                            profesional licenciatura</label>
+                                                        <div class="col-sm-6">
+                                                            <input th:if="${usuario.cedulaLicenciatura == null || usuario.cedulaLicenciatura == ''}" placeholder="No hay archivo" readonly>
+                                                            <input th:unless="${usuario.cedulaLicenciatura == null || usuario.cedulaLicenciatura == ''}" th:placeholder="${usuario.cedulaLicenciatura}" readonly>
+                                                        </div>
+                                                    </div>
+                                                    <br>
+                                                    <div class="form-group row">
+                                                        <label class="col-sm-6 col-form-label">Acreditaci&oacute;n
+                                                            de ingl&eacute;s</label>
+                                                        <div class="col-sm-6">
+                                                            <input th:if="${usuario.acreditacionIngles == null || usuario.acreditacionIngles == ''}" placeholder="No hay archivo" readonly>
+                                                            <input th:unless="${usuario.acreditacionIngles == null || usuario.acreditacionIngles == ''}" th:placeholder="${usuario.acreditacionIngles}" readonly>
+                                                        </div>
+                                                    </div>
+                                                    <br>
+                                                    <div class="form-group row">
+                                                        <label for="nombre" class="col-sm-6 col-form-label">Calificaciones
+                                                            de maestr&iacute;a</label>
+                                                        <div class="col-sm-6">
+                                                            <input th:if="${usuario.calificacionesMaestria == null || usuario.calificacionesMaestria == ''}" placeholder="No hay archivo" readonly>
+                                                            <input th:unless="${usuario.calificacionesMaestria == null || usuario.calificacionesMaestria == ''}" th:placeholder="${usuario.calificacionesMaestria}" readonly>
+                                                        </div>
+                                                    </div>
+                                                    <br>
+                                                    <div class="form-group row">
+                                                        <label for="nombre" class="col-sm-6 col-form-label">Acta
+                                                            de examen maestr&iacute;a</label>
+                                                        <div class="col-sm-6">
+                                                            <input th:if="${usuario.actaExamenMaestria == null || usuario.actaExamenMaestria == ''}" placeholder="No hay archivo" readonly>
+                                                            <input th:unless="${usuario.actaExamenMaestria == null || usuario.actaExamenMaestria == ''}" th:placeholder="${usuario.actaExamenMaestria}" readonly>
+                                                        </div>
+                                                    </div>
+                                                    <br>
+                                                    <div class="form-group row">
+                                                        <label for="nombre" class="col-sm-6 col-form-label">Diploma
+                                                            de maestr&iacute;a</label>
+                                                        <div class="col-sm-6">
+                                                            <input th:if="${usuario.diplomaMaestria == null || usuario.diplomaMaestria == ''}" placeholder="No hay archivo" readonly>
+                                                            <input th:unless="${usuario.diplomaMaestria == null || usuario.diplomaMaestria == ''}" th:placeholder="${usuario.diplomaMaestria}" readonly>
+                                                        </div>
+                                                    </div>
+                                                    <br>
+                                                    <div class="form-group row">
+                                                        <label for="nombre" class="col-sm-6 col-form-label">C&eacute;dula
+                                                            profesional maestr&iacute;a</label>
+                                                        <div class="col-sm-6">
+                                                            <input th:if="${usuario.cedulaMaestria == null || usuario.cedulaMaestria == ''}" placeholder="No hay archivo" readonly>
+                                                            <input th:unless="${usuario.cedulaMaestria == null || usuario.cedulaMaestria == ''}" th:placeholder="${usuario.cedulaMaestria}" readonly>
+                                                        </div>
+                                                    </div>
+                                                    <br>
+                                                </div>
                                             </div>
                                         </div>
-                                        <br>
-                                        <div class="form-group row">
-                                            <label for="nombre" class="col-sm-6 col-form-label">Promedio
-                                                final licenciatura</label>
-                                            <div class="col-sm-6">
-                                                <input type="text" class="form-control" readonly />
+                                        <div class="col-sm-4">
+                                            <div class="card bg-light">
+                                                <div class="card-body">
+                                                    <table>
+                                                        <thead>
+                                                        <tr>
+                                                            <td>Status</td>
+                                                            <td>Validar</td>
+                                                            <td>Invalidar</td>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        <tr>
+                                                            <td><div class="traffic-light">
+                                                                <div th:if="${usuario.calificacionesLicenciaturaStatus == T(com.controldigital.app.models.entity.FileStatus).RED}" class="bulb">ERROR</div>
+                                                                <div th:if="${usuario.calificacionesLicenciaturaStatus == T(com.controldigital.app.models.entity.FileStatus).YELLOW}" class="bulb">PROCESANDO</div>
+                                                                <div th:if="${usuario.calificacionesLicenciaturaStatus == T(com.controldigital.app.models.entity.FileStatus).GREEN}" class="bulb">OK</div>
+                                                            </div></td>
+                                                            <td><a class="btn btn-success"
+                                                                   th:href="@{/PersonalAutorizado/validarArchivo/} + ${usuario.id} + '/calificacionesLicenciaturaStatus'"
+                                                                   onclick="return confirm('&iquest;Est&aacute; seguro de validar este archivo?');">
+                                                                <img th:src="@{/images/validado.png}" width="55"
+                                                                     height="55"></a></td>
+                                                            <td><a class="btn btn-danger"
+                                                                   th:href="@{/PersonalAutorizado/invalidarArchivo/} + ${usuario.id} + '/calificacionesLicenciaturaStatus'"
+                                                                   onclick="return confirm('&iquest;Est&aacute; seguro de invalidar este archivo?');">
+                                                                <img th:src="@{/images/noValidado.png}" width="55"
+                                                                     height="55"></a></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><div class="traffic-light">
+                                                                <div th:if="${usuario.diplomaLicenciaturaStatus == T(com.controldigital.app.models.entity.FileStatus).RED}" class="bulb">ERROR</div>
+                                                                <div th:if="${usuario.diplomaLicenciaturaStatus == T(com.controldigital.app.models.entity.FileStatus).YELLOW}" class="bulb">PROCESANDO</div>
+                                                                <div th:if="${usuario.diplomaLicenciaturaStatus == T(com.controldigital.app.models.entity.FileStatus).GREEN}" class="bulb">OK</div>
+                                                            </div></td>
+                                                            <td><a class="btn btn-success"
+                                                                   th:href="@{/PersonalAutorizado/validarArchivo/} + ${usuario.id} + '/diplomaLicenciaturaStatus'"
+                                                                   onclick="return confirm('&iquest;Est&aacute; seguro de validar este archivo?');">
+                                                                <img th:src="@{/images/validado.png}" width="55"
+                                                                     height="55"></a></td>
+                                                            <td><a class="btn btn-danger"
+                                                                   th:href="@{/PersonalAutorizado/invalidarArchivo/} + ${usuario.id} + '/diplomaLicenciaturaStatus'"
+                                                                   onclick="return confirm('&iquest;Est&aacute; seguro de invalidar este archivo?');">
+                                                                <img th:src="@{/images/noValidado.png}" width="55"
+                                                                     height="55"></a></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><div class="traffic-light">
+                                                                <div th:if="${usuario.cedulaLicenciaturaStatus == T(com.controldigital.app.models.entity.FileStatus).RED}" class="bulb">ERROR</div>
+                                                                <div th:if="${usuario.cedulaLicenciaturaStatus == T(com.controldigital.app.models.entity.FileStatus).YELLOW}" class="bulb">PROCESANDO</div>
+                                                                <div th:if="${usuario.cedulaLicenciaturaStatus == T(com.controldigital.app.models.entity.FileStatus).GREEN}" class="bulb">OK</div>
+                                                            </div></td>
+                                                            <td><a class="btn btn-success"
+                                                                   th:href="@{/PersonalAutorizado/validarArchivo/} + ${usuario.id} + '/cedulaLicenciaturaStatus'"
+                                                                   onclick="return confirm('&iquest;Est&aacute; seguro de validar este archivo?');">
+                                                                <img th:src="@{/images/validado.png}" width="55"
+                                                                     height="55"></a></td>
+                                                            <td><a class="btn btn-danger"
+                                                                   th:href="@{/PersonalAutorizado/invalidarArchivo/} + ${usuario.id} + '/cedulaLicenciaturaStatus'"
+                                                                   onclick="return confirm('&iquest;Est&aacute; seguro de invalidar este archivo?');">
+                                                                <img th:src="@{/images/noValidado.png}" width="55"
+                                                                     height="55"></a></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><div class="traffic-light">
+                                                                <div th:if="${usuario.acreditacionInglesStatus == T(com.controldigital.app.models.entity.FileStatus).RED}" class="bulb">ERROR</div>
+                                                                <div th:if="${usuario.acreditacionInglesStatus == T(com.controldigital.app.models.entity.FileStatus).YELLOW}" class="bulb">PROCESANDO</div>
+                                                                <div th:if="${usuario.acreditacionInglesStatus == T(com.controldigital.app.models.entity.FileStatus).GREEN}" class="bulb">OK</div>
+                                                            </div></td>
+                                                            <td><a class="btn btn-success"
+                                                                   th:href="@{/PersonalAutorizado/validarArchivo/} + ${usuario.id} + '/acreditacionInglesStatus'"
+                                                                   onclick="return confirm('&iquest;Est&aacute; seguro de validar este archivo?');">
+                                                                <img th:src="@{/images/validado.png}" width="55"
+                                                                     height="55"></a></td>
+                                                            <td><a class="btn btn-danger"
+                                                                   th:href="@{/PersonalAutorizado/invalidarArchivo/} + ${usuario.id} + '/acreditacionInglesStatus'"
+                                                                   onclick="return confirm('&iquest;Est&aacute; seguro de invalidar este archivo?');">
+                                                                <img th:src="@{/images/noValidado.png}" width="55"
+                                                                     height="55"></a></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><div class="traffic-light">
+                                                                <div th:if="${usuario.calificacionesMaestriaStatus == T(com.controldigital.app.models.entity.FileStatus).RED}" class="bulb">ERROR</div>
+                                                                <div th:if="${usuario.calificacionesMaestriaStatus == T(com.controldigital.app.models.entity.FileStatus).YELLOW}" class="bulb">PROCESANDO</div>
+                                                                <div th:if="${usuario.calificacionesMaestriaStatus == T(com.controldigital.app.models.entity.FileStatus).GREEN}" class="bulb">OK</div>
+                                                            </div></td>
+                                                            <td><a class="btn btn-success"
+                                                                   th:href="@{/PersonalAutorizado/validarArchivo/} + ${usuario.id} + '/calificacionesMaestriaStatus'"
+                                                                   onclick="return confirm('&iquest;Est&aacute; seguro de validar este archivo?');">
+                                                                <img th:src="@{/images/validado.png}" width="55"
+                                                                     height="55"></a></td>
+                                                            <td><a class="btn btn-danger"
+                                                                   th:href="@{/PersonalAutorizado/invalidarArchivo/} + ${usuario.id} + '/calificacionesMaestriaStatus'"
+                                                                   onclick="return confirm('&iquest;Est&aacute; seguro de invalidar este archivo?');">
+                                                                <img th:src="@{/images/noValidado.png}" width="55"
+                                                                     height="55"></a></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><div class="traffic-light">
+                                                                <div th:if="${usuario.actaExamenMaestriaStatus == T(com.controldigital.app.models.entity.FileStatus).RED}" class="bulb">ERROR</div>
+                                                                <div th:if="${usuario.actaExamenMaestriaStatus == T(com.controldigital.app.models.entity.FileStatus).YELLOW}" class="bulb">PROCESANDO</div>
+                                                                <div th:if="${usuario.actaExamenMaestriaStatus == T(com.controldigital.app.models.entity.FileStatus).GREEN}" class="bulb">OK</div>
+                                                            </div></td>
+                                                            <td><a class="btn btn-success"
+                                                                   th:href="@{/PersonalAutorizado/validarArchivo/} + ${usuario.id} + '/actaExamenMaestriaStatus'"
+                                                                   onclick="return confirm('&iquest;Est&aacute; seguro de validar este archivo?');">
+                                                                <img th:src="@{/images/validado.png}" width="55"
+                                                                     height="55"></a></td>
+                                                            <td><a class="btn btn-danger"
+                                                                   th:href="@{/PersonalAutorizado/invalidarArchivo/} + ${usuario.id} + '/actaExamenMaestriaStatus'"
+                                                                   onclick="return confirm('&iquest;Est&aacute; seguro de invalidar este archivo?');">
+                                                                <img th:src="@{/images/noValidado.png}" width="55"
+                                                                     height="55"></a></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><div class="traffic-light">
+                                                                <div th:if="${usuario.diplomaMaestriaStatus == T(com.controldigital.app.models.entity.FileStatus).RED}" class="bulb">ERROR</div>
+                                                                <div th:if="${usuario.diplomaMaestriaStatus == T(com.controldigital.app.models.entity.FileStatus).YELLOW}" class="bulb">PROCESANDO</div>
+                                                                <div th:if="${usuario.diplomaMaestriaStatus == T(com.controldigital.app.models.entity.FileStatus).GREEN}" class="bulb">OK</div>
+                                                            </div></td>
+                                                            <td><a class="btn btn-success"
+                                                                   th:href="@{/PersonalAutorizado/validarArchivo/} + ${usuario.id} + '/diplomaMaestriaStatus'"
+                                                                   onclick="return confirm('&iquest;Est&aacute; seguro de validar este archivo?');">
+                                                                <img th:src="@{/images/validado.png}" width="55"
+                                                                     height="55"></a></td>
+                                                            <td><a class="btn btn-danger"
+                                                                   th:href="@{/PersonalAutorizado/invalidarArchivo/} + ${usuario.id} + '/diplomaMaestriaStatus'"
+                                                                   onclick="return confirm('&iquest;Est&aacute; seguro de invalidar este archivo?');">
+                                                                <img th:src="@{/images/noValidado.png}" width="55"
+                                                                     height="55"></a></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><div class="traffic-light">
+                                                                <div th:if="${usuario.cedulaMaestriaStatus == T(com.controldigital.app.models.entity.FileStatus).RED}" class="bulb">ERROR</div>
+                                                                <div th:if="${usuario.cedulaMaestriaStatus == T(com.controldigital.app.models.entity.FileStatus).YELLOW}" class="bulb">PROCESANDO</div>
+                                                                <div th:if="${usuario.cedulaMaestriaStatus == T(com.controldigital.app.models.entity.FileStatus).GREEN}" class="bulb">OK</div>
+                                                            </div></td>
+                                                            <td><a class="btn btn-success"
+                                                                   th:href="@{/PersonalAutorizado/validarArchivo/} + ${usuario.id} + '/cedulaMaestriaStatus'"
+                                                                   onclick="return confirm('&iquest;Est&aacute; seguro de validar este archivo?');">
+                                                                <img th:src="@{/images/validado.png}" width="55"
+                                                                     height="55"></a></td>
+                                                            <td><a class="btn btn-danger"
+                                                                   th:href="@{/PersonalAutorizado/invalidarArchivo/} + ${usuario.id} + '/cedulaMaestriaStatus'"
+                                                                   onclick="return confirm('&iquest;Est&aacute; seguro de invalidar este archivo?');">
+                                                                <img th:src="@{/images/noValidado.png}" width="55"
+                                                                     height="55"></a></td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
                                             </div>
                                         </div>
-                                        <br>
-                                        <div class="form-group row">
-                                            <label for="nombre" class="col-sm-6 col-form-label">Calificaciones
-                                                de licenciatura</label>
-                                            <div class="col-sm-6">
-                                                <input type="text" class="form-control" readonly />
-                                            </div>
-                                        </div>
-                                        <br>
-                                        <div class="form-group row">
-                                            <label for="nombre" class="col-sm-6 col-form-label">Diploma
-                                                de licenciatura</label>
-                                            <div class="col-sm-6">
-                                                <input type="text" class="form-control" readonly />
-                                            </div>
-                                        </div>
-                                        <br>
-                                        <div class="form-group row">
-                                            <label for="nombre" class="col-sm-6 col-form-label">C&eacute;dula
-                                                profesional licenciatura</label>
-                                            <div class="col-sm-6">
-                                                <input type="text" class="form-control" readonly />
-                                            </div>
-                                        </div>
-                                        <br>
-                                        <div class="form-group row">
-                                            <label for="nombre" class="col-sm-6 col-form-label">Acreditaci&oacute;n
-                                                de ingl&eacute;s</label>
-                                            <div class="col-sm-6">
-                                                <input type="text" class="form-control" readonly />
-                                            </div>
-                                        </div>
-                                        <br>
-                                        <div class="form-group row">
-                                            <label for="nombre" class="col-sm-6 col-form-label">Maestr&iacute;a
-                                                (nombre)</label>
-                                            <div class="col-sm-6">
-                                                <input type="text" class="form-control" readonly />
-                                            </div>
-                                        </div>
-                                        <br>
-                                        <div class="form-group row">
-                                            <label for="nombre" class="col-sm-6 col-form-label">Instituci&oacute;
-                                                de maestr&iacute;a</label>
-                                            <div class="col-sm-6">
-                                                <input type="text" class="form-control" readonly />
-                                            </div>
-                                        </div>
-                                        <br>
-                                        <div class="form-group row">
-                                            <label for="nombre" class="col-sm-6 col-form-label">Pa&iacute;s
-                                                de estudios maestr&iacute;a</label>
-                                            <div class="col-sm-6">
-                                                <input type="text" class="form-control" readonly />
-                                            </div>
-                                        </div>
-                                        <br>
-                                        <div class="form-group row">
-                                            <label for="nombre" class="col-sm-6 col-form-label">Promedio
-                                                final maestr&iacute;a</label>
-                                            <div class="col-sm-6">
-                                                <input type="text" class="form-control" readonly />
-                                            </div>
-                                        </div>
-                                        <br>
-                                        <div class="form-group row">
-                                            <label for="nombre" class="col-sm-6 col-form-label">Calificaciones
-                                                de maestr&iacute;a</label>
-                                            <div class="col-sm-6">
-                                                <input type="text" class="form-control" readonly />
-                                            </div>
-                                        </div>
-                                        <br>
-                                        <div class="form-group row">
-                                            <label for="nombre" class="col-sm-6 col-form-label">Acta
-                                                de examen maestr&iacute;a</label>
-                                            <div class="col-sm-6">
-                                                <input type="text" class="form-control" readonly />
-                                            </div>
-                                        </div>
-                                        <br>
-                                        <div class="form-group row">
-                                            <label for="nombre" class="col-sm-6 col-form-label">Diploma
-                                                de maestr&iacute;a</label>
-                                            <div class="col-sm-6">
-                                                <input type="text" class="form-control" readonly />
-                                            </div>
-                                        </div>
-                                        <br>
-                                        <div class="form-group row">
-                                            <label for="nombre" class="col-sm-6 col-form-label">C&eacute;dula
-                                                profesional maestr&iacute;a</label>
-                                            <div class="col-sm-6">
-                                                <input type="text" class="form-control" readonly />
-                                            </div>
-                                        </div>
-                                        <br>
                                     </div>
                                 </div>
                             </div>

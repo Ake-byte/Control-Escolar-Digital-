@@ -1,7 +1,9 @@
 package com.controldigital.app.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import com.controldigital.app.models.entity.FileStatus;
 import com.controldigital.app.models.entity.Role;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.controldigital.app.models.entity.Usuario;
 import com.controldigital.app.service.IUsuarioService;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/PersonalAutorizado")
@@ -159,5 +162,63 @@ public class AdminController {
 
         usuarioService.save(usuario);
         return "redirect:/PersonalAutorizado/verUsuario/" + usuario.getId();
+    }
+
+    @GetMapping("/Graficar")
+    public String generarInforme(@RequestParam(name = "genero") String genero){
+
+        if(!genero.isEmpty()){
+            List<Usuario> usuariosByGenero = usuarioService.findall().stream().filter(u -> u.getGenero().equals(genero)).collect(Collectors.toList());
+        }
+
+        List<Usuario> nacionalidades = usuarioService.findall();
+        List<Usuario> edades = usuarioService.findall();
+        List<Usuario> lugarNacimiento = usuarioService.findall();
+
+
+
+        return null;
+    }
+
+    @GetMapping("/barChart")
+    public String getAllEmployee(Model model) {
+
+        //List<String> nameList= usuarioService.findall().stream().map(x->x.getNombre()).collect(Collectors.toList());
+        //List<Integer> ageList = usuarioService.findall().stream().map(x-> x.getEdad()).collect(Collectors.toList());
+
+        List<String> genero = new ArrayList<>();
+        genero.add("Hombre");
+        genero.add("Mujer");
+
+        Integer numUsuarios = usuarioService.findall().size();
+
+        model.addAttribute("name", genero);
+        model.addAttribute("age", numUsuarios);
+
+        return "PersonalAutorizado/BarChart";
+
+    }
+
+    @GetMapping("/pieChart")
+    public String pieChart(Model model) {
+        List<Usuario> usuarios = usuarioService.findall();
+        List<Role> alumnos = roleService.findUsuarioByRole("ROLE_USER2");
+
+        int hombres = 0;
+        int mujeres = 0;
+
+        for(Role u: alumnos){
+            if(u.getUsers().getGenero().equals("Hombre")){
+                hombres++;
+            }
+            else{
+                mujeres++;
+            }
+        }
+
+        model.addAttribute("hombres", hombres);
+        model.addAttribute("mujeres", mujeres);
+        return "PersonalAutorizado/pieChart";
+
     }
 }

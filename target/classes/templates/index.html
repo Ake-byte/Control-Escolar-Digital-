@@ -1,33 +1,41 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="layout/layout :: head"></head>
 
 <body>
-	<header th:replace="layout/layout :: header"></header>
-	<div sec:authorize="hasRole('ROLE_USER1')" class="container">
-		<div class="card bg-light">
-			<div class="card-header" th:text="${titulo}"></div>
-			<div class="card-body">
-				<div class="container py-4">
-					<div class="card bg-info text-white">
-						<div class="card-header">A&uacute;n no tienes permisos para acceder al sistema.</div>
-						<div class="card-body">
-							<h5 class="card-title">
-								<span th:text="${#authentication.name}"></span>. Debes de esperar a que personal autorizado te valide en el sistema. 
-							</h5>
-							<a th:href="@{/index}" class="btn btn-outline-light"
-								role="button">Ir al inicio</a>
+<header th:replace="layout/layout :: header"></header>
 
-						</div>
-					</div>
-				</div>
+<div sec:authorize="hasRole('ROLE_USER1')" class="container">
+    <div class="card bg-light">
+        <div class="card-header" th:text="${titulo}"></div>
+        <div class="card-body">
+            <div class="container py-4">
+                <div class="card bg-info text-white">
+                    <div class="card-header">A&uacute;n no tienes permisos para acceder al sistema.</div>
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <span th:text="${#authentication.name}"></span>. Debes de esperar a que personal autorizado
+                            te valide en el sistema.
+                        </h5>
+                        <a th:href="@{/index}" class="btn btn-outline-light"
+                           role="button">Ir al inicio</a>
 
-			</div>
-		</div>
-	</div>
-
-	<footer th:replace="layout/layout :: footer"></footer>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+	<a class="btn btn-xs" id="ver"
+	   th:href="@{/PersonalAutorizado/barChart}">Bar Chart</a>
+</div>
+<div class="container">
+	<a class="btn btn-xs" id="ver"
+	   th:href="@{/PersonalAutorizado/pieChart}">Pie Chart</a>
+</div>
+<footer th:replace="layout/layout :: footer"></footer>
 
 </body>
 </html>
