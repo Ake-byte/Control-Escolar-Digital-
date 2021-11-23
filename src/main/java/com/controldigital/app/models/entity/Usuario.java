@@ -105,8 +105,6 @@ public class Usuario implements Serializable {
 
     private Boolean enabled;
 
-    private Integer edad;
-
     @Column(name = "reset_password_token")
     private String resetPasswordToken;
 
@@ -190,8 +188,13 @@ public class Usuario implements Serializable {
     @JoinColumn(name = "user_id")
     private List<Producto> productos;
 
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
+    private List<SIP> sips;
+
     public Usuario() {
         productos = new ArrayList<Producto>();
+        sips = new ArrayList<SIP>();
     }
 
     public Role getRoles() {
@@ -212,6 +215,18 @@ public class Usuario implements Serializable {
 
     public void addProducto(Producto producto) {
         productos.add(producto);
+    }
+
+    public List<SIP> getSips() {
+        return sips;
+    }
+
+    public void setSips(List<SIP> sips) {
+        this.sips = sips;
+    }
+
+    public void addSip(SIP sip) {
+        sips.add(sip);
     }
 
     public Long getId() {
@@ -444,14 +459,6 @@ public class Usuario implements Serializable {
 
     public void setPasaporteStatus(FileStatus pasaporteStatus) {
         this.pasaporteStatus = pasaporteStatus;
-    }
-
-    public Integer getEdad() {
-        return edad;
-    }
-
-    public void setEdad(Integer edad) {
-        this.edad = edad;
     }
 
     public String getNombreLicenciatura() {

@@ -1,16 +1,11 @@
 package com.controldigital.app.models.entity;
 
-import java.io.Serializable;
+import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import java.io.Serializable;
+import java.util.Date;
+
+import javax.persistence.*;
 
 @Entity
 @Table(name = "productos")
@@ -23,7 +18,17 @@ public class Producto implements Serializable{
 	
 	private String nombreProducto;
 	
-	private String descripcionProducto;
+	private String lugarProducto;
+
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Date inicioPeriodo;
+
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Date terminoPeriodo;
+
+	private String paisProducto;
 	
 	private String archivoProducto;
 	
@@ -54,18 +59,37 @@ public class Producto implements Serializable{
 	}
 
 
-
-	public String getDescripcionProducto() {
-		return descripcionProducto;
+	public String getLugarProducto() {
+		return lugarProducto;
 	}
 
-
-
-	public void setDescripcionProducto(String descripcionProducto) {
-		this.descripcionProducto = descripcionProducto;
+	public void setLugarProducto(String lugarProducto) {
+		this.lugarProducto = lugarProducto;
 	}
 
+	public Date getInicioPeriodo() {
+		return inicioPeriodo;
+	}
 
+	public void setInicioPeriodo(Date inicioPeriodo) {
+		this.inicioPeriodo = inicioPeriodo;
+	}
+
+	public Date getTerminoPeriodo() {
+		return terminoPeriodo;
+	}
+
+	public void setTerminoPeriodo(Date terminoPeriodo) {
+		this.terminoPeriodo = terminoPeriodo;
+	}
+
+	public String getPaisProducto() {
+		return paisProducto;
+	}
+
+	public void setPaisProducto(String paisProducto) {
+		this.paisProducto = paisProducto;
+	}
 
 	public String getArchivoProducto() {
 		return archivoProducto;

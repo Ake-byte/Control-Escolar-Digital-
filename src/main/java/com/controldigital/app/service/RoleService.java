@@ -55,4 +55,10 @@ public class RoleService implements IRoleService{
 		return roleDAO.findUsuarioByRole(authority);
 	}
 
+	@Override
+	@Transactional(readOnly=true)
+	public Role findRoleByUserId(Long id) {
+		return roleDAO.findRoleByUserId(id);
+	}
+
 }

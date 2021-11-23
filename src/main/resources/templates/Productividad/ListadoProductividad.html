@@ -4,7 +4,7 @@
 <body>
 	<header th:replace="layout/layout :: header"></header>
 
-	<div class="container" style="width: 92rem;">
+	<div class="container text-white" style="width: 92rem;">
 		<div class="card bg-light">
 			<div class="card-header" th:text="${titulo}"></div>
 			<div class="card-body" th:each="usuario: ${usuario}">
@@ -28,8 +28,10 @@
 								<table class="table table-striped">
 									<thead>
 										<tr>
-											<th>Tipo de producto</th>
-											<th>Descripci&oacute;n</th>
+											<th>Producto</th>
+											<th>Lugar</th>
+											<th>Periodo</th>
+											<th>Pa&iacute;s</th>
 											<th>Archivo</th>
 											<th>Editar</th>
 											<th>Eliminar</th>
@@ -38,7 +40,9 @@
 									<tbody>
 										<tr th:each="producto: ${usuario.productos}">
 											<td th:text="${producto.nombreProducto}"></td>
-											<td th:text="${producto.descripcionProducto}"></td>
+											<td th:text="${producto.lugarProducto}"></td>
+											<td th:text="${producto.inicioPeriodo + ' - ' + producto.terminoPeriodo}"></td>
+											<td th:text="${producto.paisProducto}"></td>
 											<td
 												th:if="${producto.archivoProducto == null || producto.archivoProducto == ''}">No
 												hay archivo</td>

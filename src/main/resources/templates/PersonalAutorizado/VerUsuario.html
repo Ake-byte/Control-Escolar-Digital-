@@ -750,8 +750,10 @@
                                         <table class="table table-striped">
                                             <thead>
                                             <tr>
-                                                <th>Tipo de producto</th>
-                                                <th>Descripci&oacute;n</th>
+                                                <th>Producto</th>
+                                                <th>Lugar</th>
+                                                <th>Periodo</th>
+                                                <th>Pa&iacute;s</th>
                                                 <th>Archivo</th>
                                                 <th>Editar</th>
                                                 <th>Eliminar</th>
@@ -760,7 +762,9 @@
                                             <tbody>
                                             <tr th:each="producto: ${usuario.productos}">
                                                 <td th:text="${producto.nombreProducto}"></td>
-                                                <td th:text="${producto.descripcionProducto}"></td>
+                                                <td th:text="${producto.lugarProducto}"></td>
+                                                <td th:text="${producto.inicioPerido} + ' - ' + {producto.terminoPerido}"></td>
+                                                <td th:text="${producto.paisProducto}"></td>
                                                 <td
                                                         th:if="${producto.archivoProducto == null || producto.archivoProducto == ''}">No
                                                     hay archivo</td>

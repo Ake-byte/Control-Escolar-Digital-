@@ -4,7 +4,7 @@
 <body>
 	<header th:replace="layout/layout :: header"></header>
 
-	<div class="container" style="width: 92rem;">
+	<div class="container text-white" style="width: 92rem;">
 		<div class="card bg-light">
 			<div class="card-header" th:text="${titulo}"></div>
 			<div class="card-body">
@@ -29,14 +29,37 @@
 									</div>
 								</div>
 								<br>
-								<div id="descripcion" class="form-group row">
-									<label for="nombre" class="col-sm-4 col-form-label">Descripci&oacute;n</label>
+								<div class="form-group row">
+									<label class="col-sm-4 col-form-label">Lugar</label>
 									<div class="col-sm-8">
 										<input type="text" class="form-control"
-											th:field="*{descripcionProducto}" />
+											th:field="*{lugarProducto}" />
 									</div>
 								</div>
 								<br>
+								<div class="form-group row">
+									<label class="col-sm-4 col-form-label">Inicio Periodo</label>
+									<div class="col-sm-8">
+										<input type="date" class="form-control"
+											   th:field="*{inicioPeriodo}" />
+									</div>
+								</div>
+								<br>
+								<div class="form-group row">
+									<label class="col-sm-4 col-form-label">T&eacute;rmino Periodo</label>
+									<div class="col-sm-8">
+										<input type="date" class="form-control"
+											   th:field="*{terminoPeriodo}" />
+									</div>
+								</div>
+								<br>
+								<div class="form-group row">
+									<label class="col-sm-4 col-form-label">Pa&iacute;s Producto</label>
+									<div class="col-sm-8">
+										<input type="text" class="form-control"
+											   th:field="*{paisProducto}" />
+									</div>
+								</div>
 								<div class="form-group row">
 									<label for="file" class="col-sm-4 col-form-label">Archivo
 										PDF</label>

@@ -149,6 +149,12 @@
 												<input th:field="${usuario.fotoActual}" type="text"
 													class="form-control" readonly />
 											</div>
+
+										</div>
+										<div>
+											<div class="doc_status" th:if="${usuario.fotoStatus == T(com.controldigital.app.models.entity.FileStatus).RED}">DOCUMENTO NO VALIDADO</div>
+											<div class="doc_status" th:if="${usuario.fotoStatus == T(com.controldigital.app.models.entity.FileStatus).YELLOW}">DOCUMENTO EN PROCESO DE VALIDACION</div>
+											<div class="doc_status" th:if="${usuario.fotoStatus == T(com.controldigital.app.models.entity.FileStatus).GREEN}">DOCUMENTO VALIDADO</div>
 										</div>
 										<br>
 										<div class="form-group row">
@@ -159,6 +165,11 @@
 													class="form-control" readonly />
 											</div>
 										</div>
+										<div>
+											<div class="doc_status" th:if="${usuario.actaStatus == T(com.controldigital.app.models.entity.FileStatus).RED}">DOCUMENTO NO VALIDADO</div>
+											<div class="doc_status" th:if="${usuario.actaStatus == T(com.controldigital.app.models.entity.FileStatus).YELLOW}">DOCUMENTO EN PROCESO DE VALIDACION</div>
+											<div class="doc_status" th:if="${usuario.actaStatus == T(com.controldigital.app.models.entity.FileStatus).GREEN}">DOCUMENTO VALIDADO</div>
+										</div>
 										<br>
 										<div class="form-group row">
 											<label for="nombre" class="col-sm-6 col-form-label">Pasaporte
@@ -168,15 +179,25 @@
 													class="form-control" readonly />
 											</div>
 										</div>
+										<div>
+											<div class="doc_status" th:if="${usuario.pasaporteStatus == T(com.controldigital.app.models.entity.FileStatus).RED}">DOCUMENTO NO VALIDADO</div>
+											<div class="doc_status" th:if="${usuario.pasaporteStatus == T(com.controldigital.app.models.entity.FileStatus).YELLOW}">DOCUMENTO EN PROCESO DE VALIDACION</div>
+											<div class="doc_status" th:if="${usuario.pasaporteStatus == T(com.controldigital.app.models.entity.FileStatus).GREEN}">DOCUMENTO VALIDADO</div>
+										</div>
 										<br>
 										<div class="form-group row">
 											<label for="nombre" class="col-sm-6 col-form-label">C&eacute;dula
 												CURP</label>
 											<div class="col-sm-6">
-												<input type="text" class="form-control" readonly />
+												<input th:field="${usuario.cedulaCURP}" type="text"
+													   class="form-control" readonly />
 											</div>
 										</div>
-
+										<div>
+											<div class="doc_status" th:if="${usuario.curpStatus == T(com.controldigital.app.models.entity.FileStatus).RED}">DOCUMENTO NO VALIDADO</div>
+											<div class="doc_status" th:if="${usuario.curpStatus == T(com.controldigital.app.models.entity.FileStatus).YELLOW}">DOCUMENTO EN PROCESO DE VALIDACION</div>
+											<div class="doc_status" th:if="${usuario.curpStatus == T(com.controldigital.app.models.entity.FileStatus).GREEN}">DOCUMENTO VALIDADO</div>
+										</div>
 									</div>
 								</div>
 							</div>

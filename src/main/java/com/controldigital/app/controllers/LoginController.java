@@ -4,6 +4,9 @@ import java.security.Principal;
 import java.util.List;
 import java.util.Map;
 
+import javax.mail.AuthenticationFailedException;
+import javax.mail.MessagingException;
+import javax.mail.SendFailedException;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -78,13 +81,11 @@ public class LoginController {
 	public String guardar(@Valid Usuario usuario, RedirectAttributes flash, BindingResult result, Model model,
 			SessionStatus status) throws Exception {
 
-		List<Usuario> usuarios = usuarioService.findall();
+		Usuario checarNuevoUsuario  = usuarioService.findByEmail(usuario.getEmail());
 
-		for (int i = 0; i < usuarios.size(); i++) {
-			if (usuarios.get(i).getEmail().equals(usuario.getEmail())) {
-				flash.addFlashAttribute("error", "Ya existe un usuario con esa dirección de correo electrónico.");
-				return "redirect:/register";
-			}
+		if (checarNuevoUsuario != null) {
+			flash.addFlashAttribute("error", "Ya existe un usuario con esa dirección de correo electrónico.");
+			return "redirect:/register";
 		}
 
 		if (result.hasErrors()) {
@@ -99,7 +100,6 @@ public class LoginController {
 		role.setAuthorityName("Usuario Registrado");
 		
 		usuario.setRoles(role);
-		//usuario.setNombreRole("Usuario Registrado");
 		usuario.setEnabled(true);
 
 		String password = usuario.getPassword();
@@ -110,8 +110,10 @@ public class LoginController {
 
 		roleService.saveUsuario(usuario);
 		roleService.save(role);
-		mailService.sendEmail(usuario.getEmail(), "Bienvenido al sistema BD-LNCAE",
-				"Tu permiso actual es: Usuario Registrado", usuario);
+
+			mailService.sendEmail(usuario.getEmail(), "Bienvenido al sistema BD-LNCAE",
+					"Tu permiso actual es: Usuario Registrado", usuario);
+
 
 		status.setComplete();
 

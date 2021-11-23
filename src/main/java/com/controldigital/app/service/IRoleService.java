@@ -19,4 +19,6 @@ public interface IRoleService {
 	public void delete(Long id);
 
 	public List<Role> findUsuarioByRole(String authority);
+
+    Role findRoleByUserId(Long id);
 }

@@ -8,20 +8,25 @@ import java.util.stream.Collectors;
 import com.controldigital.app.models.entity.FileStatus;
 import com.controldigital.app.models.entity.Role;
 import com.controldigital.app.service.IRoleService;
+import com.controldigital.app.util.MailSenderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 
 import com.controldigital.app.models.entity.Usuario;
 import com.controldigital.app.service.IUsuarioService;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.support.SessionStatus;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/PersonalAutorizado")
 public class AdminController {
+
+    @Autowired(required = true)
+    private MailSenderService mailService;
 
     @Autowired
     private IUsuarioService usuarioService;
@@ -77,6 +82,17 @@ public class AdminController {
         return "PersonalAutorizado/verRol";
     }
 
+    @GetMapping("/verUsuariosRegistrados")
+    public String verUsuariosRegistrados(Model model) {
+
+        List<Role> usuariosR = roleService.findUsuarioByRole("ROLE_USER1");
+
+
+        model.addAttribute("titulo", "Usuario Registrados");
+        model.addAttribute("usuario", usuariosR);
+        return "PersonalAutorizado/verRol";
+    }
+
     @GetMapping("/verUsuario/{id}")
     public String verAlumno(@PathVariable(value = "id") Long id, Map<String, Object> model) {
 
@@ -91,6 +107,80 @@ public class AdminController {
 
         return "PersonalAutorizado/VerUsuario";
     }
+
+    @RequestMapping(value = "/formUsuario/{id}")
+    public String editar(@PathVariable(value = "id") Long id, Map<String, Object> model) {
+        Usuario usuario = null;
+
+        if (id > 0) {
+            usuario = usuarioService.findOne(id);
+            model.put("usuario", usuario);
+        } else {
+            return "redirect:/PersonalAutorizado/ListadoUsuarios";
+        }
+
+        List<String> permisosUsuario = new ArrayList<>();
+        permisosUsuario.add("Usuario Registrado");
+        permisosUsuario.add("Alumno");
+        permisosUsuario.add("Personal Autorizado");
+        permisosUsuario.add("Usuario Inhabilitado");
+
+        model.put("permisos", permisosUsuario);
+        model.put("titulo", "Editar Rol de Usuario");
+
+        return "PersonalAutorizado/formUsuario";
+
+    }
+
+    @PostMapping(value = "formUsuario")
+    public String guardar(@Valid Usuario usuario, BindingResult result, Model model, SessionStatus status)
+            throws Exception {
+
+        if (result.hasErrors()) {
+            model.addAttribute("titulo", "Editar Rol de Usuario");
+            return "formUsuario";
+        }
+
+        Role roles = usuario.getRoles();
+
+        Role roleUsuario = roleService.findRoleByUserId(usuario.getId());
+
+        switch (usuario.getRoles().getAuthorityName()) {
+
+            case "Usuario Registrado":
+                roles.setAuthorityName("Usuario Registrado");
+                roles.setAuthority("ROLE_USER1");
+                break;
+
+            case "Alumno":
+                roles.setAuthorityName("Alumno");
+                roles.setAuthority("ROLE_USER2");
+                List<Usuario> usuarios = usuarioService.findall();
+                break;
+
+            case "Personal Autorizado":
+                roles.setAuthorityName("Personal Autorizado");
+                roles.setAuthority("ROLE_ADMIN");
+                break;
+
+            case "Usuario Inhabilitado":
+                roles.setAuthorityName("Usuario Inhabilitado");
+                roles.setAuthority("ROLE_USER4");
+                usuario.setEnabled(false);
+                break;
+
+            default:
+                break;
+        }
+
+        mailService.sendEmail(usuario.getEmail(), "Cambios de permisos en el sistema BD-LNCAE",
+                "Tu permiso actual es: " + usuario.getRoles().getAuthorityName(), usuario);
+        usuarioService.save(usuario);
+        status.setComplete();
+
+        return "redirect:/PersonalAutorizado/ListadoUsuarios";
+    }
+
 
     @GetMapping("/validarArchivo/{id}/{tipoArchivo}")
     public String validarArchivo(@PathVariable(value = "id") Long id,

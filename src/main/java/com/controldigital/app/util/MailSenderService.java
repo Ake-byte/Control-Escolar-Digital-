@@ -57,7 +57,7 @@ public class MailSenderService {
 		//attributes.add("Tu rol actual es: " + user.getRoles_usuarios());
 
 		content.setFeatures(attributes);
-		content.setMessage("Este es un correo de bienvenida al sistema.");
+		content.setMessage("Este es un correo de bienvenido al sistema.");
 		content.setFeatures(attributes);
 		return content;
 	}
