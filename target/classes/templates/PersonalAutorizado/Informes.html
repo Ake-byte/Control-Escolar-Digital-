@@ -65,6 +65,9 @@
                     <div class="col-sm-8">
                         <select id="edad" name="edad">
                             <option value>-- Seleccione una opci&oacute;n --</option>
+                            <option th:each="edades : ${edades}"
+                                    th:value="${edades}"
+                                    th:utext="${edades}" />
                         </select>
                     </div>
                 </div>

@@ -42,7 +42,8 @@ public class ExpedienteController {
 		Usuario usuario = usuarioService.findByEmail(auth.getName());
 
 
-
-		return "Personal/EditarInformacionPersonal";
+		((Model) model).addAttribute("usuario", usuario);
+		((Model) model).addAttribute("titulo", "Editar Expediente");
+		return "Expediente/EditarExpediente";
 	}
 }

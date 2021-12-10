@@ -16,10 +16,18 @@
 								<div class="card bg-light">
 									<div class="card-body">
 										<div class="form-group row">
-											<label for="nombre" class="col-sm-6 col-form-label">
+											<label class="col-sm-6 col-form-label">
 												N&uacute;mero de Registro</label>
 											<div class="col-sm-6">
-												<input type="text" class="form-control" readonly />
+												<input type="text" class="form-control" th:field="${usuario.numeroRegistro}" readonly />
+											</div>
+										</div>
+										<br>
+										<div class="form-group row">
+											<label class="col-sm-6 col-form-label">
+												Grado</label>
+											<div class="col-sm-6">
+												<input type="text" class="form-control" th:field="${usuario.grado}" readonly />
 											</div>
 										</div>
 										<br>
@@ -27,7 +35,7 @@
 											<label for="nombre" class="col-sm-6 col-form-label">Semestre
 											</label>
 											<div class="col-sm-6">
-												<input type="text" class="form-control" readonly />
+												<input type="text" class="form-control" th:field="${usuario.semestre}" readonly />
 											</div>
 										</div>
 										<br>

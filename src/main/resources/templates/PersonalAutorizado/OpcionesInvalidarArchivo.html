@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<body>
+<header th:replace="layout/layout :: header"></header>
+
+<div class="container" style="width: 92rem;">
+    <div class="card bg-light">
+        <div class="card-header" th:text="${titulo}" style="color: white;"></div>
+        <div class="card-body">
+
+            <div class="container">
+                <div class="card bg-light">
+                    <div class="card-body">
+                        <form th:action="@{/PersonalAutorizado/invalidarArchivo}" method="post">
+                            <div class="form-group row">
+                                <label for="nombre" class="col-sm-4 col-form-label">Tipo
+                                    de Invalidaci&oacute;n</label>
+                                <div class="col-sm-8">
+                                    <select id="opcion" name="opcion" required>
+                                        <!--<option th:each="opcion : ${opcion}"
+                                                th:value="${opcion}" th:utext="${opcion}" />-->
+                                        <option value="1">No es el documento</option>
+                                        <option value="2">No es legible</option>
+                                        <option value="3">No est&aacute; apostillado</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <br>
+
+                            <div class="form-group row">
+                                <label for="nombre" class="col-sm-4 col-form-label">Guardar
+                                </label>
+                                <div class="col-sm-6">
+                                    <input type="submit" value="Guardar"
+                                           class="btn btn-primary" />
+                                </div>
+                            </div>
+                            <br>
+                            <input type="hidden" name="userId" th:value="${usuario.id}" />
+                            <input type="hidden" name="tipoArchivo" th:value="${tipoArchivo}" />
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

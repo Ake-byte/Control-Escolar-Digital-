@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<body>
+<header th:replace="layout/layout :: header"></header>
+<div class="container" style="width: 48rem;">
+    <div class="card bg-light">
+        <div class="card-header" th:text="${titulo}"></div>
+        <div class="card-body">
+            <div class="container py-4">
+                <form th:action="@{/Expediente/EditarExpediente}"
+                      th:object="${usuario}" method="post" enctype="multipart/form-data">
+                    <div class="row">
+
+                            <div class="card bg-light">
+                                <div class="card-body">
+                                    <div class="form-group row">
+                                        <label class="col-sm-6 col-form-label">
+                                            N&uacute;mero de Registro</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control" th:field="${usuario.numeroRegistro}" readonly />
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="form-group row">
+                                        <label class="col-sm-6 col-form-label">
+                                            Grado</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control" th:field="${usuario.grado}" readonly />
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="form-group row">
+                                        <label for="nombre" class="col-sm-6 col-form-label">Semestre
+                                        </label>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control" th:field="${usuario.semestre}" readonly />
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="form-group row">
+                                        <label for="nombre" class="col-sm-6 col-form-label">CVU
+                                            CONACYT </label>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control" readonly />
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="form-group row">
+                                        <label for="nombre" class="col-sm-6 col-form-label">Con
+                                            beca CONACYT? </label>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control" readonly />
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="form-group row">
+                                        <label for="nombre" class="col-sm-6 col-form-label">Asesor
+                                            1 (CICATA):</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control" readonly />
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="form-group row">
+                                        <label for="nombre" class="col-sm-6 col-form-label">Asesor
+                                            2:</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control" readonly />
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="form-group row">
+                                        <label for="nombre" class="col-sm-6 col-form-label">T&iacute;tulo
+                                            de la tesis </label>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control" readonly />
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="form-group row">
+                                        <label for="nombre" class="col-sm-6 col-form-label">Comit&eacute;
+                                            tutorial 1 </label>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control" readonly />
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="form-group row">
+                                        <label for="nombre" class="col-sm-6 col-form-label">Comit&eacute;
+                                            tutorial 2 </label>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control" readonly />
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="form-group row">
+                                        <label for="nombre" class="col-sm-6 col-form-label">Comit&eacute;
+                                            tutorial 3 </label>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control" readonly />
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="form-group row">
+                                        <label for="nombre" class="col-sm-6 col-form-label">Comit&eacute;
+                                            tutorial 4 </label>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control" readonly />
+                                        </div>
+                                    </div>
+                                    <br>
+                                </div>
+
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-6">
+                            <input type="submit" value="Guardar" class="btn-primary" />
+                        </div>
+                    </div>
+                    <input type="hidden" th:field="*{id}" /> <input type="hidden"
+                                                                    th:field="*{roles}" />
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

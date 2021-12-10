@@ -162,7 +162,7 @@
                                         </div>
                                         <br>
                                         <div class="row">
-                                            <div class="col-sm-8">
+                                            <div class="col">
                                                 <div class="card bg-light">
                                                     <div class="card-body">
                                                         <br>
@@ -206,13 +206,14 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-sm-4">
+                                            <div class="col">
                                                 <div class="card bg-light">
                                                     <div class="card-body">
                                                         <table>
                                                             <thead>
                                                             <tr>
                                                                 <td>Status</td>
+                                                                <td>Descripci&oacute;n</td>
                                                                 <td>Validar</td>
                                                                 <td>Invalidar</td>
                                                             </tr>
@@ -224,14 +225,18 @@
                                                                     <div th:if="${usuario.fotoStatus == T(com.controldigital.app.models.entity.FileStatus).YELLOW}" class="bulb">PROCESANDO</div>
                                                                     <div th:if="${usuario.fotoStatus == T(com.controldigital.app.models.entity.FileStatus).GREEN}" class="bulb">OK</div>
                                                                 </div></td>
+                                                                <td th:if="${usuario.fotoInvalidStatus == T(com.controldigital.app.models.entity.InvalidStatus).VALID}" th:text="'Validado'"></td>
+                                                                <td th:if="${usuario.fotoInvalidStatus == T(com.controldigital.app.models.entity.InvalidStatus).NDOC}" th:text="'El usuario a&uacute;n no ha subido un documento'"></td>
+                                                                <td th:if="${usuario.fotoInvalidStatus == T(com.controldigital.app.models.entity.InvalidStatus).DOC}" th:text="'No es el Documento'"></td>
+                                                                <td th:if="${usuario.fotoInvalidStatus == T(com.controldigital.app.models.entity.InvalidStatus).LEG}" th:text="'No es Legible'"></td>
+                                                                <td th:if="${usuario.fotoInvalidStatus == T(com.controldigital.app.models.entity.InvalidStatus).APO}" th:text="'No est&aacute; Apostillado'"></td>
                                                                 <td><a class="btn btn-success"
                                                                        th:href="@{/PersonalAutorizado/validarArchivo/} + ${usuario.id} + '/fotoStatus'"
-                                                                       onclick="return confirm('&iquest;Est&aacute; seguro de invalidar este archivo?');">
+                                                                       onclick="return confirm('&iquest;Est&aacute; seguro de validar este archivo?');">
                                                                     <img th:src="@{/images/validado.png}" width="55"
                                                                          height="55"></a></td>
                                                                 <td><a class="btn btn-danger"
-                                                                       th:href="@{/PersonalAutorizado/invalidarArchivo/} + ${usuario.id} + '/fotoStatus'"
-                                                                       onclick="return confirm('&iquest;Est&aacute; seguro de invalidar este archivo?');">
+                                                                       th:href="@{/PersonalAutorizado/invalidarArchivo/} + ${usuario.id} + '/fotoStatus'">
                                                                     <img th:src="@{/images/noValidado.png}" width="55"
                                                                          height="55"></a></td>
                                                             </tr>
@@ -241,14 +246,18 @@
                                                                     <div th:if="${usuario.actaStatus == T(com.controldigital.app.models.entity.FileStatus).YELLOW}" class="bulb">PROCESANDO</div>
                                                                     <div th:if="${usuario.actaStatus == T(com.controldigital.app.models.entity.FileStatus).GREEN}" class="bulb">OK</div>
                                                                 </div></td>
+                                                                <td th:if="${usuario.actaInvalidStatus == T(com.controldigital.app.models.entity.InvalidStatus).VALID}" th:text="'Validado'"></td>
+                                                                <td th:if="${usuario.actaInvalidStatus == T(com.controldigital.app.models.entity.InvalidStatus).NDOC }" th:text="'El usuario a&uacute;n no ha subido un documento'"></td>
+                                                                <td th:if="${usuario.actaInvalidStatus == T(com.controldigital.app.models.entity.InvalidStatus).DOC}" th:text="'No es el Documento'"></td>
+                                                                <td th:if="${usuario.actaInvalidStatus == T(com.controldigital.app.models.entity.InvalidStatus).LEG}" th:text="'No es Legible'"></td>
+                                                                <td th:if="${usuario.actaInvalidStatus == T(com.controldigital.app.models.entity.InvalidStatus).APO}" th:text="'No est&aacute; Apostillado'"></td>
                                                                 <td><a class="btn btn-success"
                                                                        th:href="@{/PersonalAutorizado/validarArchivo/} + ${usuario.id} + '/actaStatus'"
                                                                        onclick="return confirm('&iquest;Est&aacute; seguro de validar este archivo?');">
                                                                     <img th:src="@{/images/validado.png}" width="55"
                                                                          height="55"></a></td>
                                                                 <td><a class="btn btn-danger"
-                                                                       th:href="@{/PersonalAutorizado/invalidarArchivo/} + ${usuario.id} + '/actaStatus'"
-                                                                       onclick="return confirm('&iquest;Est&aacute; seguro de validar este archivo?');">
+                                                                       th:href="@{/PersonalAutorizado/invalidarArchivo/} + ${usuario.id} + '/actaStatus'">
                                                                     <img th:src="@{/images/noValidado.png}" width="55"
                                                                          height="55"></a></td>
                                                             </tr>
@@ -258,14 +267,18 @@
                                                                     <div th:if="${usuario.pasaporteStatus == T(com.controldigital.app.models.entity.FileStatus).YELLOW}" class="bulb">PROCESANDO</div>
                                                                     <div th:if="${usuario.pasaporteStatus == T(com.controldigital.app.models.entity.FileStatus).GREEN}" class="bulb">OK</div>
                                                                 </div></td>
+                                                                <td th:if="${usuario.pasaporteInvalidStatus == T(com.controldigital.app.models.entity.InvalidStatus).VALID}" th:text="'Validado'"></td>
+                                                                <td th:if="${usuario.pasaporteInvalidStatus == T(com.controldigital.app.models.entity.InvalidStatus).NDOC}" th:text="'El usuario a&uacute;n no ha subido un documento'"></td>
+                                                                <td th:if="${usuario.pasaporteInvalidStatus == T(com.controldigital.app.models.entity.InvalidStatus).DOC}" th:text="'No es el Documento'"></td>
+                                                                <td th:if="${usuario.pasaporteInvalidStatus == T(com.controldigital.app.models.entity.InvalidStatus).LEG}" th:text="'No es Legible'"></td>
+                                                                <td th:if="${usuario.pasaporteInvalidStatus == T(com.controldigital.app.models.entity.InvalidStatus).APO}" th:text="'No est&aacute; Apostillado'"></td>
                                                                 <td><a class="btn btn-success"
                                                                        th:href="@{/PersonalAutorizado/validarArchivo/} + ${usuario.id} + '/pasaporteStatus'"
                                                                        onclick="return confirm('&iquest;Est&aacute; seguro de validar este archivo?');">
                                                                     <img th:src="@{/images/validado.png}" width="55"
                                                                          height="55"></a></td>
                                                                 <td><a class="btn btn-danger"
-                                                                       th:href="@{/PersonalAutorizado/invalidarArchivo/} + ${usuario.id} + '/pasaporteStatus'"
-                                                                       onclick="return confirm('&iquest;Est&aacute; seguro de validar este archivo?');">
+                                                                       th:href="@{/PersonalAutorizado/invalidarArchivo/} + ${usuario.id} + '/pasaporteStatus'">
                                                                     <img th:src="@{/images/noValidado.png}" width="55"
                                                                          height="55"></a></td>
                                                             </tr>
@@ -275,14 +288,18 @@
                                                                     <div th:if="${usuario.curpStatus == T(com.controldigital.app.models.entity.FileStatus).YELLOW}" class="bulb">PROCESANDO</div>
                                                                     <div th:if="${usuario.curpStatus == T(com.controldigital.app.models.entity.FileStatus).GREEN}" class="bulb">OK</div>
                                                                 </div></td>
+                                                                <td th:if="${usuario.curpInvalidStatus == T(com.controldigital.app.models.entity.InvalidStatus).VALID}" th:text="'Validado'"></td>
+                                                                <td th:if="${usuario.curpInvalidStatus == T(com.controldigital.app.models.entity.InvalidStatus).NDOC}" th:text="'El usuario a&uacute;n no ha subido un documento'"></td>
+                                                                <td th:if="${usuario.curpInvalidStatus == T(com.controldigital.app.models.entity.InvalidStatus).DOC}" th:text="'No es el Documento'"></td>
+                                                                <td th:if="${usuario.curpInvalidStatus == T(com.controldigital.app.models.entity.InvalidStatus).LEG}" th:text="'No es Legible'"></td>
+                                                                <td th:if="${usuario.curpInvalidStatus == T(com.controldigital.app.models.entity.InvalidStatus).APO}" th:text="'No est&aacute; Apostillado'"></td>
                                                                 <td><a class="btn btn-success"
                                                                        th:href="@{/PersonalAutorizado/validarArchivo/} + ${usuario.id} + '/curpStatus'"
                                                                        onclick="return confirm('&iquest;Est&aacute; seguro de validar este archivo?');">
                                                                     <img th:src="@{/images/validado.png}" width="55"
                                                                          height="55"></a></td>
                                                                 <td><a class="btn btn-danger"
-                                                                       th:href="@{/PersonalAutorizado/invalidarArchivo/} + ${usuario.id} + '/curpStatus'"
-                                                                       onclick="return confirm('&iquest;Est&aacute; seguro de validar este archivo?');">
+                                                                       th:href="@{/PersonalAutorizado/invalidarArchivo/} + ${usuario.id} + '/curpStatus'">
                                                                     <img th:src="@{/images/noValidado.png}" width="55"
                                                                          height="55"></a></td>
                                                             </tr>

@@ -47,6 +47,9 @@ public class Usuario implements Serializable {
     @Column(name = "acta_status")
     private FileStatus actaStatus;
 
+    @Column(name = "acta_invalid_status")
+    private InvalidStatus actaInvalidStatus;
+
     @Column(name = "pais_nacimiento")
     private String paisNacimiento;
 
@@ -61,6 +64,9 @@ public class Usuario implements Serializable {
 
     @Column(name = "curp_status")
     private FileStatus curpStatus;
+
+    @Column(name = "curp_invalid_status")
+    private InvalidStatus curpInvalidStatus;
 
     @Column(name = "telefono_celular")
     private String telefonoCelular;
@@ -94,11 +100,17 @@ public class Usuario implements Serializable {
     @Column(name = "foto_status")
     private FileStatus fotoStatus;
 
+    @Column(name = "foto_invalid_status")
+    private InvalidStatus fotoInvalidStatus;
+
     @Column(name = "pasaporte")
     private String pasaporte;
 
     @Column(name = "pasaporte_status")
     private FileStatus pasaporteStatus;
+
+    @Column(name = "pasaporte_invalid_status")
+    private InvalidStatus pasaporteInvalidStatus;
 
     @Column(name = "pwd", length = 100)
     private String password;
@@ -126,11 +138,17 @@ public class Usuario implements Serializable {
     @Column(name = "calificaciones_licenciatura_status")
     private FileStatus calificacionesLicenciaturaStatus;
 
+    @Column(name = "calificaciones_licenciatura_invalid_status")
+    private InvalidStatus calificacionesLicenciaturaInvalidStatus;
+
     @Column(name = "diploma_licenciatura")
     private String diplomaLicenciatura;
 
     @Column(name = "diploma_licenciatura_status")
     private FileStatus diplomaLicenciaturaStatus;
+
+    @Column(name = "diploma_licenciatura_invalid_status")
+    private InvalidStatus diplomaLicenciaturaInvalidStatus;
 
     @Column(name = "cedula_licenciatura")
     private String cedulaLicenciatura;
@@ -138,11 +156,17 @@ public class Usuario implements Serializable {
     @Column(name = "cedula_licenciatura_status")
     private FileStatus cedulaLicenciaturaStatus;
 
+    @Column(name = "cedula_licenciatura_invalid_status")
+    private InvalidStatus cedulaLicenciaturaInvalidStatus;
+
     @Column(name = "acreditacion_ingles")
     private String acreditacionIngles;
 
     @Column(name = "acreditacion_ingles_status")
     private FileStatus acreditacionInglesStatus;
+
+    @Column(name = "acreditacion_ingles_invalid_status")
+    private InvalidStatus acreditacionInglesInvalidStatus;
 
     @Column(name = "nombre_maestria")
     private String nombreMaestria;
@@ -162,11 +186,17 @@ public class Usuario implements Serializable {
     @Column(name = "calificaciones_maestria_status")
     private FileStatus calificacionesMaestriaStatus;
 
+    @Column(name = "calificaciones_maestria_invalid_status")
+    private InvalidStatus calificacionesMaestriaInvalidStatus;
+
     @Column(name = "diploma_examen_maestria")
     private String actaExamenMaestria;
 
     @Column(name = "acta_examen_maestria_status")
     private FileStatus actaExamenMaestriaStatus;
+
+    @Column(name = "acta_examen_maestria_invalid_status")
+    private InvalidStatus actaExamenMaestriaInvalidStatus;
 
     @Column(name = "diploma_maestria")
     private String diplomaMaestria;
@@ -174,11 +204,24 @@ public class Usuario implements Serializable {
     @Column(name = "diploma_maestria_status")
     private FileStatus diplomaMaestriaStatus;
 
+    @Column(name = "diploma_maestria_invalid_status")
+    private InvalidStatus diplomaMaestriaInvalidStatus;
+
     @Column(name = "cedula_maestria")
     private String cedulaMaestria;
 
     @Column(name = "cedula_maestria_status")
     private FileStatus cedulaMaestriaStatus;
+
+    @Column(name = "cedula_maestria_invalid_status")
+    private InvalidStatus cedulaMaestriaInvalidStatus;
+
+    @Column(name = "grado")
+    private String grado;
+
+    private String numeroRegistro;
+
+    private String semestre;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
@@ -651,5 +694,125 @@ public class Usuario implements Serializable {
 
     public void setActaExamenMaestriaStatus(FileStatus actaExamenMaestriaStatus) {
         this.actaExamenMaestriaStatus = actaExamenMaestriaStatus;
+    }
+
+    public String getGrado() {
+        return grado;
+    }
+
+    public void setGrado(String grado) {
+        this.grado = grado;
+    }
+
+    public String getNumeroRegistro() {
+        return numeroRegistro;
+    }
+
+    public void setNumeroRegistro(String numeroRegistro) {
+        this.numeroRegistro = numeroRegistro;
+    }
+
+    public String getSemestre() {
+        return semestre;
+    }
+
+    public void setSemestre(String semestre) {
+        this.semestre = semestre;
+    }
+
+    public InvalidStatus getActaInvalidStatus() {
+        return actaInvalidStatus;
+    }
+
+    public void setActaInvalidStatus(InvalidStatus actaInvalidStatus) {
+        this.actaInvalidStatus = actaInvalidStatus;
+    }
+
+    public InvalidStatus getCurpInvalidStatus() {
+        return curpInvalidStatus;
+    }
+
+    public void setCurpInvalidStatus(InvalidStatus curpInvalidStatus) {
+        this.curpInvalidStatus = curpInvalidStatus;
+    }
+
+    public InvalidStatus getFotoInvalidStatus() {
+        return fotoInvalidStatus;
+    }
+
+    public void setFotoInvalidStatus(InvalidStatus fotoInvalidStatus) {
+        this.fotoInvalidStatus = fotoInvalidStatus;
+    }
+
+    public InvalidStatus getPasaporteInvalidStatus() {
+        return pasaporteInvalidStatus;
+    }
+
+    public void setPasaporteInvalidStatus(InvalidStatus pasaporteInvalidStatus) {
+        this.pasaporteInvalidStatus = pasaporteInvalidStatus;
+    }
+
+    public InvalidStatus getCalificacionesLicenciaturaInvalidStatus() {
+        return calificacionesLicenciaturaInvalidStatus;
+    }
+
+    public void setCalificacionesLicenciaturaInvalidStatus(InvalidStatus calificacionesLicenciaturaInvalidStatus) {
+        this.calificacionesLicenciaturaInvalidStatus = calificacionesLicenciaturaInvalidStatus;
+    }
+
+    public InvalidStatus getDiplomaLicenciaturaInvalidStatus() {
+        return diplomaLicenciaturaInvalidStatus;
+    }
+
+    public void setDiplomaLicenciaturaInvalidStatus(InvalidStatus diplomaLicenciaturaInvalidStatus) {
+        this.diplomaLicenciaturaInvalidStatus = diplomaLicenciaturaInvalidStatus;
+    }
+
+    public InvalidStatus getCedulaLicenciaturaInvalidStatus() {
+        return cedulaLicenciaturaInvalidStatus;
+    }
+
+    public void setCedulaLicenciaturaInvalidStatus(InvalidStatus cedulaLicenciaturaInvalidStatus) {
+        this.cedulaLicenciaturaInvalidStatus = cedulaLicenciaturaInvalidStatus;
+    }
+
+    public InvalidStatus getAcreditacionInglesInvalidStatus() {
+        return acreditacionInglesInvalidStatus;
+    }
+
+    public void setAcreditacionInglesInvalidStatus(InvalidStatus acreditacionInglesInvalidStatus) {
+        this.acreditacionInglesInvalidStatus = acreditacionInglesInvalidStatus;
+    }
+
+    public InvalidStatus getCalificacionesMaestriaInvalidStatus() {
+        return calificacionesMaestriaInvalidStatus;
+    }
+
+    public void setCalificacionesMaestriaInvalidStatus(InvalidStatus calificacionesMaestriaInvalidStatus) {
+        this.calificacionesMaestriaInvalidStatus = calificacionesMaestriaInvalidStatus;
+    }
+
+    public InvalidStatus getActaExamenMaestriaInvalidStatus() {
+        return actaExamenMaestriaInvalidStatus;
+    }
+
+    public void setActaExamenMaestriaInvalidStatus(InvalidStatus actaExamenMaestriaInvalidStatus) {
+        this.actaExamenMaestriaInvalidStatus = actaExamenMaestriaInvalidStatus;
+    }
+
+    public InvalidStatus getDiplomaMaestriaInvalidStatus() {
+        return diplomaMaestriaInvalidStatus;
+    }
+
+    public void setDiplomaMaestriaInvalidStatus(InvalidStatus diplomaMaestriaInvalidStatus) {
+        this.diplomaMaestriaInvalidStatus = diplomaMaestriaInvalidStatus;
+    }
+
+    public InvalidStatus getCedulaMaestriaInvalidStatus() {
+        return cedulaMaestriaInvalidStatus;
+    }
+
+    public void setCedulaMaestriaInvalidStatus(InvalidStatus cedulaMaestriaInvalidStatus) {
+        this.cedulaMaestriaInvalidStatus = cedulaMaestriaInvalidStatus;
     }
 }
