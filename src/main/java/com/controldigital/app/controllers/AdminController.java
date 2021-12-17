@@ -7,7 +7,9 @@ import java.util.stream.Collectors;
 import com.controldigital.app.models.entity.FileStatus;
 import com.controldigital.app.models.entity.InvalidStatus;
 import com.controldigital.app.models.entity.Role;
+import com.controldigital.app.service.IInformesService;
 import com.controldigital.app.service.IRoleService;
+import com.controldigital.app.util.Informes;
 import com.controldigital.app.util.MailSenderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -36,6 +38,9 @@ public class AdminController {
 
     @Autowired
     private IRoleService roleService;
+
+    @Autowired
+    private IInformesService informesService;
 
     @GetMapping("/ListadoUsuarios")
     public String verUsuarios(Model model) {
@@ -73,19 +78,27 @@ public class AdminController {
 
         List<Role> alumnos = roleService.findUsuarioByRole("ROLE_USER2");
 
+        Informes informe = new Informes();
+
+
         Date input = new Date();
         Instant instant = input.toInstant();
         ZonedDateTime zdt = instant.atZone(ZoneId.systemDefault());
         LocalDate date = zdt.toLocalDate();
 
         int year = date.getYear();
-        List<Integer> edades = new ArrayList<>();
+        List<String> edades = new ArrayList<>();
+        List<String> semestre = new ArrayList<>();
 
         for (Role u : alumnos) {
             LocalDate birthday = convertDate(u.getUsers().getFechaNacimiento());
 
-            if (!edades.contains(Period.between(birthday, date).getYears())) {
-                edades.add(Period.between(birthday, date).getYears());
+            if (!edades.contains(String.valueOf(Period.between(birthday, date).getYears()))) {
+                edades.add(String.valueOf(Period.between(birthday, date).getYears()));
+            }
+
+            if (!semestre.contains(u.getUsers().getSemestre())) {
+                semestre.add(u.getUsers().getSemestre());
             }
         }
 
@@ -93,6 +106,8 @@ public class AdminController {
 
         model.addAttribute("titulo", "Informes");
         model.addAttribute("edades", edades);
+        model.addAttribute("semestres", semestre);
+        model.addAttribute("informe", informe);
         return "PersonalAutorizado/Informes";
     }
 
@@ -100,6 +115,23 @@ public class AdminController {
         return Instant.ofEpochMilli(date.getTime())
                 .atZone(ZoneId.systemDefault())
                 .toLocalDate();
+    }
+
+    @PostMapping("/Informes")
+    public String generarInforme(@Valid Informes informes, Model model) {
+
+        /*if(!informes.equals(null)){
+            return "redirect:/PersonalAutorizado/Informes";
+        }*/
+
+        List<Role> alumnos = roleService.findUsuarioByRole("ROLE_USER2");
+
+        int numUsuarios = informesService.findAlumnosBy(informes).size();
+
+        model.addAttribute("informe", informes);
+        model.addAttribute("numUsuarios", numUsuarios);
+
+        return "PersonalAutorizado/ResultadoInforme";
     }
 
     @GetMapping("/verAlumnos")

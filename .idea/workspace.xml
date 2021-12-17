@@ -20,39 +20,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2727a93c-061d-4542-b678-8d61c3de17d4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/controldigital/app/models/entity/InvalidStatus.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/Expediente/EditarExpediente.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/PersonalAutorizado/OpcionesInvalidarArchivo.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/controldigital/app/service/IInformesService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/controldigital/app/service/InformesService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/controldigital/app/util/Informes.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/PersonalAutorizado/ResultadoInforme.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/controldigital/app/controllers/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/controldigital/app/controllers/AdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/controldigital/app/controllers/ExpedienteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/controldigital/app/controllers/ExpedienteController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/controldigital/app/models/entity/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/controldigital/app/models/entity/Usuario.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/import.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/import.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/textColor.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/css/textColor.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/Expediente/MiExpediente.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/Expediente/MiExpediente.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/Personal/EditarInformacionPersonal.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/Personal/EditarInformacionPersonal.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/Personal/InformacionPersonal.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/Personal/InformacionPersonal.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/PersonalAutorizado/Informes.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/PersonalAutorizado/Informes.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/PersonalAutorizado/VerUsuario.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/PersonalAutorizado/VerUsuario.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/Productividad/formProductividad.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/Productividad/formProductividad.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/login.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/controldigital/app/controllers/AdminController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/controldigital/app/controllers/AdminController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/controldigital/app/controllers/ExpedienteController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/controldigital/app/controllers/ExpedienteController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/controldigital/app/models/entity/Usuario.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/controldigital/app/models/entity/Usuario.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/import.sql" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/import.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/css/textColor.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/css/textColor.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/Expediente/MiExpediente.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/Expediente/MiExpediente.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/Personal/EditarInformacionPersonal.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/Personal/EditarInformacionPersonal.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/Personal/InformacionPersonal.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/Personal/InformacionPersonal.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/templates/PersonalAutorizado/Informes.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/PersonalAutorizado/Informes.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/PersonalAutorizado/VerUsuario.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/PersonalAutorizado/VerUsuario.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/Productividad/formProductividad.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/Productividad/formProductividad.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/0c2cf218-69ff-4f72-90f7-f7a6e5a953ea_FAVO620831HDFRRC01.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/816b6382-2967-4ed4-b138-a43aee568a77_Kardex.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/96432abc-b21c-4fad-8518-cc633dc8778e_1.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/ac9f5bfd-c22b-4ae2-87f3-42bda1dee0ea_f.JPG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/ba49dda9-cd9e-44c4-bf26-ba5b6ca1faf4_FAVO620831HDFRRC01.pdf" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,8 +40,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Enum" />
+        <option value="HTML File" />
+        <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -77,6 +57,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/static/images" />
@@ -150,10 +131,11 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="905" y="217" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.824@0.0.1536.824" timestamp="1636335482430" />
-    <state x="574" y="119" key="#com.intellij.ide.util.MemberChooser" timestamp="1638288147104">
+    <state x="574" y="119" key="#com.intellij.ide.util.MemberChooser" timestamp="1639531680019">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="574" y="119" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1638288147104" />
+    <state x="574" y="119" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824/1920.0.1360.728@0.0.1536.824" timestamp="1639434841630" />
+    <state x="574" y="119" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1639531680019" />
     <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1638053835260">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -166,39 +148,44 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="933" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1635688836440" />
-    <state width="1493" height="223" key="GridCell.Tab.0.bottom" timestamp="1639100259041">
+    <state width="1493" height="172" key="GridCell.Tab.0.bottom" timestamp="1639665325661">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="223" key="GridCell.Tab.0.bottom/0.0.1536.824/1920.0.1360.728@0.0.1536.824" timestamp="1639100259041" />
-    <state width="1493" height="230" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1638927809393" />
-    <state width="1493" height="223" key="GridCell.Tab.0.center" timestamp="1639100259041">
+    <state width="1493" height="172" key="GridCell.Tab.0.bottom/0.0.1536.824/1920.0.1360.728@0.0.1536.824" timestamp="1639665325661" />
+    <state width="1493" height="342" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1639533825115" />
+    <state width="1493" height="172" key="GridCell.Tab.0.center" timestamp="1639665325661">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="223" key="GridCell.Tab.0.center/0.0.1536.824/1920.0.1360.728@0.0.1536.824" timestamp="1639100259041" />
-    <state width="1493" height="230" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1638927809392" />
-    <state width="1493" height="223" key="GridCell.Tab.0.left" timestamp="1639100259041">
+    <state width="1493" height="172" key="GridCell.Tab.0.center/0.0.1536.824/1920.0.1360.728@0.0.1536.824" timestamp="1639665325661" />
+    <state width="1493" height="342" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1639533825115" />
+    <state width="1493" height="172" key="GridCell.Tab.0.left" timestamp="1639665325661">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="223" key="GridCell.Tab.0.left/0.0.1536.824/1920.0.1360.728@0.0.1536.824" timestamp="1639100259041" />
-    <state width="1493" height="230" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1638927809392" />
-    <state width="1493" height="223" key="GridCell.Tab.0.right" timestamp="1639100259041">
+    <state width="1493" height="172" key="GridCell.Tab.0.left/0.0.1536.824/1920.0.1360.728@0.0.1536.824" timestamp="1639665325661" />
+    <state width="1493" height="342" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1639533825114" />
+    <state width="1493" height="172" key="GridCell.Tab.0.right" timestamp="1639665325661">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="223" key="GridCell.Tab.0.right/0.0.1536.824/1920.0.1360.728@0.0.1536.824" timestamp="1639100259041" />
-    <state width="1493" height="230" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1638927809393" />
+    <state width="1493" height="172" key="GridCell.Tab.0.right/0.0.1536.824/1920.0.1360.728@0.0.1536.824" timestamp="1639665325661" />
+    <state width="1493" height="342" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1639533825115" />
     <state x="249" y="0" key="SettingsEditor" timestamp="1635692454656">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="249" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1635692454656" />
-    <state x="1977" y="154" width="488" height="664" maximized="true" key="dock-window-1" timestamp="1639098610367">
+    <state x="2409" y="278" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1639267045982">
       <screen x="1920" y="0" width="1360" height="728" />
     </state>
-    <state x="1977" y="154" width="488" height="664" maximized="true" key="dock-window-1/0.0.1536.824/1920.0.1360.728@0.0.1536.824" timestamp="1639098610367" />
-    <state x="-6" y="0" width="610" height="830" key="dock-window-1/0.0.1536.824@0.0.1536.824" timestamp="1639009681211" />
-    <state x="-6" y="0" width="782" height="830" key="dock-window-2" timestamp="1638404972705">
+    <state x="2409" y="278" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824/1920.0.1360.728@0.0.1536.824" timestamp="1639267045982" />
+    <state x="-6" y="0" width="781" height="418" maximized="true" key="dock-window-1" timestamp="1639665326536">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="-6" y="0" width="782" height="830" key="dock-window-2/0.0.1536.824@0.0.1536.824" timestamp="1638404972705" />
+    <state x="2311" y="0" width="977" height="744" maximized="true" key="dock-window-1/0.0.1536.824/1920.0.1360.728@0.0.1536.824" timestamp="1639665326536" />
+    <state x="-6" y="0" width="781" height="418" maximized="true" key="dock-window-1/0.0.1536.824@0.0.1536.824" timestamp="1639531682262" />
+    <state x="762" y="0" width="781" height="418" maximized="true" key="dock-window-2" timestamp="1639665326536">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="2317" y="0" width="971" height="744" maximized="true" key="dock-window-2/0.0.1536.824/1920.0.1360.728@0.0.1536.824" timestamp="1639665326536" />
+    <state x="762" y="0" width="781" height="418" maximized="true" key="dock-window-2/0.0.1536.824@0.0.1536.824" timestamp="1639515405989" />
     <state x="-6" y="0" width="781" height="418" maximized="true" key="dock-window-3" timestamp="1637971959178">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -233,7 +220,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/com/controldigital/app/controllers/AdminController.java</url>
-          <line>142</line>
+          <line>174</line>
           <properties class="com.controldigital.app.controllers.AdminController" method="editar">
             <option name="EMULATED" value="true" />
           </properties>

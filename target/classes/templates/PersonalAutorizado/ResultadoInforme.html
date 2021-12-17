@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="layout/layout :: head"></head>
+
+<body>
+<header th:replace="layout/layout :: header"></header>
+<div class="container">
+    <div class="card">
+        <div class="card-body" th:each="informe: ${informe}">
+            <div class="form-group row">
+                <label for="posgrado" class="col-sm-4 col-form-label">Inscritos en:</label>
+                <div class="col-sm-8">
+                    <input id="posgrado" name="posgrado" th:field="${informe.posgrado}" readonly>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="inscritos" class="col-sm-4 col-form-label">Semestre:</label>
+                <div class="col-sm-8">
+                    <input id="inscritos" name="inscritos" th:field="${informe.semestre}" readonly>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="edad" class="col-sm-4 col-form-label">Edad</label>
+                <div class="col-sm-8">
+                    <input id="edad" name="edad" th:field="${informe.edades}" readonly>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="genero" class="col-sm-4 col-form-label">G&eacute;nero</label>
+                <div class="col-sm-8">
+                    <input id="genero" name="genero" th:field="${informe.genero}" readonly>
+                </div>
+                <div class="form-group row">
+                    <label for="nacionalidad" class="col-sm-4 col-form-label">Nacionalidad</label>
+                    <div class="col-sm-8">
+                        <input id="nacionalidad" name="nacionalidad" th:field="${informe.nacionalidad}" readonly>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="nacimiento" class="col-sm-4 col-form-label">Lugar de nacimiento</label>
+                    <div class="col-sm-8">
+                        <input id="nacimiento" name="nacimiento" th:field="${informe.lugarNacimiento}" readonly>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="lenguain" class="col-sm-4 col-form-label">Lengua ind&iacute;gena</label>
+                    <div class="col-sm-8">
+                        <input id="lenguain" name="lenguain" th:field="${informe.lenguaIndigena}" readonly>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Discapacidad</label>
+                    <div class="col-sm-8">
+                        <input id="discapacidad" name="discapacidad" th:field="${informe.discapacidad}" readonly>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Estatus</label>
+                    <div class="col-sm-8">
+                        <input name="beca" th:field="${informe.estatus}" readonly>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Beca CONACYT</label>
+                    <div class="col-sm-8">
+                        <input id="beca" name="beca" th:field="${informe.becaConacyt}" readonly>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Resultado</label>
+                    <div class="col-sm-8">
+                        <p th:text="${numUsuarios}"></p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<footer th:replace="layout/layout :: footer"></footer>
+
+</body>
+</html>

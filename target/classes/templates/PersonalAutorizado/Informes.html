@@ -2,42 +2,6 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="layout/layout :: head">
-    <script type="text/javascript" th:src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-
-        // Load the Visualization API and the corechart package.
-        google.charts.load('current', {'packages':['corechart']});
-
-        // Set a callback to run when the Google Visualization API is loaded.
-        google.charts.setOnLoadCallback(drawChart);
-
-        // Callback that creates and populates a data table,
-        // instantiates the pie chart, passes in the data and
-        // draws it.
-        function drawChart() {
-
-            // Create the data table.
-            var data = new google.visualization.DataTable();
-            data.addColumn('string', 'Topping');
-            data.addColumn('number', 'Slices');
-            data.addRows([
-                ['Mushrooms', 3],
-                ['Onions', 1],
-                ['Olives', 1],
-                ['Zucchini', 1],
-                ['Pepperoni', 2]
-            ]);
-
-            // Set chart options
-            var options = {'title':'How Much Pizza I Ate Last Night',
-                'width':400,
-                'height':300};
-
-            // Instantiate and draw our chart, passing in some options.
-            var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
-            chart.draw(data, options);
-        }
-    </script>
 
 </head>
 <body>
@@ -48,93 +12,117 @@
             <h3 th:text="${titulo}"></h3>
         </div>
         <div class="card-body">
-            <form th:action="@{/Personal/Graficar}" method="post">
+            <form th:action="@{/PersonalAutorizado/Informes}" method="post" th:object="${informe}">
                 <div class="form-group row">
-                    <label for="inscritos" class="col-sm-4 col-form-label">Inscritos en:</label>
+                    <label for="posgrado" class="col-sm-4 col-form-label">Inscritos en:</label>
                     <div class="col-sm-8">
-                        <select id="inscritos" name="inscritos">
-                            <option value>-- Seleccione una opci&oacute;n --</option>
-                            <option value>Maestr&iacute;a</option>
-                            <option value>Doctorado</option>
-                            <option value>Todo</option>
+                        <select id="posgrado" name="posgrado" th:field="*{posgrado}">
+                            <option value="Maestría">Maestr&iacute;a</option>
+                            <option value="Doctorado">Doctorado</option>
+                            <option value="Todo">Todo</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="semestre" class="col-sm-4 col-form-label">Semestre:</label>
+                    <div class="col-sm-8">
+                        <select id="semestre" name="semestre" th:field="*{semestre}">
+                            <option th:each="semestres : ${semestres}"
+                                    th:value="${semestres}"
+                                    th:utext="${semestres}" />
+                            <option value="Todo">Todo</option>
                         </select>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="edad" class="col-sm-4 col-form-label">Edad</label>
                     <div class="col-sm-8">
-                        <select id="edad" name="edad">
-                            <option value>-- Seleccione una opci&oacute;n --</option>
+                        <select id="edad" name="edad" th:field="*{edades}">
                             <option th:each="edades : ${edades}"
                                     th:value="${edades}"
                                     th:utext="${edades}" />
+                            <option value="Todo">Todo</option>
                         </select>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="genero" class="col-sm-4 col-form-label">G&eacute;nero</label>
                     <div class="col-sm-8">
-                        <select id="genero" name="genero">
-                            <option value>-- Seleccione una opci&oacute;n --</option>
-                            <option value>-- Hombre --</option>
-                            <option value>-- Mujer --</option>
-                            <option value>-- Otro --</option>
-                            <option value>Todo</option>
+                        <select id="genero" name="genero" th:field="*{genero}">
+                            <option value="Hombre">Hombre</option>
+                            <option value="Mujer">Mujer</option>
+                            <option value="Otro">Otro</option>
+                            <option value="Todo">Todo</option>
                         </select>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="nacionalidad" class="col-sm-4 col-form-label">Nacionalidad</label>
                     <div class="col-sm-8">
-                        <select id="nacionalidad" name="nacionalidad">
-                            <option value>-- Seleccione una opci&oacute;n --</option>
+                        <select id="nacionalidad" name="nacionalidad" th:field="*{nacionalidad}">
+                            <option value="Mexicana">Mexicana</option>
+                            <option value="Extranjera">Extranjera</option>
+                            <option value="Todo">Todo</option>
                         </select>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="nacimiento" class="col-sm-4 col-form-label">Lugar de nacimiento</label>
                     <div class="col-sm-8">
-                        <select id="nacimiento" name="nacimiento">
-                            <option value>-- Seleccione una opci&oacute;n --</option>
+                        <select id="nacimiento" name="nacimiento" th:field="*{lugarNacimiento}">
+                            <option value="1">M&eacute;xico</option>
+                            <option value="2">Extranjero</option>
+                            <option value="Todo">Todo</option>
                         </select>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="lenguain" class="col-sm-4 col-form-label">Lengua ind&iacute;gena</label>
                     <div class="col-sm-8">
-                        <select id="lenguain" name="lenguain">
-                            <option value>-- Seleccione una opci&oacute;n --</option>
+                        <select id="lenguain" name="lenguain" th:field="*{lenguaIndigena}">
+                            <option value="Si">Si</option>
+                            <option value="No">No</option>
                         </select>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-4 col-form-label">Discapacidad</label>
                     <div class="col-sm-8">
-                        <select id="discapacidad" name="discapacidad">
-                            <option value>-- Seleccione una opci&oacute;n --</option>
+                        <select id="discapacidad" name="discapacidad" th:field="*{discapacidad}">
+                            <option value="Si">Si</option>
+                            <option value="No">No</option>
                         </select>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-4 col-form-label">Estatus</label>
                     <div class="col-sm-8">
-                        <select id="estatus" name="estatus">
-                            <option value>-- Seleccione una opci&oacute;n --</option>
-                            <option value>Inscritos</option>
-                            <option value>Egresados</option>
+                        <select id="estatus" name="estatus" th:field="*{estatus}">
+                            <option value="Inscritos">Inscritos</option>
+                            <option value="Egresados">Egresados</option>
+                            <option value="Todo">Todo</option>
                         </select>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-4 col-form-label">Beca CONACYT</label>
                     <div class="col-sm-8">
-                        <select id="beca" name="beca">
-                            <option value>-- Seleccione una opci&oacute;n --</option>
-                            <option value>Con Beca</option>
-                            <option value>Sin Beca</option>
+                        <select id="beca" name="beca" th:field="*{becaConacyt}">
+                            <option value="Con Beca">Con Beca</option>
+                            <option value="Sin Beca">Sin Beca</option>
+                            <option value="Todo">Todo</option>
                         </select>
                     </div>
                 </div>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Buscar
+                    </label>
+                    <div class="col-sm-6">
+                        <input type="submit" value="Buscar"
+                               class="btn btn-primary" />
+                    </div>
+                </div>
+                <br>
             </form>
         </div>
     </div>
