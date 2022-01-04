@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head th:replace="layout/layout :: head">
-
-</head>
+<head th:replace="layout/layout :: head"></head>
 <body>
 <header th:replace="layout/layout :: header"></header>
 <div class="container">
@@ -19,7 +17,7 @@
                         <select id="posgrado" name="posgrado" th:field="*{posgrado}">
                             <option value="Maestría">Maestr&iacute;a</option>
                             <option value="Doctorado">Doctorado</option>
-                            <option value="Todo">Todo</option>
+                            <option value="Todo">Todos los Alumnos</option>
                         </select>
                     </div>
                 </div>
@@ -30,18 +28,29 @@
                             <option th:each="semestres : ${semestres}"
                                     th:value="${semestres}"
                                     th:utext="${semestres}" />
-                            <option value="Todo">Todo</option>
+                            <option value="Todo">Todos los Alumnos</option>
                         </select>
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="edad" class="col-sm-4 col-form-label">Edad</label>
+                    <label for="edadMin" class="col-sm-4 col-form-label">Edad M&iacute;nima</label>
                     <div class="col-sm-8">
-                        <select id="edad" name="edad" th:field="*{edades}">
+                        <select id="edadMin" name="edad" th:field="*{edadMin}">
                             <option th:each="edades : ${edades}"
                                     th:value="${edades}"
                                     th:utext="${edades}" />
-                            <option value="Todo">Todo</option>
+                            <option value="Todo">Todos los Alumnos</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="edadMax" class="col-sm-4 col-form-label">Edad M&aacute;xima</label>
+                    <div class="col-sm-8">
+                        <select id="edadMax" name="edad" th:field="*{edadMax}">
+                            <option th:each="edades : ${edades}"
+                                    th:value="${edades}"
+                                    th:utext="${edades}" />
+                            <option value="Todo">Todos los Alumnos</option>
                         </select>
                     </div>
                 </div>
@@ -52,7 +61,7 @@
                             <option value="Hombre">Hombre</option>
                             <option value="Mujer">Mujer</option>
                             <option value="Otro">Otro</option>
-                            <option value="Todo">Todo</option>
+                            <option value="Todo">Todos los Alumnos</option>
                         </select>
                     </div>
                 </div>
@@ -62,7 +71,7 @@
                         <select id="nacionalidad" name="nacionalidad" th:field="*{nacionalidad}">
                             <option value="Mexicana">Mexicana</option>
                             <option value="Extranjera">Extranjera</option>
-                            <option value="Todo">Todo</option>
+                            <option value="Todo">Todos los Alumnos</option>
                         </select>
                     </div>
                 </div>
@@ -70,9 +79,40 @@
                     <label for="nacimiento" class="col-sm-4 col-form-label">Lugar de nacimiento</label>
                     <div class="col-sm-8">
                         <select id="nacimiento" name="nacimiento" th:field="*{lugarNacimiento}">
-                            <option value="1">M&eacute;xico</option>
-                            <option value="2">Extranjero</option>
-                            <option value="Todo">Todo</option>
+                            <option value="Aguascalientes">Aguascalientes</option>
+                            <option value="Baja California">Baja California</option>
+                            <option value="Baja California Sur">Baja California Sur</option>
+                            <option value="Campeche">Campeche</option>
+                            <option value="Chiapas">Chiapas</option>
+                            <option value="Chihuahua">Chihuahua</option>
+                            <option value="Ciudad de México">Ciudad de México</option>
+                            <option value="Coahuila">Coahuila</option>
+                            <option value="Colima">Colima</option>
+                            <option value="Durango">Durango</option>
+                            <option value="Estado de México">Estado de México</option>
+                            <option value="Guanajuato">Guanajuato</option>
+                            <option value="Guerrero">Guerrero</option>
+                            <option value="Hidalgo">Hidalgo</option>
+                            <option value="Jalisco">Jalisco</option>
+                            <option value="Michoacán">Michoacán</option>
+                            <option value="Morelos">Morelos</option>
+                            <option value="Nayarit">Nayarit</option>
+                            <option value="Nuevo León">Nuevo León</option>
+                            <option value="Oaxaca">Oaxaca</option>
+                            <option value="Puebla">Puebla</option>
+                            <option value="Querétaro">Querétaro</option>
+                            <option value="Quintana Roo">Quintana Roo</option>
+                            <option value="San Luis Potosí">San Luis Potosí</option>
+                            <option value="Sinaloa">Sinaloa</option>
+                            <option value="Sonora">Sonora</option>
+                            <option value="Tabasco">Tabasco</option>
+                            <option value="Tamaulipas">Tamaulipas</option>
+                            <option value="Tlaxcala">Tlaxcala</option>
+                            <option value="Veracruz">Veracruz</option>
+                            <option value="Yucatán">Yucatán</option>
+                            <option value="Zacatecas">Zacatecas</option>
+                            <option value="Extranjero">Extranjero</option>
+                            <option value="Todo">Todos los Alumnos</option>
                         </select>
                     </div>
                 </div>
@@ -82,6 +122,7 @@
                         <select id="lenguain" name="lenguain" th:field="*{lenguaIndigena}">
                             <option value="Si">Si</option>
                             <option value="No">No</option>
+                            <option value="Todo">Todos los Alumnos</option>
                         </select>
                     </div>
                 </div>
@@ -91,6 +132,17 @@
                         <select id="discapacidad" name="discapacidad" th:field="*{discapacidad}">
                             <option value="Si">Si</option>
                             <option value="No">No</option>
+                            <option value="Todo">Todos los Alumnos</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Enfermedad Permanente</label>
+                    <div class="col-sm-8">
+                        <select id="enfermedad" name="enfermedad" th:field="*{enfermedadPermanente}">
+                            <option value="Si">Si</option>
+                            <option value="No">No</option>
+                            <option value="Todo">Todos los Alumnos</option>
                         </select>
                     </div>
                 </div>
@@ -100,7 +152,7 @@
                         <select id="estatus" name="estatus" th:field="*{estatus}">
                             <option value="Inscritos">Inscritos</option>
                             <option value="Egresados">Egresados</option>
-                            <option value="Todo">Todo</option>
+                            <option value="Todo">Todos los Alumnos</option>
                         </select>
                     </div>
                 </div>
@@ -110,7 +162,7 @@
                         <select id="beca" name="beca" th:field="*{becaConacyt}">
                             <option value="Con Beca">Con Beca</option>
                             <option value="Sin Beca">Sin Beca</option>
-                            <option value="Todo">Todo</option>
+                            <option value="Todo">Todos los Alumnos</option>
                         </select>
                     </div>
                 </div>
@@ -126,6 +178,7 @@
             </form>
         </div>
     </div>
+
 </div>
 <footer th:replace="layout/layout :: footer"></footer>
 </body>

@@ -130,6 +130,7 @@ public class AdminController {
 
         model.addAttribute("informe", informes);
         model.addAttribute("numUsuarios", numUsuarios);
+        model.addAttribute("numTotal", alumnos.size() - numUsuarios);
 
         return "PersonalAutorizado/ResultadoInforme";
     }

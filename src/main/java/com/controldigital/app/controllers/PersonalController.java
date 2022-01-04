@@ -31,7 +31,7 @@ public class PersonalController {
 
 	@Autowired
 	private IUploadFileService uploadFileService;
-	
+
 	@GetMapping(value = "/InformacionPersonal")
 	public String verPerfil(Model model, Authentication authentication, HttpServletRequest request) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -151,7 +151,6 @@ public class PersonalController {
 				}
 			}
 		}
-
 
 		usuarioService.save(usuario);
 

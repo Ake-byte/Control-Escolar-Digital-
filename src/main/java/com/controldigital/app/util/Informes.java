@@ -6,12 +6,14 @@ public class Informes {
 
     private String posgrado;
     private String semestre;
-    private String edades;
+    private String edadMin;
+    private String edadMax;
     private String genero;
     private String nacionalidad;
     private String lugarNacimiento;
     private String lenguaIndigena;
     private String discapacidad;
+    private String enfermedadPermanente;
     private String estatus;
     private String becaConacyt;
 
@@ -31,12 +33,20 @@ public class Informes {
         this.semestre = semestre;
     }
 
-    public String getEdades() {
-        return edades;
+    public String getEdadMin() {
+        return edadMin;
     }
 
-    public void setEdades(String edades) {
-        this.edades = edades;
+    public void setEdadMin(String edadMin) {
+        this.edadMin = edadMin;
+    }
+
+    public String getEdadMax() {
+        return edadMax;
+    }
+
+    public void setEdadMax(String edadMax) {
+        this.edadMax = edadMax;
     }
 
     public String getGenero() {
@@ -77,6 +87,14 @@ public class Informes {
 
     public void setDiscapacidad(String discapacidad) {
         this.discapacidad = discapacidad;
+    }
+
+    public String getEnfermedadPermanente() {
+        return enfermedadPermanente;
+    }
+
+    public void setEnfermedadPermanente(String enfermedadPermanente) {
+        this.enfermedadPermanente = enfermedadPermanente;
     }
 
     public String getEstatus() {

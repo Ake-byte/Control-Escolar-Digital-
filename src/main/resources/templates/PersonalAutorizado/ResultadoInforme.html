@@ -1,9 +1,21 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head th:replace="layout/layout :: head"></head>
+<head th:replace="layout/layout :: head">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+
+    <!-- Optional theme -->
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" />
+
+</head>
 
 <body>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/highcharts-3d.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
 <header th:replace="layout/layout :: header"></header>
 <div class="container">
     <div class="card">
@@ -21,9 +33,13 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label for="edad" class="col-sm-4 col-form-label">Edad</label>
+                <label for="edadMin" class="col-sm-4 col-form-label">EdadMin</label>
                 <div class="col-sm-8">
-                    <input id="edad" name="edad" th:field="${informe.edades}" readonly>
+                    <input id="edadMin" name="edad" th:field="${informe.edadMin}" readonly>
+                </div>
+                <label for="edadMax" class="col-sm-4 col-form-label">EdadMax</label>
+                <div class="col-sm-8">
+                    <input id="edadMax" name="edad" th:field="${informe.edadMax}" readonly>
                 </div>
             </div>
             <div class="form-group row">
@@ -56,6 +72,12 @@
                     </div>
                 </div>
                 <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Enfermedad Permanente</label>
+                    <div class="col-sm-8">
+                        <input id="enfermedad" name="enfermedad" th:field="${informe.enfermedadPermanente}" readonly>
+                    </div>
+                </div>
+                <div class="form-group row">
                     <label class="col-sm-4 col-form-label">Estatus</label>
                     <div class="col-sm-8">
                         <input name="beca" th:field="${informe.estatus}" readonly>
@@ -76,9 +98,43 @@
             </div>
 
         </div>
+        <div id="container" style="height: 400px"></div>
     </div>
 </div>
 <footer th:replace="layout/layout :: footer"></footer>
-
+<script th:inline="javascript">
+		Highcharts.chart('container', {
+			chart : {
+				type : 'pie',
+				options3d : {
+					enabled : true,
+					alpha : 50,
+					beta : 0
+				}
+			},
+			title : {
+				text : 'Result Data'
+			},
+			tooltip : {
+				pointFormat : '{series.name}: <b>{point.percentage:.1f}%</b> %<br>value: {point.y}'
+			},
+			plotOptions : {
+				pie : {
+					allowPointSelect : true,
+					cursor : 'pointer',
+					depth : 35,
+					dataLabels : {
+						enabled : true,
+						format : '{point.name}'
+					}
+				}
+			},
+			series : [ {
+				type : 'pie',
+				name : 'Ratio',
+				data : [ [ 'Cumple', [[${numUsuarios}]] ], [ 'No cumple', [[${numTotal}]] ]  ]
+			} ]
+		});
+	</script>
 </body>
 </html>

@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="layout/layout :: head"></head>
 <body>
 	<header th:replace="layout/layout :: header"></header>
 	<div class="container" style="width: 92rem;">
 		<div class="card bg-light">
-			<div class="card-header" th:text="${titulo}"></div>
+			<div class="card-header text-white" th:text="${titulo}"></div>
 			<div class="card-body">
 				<div class="container">
 					<form th:action="@{/Personal/EditarInformacionPersonal}"
@@ -39,7 +40,7 @@
 											</div>
 										</div>
 										<br>
-										<div class="form-group row">
+										<div sec:authorize="hasRole('ROLE_USER2')" class="form-group row">
 											<label for="fechaN" class="col-sm-6 col-form-label">Fecha
 												de nacimiento</label>
 											<div class="col-sm-6">
@@ -47,7 +48,7 @@
 											</div>
 										</div>
 										<br>
-										<div class="form-group row">
+										<div sec:authorize="hasRole('ROLE_USER2')" class="form-group row">
 											<label for="paisN" class="col-sm-4 col-form-label">Pa&iacute;s
 												de nacimiento</label>
 											<div class="col-sm-7">
@@ -302,7 +303,7 @@
 											</div>
 										</div>
 										<br>
-										<div class="form-group row">
+										<div sec:authorize="hasRole('ROLE_USER2')" class="form-group row">
 											<label for="nombre" class="col-sm-4 col-form-label">Estado</label>
 											<div class="col-sm-7">
 												<select name="estado" th:field="*{estadoNacimiento}">
@@ -344,14 +345,14 @@
 											</div>
 										</div>
 										<br>
-										<div class="form-group row">
+										<div sec:authorize="hasRole('ROLE_USER2')" class="form-group row">
 											<label for="nombre" class="col-sm-6 col-form-label">CURP</label>
 											<div class="col-sm-6">
 												<input type="text" class="form-control" th:field="*{claveCURP}"/>
 											</div>
 										</div>
 										<br>
-										<div class="form-group row">
+										<div sec:authorize="hasRole('ROLE_USER2')" class="form-group row">
 											<label for="nombre" class="col-sm-6 col-form-label">Tel&eacute;fono
 												celular</label>
 											<div class="col-sm-6">
@@ -359,7 +360,7 @@
 											</div>
 										</div>
 										<br>
-										<div class="form-group row">
+										<div sec:authorize="hasRole('ROLE_USER2')" class="form-group row">
 											<label for="nombre" class="col-sm-6 col-form-label">Direcci&oacute;n
 												(en CDMX)</label>
 											<div class="col-sm-6">
@@ -370,7 +371,7 @@
 								</div>
 							</div>
 							<div class="col-sm-6">
-								<div class="card">
+								<div sec:authorize="hasRole('ROLE_USER2')" class="card">
 									<div class="card-body">
 										<div class="form-group row">
 											<label for="nombre" class="col-sm-6 col-form-label">G&eacute;nero</label>

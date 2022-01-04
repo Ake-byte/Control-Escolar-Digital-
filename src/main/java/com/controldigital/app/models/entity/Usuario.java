@@ -219,9 +219,16 @@ public class Usuario implements Serializable {
     @Column(name = "grado")
     private String grado;
 
+    @Column(name = "numero_registro")
     private String numeroRegistro;
 
     private String semestre;
+
+    @Column(name = "estatus_escolar")
+    private String estatusEscolar;
+
+    @Column(name = "beca_conacyt")
+    private Boolean becaConacyt;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
@@ -814,5 +821,21 @@ public class Usuario implements Serializable {
 
     public void setCedulaMaestriaInvalidStatus(InvalidStatus cedulaMaestriaInvalidStatus) {
         this.cedulaMaestriaInvalidStatus = cedulaMaestriaInvalidStatus;
+    }
+
+    public String getEstatusEscolar() {
+        return estatusEscolar;
+    }
+
+    public void setEstatusEscolar(String estatusEscolar) {
+        this.estatusEscolar = estatusEscolar;
+    }
+
+    public Boolean getBecaConacyt() {
+        return becaConacyt;
+    }
+
+    public void setBecaConacyt(Boolean becaConacyt) {
+        this.becaConacyt = becaConacyt;
     }
 }
