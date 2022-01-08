@@ -9,7 +9,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import com.controldigital.app.models.entity.FileStatus;
+import com.controldigital.app.models.entity.InfoPersonal;
+import com.controldigital.app.service.IInfoPersonalService;
 import com.controldigital.app.service.IUploadFileService;
+import com.controldigital.app.service.InforPersonalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -30,6 +33,9 @@ public class PersonalController {
 	private IUsuarioService usuarioService;
 
 	@Autowired
+	private InforPersonalService infoPersonalService;
+
+	@Autowired
 	private IUploadFileService uploadFileService;
 
 	@GetMapping(value = "/InformacionPersonal")
@@ -37,8 +43,10 @@ public class PersonalController {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
 		Usuario usuario = usuarioService.findByEmail(auth.getName());
-		
-		model.addAttribute("usuario", usuario);
+
+		InfoPersonal usuarioInfoPersonal = infoPersonalService.findInfoPersonalByUserId(usuario.getId());
+
+		model.addAttribute("usuario", usuarioInfoPersonal);
 		model.addAttribute("titulo", "Datos Personales");
 		return "Personal/InformacionPersonal";
 	}
@@ -74,8 +82,8 @@ public class PersonalController {
 		if(usuario.getId() != null && usuario.getId() > 0){
 			for(int i = 0; i < files.length; i++){
 				if(!files[0].isEmpty()){
-					if(usuario.getFotoActual() != null && usuario.getFotoActual().length() > 0){
-						uploadFileService.delete(usuario.getFotoActual());
+					if(usuario.getInfoPersonal().getFotoActual() != null && usuario.getInfoPersonal().getFotoActual().length() > 0){
+						uploadFileService.delete(usuario.getInfoPersonal().getFotoActual());
 					}
 					String uniqueFilename = null;
 					try {
@@ -83,18 +91,18 @@ public class PersonalController {
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
-					usuario.setFotoActual(uniqueFilename);
+					usuario.getInfoPersonal().setFotoActual(uniqueFilename);
 
-					usuario.setFotoStatus(FileStatus.YELLOW);
+					usuario.getInfoPersonal().setFotoStatus(FileStatus.YELLOW);
 				} else {
-					if(usuario.getFotoActual() == null){
-						usuario.setFotoActual("");
-						usuario.setFotoStatus(FileStatus.RED);
+					if(usuario.getInfoPersonal().getFotoActual() == null){
+						usuario.getInfoPersonal().setFotoActual("");
+						usuario.getInfoPersonal().setFotoStatus(FileStatus.RED1);
 					}
 				}
 				if(!files[1].isEmpty()){
-					if(usuario.getActaNacimiento() != null && usuario.getActaNacimiento().length() > 0){
-						uploadFileService.delete(usuario.getActaNacimiento());
+					if(usuario.getInfoPersonal().getActaNacimiento() != null && usuario.getInfoPersonal().getActaNacimiento().length() > 0){
+						uploadFileService.delete(usuario.getInfoPersonal().getActaNacimiento());
 					}
 					String uniqueFilename = null;
 					try {
@@ -102,18 +110,18 @@ public class PersonalController {
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
-					usuario.setActaNacimiento(uniqueFilename);
+					usuario.getInfoPersonal().setActaNacimiento(uniqueFilename);
 
-					usuario.setActaStatus(FileStatus.YELLOW);
+					usuario.getInfoPersonal().setActaStatus(FileStatus.YELLOW);
 				} else {
-					if(usuario.getActaNacimiento() == null){
-						usuario.setActaNacimiento("");
-						usuario.setActaStatus(FileStatus.RED);
+					if(usuario.getInfoPersonal().getActaNacimiento() == null){
+						usuario.getInfoPersonal().setActaNacimiento("");
+						usuario.getInfoPersonal().setActaStatus(FileStatus.RED1);
 					}
 				}
 				if(!files[2].isEmpty()){
-					if(usuario.getPasaporte() != null && usuario.getPasaporte().length() > 0){
-						uploadFileService.delete(usuario.getPasaporte());
+					if(usuario.getInfoPersonal().getPasaporte() != null && usuario.getInfoPersonal().getPasaporte().length() > 0){
+						uploadFileService.delete(usuario.getInfoPersonal().getPasaporte());
 					}
 					String uniqueFilename = null;
 					try {
@@ -121,18 +129,18 @@ public class PersonalController {
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
-					usuario.setPasaporte(uniqueFilename);
+					usuario.getInfoPersonal().setPasaporte(uniqueFilename);
 
-					usuario.setPasaporteStatus(FileStatus.YELLOW);
+					usuario.getInfoPersonal().setPasaporteStatus(FileStatus.YELLOW);
 				} else {
-					if(usuario.getPasaporte() == null){
-						usuario.setPasaporte("");
-						usuario.setPasaporteStatus(FileStatus.RED);
+					if(usuario.getInfoPersonal().getPasaporte() == null){
+						usuario.getInfoPersonal().setPasaporte("");
+						usuario.getInfoPersonal().setPasaporteStatus(FileStatus.RED1);
 					}
 				}
 				if(!files[3].isEmpty()){
-					if(usuario.getCedulaCURP() != null && usuario.getCedulaCURP().length() > 0){
-						uploadFileService.delete(usuario.getCedulaCURP());
+					if(usuario.getInfoPersonal().getCedulaCURP() != null && usuario.getInfoPersonal().getCedulaCURP().length() > 0){
+						uploadFileService.delete(usuario.getInfoPersonal().getCedulaCURP());
 					}
 					String uniqueFilename = null;
 					try {
@@ -140,13 +148,13 @@ public class PersonalController {
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
-					usuario.setCedulaCURP(uniqueFilename);
+					usuario.getInfoPersonal().setCedulaCURP(uniqueFilename);
 
-					usuario.setCurpStatus(FileStatus.YELLOW);
+					usuario.getInfoPersonal().setCurpStatus(FileStatus.YELLOW);
 				} else {
-					if(usuario.getCedulaCURP() == null){
-						usuario.setCedulaCURP("");
-						usuario.setCurpStatus(FileStatus.RED);
+					if(usuario.getInfoPersonal().getCedulaCURP() == null){
+						usuario.getInfoPersonal().setCedulaCURP("");
+						usuario.getInfoPersonal().setCurpStatus(FileStatus.RED1);
 					}
 				}
 			}

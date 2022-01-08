@@ -18,6 +18,10 @@
 						th:classappend="${#httpServletRequest.getRequestURI() == '/index' ? 'active':''}"
 						aria-current="page" th:href="@{/index}">Inicio</a></li>
 					<li><a class="nav-link"
+					   th:classappend="${#httpServletRequest.getRequestURI() == '/Sistema/InformacionSistema' ? 'active':''}"
+					   th:href="@{/Sistema/InformacionSistema}">Informaci&oacute;n del Sistema</a>
+					</li>
+					<li><a class="nav-link"
 						th:classappend="${#httpServletRequest.getRequestURI() == '/Personal/InformacionPersonal' ? 'active':''}"
 						th:href="@{/Personal/InformacionPersonal}">Informaci&oacute;n Personal</a>
 					</li>

@@ -19,4 +19,6 @@ public interface IUsuarioService {
 
 	public void delete(Long id);
 
+	public List<Usuario> findUserByRole(String role);
+
 }

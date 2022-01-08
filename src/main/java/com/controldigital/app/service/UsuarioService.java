@@ -43,6 +43,12 @@ public class UsuarioService implements IUsuarioService{
 
 	@Override
 	@Transactional(readOnly=true)
+	public List<Usuario> findUserByRole(String role) {
+		return usuarioDAO.findUserByRole(role);
+	}
+
+	@Override
+	@Transactional(readOnly=true)
 	public Usuario findByEmail(String email) {
 		return usuarioDAO.findByEmail(email);
 	}

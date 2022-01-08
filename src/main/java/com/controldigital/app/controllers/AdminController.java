@@ -4,11 +4,8 @@ import java.time.*;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import com.controldigital.app.models.entity.FileStatus;
-import com.controldigital.app.models.entity.InvalidStatus;
-import com.controldigital.app.models.entity.Role;
-import com.controldigital.app.service.IInformesService;
-import com.controldigital.app.service.IRoleService;
+import com.controldigital.app.models.entity.*;
+import com.controldigital.app.service.*;
 import com.controldigital.app.util.Informes;
 import com.controldigital.app.util.MailSenderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +14,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import com.controldigital.app.models.entity.Usuario;
-import com.controldigital.app.service.IUsuarioService;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -41,6 +36,15 @@ public class AdminController {
 
     @Autowired
     private IInformesService informesService;
+
+    @Autowired
+    private InforPersonalService inforPersonalService;
+
+    @Autowired
+    private InfoAcademicaService infoAcademicaService;
+
+    @Autowired
+    private ExpedienteService expedienteService;
 
     @GetMapping("/ListadoUsuarios")
     public String verUsuarios(Model model) {
@@ -76,7 +80,9 @@ public class AdminController {
     @GetMapping("/Informes")
     public String informes(Model model) {
 
-        List<Role> alumnos = roleService.findUsuarioByRole("ROLE_USER2");
+        //List<Role> alumnos = roleService.findUsuarioByRole("ROLE_USER2");
+
+        List<Usuario> alumnos = usuarioService.findUserByRole("ROLE_USER2");
 
         Informes informe = new Informes();
 
@@ -90,15 +96,15 @@ public class AdminController {
         List<String> edades = new ArrayList<>();
         List<String> semestre = new ArrayList<>();
 
-        for (Role u : alumnos) {
-            LocalDate birthday = convertDate(u.getUsers().getFechaNacimiento());
+        for (Usuario u : alumnos) {
+            LocalDate birthday = convertDate(u.getInfoPersonal().getFechaNacimiento());
 
             if (!edades.contains(String.valueOf(Period.between(birthday, date).getYears()))) {
                 edades.add(String.valueOf(Period.between(birthday, date).getYears()));
             }
 
-            if (!semestre.contains(u.getUsers().getSemestre())) {
-                semestre.add(u.getUsers().getSemestre());
+            if (!semestre.contains(u.getExpediente().getSemestre())) {
+                semestre.add(u.getExpediente().getSemestre());
             }
         }
 
@@ -108,6 +114,7 @@ public class AdminController {
         model.addAttribute("edades", edades);
         model.addAttribute("semestres", semestre);
         model.addAttribute("informe", informe);
+
         return "PersonalAutorizado/Informes";
     }
 
@@ -124,7 +131,7 @@ public class AdminController {
             return "redirect:/PersonalAutorizado/Informes";
         }*/
 
-        List<Role> alumnos = roleService.findUsuarioByRole("ROLE_USER2");
+        List<Usuario> alumnos = usuarioService.findUserByRole("ROLE_USER2");
 
         int numUsuarios = informesService.findAlumnosBy(informes).size();
 
@@ -158,16 +165,33 @@ public class AdminController {
     }
 
     @GetMapping("/verUsuario/{id}")
-    public String verAlumno(@PathVariable(value = "id") Long id, Map<String, Object> model) {
+    public String verAlumno(@PathVariable(value = "id") Long id, Model model) {
 
         Usuario usuario = null;
+        InfoPersonal usuarioInfoPersonal = null;
+        InfoAcademica usuarioInfoAcademica = null;
+        Expediente expediente = null;
+
+        UserDetails usuarioDetails = new UserDetails();
         if (id != null && id > 0) {
             usuario = usuarioService.findOne(id);
+            usuarioInfoPersonal = inforPersonalService.findInfoPersonalByUserId(usuario.getId());
+            usuarioInfoAcademica = infoAcademicaService.findInfoAcademicaByUserId(usuario.getId());
+            expediente = expedienteService.findExpedienteByUserId(usuario.getId());
+            usuarioDetails.setUsuario(usuario);
+            usuarioDetails.setInfoPersonal(usuarioInfoPersonal);
+            usuarioDetails.setInfoAcademica(usuarioInfoAcademica);
+            usuarioDetails.setExpediente(expediente);
         } else {
             return "redirect:index";
         }
 
-        model.put("usuario", usuario);
+
+
+
+        model.addAttribute("usuario", usuarioDetails);
+        //model.addAttribute("usuarioInfoPersonal", usuarioInfoPersonal);
+        //model.addAttribute("usuarioInfoAcademica", usuarioInfoAcademica);
 
         return "PersonalAutorizado/VerUsuario";
     }
@@ -246,7 +270,7 @@ public class AdminController {
     }
 
 
-    @GetMapping("/validarArchivo/{id}/{tipoArchivo}")
+    /*@GetMapping("/validarArchivo/{id}/{tipoArchivo}")
     public String validarArchivo(@PathVariable(value = "id") Long id,
                                  @PathVariable(value = "tipoArchivo") String tipoArchivo, Map<String, Object> model) {
 
@@ -259,23 +283,23 @@ public class AdminController {
 
         switch (tipoArchivo) {
             case "fotoStatus":
-                usuario.setFotoStatus(FileStatus.GREEN);
-                usuario.setFotoInvalidStatus(InvalidStatus.VALID);
+                usuario.getInfoPersonal().setFotoStatus(FileStatus.GREEN);
+                usuario.getInfoPersonal().setFotoInvalidStatus(InvalidStatus.VALID);
                 break;
 
             case "actaStatus":
-                usuario.setActaStatus(FileStatus.GREEN);
-                usuario.setActaInvalidStatus(InvalidStatus.VALID);
+                usuario.getInfoPersonal().setActaStatus(FileStatus.GREEN);
+                usuario.getInfoPersonal().setActaInvalidStatus(InvalidStatus.VALID);
                 break;
 
             case "pasaporteStatus":
-                usuario.setPasaporteStatus(FileStatus.GREEN);
-                usuario.setPasaporteInvalidStatus(InvalidStatus.VALID);
+                usuario.getInfoPersonal().setPasaporteStatus(FileStatus.GREEN);
+                usuario.getInfoPersonal().setPasaporteInvalidStatus(InvalidStatus.VALID);
                 break;
 
             case "curpStatus":
-                usuario.setCurpStatus(FileStatus.GREEN);
-                usuario.setCurpInvalidStatus(InvalidStatus.VALID);
+                usuario.getInfoPersonal().setCurpStatus(FileStatus.GREEN);
+                usuario.getInfoPersonal().setCurpInvalidStatus(InvalidStatus.VALID);
                 break;
 
             default:
@@ -285,7 +309,7 @@ public class AdminController {
         usuarioService.save(usuario);
         return "redirect:/PersonalAutorizado/verUsuario/" + usuario.getId();
     }
-
+*/
     @GetMapping("/invalidarArchivo/{id}/{tipoArchivo}")
     public String invalidarArchivo(@PathVariable(value = "id") Long id,
                                    @PathVariable(value = "tipoArchivo") String tipoArchivo, Model model) {
@@ -302,7 +326,7 @@ public class AdminController {
         return "PersonalAutorizado/OpcionesInvalidarArchivo";
     }
 
-    @PostMapping(value = "invalidarArchivo")
+    /*@PostMapping(value = "invalidarArchivo")
     public String guardarInvalidacion(HttpServletRequest request, HttpServletResponse response,
                                       @ModelAttribute("userId") Long userId,
                                       @ModelAttribute("opcion") String tipoInvalidacion,
@@ -318,61 +342,61 @@ public class AdminController {
             case "fotoStatus":
                 switch (opcion) {
                     case "1":
-                        usuario.setFotoInvalidStatus(InvalidStatus.DOC);
+                        usuario.getInfoPersonal().setFotoInvalidStatus(InvalidStatus.DOC);
                         break;
                     case "2":
-                        usuario.setFotoInvalidStatus(InvalidStatus.LEG);
+                        usuario.getInfoPersonal().setFotoInvalidStatus(InvalidStatus.LEG);
                         break;
                     case "3":
-                        usuario.setFotoInvalidStatus(InvalidStatus.APO);
+                        usuario.getInfoPersonal().setFotoInvalidStatus(InvalidStatus.APO);
                         break;
                 }
-                usuario.setFotoStatus(FileStatus.RED);
+                usuario.getInfoPersonal().setFotoStatus(FileStatus.RED);
                 break;
 
             case "actaStatus":
                 switch (opcion) {
                     case "1":
-                        usuario.setActaInvalidStatus(InvalidStatus.DOC);
+                        usuario.getInfoPersonal().setActaInvalidStatus(InvalidStatus.DOC);
                         break;
                     case "2":
-                        usuario.setActaInvalidStatus(InvalidStatus.LEG);
+                        usuario.getInfoPersonal().setActaInvalidStatus(InvalidStatus.LEG);
                         break;
                     case "3":
-                        usuario.setActaInvalidStatus(InvalidStatus.APO);
+                        usuario.getInfoPersonal().setActaInvalidStatus(InvalidStatus.APO);
                         break;
                 }
-                usuario.setActaStatus(FileStatus.RED);
+                usuario.getInfoPersonal().setActaStatus(FileStatus.RED);
                 break;
 
             case "pasaporteStatus":
                 switch (opcion) {
                     case "1":
-                        usuario.setPasaporteInvalidStatus(InvalidStatus.DOC);
+                        usuario.getInfoPersonal().setPasaporteInvalidStatus(InvalidStatus.DOC);
                         break;
                     case "2":
-                        usuario.setPasaporteInvalidStatus(InvalidStatus.LEG);
+                        usuario.getInfoPersonal().setPasaporteInvalidStatus(InvalidStatus.LEG);
                         break;
                     case "3":
-                        usuario.setPasaporteInvalidStatus(InvalidStatus.APO);
+                        usuario.getInfoPersonal().setPasaporteInvalidStatus(InvalidStatus.APO);
                         break;
                 }
-                usuario.setPasaporteStatus(FileStatus.RED);
+                usuario.getInfoPersonal().setPasaporteStatus(FileStatus.RED);
                 break;
 
             case "curpStatus":
                 switch (opcion) {
                     case "1":
-                        usuario.setCurpInvalidStatus(InvalidStatus.DOC);
+                        usuario.getInfoPersonal().setCurpInvalidStatus(InvalidStatus.DOC);
                         break;
                     case "2":
-                        usuario.setCurpInvalidStatus(InvalidStatus.LEG);
+                        usuario.getInfoPersonal().setCurpInvalidStatus(InvalidStatus.LEG);
                         break;
                     case "3":
-                        usuario.setCurpInvalidStatus(InvalidStatus.APO);
+                        usuario.getInfoPersonal().setCurpInvalidStatus(InvalidStatus.APO);
                         break;
                 }
-                usuario.setCurpStatus(FileStatus.RED);
+                usuario.getInfoPersonal().setCurpStatus(FileStatus.RED);
                 break;
 
             default:
@@ -382,60 +406,6 @@ public class AdminController {
         usuarioService.save(usuario);
         return "redirect:/PersonalAutorizado/verUsuario/" + usuario.getId();
     }
+*/
 
-    @GetMapping("/Graficar")
-    public String generarInforme(@RequestParam(name = "genero") String genero) {
-
-        if (!genero.isEmpty()) {
-            List<Usuario> usuariosByGenero = usuarioService.findall().stream().filter(u -> u.getGenero().equals(genero)).collect(Collectors.toList());
-        }
-
-        List<Usuario> nacionalidades = usuarioService.findall();
-        List<Usuario> edades = usuarioService.findall();
-        List<Usuario> lugarNacimiento = usuarioService.findall();
-
-
-        return null;
-    }
-
-    @GetMapping("/barChart")
-    public String getAllEmployee(Model model) {
-
-        //List<String> nameList= usuarioService.findall().stream().map(x->x.getNombre()).collect(Collectors.toList());
-        //List<Integer> ageList = usuarioService.findall().stream().map(x-> x.getEdad()).collect(Collectors.toList());
-
-        List<String> genero = new ArrayList<>();
-        genero.add("Hombre");
-        genero.add("Mujer");
-
-        Integer numUsuarios = usuarioService.findall().size();
-
-        model.addAttribute("name", genero);
-        model.addAttribute("age", numUsuarios);
-
-        return "PersonalAutorizado/BarChart";
-
-    }
-
-    @GetMapping("/pieChart")
-    public String pieChart(Model model) {
-        List<Usuario> usuarios = usuarioService.findall();
-        List<Role> alumnos = roleService.findUsuarioByRole("ROLE_USER2");
-
-        int hombres = 0;
-        int mujeres = 0;
-
-        for (Role u : alumnos) {
-            if (u.getUsers().getGenero().equals("Hombre")) {
-                hombres++;
-            } else {
-                mujeres++;
-            }
-        }
-
-        model.addAttribute("hombres", hombres);
-        model.addAttribute("mujeres", mujeres);
-        return "PersonalAutorizado/pieChart";
-
-    }
 }

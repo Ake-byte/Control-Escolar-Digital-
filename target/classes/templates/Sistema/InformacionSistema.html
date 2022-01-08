@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="layout/layout :: head"></head>
+<body>
+<header th:replace="layout/layout :: header"></header>
+
+<div class="container" style="width: 92rem;">
+    <div class="card bg-light">
+        <div class="card-header text-white" th:text="${titulo}"></div>
+        <div class="card-body" th:each="usuario: ${usuario}">
+
+            <div class="container">
+                <div class="card bg-light">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="card bg-light">
+                                <div class="card-body">
+                                    <div class="form-group row">
+                                        <label class="col-sm-6 col-form-label">Nombre(s):</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control"
+                                                   th:field="${usuario.nombre}" readonly />
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="form-group row">
+                                        <label class="col-sm-6 col-form-label">Apellido
+                                            Paterno:</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control"
+                                                   th:field="${usuario.apellidoPaterno}" readonly />
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="form-group row">
+                                        <label class="col-sm-6 col-form-label">Apellido
+                                            Materno</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control"
+                                                   th:field="${usuario.apellidoMaterno}" readonly />
+                                        </div>
+                                    </div>
+                                    <br>
+                                </div>
+                            </div>
+                        </div>
+                        <div sec:authorize="hasRole('ROLE_USER2')" class="col-sm-6">
+                            <div class="card bg-light">
+                                <div class="card-body">
+                                    <br>
+                                    <div class="form-group row">
+                                        <label for="nombre" class="col-sm-6 col-form-label">Correo
+                                            electr&oacute;nico</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control"
+                                                   th:field="${usuario.email}" readonly />
+                                        </div>
+                                    </div>
+                                    <br>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+            <br>
+            <div>
+                <p>
+                    <a class="btn btn-primary btn-xs" sec:authorize="hasRole('ROLE_USER2')"
+                       th:href="@{/Personal/EditarInformacionPersonal}">Editar
+                        Informaci&oacute;n Personal</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

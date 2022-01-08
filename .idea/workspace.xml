@@ -20,29 +20,76 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2727a93c-061d-4542-b678-8d61c3de17d4" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/controldigital/app/controllers/SistemaController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/controldigital/app/models/dao/IExpedienteDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/controldigital/app/models/dao/IInfoAcademicaDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/controldigital/app/models/dao/IInfoPersonalDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/controldigital/app/models/entity/Expediente.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/controldigital/app/models/entity/InfoAcademica.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/controldigital/app/models/entity/InfoPersonal.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/controldigital/app/models/entity/UserDetails.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/controldigital/app/service/ExpedienteService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/controldigital/app/service/IExpedienteService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/controldigital/app/service/IInfoAcademicaService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/controldigital/app/service/IInfoPersonalService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/controldigital/app/service/InfoAcademicaService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/controldigital/app/service/InforPersonalService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/Sistema/EditarInformacionSistema.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/Sistema/InformacionSistema.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/controldigital/app/controllers/AcademicaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/controldigital/app/controllers/AcademicaController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/controldigital/app/controllers/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/controldigital/app/controllers/AdminController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/controldigital/app/controllers/ExpedienteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/controldigital/app/controllers/ExpedienteController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/controldigital/app/controllers/PersonalController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/controldigital/app/controllers/PersonalController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/controldigital/app/models/dao/IUsuarioDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/controldigital/app/models/dao/IUsuarioDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/controldigital/app/models/entity/FileStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/controldigital/app/models/entity/FileStatus.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/controldigital/app/models/entity/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/controldigital/app/models/entity/Usuario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/controldigital/app/service/IInformesService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/controldigital/app/service/IInformesService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/controldigital/app/service/IUsuarioService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/controldigital/app/service/IUsuarioService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/controldigital/app/service/InformesService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/controldigital/app/service/InformesService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/controldigital/app/util/Informes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/controldigital/app/util/Informes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/controldigital/app/service/UsuarioService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/controldigital/app/service/UsuarioService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/import.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/import.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/Academica/EditarInformacionAcademica.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/Academica/EditarInformacionAcademica.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/Academica/InformacionAcademica.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/Academica/InformacionAcademica.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/Expediente/MiExpediente.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/Expediente/MiExpediente.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/Personal/EditarInformacionPersonal.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/Personal/EditarInformacionPersonal.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/Personal/InformacionPersonal.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/Personal/InformacionPersonal.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/PersonalAutorizado/Informes.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/PersonalAutorizado/Informes.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/PersonalAutorizado/ResultadoInforme.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/PersonalAutorizado/ResultadoInforme.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/register.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/PersonalAutorizado/VerUsuario.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/PersonalAutorizado/VerUsuario.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/layout/navs.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/layout/navs.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/ControlDigital.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/maven/com.controldigital.app/ControlDigital/pom.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/maven/com.controldigital.app/ControlDigital/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/controldigital/app/auth/handler/LoginSuccessHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/controldigital/app/auth/handler/LoginSuccessHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/controldigital/app/controllers/AcademicaController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/controldigital/app/controllers/AcademicaController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/controldigital/app/controllers/AdminController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/controldigital/app/controllers/AdminController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/controldigital/app/controllers/ExpedienteController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/controldigital/app/controllers/ExpedienteController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/controldigital/app/controllers/ForgotPasswordController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/controldigital/app/controllers/ForgotPasswordController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/controldigital/app/controllers/PersonalController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/controldigital/app/controllers/PersonalController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/controldigital/app/controllers/ProductividadController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/controldigital/app/controllers/ProductividadController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/controldigital/app/models/dao/IUsuarioDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/controldigital/app/models/dao/IUsuarioDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/controldigital/app/models/entity/FileStatus.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/controldigital/app/models/entity/FileStatus.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/controldigital/app/models/entity/Role.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/controldigital/app/models/entity/Role.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/controldigital/app/models/entity/Usuario.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/controldigital/app/models/entity/Usuario.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/controldigital/app/service/IInformesService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/controldigital/app/service/IInformesService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/controldigital/app/service/IProductoService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/controldigital/app/service/IProductoService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/controldigital/app/service/IUsuarioService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/controldigital/app/service/IUsuarioService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/controldigital/app/service/InformesService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/controldigital/app/service/InformesService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/controldigital/app/util/Informes.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/controldigital/app/util/Informes.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/controldigital/app/service/JpaUserDetailsService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/controldigital/app/service/JpaUserDetailsService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/controldigital/app/service/ProductoService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/controldigital/app/service/ProductoService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/controldigital/app/service/UsuarioService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/controldigital/app/service/UsuarioService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/import.sql" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/import.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/Academica/EditarInformacionAcademica.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/Academica/EditarInformacionAcademica.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/Academica/InformacionAcademica.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/Academica/InformacionAcademica.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/Expediente/MiExpediente.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/Expediente/MiExpediente.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/templates/Personal/EditarInformacionPersonal.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/Personal/EditarInformacionPersonal.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/templates/Personal/InformacionPersonal.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/Personal/InformacionPersonal.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/templates/PersonalAutorizado/Informes.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/PersonalAutorizado/Informes.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/PersonalAutorizado/ResultadoInforme.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/PersonalAutorizado/ResultadoInforme.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/register.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/PersonalAutorizado/VerUsuario.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/PersonalAutorizado/VerUsuario.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/layout/navs.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/layout/navs.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -143,11 +190,11 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="905" y="217" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.824@0.0.1536.824" timestamp="1636335482430" />
-    <state x="574" y="119" key="#com.intellij.ide.util.MemberChooser" timestamp="1641263865755">
+    <state x="574" y="119" key="#com.intellij.ide.util.MemberChooser" timestamp="1641529595821">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="574" y="119" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824/1920.0.1360.728@0.0.1536.824" timestamp="1639434841630" />
-    <state x="574" y="119" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1641263865755" />
+    <state x="574" y="119" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1641529595821" />
     <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1638053835260">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -164,26 +211,26 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="933" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1635688836440" />
-    <state width="1493" height="251" key="GridCell.Tab.0.bottom" timestamp="1641264866464">
+    <state width="1493" height="150" key="GridCell.Tab.0.bottom" timestamp="1641670688381">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="172" key="GridCell.Tab.0.bottom/0.0.1536.824/1920.0.1360.728@0.0.1536.824" timestamp="1639665325661" />
-    <state width="1493" height="251" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1641264866464" />
-    <state width="1493" height="251" key="GridCell.Tab.0.center" timestamp="1641264866464">
+    <state width="1493" height="201" key="GridCell.Tab.0.bottom/0.0.1536.824/1920.0.1360.728@0.0.1536.824" timestamp="1641609327922" />
+    <state width="1493" height="150" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1641670688381" />
+    <state width="1493" height="150" key="GridCell.Tab.0.center" timestamp="1641670688381">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="172" key="GridCell.Tab.0.center/0.0.1536.824/1920.0.1360.728@0.0.1536.824" timestamp="1639665325661" />
-    <state width="1493" height="251" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1641264866464" />
-    <state width="1493" height="251" key="GridCell.Tab.0.left" timestamp="1641264866464">
+    <state width="1493" height="201" key="GridCell.Tab.0.center/0.0.1536.824/1920.0.1360.728@0.0.1536.824" timestamp="1641609327922" />
+    <state width="1493" height="150" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1641670688381" />
+    <state width="1493" height="150" key="GridCell.Tab.0.left" timestamp="1641670688381">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="172" key="GridCell.Tab.0.left/0.0.1536.824/1920.0.1360.728@0.0.1536.824" timestamp="1639665325661" />
-    <state width="1493" height="251" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1641264866464" />
-    <state width="1493" height="251" key="GridCell.Tab.0.right" timestamp="1641264866464">
+    <state width="1493" height="201" key="GridCell.Tab.0.left/0.0.1536.824/1920.0.1360.728@0.0.1536.824" timestamp="1641609327922" />
+    <state width="1493" height="150" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1641670688381" />
+    <state width="1493" height="150" key="GridCell.Tab.0.right" timestamp="1641670688381">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="172" key="GridCell.Tab.0.right/0.0.1536.824/1920.0.1360.728@0.0.1536.824" timestamp="1639665325661" />
-    <state width="1493" height="251" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1641264866464" />
+    <state width="1493" height="201" key="GridCell.Tab.0.right/0.0.1536.824/1920.0.1360.728@0.0.1536.824" timestamp="1641609327922" />
+    <state width="1493" height="150" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1641670688381" />
     <state x="249" y="0" key="SettingsEditor" timestamp="1635692454656">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -192,24 +239,24 @@
       <screen x="1920" y="0" width="1360" height="728" />
     </state>
     <state x="2409" y="278" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824/1920.0.1360.728@0.0.1536.824" timestamp="1639267045982" />
-    <state x="761" y="-7" width="782" height="838" key="dock-window-1" timestamp="1641251315073">
+    <state x="376" y="0" width="1174" height="519" key="dock-window-1" timestamp="1641606517184">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="2311" y="0" width="977" height="744" maximized="true" key="dock-window-1/0.0.1536.824/1920.0.1360.728@0.0.1536.824" timestamp="1639665326536" />
-    <state x="761" y="-7" width="782" height="838" key="dock-window-1/0.0.1536.824@0.0.1536.824" timestamp="1641251315073" />
-    <state x="-6" y="0" width="781" height="418" maximized="true" key="dock-window-2" timestamp="1641251315074">
+    <state x="376" y="0" width="1174" height="519" key="dock-window-1/0.0.1536.824/1920.0.1360.728@0.0.1536.824" timestamp="1641606517184" />
+    <state x="762" y="0" width="781" height="418" key="dock-window-1/0.0.1536.824@0.0.1536.824" timestamp="1641529550187" />
+    <state x="761" y="-7" width="782" height="838" maximized="true" key="dock-window-2" timestamp="1641607977452">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="2317" y="0" width="971" height="744" maximized="true" key="dock-window-2/0.0.1536.824/1920.0.1360.728@0.0.1536.824" timestamp="1639665326536" />
-    <state x="-6" y="0" width="781" height="418" maximized="true" key="dock-window-2/0.0.1536.824@0.0.1536.824" timestamp="1641251315074" />
-    <state x="-6" y="0" width="781" height="418" maximized="true" key="dock-window-3" timestamp="1637971959178">
+    <state x="2317" y="0" width="971" height="744" maximized="true" key="dock-window-2/0.0.1536.824/1920.0.1360.728@0.0.1536.824" timestamp="1641607977452" />
+    <state x="761" y="-7" width="782" height="838" key="dock-window-2/0.0.1536.824@0.0.1536.824" timestamp="1641532449360" />
+    <state x="761" y="-7" width="782" height="838" key="dock-window-3" timestamp="1641517171891">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="-6" y="0" width="781" height="418" maximized="true" key="dock-window-3/0.0.1536.824@0.0.1536.824" timestamp="1637971959178" />
-    <state x="-6" y="0" width="533" height="830" key="dock-window-4" timestamp="1636424113023">
+    <state x="761" y="-7" width="782" height="838" key="dock-window-3/0.0.1536.824@0.0.1536.824" timestamp="1641517171891" />
+    <state x="761" y="-7" width="782" height="838" key="dock-window-4" timestamp="1641405209596">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="-6" y="0" width="533" height="830" key="dock-window-4/0.0.1536.824@0.0.1536.824" timestamp="1636424113023" />
+    <state x="761" y="-7" width="782" height="838" key="dock-window-4/0.0.1536.824@0.0.1536.824" timestamp="1641405209596" />
     <state x="-6" y="0" width="781" height="830" key="dock-window-5" timestamp="1636470189163">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -222,13 +269,13 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="475" y="170" key="refactoring.ChangeSignatureDialog/0.0.1536.824@0.0.1536.824" timestamp="1638053589116" />
-    <state x="425" y="187" key="run.anything.popup" timestamp="1638830562010">
+    <state x="425" y="187" key="run.anything.popup" timestamp="1641402346980">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="425" y="187" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1638830562010" />
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1638900568854">
+    <state x="425" y="187" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1641402346980" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1641425189219">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1638900568854" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1641425189219" />
   </component>
 </project>

@@ -2,6 +2,8 @@ package com.controldigital.app.controllers;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.controldigital.app.models.entity.Expediente;
+import com.controldigital.app.service.IExpedienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -24,14 +26,19 @@ public class ExpedienteController {
 
 	@Autowired
 	private IUsuarioService usuarioService;
-	
+
+	@Autowired
+	private IExpedienteService expedienteService;
+
 	@GetMapping(value = "/MiExpediente")
 	public String verPerfil(Model model, Authentication authentication, HttpServletRequest request) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
 		Usuario usuario = usuarioService.findByEmail(auth.getName());
+
+		Expediente expediente = expedienteService.findExpedienteByUserId(usuario.getId());
 		
-		model.addAttribute("usuario", usuario);
+		model.addAttribute("usuario", expediente);
 		model.addAttribute("titulo", "Expediente");
 		return "Expediente/MiExpediente";
 	}

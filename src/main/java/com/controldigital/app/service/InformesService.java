@@ -1,6 +1,6 @@
 package com.controldigital.app.service;
 
-import com.controldigital.app.models.entity.Role;
+import com.controldigital.app.models.entity.Usuario;
 import com.controldigital.app.util.Informes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,41 +16,41 @@ import static com.controldigital.app.controllers.AdminController.convertDate;
 public class InformesService implements IInformesService{
 
     @Autowired
-    private IRoleService roleService;
+    private UsuarioService usuarioService;
 
     @Override
-    public List<Role> findAlumnosBy(Informes informes) {
+    public List<Usuario> findAlumnosBy(Informes informes) {
 
-        List<Role> alumnos = roleService.findUsuarioByRole("ROLE_USER2");
-        List<Role> filterByPosgrado = opcionPosgrado(alumnos, informes);
-        List<Role> filterBySemestre = opcionSemestre(filterByPosgrado, informes);
-        List<Role> filterByEdad = opcionEdades(filterBySemestre, informes);
-        List<Role> filterByGenero = opcionGenero(filterByEdad, informes);
-        List<Role> filterByNacionalidad = opcionNacionalidad(filterByGenero, informes);
-        List<Role> filterByLugarNacimiento = opcionLugarNacimiento(filterByNacionalidad, informes);
-        List<Role> filterByLenguaIndigena = opcionLenguaIndigena(filterByLugarNacimiento, informes);
-        List<Role> filterByDiscapacidad = opcionDiscapacidad(filterByLenguaIndigena, informes);
-        List<Role> filterByEnfermedadPermanente = opcionEnfermedadPermanente(filterByDiscapacidad, informes);
-        List<Role> filterByEstatus = opcionEstatus(filterByEnfermedadPermanente, informes);
-        List<Role> filterByBeca = opcionBecaConacyt(filterByEstatus, informes);
+        List<Usuario> alumnos = usuarioService.findUserByRole("ROLE_USER2");
+        List<Usuario> filterByPosgrado = opcionPosgrado(alumnos, informes);
+        List<Usuario> filterBySemestre = opcionSemestre(filterByPosgrado, informes);
+        List<Usuario> filterByEdad = opcionEdades(filterBySemestre, informes);
+        List<Usuario> filterByGenero = opcionGenero(filterByEdad, informes);
+        List<Usuario> filterByNacionalidad = opcionNacionalidad(filterByGenero, informes);
+        List<Usuario> filterByLugarNacimiento = opcionLugarNacimiento(filterByNacionalidad, informes);
+        List<Usuario> filterByLenguaIndigena = opcionLenguaIndigena(filterByLugarNacimiento, informes);
+        List<Usuario> filterByDiscapacidad = opcionDiscapacidad(filterByLenguaIndigena, informes);
+        List<Usuario> filterByEnfermedadPermanente = opcionEnfermedadPermanente(filterByDiscapacidad, informes);
+        List<Usuario> filterByEstatus = opcionEstatus(filterByEnfermedadPermanente, informes);
+        List<Usuario> filterByBeca = opcionBecaConacyt(filterByEstatus, informes);
 
-        List<Role> resultadoInforme = filterByBeca;
+        List<Usuario> resultadoInforme = filterByBeca;
 
         return resultadoInforme;
     }
 
-    private List<Role> opcionLenguaIndigena(List<Role> alumnos, Informes informes) {
-        List<Role> resultado = new ArrayList<>();
+    private List<Usuario> opcionLenguaIndigena(List<Usuario> alumnos, Informes informes) {
+        List<Usuario> resultado = new ArrayList<>();
 
         if(informes.getLenguaIndigena().equals("Si")){
-            for (Role u : alumnos) {
-                if (u.getUsers().getLenguaIndigena().equals(true))
+            for (Usuario u : alumnos) {
+                if (u.getInfoPersonal().getLenguaIndigena().equals(true))
                     resultado.add(u);
             }
         }
         else if(informes.getLenguaIndigena().equals("No")){
-            for (Role u : alumnos) {
-                if (u.getUsers().getLenguaIndigena().equals(false))
+            for (Usuario u : alumnos) {
+                if (u.getInfoPersonal().getLenguaIndigena().equals(false))
                     resultado.add(u);
             }
         }
@@ -61,18 +61,18 @@ public class InformesService implements IInformesService{
         return resultado;
     }
 
-    private List<Role> opcionEnfermedadPermanente(List<Role> alumnos, Informes informes) {
-        List<Role> resultado = new ArrayList<>();
+    private List<Usuario> opcionEnfermedadPermanente(List<Usuario> alumnos, Informes informes) {
+        List<Usuario> resultado = new ArrayList<>();
 
         if(informes.getEnfermedadPermanente().equals("Si")){
-            for (Role u : alumnos) {
-                if (u.getUsers().getEnfermedadPermanente().equals(true))
+            for (Usuario u : alumnos) {
+                if (u.getInfoPersonal().getEnfermedadPermanente().equals(true))
                     resultado.add(u);
             }
         }
         else if(informes.getEnfermedadPermanente().equals("No")){
-            for (Role u : alumnos) {
-                if (u.getUsers().getEnfermedadPermanente().equals(false))
+            for (Usuario u : alumnos) {
+                if (u.getInfoPersonal().getEnfermedadPermanente().equals(false))
                     resultado.add(u);
             }
         }
@@ -83,22 +83,22 @@ public class InformesService implements IInformesService{
         return resultado;
     }
 
-    private List<Role> opcionLugarNacimiento(List<Role> alumnos, Informes informes) {
-        List<Role> resultado = new ArrayList<>();
+    private List<Usuario> opcionLugarNacimiento(List<Usuario> alumnos, Informes informes) {
+        List<Usuario> resultado = new ArrayList<>();
 
         List<String> estados = getEstados();
 
 
             if(estados.contains(informes.getLugarNacimiento())){
-                for (Role u : alumnos) {
-                    if (u.getUsers().getEstadoNacimiento().equals(informes.getLugarNacimiento()))
+                for (Usuario u : alumnos) {
+                    if (u.getInfoPersonal().getEstadoNacimiento().equals(informes.getLugarNacimiento()))
                         resultado.add(u);
                 }
             }
 
         else {
             if(informes.getLugarNacimiento().equals("Extranjero")){
-                for (Role u : alumnos) {
+                for (Usuario u : alumnos) {
                     if(!estados.contains(informes.getLugarNacimiento())){
                         resultado.add(u);
                     }
@@ -152,20 +152,20 @@ public class InformesService implements IInformesService{
         return estadosMex;
     }
 
-    public List<Role> opcionPosgrado(List<Role> alumnos, Informes informes){
+    public List<Usuario> opcionPosgrado(List<Usuario> alumnos, Informes informes){
 
-        List<Role> resultado = new ArrayList<>();
+        List<Usuario> resultado = new ArrayList<>();
 
 
         if(informes.getPosgrado().equals("Maestría")){
-            for (Role u : alumnos) {
-                if (u.getUsers().getGrado().equals("Maestría"))
+            for (Usuario u : alumnos) {
+                if (u.getExpediente().getGrado().equals("Maestría"))
                     resultado.add(u);
             }
         }
         else if(informes.getPosgrado().equals("Doctorado")){
-            for (Role u : alumnos) {
-                if (u.getUsers().getGrado().equals("Doctorado"))
+            for (Usuario u : alumnos) {
+                if (u.getExpediente().getGrado().equals("Doctorado"))
                     resultado.add(u);
             }
         }
@@ -176,13 +176,13 @@ public class InformesService implements IInformesService{
         return resultado;
     }
 
-    public List<Role> opcionSemestre(List<Role> alumnos, Informes informes){
+    public List<Usuario> opcionSemestre(List<Usuario> alumnos, Informes informes){
 
-        List<Role> resultado = new ArrayList<>();
+        List<Usuario> resultado = new ArrayList<>();
 
         if(!informes.getSemestre().equals("Todo")){
-            for (Role u : alumnos) {
-                if (u.getUsers().getSemestre().equals(informes.getSemestre()))
+            for (Usuario u : alumnos) {
+                if (u.getExpediente().getSemestre().equals(informes.getSemestre()))
                     resultado.add(u);
             }
         }
@@ -193,9 +193,9 @@ public class InformesService implements IInformesService{
         return resultado;
     }
 
-    public List<Role> opcionEdades(List<Role> alumnos, Informes informes){
+    public List<Usuario> opcionEdades(List<Usuario> alumnos, Informes informes){
 
-        List<Role> resultado = new ArrayList<>();
+        List<Usuario> resultado = new ArrayList<>();
 
         Date input = new Date();
         Instant instant = input.toInstant();
@@ -203,8 +203,8 @@ public class InformesService implements IInformesService{
         LocalDate date = zdt.toLocalDate();
 
         if(!informes.getEdadMin().equals("Todo") && !informes.getEdadMax().equals("Todo")){
-            for (Role u : alumnos) {
-                LocalDate birthday = convertDate(u.getUsers().getFechaNacimiento());
+            for (Usuario u : alumnos) {
+                LocalDate birthday = convertDate(u.getInfoPersonal().getFechaNacimiento());
                 if (Period.between(birthday, date).getYears() >= Integer.valueOf(informes.getEdadMin())
                         && Period.between(birthday, date).getYears() <= Integer.valueOf(informes.getEdadMax()))
                     resultado.add(u);
@@ -217,24 +217,24 @@ public class InformesService implements IInformesService{
         return resultado;
     }
 
-    public List<Role> opcionGenero(List<Role> alumnos, Informes informes){
-        List<Role> resultado = new ArrayList<>();
+    public List<Usuario> opcionGenero(List<Usuario> alumnos, Informes informes){
+        List<Usuario> resultado = new ArrayList<>();
 
         if(informes.getGenero().equals("Hombre")){
-            for (Role u : alumnos) {
-                if (u.getUsers().getGenero().equals("Hombre"))
+            for (Usuario u : alumnos) {
+                if (u.getInfoPersonal().getGenero().equals("Hombre"))
                     resultado.add(u);
             }
         }
         else if(informes.getGenero().equals("Mujer")){
-            for (Role u : alumnos) {
-                if (u.getUsers().getGenero().equals("Mujer"))
+            for (Usuario u : alumnos) {
+                if (u.getInfoPersonal().getGenero().equals("Mujer"))
                     resultado.add(u);
             }
         }
         else if(informes.getGenero().equals("Otro")){
-            for (Role u : alumnos) {
-                if (u.getUsers().getGenero().equals("Otro"))
+            for (Usuario u : alumnos) {
+                if (u.getInfoPersonal().getGenero().equals("Otro"))
                     resultado.add(u);
             }
         }
@@ -245,18 +245,18 @@ public class InformesService implements IInformesService{
         return resultado;
     }
 
-    public List<Role> opcionNacionalidad(List<Role> alumnos, Informes informes){
-        List<Role> resultado = new ArrayList<>();
+    public List<Usuario> opcionNacionalidad(List<Usuario> alumnos, Informes informes){
+        List<Usuario> resultado = new ArrayList<>();
 
         if(informes.getNacionalidad().equals("Mexicana")){
-            for (Role u : alumnos) {
-                if (u.getUsers().getPaisNacimiento().equals("Mexico"))
+            for (Usuario u : alumnos) {
+                if (u.getInfoPersonal().getPaisNacimiento().equals("Mexico"))
                     resultado.add(u);
             }
         }
         else if(informes.getNacionalidad().equals("Extranjera")){
-            for (Role u : alumnos) {
-                if (!u.getUsers().getPaisNacimiento().equals("Mexico"))
+            for (Usuario u : alumnos) {
+                if (!u.getInfoPersonal().getPaisNacimiento().equals("Mexico"))
                     resultado.add(u);
             }
         }
@@ -267,18 +267,18 @@ public class InformesService implements IInformesService{
         return resultado;
     }
 
-    public List<Role> opcionDiscapacidad(List<Role> alumnos, Informes informes){
-        List<Role> resultado = new ArrayList<>();
+    public List<Usuario> opcionDiscapacidad(List<Usuario> alumnos, Informes informes){
+        List<Usuario> resultado = new ArrayList<>();
 
         if(informes.getDiscapacidad().equals("Si")){
-            for (Role u : alumnos) {
-                if (u.getUsers().getDiscapacidad().equals(true))
+            for (Usuario u : alumnos) {
+                if (u.getInfoPersonal().getDiscapacidad().equals(true))
                     resultado.add(u);
             }
         }
         else if(informes.getDiscapacidad().equals("No")){
-            for (Role u : alumnos) {
-                if (u.getUsers().getDiscapacidad().equals(false))
+            for (Usuario u : alumnos) {
+                if (u.getInfoPersonal().getDiscapacidad().equals(false))
                     resultado.add(u);
             }
         }
@@ -289,18 +289,18 @@ public class InformesService implements IInformesService{
         return resultado;
     }
 
-    public List<Role> opcionEstatus(List<Role> alumnos, Informes informes){
-        List<Role> resultado = new ArrayList<>();
+    public List<Usuario> opcionEstatus(List<Usuario> alumnos, Informes informes){
+        List<Usuario> resultado = new ArrayList<>();
 
         if(informes.getEstatus().equals("Inscritos")){
-            for (Role u : alumnos) {
-                if (u.getUsers().getEstatusEscolar().equals("Inscrito"))
+            for (Usuario u : alumnos) {
+                if (u.getExpediente().getEstatusEscolar().equals("Inscrito"))
                     resultado.add(u);
             }
         }
         else if(informes.getEstatus().equals("Egresados")){
-            for (Role u : alumnos) {
-                if (u.getUsers().getEstatusEscolar().equals("Egresado"))
+            for (Usuario u : alumnos) {
+                if (u.getExpediente().getEstatusEscolar().equals("Egresado"))
                     resultado.add(u);
             }
         }
@@ -311,22 +311,22 @@ public class InformesService implements IInformesService{
         return resultado;
     }
 
-    public List<Role> opcionBecaConacyt(List<Role> alumnos, Informes informes){
-        List<Role> resultado = new ArrayList<>();
+    public List<Usuario> opcionBecaConacyt(List<Usuario> alumnos, Informes informes){
+        List<Usuario> resultado = new ArrayList<>();
 
         if(informes.getBecaConacyt().equals("Con Beca")){
-            for (Role u : alumnos) {
-                if (u.getUsers().getBecaConacyt().equals(true))
+            for (Usuario u : alumnos) {
+                if (u.getExpediente().getBecaConacyt().equals(true))
                     resultado.add(u);
             }
         }
         else if(informes.getBecaConacyt().equals("Sin Beca")){
-            for (Role u : alumnos) {
-                if (u.getUsers().getBecaConacyt().equals(false))
+            for (Usuario u : alumnos) {
+                if (u.getExpediente().getBecaConacyt().equals(false))
                     resultado.add(u);
             }
         }
-        else if(informes.getEstatus().equals("Todo")){
+        else if(informes.getBecaConacyt().equals("Todo")){
             return alumnos;
         }
         return resultado;

@@ -3,22 +3,22 @@
 <head th:replace="layout/layout :: head"></head>
 <body>
 	<header th:replace="layout/layout :: header"></header>
-	<div class="container" style="width: 48rem;">
+	<div class="container" style="width: 92rem;">
 		<div class="card bg-light">
-			<div class="card-header" th:text="${titulo}"></div>
+			<div class="card-header text-white" th:text="${titulo}"></div>
 			<div class="card-body">
 				<div class="container py-4">
 					<form th:action="@{/Academica/EditarInformacionAcademica}"
 						th:object="${usuario}" method="post" enctype="multipart/form-data">
 						<div class="row">
 							<div class="col-sm-6">
-								<div class="card bg-light">
+								<div class="card">
 									<div class="card-body">
 										<div class="form-group row">
 											<label for="nombre" class="col-sm-6 col-form-label">Licenciatura
 												(t&iacute;tulo)</label>
 											<div class="col-sm-6">
-												<input id="nombre" type="text" class="form-control" th:field="*{nombreLicenciatura}" readonly/>
+												<input id="nombre" type="text" class="form-control" th:field="*{nombreLicenciatura}"/>
 											</div>
 										</div>
 										<br>
@@ -26,7 +26,7 @@
 											<label for="nombre" class="col-sm-6 col-form-label">Insituci&oacute;n
 												de licenciatura</label>
 											<div class="col-sm-6">
-												<input id="institucionLicenciatura" type="text" class="form-control" th:field="*{nombreLicenciatura}" readonly/>
+												<input id="institucionLicenciatura" type="text" class="form-control" th:field="*{nombreLicenciatura}"/>
 											</div>
 										</div>
 										<br>
@@ -289,7 +289,7 @@
 											<label for="nombre" class="col-sm-6 col-form-label">Promedio
 												final licenciatura</label>
 											<div class="col-sm-6">
-												<input id="promedioLicenciatura" type="text" class="form-control" th:field="*{promedioLicenciatura}" readonly/>
+												<input id="promedioLicenciatura" type="text" class="form-control" th:field="*{promedioLicenciatura}" />
 											</div>
 										</div>
 										<br>
@@ -297,7 +297,7 @@
 											<label for="nombre" class="col-sm-6 col-form-label">Calificaciones
 												de licenciatura</label>
 											<div class="col-sm-6">
-												<input type="file" name="file" class="form-control" accept=".pdf"/>
+												<input type="file" name="files" class="form-control" accept=".pdf"/>
 											</div>
 										</div>
 										<br>
@@ -305,7 +305,7 @@
 											<label for="nombre" class="col-sm-6 col-form-label">Diploma
 												de licenciatura</label>
 											<div class="col-sm-6">
-												<input type="file" name="file" class="form-control" accept=".pdf"/>
+												<input type="file" name="files" class="form-control" accept=".pdf"/>
 											</div>
 										</div>
 										<br>
@@ -313,7 +313,7 @@
 											<label for="nombre" class="col-sm-6 col-form-label">C&eacute;dula
 												profesional licenciatura</label>
 											<div class="col-sm-6">
-												<input type="file" name="file" class="form-control" accept=".pdf"/>
+												<input type="file" name="files" class="form-control" accept=".pdf"/>
 											</div>
 										</div>
 										<br>
@@ -321,7 +321,7 @@
 											<label for="nombre" class="col-sm-6 col-form-label">Acreditaci&oacute;n
 												de ingl&eacute;s</label>
 											<div class="col-sm-6">
-												<input type="file" name="file" class="form-control" accept=".pdf"/>
+												<input type="file" name="files" class="form-control" accept=".pdf"/>
 											</div>
 										</div>
 									</div>
@@ -334,7 +334,7 @@
 											<label for="nombre" class="col-sm-6 col-form-label">Maestr&iacute;a
 												(nombre)</label>
 											<div class="col-sm-6">
-												<input id="nombreMaestria" type="text" class="form-control" th:field="*{nombreMaestria}" readonly/>
+												<input id="nombreMaestria" type="text" class="form-control" th:field="*{nombreMaestria}"/>
 											</div>
 										</div>
 										<br>
@@ -342,7 +342,7 @@
 											<label for="nombre" class="col-sm-6 col-form-label">Instituci&oacute;n
 												de maestr&iacute;a</label>
 											<div class="col-sm-6">
-												<input id="institucionMaestria" type="text" class="form-control" th:field="*{institucionMaestria}" readonly/>
+												<input id="institucionMaestria" type="text" class="form-control" th:field="*{institucionMaestria}" />
 											</div>
 										</div>
 										<br>
@@ -605,7 +605,7 @@
 											<label for="nombre" class="col-sm-6 col-form-label">Promedio
 												final maestr&iacute;a</label>
 											<div class="col-sm-6">
-												<input id="promedioMaestria" type="text" class="form-control" th:field="*{promedioMaestria}" readonly/>
+												<input id="promedioMaestria" type="text" class="form-control" th:field="*{promedioMaestria}"/>
 											</div>
 										</div>
 										<br>
@@ -613,7 +613,7 @@
 											<label for="nombre" class="col-sm-6 col-form-label">Calificaciones
 												de maestr&iacute;a</label>
 											<div class="col-sm-6">
-												<input type="file" name="file" class="form-control" accept=".pdf"/>
+												<input type="file" name="files" class="form-control" accept=".pdf"/>
 											</div>
 										</div>
 										<br>
@@ -621,7 +621,7 @@
 											<label for="nombre" class="col-sm-6 col-form-label">Acta
 												de examen maestr&iacute;a</label>
 											<div class="col-sm-6">
-												<input type="file" name="file" class="form-control" accept=".pdf"/>
+												<input type="file" name="files" class="form-control" accept=".pdf"/>
 											</div>
 										</div>
 										<br>
@@ -629,7 +629,7 @@
 											<label for="nombre" class="col-sm-6 col-form-label">Diploma
 												de maestr&iacute;a</label>
 											<div class="col-sm-6">
-												<input type="file" name="file" class="form-control" accept=".pdf"/>
+												<input type="file" name="files" class="form-control" accept=".pdf"/>
 											</div>
 										</div>
 										<br>
@@ -637,28 +637,68 @@
 											<label for="nombre" class="col-sm-6 col-form-label">C&eacute;dula
 												profesional maestr&iacute;a</label>
 											<div class="col-sm-6">
-												<input type="file" name="file" class="form-control" accept=".pdf"/>
+												<input type="file" name="files" class="form-control" accept=".pdf"/>
 											</div>
 										</div>
 									</div>
 								</div>
 							</div>
-						</div>
-						<div class="form-group row">
-							<div class="col-sm-6">
-								<input type="submit" value="Guardar" class="btn-primary" />
+							<br>
+							<div class="form-group row">
+								<div class="col-sm-6">
+									<input type="submit" value="Guardar" class="btn-primary" />
+								</div>
 							</div>
 						</div>
-						<input type="hidden" th:field="*{id}" /> <input type="hidden"
-							th:field="*{roles}" />
+						<input type="hidden" th:field="*{id}" />
+						<input type="hidden" th:field="*{enabled}" />
+						<input type="hidden" th:field="*{roles}" />
+						<input type="hidden" th:field="*{password}" />
+
+						<input type="hidden" th:field="*{cedulaCURP}" />
+						<input type="hidden" th:field="*{fotoActual}" />
+						<input type="hidden" th:field="*{actaNacimiento}" />
+						<input type="hidden" th:field="*{pasaporte}" />
+
+						<input type="hidden" th:field="*{curpStatus}" />
+						<input type="hidden" th:field="*{fotoStatus}" />
+						<input type="hidden" th:field="*{actaStatus}" />
+						<input type="hidden" th:field="*{pasaporteStatus}" />
+
+						<input type="hidden" th:field="*{curpInvalidStatus}" />
+						<input type="hidden" th:field="*{fotoInvalidStatus}" />
+						<input type="hidden" th:field="*{actaInvalidStatus}" />
+						<input type="hidden" th:field="*{pasaporteInvalidStatus}" />
+
+						<input type="hidden" th:field="*{calificacionesLicenciatura}" />
+						<input type="hidden" th:field="*{diplomaLicenciatura}" />
+						<input type="hidden" th:field="*{cedulaLicenciatura}" />
+						<input type="hidden" th:field="*{acreditacionIngles}" />
+
+						<input type="hidden" th:field="*{calificacionesMaestria}" />
+						<input type="hidden" th:field="*{actaExamenMaestria}" />
+						<input type="hidden" th:field="*{diplomaMaestria}" />
+						<input type="hidden" th:field="*{cedulaMaestria}" />
+
 						<input type="hidden" th:field="*{calificacionesLicenciaturaStatus}" />
-						<input type="hidden" th:field="*{diplomaLicienciaturaStatus}" />
+						<input type="hidden" th:field="*{diplomaLicenciaturaStatus}" />
 						<input type="hidden" th:field="*{cedulaLicenciaturaStatus}" />
 						<input type="hidden" th:field="*{acreditacionInglesStatus}" />
+
 						<input type="hidden" th:field="*{calificacionesMaestriaStatus}" />
-						<input type="hidden" th:field="*{calificacionesLicenciaturaStatus}" />
-						<input type="hidden" th:field="*{calificacionesLicenciaturaStatus}" />
-						<input type="hidden" th:field="*{calificacionesLicenciaturaStatus}" />
+						<input type="hidden" th:field="*{actaExamenMaestriaStatus}" />
+						<input type="hidden" th:field="*{diplomaMaestriaStatus}" />
+						<input type="hidden" th:field="*{cedulaMaestriaStatus}" />
+
+						<input type="hidden" th:field="*{calificacionesLicenciaturaInvalidStatus}" />
+						<input type="hidden" th:field="*{diplomaLicenciaturaInvalidStatus}" />
+						<input type="hidden" th:field="*{cedulaLicenciaturaInvalidStatus}" />
+						<input type="hidden" th:field="*{acreditacionInglesInvalidStatus}" />
+
+						<input type="hidden" th:field="*{calificacionesMaestriaInvalidStatus}" />
+						<input type="hidden" th:field="*{actaExamenMaestriaInvalidStatus}" />
+						<input type="hidden" th:field="*{diplomaMaestriaInvalidStatus}" />
+						<input type="hidden" th:field="*{cedulaMaestriaInvalidStatus}" />
 
 					</form>
 				</div>
