@@ -17,4 +17,9 @@ public class InfoAcademicaService implements IInfoAcademicaService{
     public InfoAcademica findInfoAcademicaByUserId(Long id) {
         return infoAcademicaDAO.findInfoAcademicaByUserId(id);
     }
+
+    @Override
+    public void save(InfoAcademica infoAcademica) {
+        infoAcademicaDAO.save(infoAcademica);
+    }
 }

@@ -7,7 +7,7 @@
 	<div class="container" style="width: 92rem;">
 		<div class="card bg-light">
 			<div class="card-header text-white" th:text="${titulo}"></div>
-			<div class="card-body" th:each="usuario: ${usuario}">
+			<div class="card-body" th:each="usuarioInfoAcademica: ${usuarioInfoAcademica}">
 
 				<div class="container">
 					<div class="card bg-light">
@@ -16,74 +16,134 @@
 								<div class="card bg-light">
 									<div class="card-body">
 										<div class="form-group row">
-											<label for="nombre" class="col-sm-6 col-form-label">Licenciatura
+											<label class="col-sm-6 col-form-label">Licenciatura
 												(t&iacute;tulo)</label>
 											<div class="col-sm-6">
-												<input th:field="${usuario.nombreLicenciatura}" type="text"
+												<input th:field="${usuarioInfoAcademica.nombreLicenciatura}" type="text"
 													class="form-control" readonly />
 											</div>
 										</div>
 										<br>
 										<div class="form-group row">
-											<label for="nombre" class="col-sm-6 col-form-label">Insituci&oacute;n
+											<label class="col-sm-6 col-form-label">Insituci&oacute;n
 												de licenciatura</label>
 											<div class="col-sm-6">
-												<input th:field="${usuario.institucionLicenciatura}" type="text"
+												<input th:field="${usuarioInfoAcademica.institucionLicenciatura}" type="text"
 													class="form-control" readonly />
 											</div>
 										</div>
 										<br>
 										<div class="form-group row">
-											<label for="nombre" class="col-sm-6 col-form-label">Pa&iacute;s
+											<label class="col-sm-6 col-form-label">Pa&iacute;s
 												de estudios licenciatura</label>
 											<div class="col-sm-6">
-												<input th:field="${usuario.paisLicenciatura}" type="text"
+												<input th:field="${usuarioInfoAcademica.paisLicenciatura}" type="text"
 													class="form-control" readonly />
 											</div>
 										</div>
 										<br>
 										<div class="form-group row">
-											<label for="nombre" class="col-sm-6 col-form-label">Promedio
+											<label class="col-sm-6 col-form-label">Promedio
 												final licenciatura</label>
 											<div class="col-sm-6">
-												<input th:field="${usuario.promedioLicenciatura}" type="text"
+												<input th:field="${usuarioInfoAcademica.promedioLicenciatura}" type="text"
 													class="form-control" readonly />
 											</div>
 										</div>
 										<br>
 										<div class="form-group row">
-											<label for="nombre" class="col-sm-6 col-form-label">Calificaciones
+											<label class="col-sm-6 col-form-label">Calificaciones
 												de licenciatura</label>
 											<div class="col-sm-6">
-												<input th:field="${usuario.calificacionesLicenciatura}" type="text"
-													class="form-control" readonly />
+												<div class="doc_status" th:if="${usuarioInfoAcademica.calificacionesLicenciaturaStatus == T(com.controldigital.app.models.entity.FileStatus).RED1
+																		   ||usuarioInfoAcademica.calificacionesLicenciaturaStatus == T(com.controldigital.app.models.entity.FileStatus).RED2
+																		   ||usuarioInfoAcademica.calificacionesLicenciaturaStatus == T(com.controldigital.app.models.entity.FileStatus).RED3
+																		   ||usuarioInfoAcademica.calificacionesLicenciaturaStatus == T(com.controldigital.app.models.entity.FileStatus).RED4}">DOCUMENTO NO VALIDADO</div>
+												<div class="doc_status" th:if="${usuarioInfoAcademica.calificacionesLicenciaturaStatus == T(com.controldigital.app.models.entity.FileStatus).RED1}">El usuario a&uacute;n no ha subido un documento</div>
+												<div class="doc_status" th:if="${usuarioInfoAcademica.calificacionesLicenciaturaStatus == T(com.controldigital.app.models.entity.FileStatus).RED2}">No es el Documento</div>
+												<div class="doc_status" th:if="${usuarioInfoAcademica.calificacionesLicenciaturaStatus == T(com.controldigital.app.models.entity.FileStatus).RED3}">No es Legible</div>
+												<div class="doc_status" th:if="${usuarioInfoAcademica.calificacionesLicenciaturaStatus == T(com.controldigital.app.models.entity.FileStatus).RED4}">No est&aacute; Apostillado</div>
+												<div class="doc_status" th:if="${usuarioInfoAcademica.calificacionesLicenciaturaStatus == T(com.controldigital.app.models.entity.FileStatus).YELLOW}">DOCUMENTO EN PROCESO DE VALIDACION</div>
+												<div class="doc_status" th:if="${usuarioInfoAcademica.calificacionesLicenciaturaStatus == T(com.controldigital.app.models.entity.FileStatus).GREEN}">DOCUMENTO VALIDADO</div>
+												<div th:if="${usuarioInfoAcademica.calificacionesLicenciatura == '' || usuarioInfoAcademica.calificacionesLicenciatura == null}" class="col-sm-10">
+													<p>Sube un documento.</p>
+												</div>
+												<div th:unless="${usuarioInfoAcademica.calificacionesLicenciatura == '' || usuarioInfoAcademica.calificacionesLicenciatura == null}" class="col-sm-10">
+													<a th:href="@{/Academica/descargarArchivo/} + 'calificacionesLicenciatura/' + ${usuarioInfoAcademica.id}"
+													   class="card-link" th:text="'Descargar'"></a>
+												</div>
 											</div>
 										</div>
 										<br>
 										<div class="form-group row">
-											<label for="nombre" class="col-sm-6 col-form-label">Diploma
+											<label class="col-sm-6 col-form-label">Diploma
 												de licenciatura</label>
 											<div class="col-sm-6">
-												<input th:field="${usuario.diplomaLicenciaturaStatus}" type="text"
-													class="form-control" readonly />
+												<div class="doc_status" th:if="${usuarioInfoAcademica.diplomaLicenciaturaStatus == T(com.controldigital.app.models.entity.FileStatus).RED1
+																		   ||usuarioInfoAcademica.diplomaLicenciaturaStatus == T(com.controldigital.app.models.entity.FileStatus).RED2
+																		   ||usuarioInfoAcademica.diplomaLicenciaturaStatus == T(com.controldigital.app.models.entity.FileStatus).RED3
+																		   ||usuarioInfoAcademica.diplomaLicenciaturaStatus == T(com.controldigital.app.models.entity.FileStatus).RED4}">DOCUMENTO NO VALIDADO</div>
+												<div class="doc_status" th:if="${usuarioInfoAcademica.diplomaLicenciaturaStatus == T(com.controldigital.app.models.entity.FileStatus).RED1}">El usuario a&uacute;n no ha subido un documento</div>
+												<div class="doc_status" th:if="${usuarioInfoAcademica.diplomaLicenciaturaStatus == T(com.controldigital.app.models.entity.FileStatus).RED2}">No es el Documento</div>
+												<div class="doc_status" th:if="${usuarioInfoAcademica.diplomaLicenciaturaStatus == T(com.controldigital.app.models.entity.FileStatus).RED3}">No es Legible</div>
+												<div class="doc_status" th:if="${usuarioInfoAcademica.diplomaLicenciaturaStatus == T(com.controldigital.app.models.entity.FileStatus).RED4}">No est&aacute; Apostillado</div>
+												<div class="doc_status" th:if="${usuarioInfoAcademica.diplomaLicenciaturaStatus == T(com.controldigital.app.models.entity.FileStatus).YELLOW}">DOCUMENTO EN PROCESO DE VALIDACION</div>
+												<div class="doc_status" th:if="${usuarioInfoAcademica.diplomaLicenciaturaStatus == T(com.controldigital.app.models.entity.FileStatus).GREEN}">DOCUMENTO VALIDADO</div>
+												<div th:if="${usuarioInfoAcademica.diplomaLicenciatura == '' || usuarioInfoAcademica.diplomaLicenciatura == null}" class="col-sm-10">
+													<p>Sube un documento.</p>
+												</div>
+												<div th:unless="${usuarioInfoAcademica.diplomaLicenciatura == '' || usuarioInfoAcademica.diplomaLicenciatura == null}" class="col-sm-10">
+													<a th:href="@{/Academica/descargarArchivo/} + 'diplomaLicenciatura/' + ${usuarioInfoAcademica.id}"
+													   class="card-link" th:text="'Descargar'"></a>
+												</div>
 											</div>
 										</div>
 										<br>
 										<div class="form-group row">
-											<label for="nombre" class="col-sm-6 col-form-label">C&eacute;dula
+											<label class="col-sm-6 col-form-label">C&eacute;dula
 												profesional licenciatura</label>
 											<div class="col-sm-6">
-												<input th:field="${usuario.cedulaLicenciatura}" type="text"
-													class="form-control" readonly />
+												<div class="doc_status" th:if="${usuarioInfoAcademica.cedulaLicenciaturaStatus == T(com.controldigital.app.models.entity.FileStatus).RED1
+																		   ||usuarioInfoAcademica.cedulaLicenciaturaStatus == T(com.controldigital.app.models.entity.FileStatus).RED2
+																		   ||usuarioInfoAcademica.cedulaLicenciaturaStatus == T(com.controldigital.app.models.entity.FileStatus).RED3
+																		   ||usuarioInfoAcademica.cedulaLicenciaturaStatus == T(com.controldigital.app.models.entity.FileStatus).RED4}">DOCUMENTO NO VALIDADO</div>
+												<div class="doc_status" th:if="${usuarioInfoAcademica.cedulaLicenciaturaStatus == T(com.controldigital.app.models.entity.FileStatus).RED1}">El usuario a&uacute;n no ha subido un documento</div>
+												<div class="doc_status" th:if="${usuarioInfoAcademica.cedulaLicenciaturaStatus == T(com.controldigital.app.models.entity.FileStatus).RED2}">No es el Documento</div>
+												<div class="doc_status" th:if="${usuarioInfoAcademica.cedulaLicenciaturaStatus == T(com.controldigital.app.models.entity.FileStatus).RED3}">No es Legible</div>
+												<div class="doc_status" th:if="${usuarioInfoAcademica.cedulaLicenciaturaStatus == T(com.controldigital.app.models.entity.FileStatus).RED4}">No est&aacute; Apostillado</div>
+												<div class="doc_status" th:if="${usuarioInfoAcademica.cedulaLicenciaturaStatus == T(com.controldigital.app.models.entity.FileStatus).YELLOW}">DOCUMENTO EN PROCESO DE VALIDACION</div>
+												<div class="doc_status" th:if="${usuarioInfoAcademica.cedulaLicenciaturaStatus == T(com.controldigital.app.models.entity.FileStatus).GREEN}">DOCUMENTO VALIDADO</div>
+												<div th:if="${usuarioInfoAcademica.cedulaLicenciatura == '' || usuarioInfoAcademica.cedulaLicenciatura == null}" class="col-sm-10">
+													<p>Sube un documento.</p>
+												</div>
+												<div th:unless="${usuarioInfoAcademica.cedulaLicenciatura == '' || usuarioInfoAcademica.cedulaLicenciatura == null}" class="col-sm-10">
+													<a th:href="@{/Academica/descargarArchivo/} + 'cedulaLicenciatura/' + ${usuarioInfoAcademica.id}"
+													   class="card-link" th:text="'Descargar'"></a>
+												</div>
 											</div>
 										</div>
 										<br>
 										<div class="form-group row">
-											<label for="nombre" class="col-sm-6 col-form-label">Acreditaci&oacute;n
+											<label class="col-sm-6 col-form-label">Acreditaci&oacute;n
 												de ingl&eacute;s</label>
 											<div class="col-sm-6">
-												<input th:field="${usuario.acreditacionIngles}" type="text"
-													class="form-control" readonly />
+												<div class="doc_status" th:if="${usuarioInfoAcademica.acreditacionInglesStatus == T(com.controldigital.app.models.entity.FileStatus).RED1
+																		   ||usuarioInfoAcademica.acreditacionInglesStatus == T(com.controldigital.app.models.entity.FileStatus).RED2
+																		   ||usuarioInfoAcademica.acreditacionInglesStatus == T(com.controldigital.app.models.entity.FileStatus).RED3
+																		   ||usuarioInfoAcademica.acreditacionInglesStatus == T(com.controldigital.app.models.entity.FileStatus).RED4}">DOCUMENTO NO VALIDADO</div>
+												<div class="doc_status" th:if="${usuarioInfoAcademica.acreditacionInglesStatus == T(com.controldigital.app.models.entity.FileStatus).RED1}">El usuario a&uacute;n no ha subido un documento</div>
+												<div class="doc_status" th:if="${usuarioInfoAcademica.acreditacionInglesStatus == T(com.controldigital.app.models.entity.FileStatus).RED2}">No es el Documento</div>
+												<div class="doc_status" th:if="${usuarioInfoAcademica.acreditacionInglesStatus == T(com.controldigital.app.models.entity.FileStatus).RED3}">No es Legible</div>
+												<div class="doc_status" th:if="${usuarioInfoAcademica.acreditacionInglesStatus == T(com.controldigital.app.models.entity.FileStatus).RED4}">No est&aacute; Apostillado</div>
+												<div class="doc_status" th:if="${usuarioInfoAcademica.acreditacionInglesStatus == T(com.controldigital.app.models.entity.FileStatus).YELLOW}">DOCUMENTO EN PROCESO DE VALIDACION</div>
+												<div class="doc_status" th:if="${usuarioInfoAcademica.acreditacionInglesStatus == T(com.controldigital.app.models.entity.FileStatus).GREEN}">DOCUMENTO VALIDADO</div>
+												<div th:if="${usuarioInfoAcademica.acreditacionIngles == '' || usuarioInfoAcademica.acreditacionIngles == null}" class="col-sm-10">
+													<p>Sube un documento.</p>
+												</div>
+												<div th:unless="${usuarioInfoAcademica.acreditacionIngles == '' || usuarioInfoAcademica.acreditacionIngles == null}" class="col-sm-10">
+													<a th:href="@{/Academica/descargarArchivo/} + 'acreditacionIngles/' + ${usuarioInfoAcademica.id}"
+													   class="card-link" th:text="'Descargar'"></a>
+												</div>
 											</div>
 										</div>
 									</div>
@@ -93,74 +153,134 @@
 								<div class="card bg-light">
 									<div class="card-body">
 										<div class="form-group row">
-											<label for="nombre" class="col-sm-6 col-form-label">Maestr&iacute;a
+											<label class="col-sm-6 col-form-label">Maestr&iacute;a
 												(nombre)</label>
 											<div class="col-sm-6">
-												<input th:field="${usuario.nombreMaestria}" type="text"
+												<input th:field="${usuarioInfoAcademica.nombreMaestria}" type="text"
 													class="form-control" readonly />
 											</div>
 										</div>
 										<br>
 										<div class="form-group row">
-											<label for="nombre" class="col-sm-6 col-form-label">Instituci&oacute;n
+											<label class="col-sm-6 col-form-label">Instituci&oacute;n
 												de maestr&iacute;a</label>
 											<div class="col-sm-6">
-												<input th:field="${usuario.institucionMaestria}" type="text"
+												<input th:field="${usuarioInfoAcademica.institucionMaestria}" type="text"
 													class="form-control" readonly />
 											</div>
 										</div>
 										<br>
 										<div class="form-group row">
-											<label for="nombre" class="col-sm-6 col-form-label">Pa&iacute;s
+											<label class="col-sm-6 col-form-label">Pa&iacute;s
 												de estudios maestr&iacute;a</label>
 											<div class="col-sm-6">
-												<input th:field="${usuario.paisMaestria}" type="text"
+												<input th:field="${usuarioInfoAcademica.paisMaestria}" type="text"
 													class="form-control" readonly />
 											</div>
 										</div>
 										<br>
 										<div class="form-group row">
-											<label for="nombre" class="col-sm-6 col-form-label">Promedio
+											<label class="col-sm-6 col-form-label">Promedio
 												final maestr&iacute;a</label>
 											<div class="col-sm-6">
-												<input th:field="${usuario.promedioMaestria}" type="text"
+												<input th:field="${usuarioInfoAcademica.promedioMaestria}" type="text"
 													class="form-control" readonly />
 											</div>
 										</div>
 										<br>
 										<div class="form-group row">
-											<label for="nombre" class="col-sm-6 col-form-label">Calificaciones
+											<label class="col-sm-6 col-form-label">Calificaciones
 												de maestr&iacute;a</label>
 											<div class="col-sm-6">
-												<input th:field="${usuario.calificacionesMaestria}" type="text"
-													class="form-control" readonly />
+												<div class="doc_status" th:if="${usuarioInfoAcademica.calificacionesMaestriaStatus == T(com.controldigital.app.models.entity.FileStatus).RED1
+																		   ||usuarioInfoAcademica.calificacionesMaestriaStatus == T(com.controldigital.app.models.entity.FileStatus).RED2
+																		   ||usuarioInfoAcademica.calificacionesMaestriaStatus == T(com.controldigital.app.models.entity.FileStatus).RED3
+																		   ||usuarioInfoAcademica.calificacionesMaestriaStatus == T(com.controldigital.app.models.entity.FileStatus).RED4}">DOCUMENTO NO VALIDADO</div>
+												<div class="doc_status" th:if="${usuarioInfoAcademica.calificacionesMaestriaStatus == T(com.controldigital.app.models.entity.FileStatus).RED1}">El usuario a&uacute;n no ha subido un documento</div>
+												<div class="doc_status" th:if="${usuarioInfoAcademica.calificacionesMaestriaStatus == T(com.controldigital.app.models.entity.FileStatus).RED2}">No es el Documento</div>
+												<div class="doc_status" th:if="${usuarioInfoAcademica.calificacionesMaestriaStatus == T(com.controldigital.app.models.entity.FileStatus).RED3}">No es Legible</div>
+												<div class="doc_status" th:if="${usuarioInfoAcademica.calificacionesMaestriaStatus == T(com.controldigital.app.models.entity.FileStatus).RED4}">No est&aacute; Apostillado</div>
+												<div class="doc_status" th:if="${usuarioInfoAcademica.calificacionesMaestriaStatus == T(com.controldigital.app.models.entity.FileStatus).YELLOW}">DOCUMENTO EN PROCESO DE VALIDACION</div>
+												<div class="doc_status" th:if="${usuarioInfoAcademica.calificacionesMaestriaStatus == T(com.controldigital.app.models.entity.FileStatus).GREEN}">DOCUMENTO VALIDADO</div>
+												<div th:if="${usuarioInfoAcademica.calificacionesMaestria == '' || usuarioInfoAcademica.calificacionesMaestria == null}" class="col-sm-10">
+													<p>Sube un documento.</p>
+												</div>
+												<div th:unless="${usuarioInfoAcademica.calificacionesMaestria == '' || usuarioInfoAcademica.calificacionesMaestria == null}" class="col-sm-10">
+													<a th:href="@{/Academica/descargarArchivo/} + 'calificacionesMaestria/' + ${usuarioInfoAcademica.id}"
+													   class="card-link" th:text="'Descargar'"></a>
+												</div>
 											</div>
 										</div>
 										<br>
 										<div class="form-group row">
-											<label for="nombre" class="col-sm-6 col-form-label">Acta
+											<label class="col-sm-6 col-form-label">Acta
 												de examen maestr&iacute;a</label>
 											<div class="col-sm-6">
-												<input th:field="${usuario.actaExamenMaestria}" type="text"
-													class="form-control" readonly />
+												<div class="doc_status" th:if="${usuarioInfoAcademica.actaExamenMaestriaStatus == T(com.controldigital.app.models.entity.FileStatus).RED1
+																		   ||usuarioInfoAcademica.actaExamenMaestriaStatus == T(com.controldigital.app.models.entity.FileStatus).RED2
+																		   ||usuarioInfoAcademica.actaExamenMaestriaStatus == T(com.controldigital.app.models.entity.FileStatus).RED3
+																		   ||usuarioInfoAcademica.actaExamenMaestriaStatus == T(com.controldigital.app.models.entity.FileStatus).RED4}">DOCUMENTO NO VALIDADO</div>
+												<div class="doc_status" th:if="${usuarioInfoAcademica.actaExamenMaestriaStatus == T(com.controldigital.app.models.entity.FileStatus).RED1}">El usuario a&uacute;n no ha subido un documento</div>
+												<div class="doc_status" th:if="${usuarioInfoAcademica.actaExamenMaestriaStatus == T(com.controldigital.app.models.entity.FileStatus).RED2}">No es el Documento</div>
+												<div class="doc_status" th:if="${usuarioInfoAcademica.actaExamenMaestriaStatus == T(com.controldigital.app.models.entity.FileStatus).RED3}">No es Legible</div>
+												<div class="doc_status" th:if="${usuarioInfoAcademica.actaExamenMaestriaStatus == T(com.controldigital.app.models.entity.FileStatus).RED4}">No est&aacute; Apostillado</div>
+												<div class="doc_status" th:if="${usuarioInfoAcademica.actaExamenMaestriaStatus == T(com.controldigital.app.models.entity.FileStatus).YELLOW}">DOCUMENTO EN PROCESO DE VALIDACION</div>
+												<div class="doc_status" th:if="${usuarioInfoAcademica.actaExamenMaestriaStatus == T(com.controldigital.app.models.entity.FileStatus).GREEN}">DOCUMENTO VALIDADO</div>
+												<div th:if="${usuarioInfoAcademica.actaExamenMaestria == '' || usuarioInfoAcademica.actaExamenMaestria == null}" class="col-sm-10">
+													<p>Sube un documento.</p>
+												</div>
+												<div th:unless="${usuarioInfoAcademica.actaExamenMaestria == '' || usuarioInfoAcademica.actaExamenMaestria == null}" class="col-sm-10">
+													<a th:href="@{/Academica/descargarArchivo/} + 'actaExamenMaestria/' + ${usuarioInfoAcademica.id}"
+													   class="card-link" th:text="'Descargar'"></a>
+												</div>
 											</div>
 										</div>
 										<br>
 										<div class="form-group row">
-											<label for="nombre" class="col-sm-6 col-form-label">Diploma
+											<label class="col-sm-6 col-form-label">Diploma
 												de maestr&iacute;a</label>
 											<div class="col-sm-6">
-												<input th:field="${usuario.diplomaMaestria}" type="text"
-													class="form-control" readonly />
+												<div class="doc_status" th:if="${usuarioInfoAcademica.diplomaMaestriaStatus == T(com.controldigital.app.models.entity.FileStatus).RED1
+																		   ||usuarioInfoAcademica.diplomaMaestriaStatus == T(com.controldigital.app.models.entity.FileStatus).RED2
+																		   ||usuarioInfoAcademica.diplomaMaestriaStatus == T(com.controldigital.app.models.entity.FileStatus).RED3
+																		   ||usuarioInfoAcademica.diplomaMaestriaStatus == T(com.controldigital.app.models.entity.FileStatus).RED4}">DOCUMENTO NO VALIDADO</div>
+												<div class="doc_status" th:if="${usuarioInfoAcademica.diplomaMaestriaStatus == T(com.controldigital.app.models.entity.FileStatus).RED1}">El usuario a&uacute;n no ha subido un documento</div>
+												<div class="doc_status" th:if="${usuarioInfoAcademica.diplomaMaestriaStatus == T(com.controldigital.app.models.entity.FileStatus).RED2}">No es el Documento</div>
+												<div class="doc_status" th:if="${usuarioInfoAcademica.diplomaMaestriaStatus == T(com.controldigital.app.models.entity.FileStatus).RED3}">No es Legible</div>
+												<div class="doc_status" th:if="${usuarioInfoAcademica.diplomaMaestriaStatus == T(com.controldigital.app.models.entity.FileStatus).RED4}">No est&aacute; Apostillado</div>
+												<div class="doc_status" th:if="${usuarioInfoAcademica.diplomaMaestriaStatus == T(com.controldigital.app.models.entity.FileStatus).YELLOW}">DOCUMENTO EN PROCESO DE VALIDACION</div>
+												<div class="doc_status" th:if="${usuarioInfoAcademica.diplomaMaestriaStatus == T(com.controldigital.app.models.entity.FileStatus).GREEN}">DOCUMENTO VALIDADO</div>
+												<div th:if="${usuarioInfoAcademica.diplomaMaestria == '' || usuarioInfoAcademica.diplomaMaestria == null}" class="col-sm-10">
+													<p>Sube un documento.</p>
+												</div>
+												<div th:unless="${usuarioInfoAcademica.diplomaMaestria == '' || usuarioInfoAcademica.diplomaMaestria == null}" class="col-sm-10">
+													<a th:href="@{/Academica/descargarArchivo/} + 'diplomaMaestria/' + ${usuarioInfoAcademica.id}"
+													   class="card-link" th:text="'Descargar'"></a>
+												</div>
 											</div>
 										</div>
 										<br>
 										<div class="form-group row">
-											<label for="nombre" class="col-sm-6 col-form-label">C&eacute;dula
+											<label class="col-sm-6 col-form-label">C&eacute;dula
 												profesional maestr&iacute;a</label>
 											<div class="col-sm-6">
-												<input th:field="${usuario.cedulaMaestria}" type="text"
-													class="form-control" readonly />
+												<div class="doc_status" th:if="${usuarioInfoAcademica.cedulaMaestriaStatus == T(com.controldigital.app.models.entity.FileStatus).RED1
+																		   ||usuarioInfoAcademica.cedulaMaestriaStatus == T(com.controldigital.app.models.entity.FileStatus).RED2
+																		   ||usuarioInfoAcademica.cedulaMaestriaStatus == T(com.controldigital.app.models.entity.FileStatus).RED3
+																		   ||usuarioInfoAcademica.cedulaMaestriaStatus == T(com.controldigital.app.models.entity.FileStatus).RED4}">DOCUMENTO NO VALIDADO</div>
+												<div class="doc_status" th:if="${usuarioInfoAcademica.cedulaMaestriaStatus == T(com.controldigital.app.models.entity.FileStatus).RED1}">El usuario a&uacute;n no ha subido un documento</div>
+												<div class="doc_status" th:if="${usuarioInfoAcademica.cedulaMaestriaStatus == T(com.controldigital.app.models.entity.FileStatus).RED2}">No es el Documento</div>
+												<div class="doc_status" th:if="${usuarioInfoAcademica.cedulaMaestriaStatus == T(com.controldigital.app.models.entity.FileStatus).RED3}">No es Legible</div>
+												<div class="doc_status" th:if="${usuarioInfoAcademica.cedulaMaestriaStatus == T(com.controldigital.app.models.entity.FileStatus).RED4}">No est&aacute; Apostillado</div>
+												<div class="doc_status" th:if="${usuarioInfoAcademica.cedulaMaestriaStatus == T(com.controldigital.app.models.entity.FileStatus).YELLOW}">DOCUMENTO EN PROCESO DE VALIDACION</div>
+												<div class="doc_status" th:if="${usuarioInfoAcademica.cedulaMaestriaStatus == T(com.controldigital.app.models.entity.FileStatus).GREEN}">DOCUMENTO VALIDADO</div>
+												<div th:if="${usuarioInfoAcademica.cedulaMaestria == '' || usuarioInfoAcademica.cedulaMaestria == null}" class="col-sm-10">
+													<p>Sube un documento.</p>
+												</div>
+												<div th:unless="${usuarioInfoAcademica.cedulaMaestria == '' || usuarioInfoAcademica.cedulaMaestria == null}" class="col-sm-10">
+													<a th:href="@{/Academica/descargarArchivo/} + 'cedulaMaestria/' + ${usuarioInfoAcademica.id}"
+													   class="card-link" th:text="'Descargar'"></a>
+												</div>
 											</div>
 										</div>
 									</div>
@@ -173,7 +293,7 @@
 					<div>
 						<p>
 							<a class="btn btn-primary btn-xs"
-							   th:href="@{/Academica/EditarInformacionAcademica/} + ${usuario.id}">Editar Informaci&oacute;n Acad&eacute;mica</a>
+							   th:href="@{/Academica/EditarInformacionAcademica/} + ${usuarioInfoAcademica.id}">Editar Informaci&oacute;n Acad&eacute;mica</a>
 						</p>
 					</div>
 				</div>

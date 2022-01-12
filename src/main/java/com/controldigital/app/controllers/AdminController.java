@@ -80,8 +80,6 @@ public class AdminController {
     @GetMapping("/Informes")
     public String informes(Model model) {
 
-        //List<Role> alumnos = roleService.findUsuarioByRole("ROLE_USER2");
-
         List<Usuario> alumnos = usuarioService.findUserByRole("ROLE_USER2");
 
         Informes informe = new Informes();
@@ -175,13 +173,6 @@ public class AdminController {
         UserDetails usuarioDetails = new UserDetails();
         if (id != null && id > 0) {
             usuario = usuarioService.findOne(id);
-            usuarioInfoPersonal = inforPersonalService.findInfoPersonalByUserId(usuario.getId());
-            usuarioInfoAcademica = infoAcademicaService.findInfoAcademicaByUserId(usuario.getId());
-            expediente = expedienteService.findExpedienteByUserId(usuario.getId());
-            usuarioDetails.setUsuario(usuario);
-            usuarioDetails.setInfoPersonal(usuarioInfoPersonal);
-            usuarioDetails.setInfoAcademica(usuarioInfoAcademica);
-            usuarioDetails.setExpediente(expediente);
         } else {
             return "redirect:index";
         }
@@ -189,9 +180,7 @@ public class AdminController {
 
 
 
-        model.addAttribute("usuario", usuarioDetails);
-        //model.addAttribute("usuarioInfoPersonal", usuarioInfoPersonal);
-        //model.addAttribute("usuarioInfoAcademica", usuarioInfoAcademica);
+        model.addAttribute("usuario", usuario);
 
         return "PersonalAutorizado/VerUsuario";
     }

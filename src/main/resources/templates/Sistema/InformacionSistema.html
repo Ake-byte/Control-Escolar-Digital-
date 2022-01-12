@@ -12,8 +12,6 @@
 
             <div class="container">
                 <div class="card bg-light">
-                    <div class="row">
-                        <div class="col-sm-6">
                             <div class="card bg-light">
                                 <div class="card-body">
                                     <div class="form-group row">
@@ -42,15 +40,8 @@
                                         </div>
                                     </div>
                                     <br>
-                                </div>
-                            </div>
-                        </div>
-                        <div sec:authorize="hasRole('ROLE_USER2')" class="col-sm-6">
-                            <div class="card bg-light">
-                                <div class="card-body">
-                                    <br>
                                     <div class="form-group row">
-                                        <label for="nombre" class="col-sm-6 col-form-label">Correo
+                                        <label class="col-sm-6 col-form-label">Correo
                                             electr&oacute;nico</label>
                                         <div class="col-sm-6">
                                             <input type="text" class="form-control"
@@ -60,9 +51,6 @@
                                     <br>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-
 
                 </div>
             </div>
@@ -70,8 +58,8 @@
             <div>
                 <p>
                     <a class="btn btn-primary btn-xs" sec:authorize="hasRole('ROLE_USER2')"
-                       th:href="@{/Personal/EditarInformacionPersonal}">Editar
-                        Informaci&oacute;n Personal</a>
+                       th:href="@{/Sistema/EditarInformacionSistema}">Editar
+                        Informaci&oacute;n del Sistema</a>
                 </p>
             </div>
         </div>

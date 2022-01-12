@@ -43,7 +43,7 @@
                                             <label class="col-sm-6 col-form-label">Nombre(s):</label>
                                             <div class="col-sm-6">
                                                 <input type="text" class="form-control"
-                                                       th:field="${usuario.usuario.nombre}" readonly />
+                                                       th:field="${usuario.nombre}" readonly />
                                             </div>
                                         </div>
                                         <br>
@@ -52,7 +52,7 @@
                                                 Paterno:</label>
                                             <div class="col-sm-6">
                                                 <input type="text" class="form-control"
-                                                       th:field="${usuario.usuario.apellidoPaterno}" readonly />
+                                                       th:field="${usuario.apellidoPaterno}" readonly />
                                             </div>
                                         </div>
                                         <br>
@@ -61,7 +61,7 @@
                                                 Materno</label>
                                             <div class="col-sm-6">
                                                 <input type="text" class="form-control"
-                                                       th:field="${usuario.usuario.apellidoMaterno}" readonly />
+                                                       th:field="${usuario.apellidoMaterno}" readonly />
                                             </div>
                                         </div>
                                         <br>
@@ -157,7 +157,7 @@
                                                 electr&oacute;nico</label>
                                             <div class="col-sm-6">
                                                 <input type="text" class="form-control"
-                                                       th:field="${usuario.usuario.email}" readonly />
+                                                       th:field="${usuario.email}" readonly />
                                             </div>
                                         </div>
                                         <br>
@@ -234,12 +234,12 @@
                                                                 <td th:if="${usuario.infoPersonal.fotoStatus == T(com.controldigital.app.models.entity.FileStatus).RED3}" th:text="'No es Legible'"></td>
                                                                 <td th:if="${usuario.infoPersonal.fotoStatus == T(com.controldigital.app.models.entity.FileStatus).RED4}" th:text="'No est&aacute; Apostillado'"></td>
                                                                 <td><a class="btn btn-success"
-                                                                       th:href="@{/PersonalAutorizado/validarArchivo/} + ${usuario.usuario.id} + '/fotoStatus'"
+                                                                       th:href="@{/PersonalAutorizado/validarArchivo/} + ${usuario.id} + '/fotoStatus'"
                                                                        onclick="return confirm('&iquest;Est&aacute; seguro de validar este archivo?');">
                                                                     <img th:src="@{/images/validado.png}" width="55"
                                                                          height="55"></a></td>
                                                                 <td><a class="btn btn-danger"
-                                                                       th:href="@{/PersonalAutorizado/invalidarArchivo/} + ${usuario.usuario.id} + '/fotoStatus'">
+                                                                       th:href="@{/PersonalAutorizado/invalidarArchivo/} + ${usuario.id} + '/fotoStatus'">
                                                                     <img th:src="@{/images/noValidado.png}" width="55"
                                                                          height="55"></a></td>
                                                             </tr>
@@ -258,12 +258,12 @@
                                                                 <td th:if="${usuario.infoPersonal.actaStatus == T(com.controldigital.app.models.entity.FileStatus).RED3}" th:text="'No es Legible'"></td>
                                                                 <td th:if="${usuario.infoPersonal.actaStatus == T(com.controldigital.app.models.entity.FileStatus).RED4}" th:text="'No est&aacute; Apostillado'"></td>
                                                                 <td><a class="btn btn-success"
-                                                                       th:href="@{/PersonalAutorizado/validarArchivo/} + ${usuario.usuario.id} + '/actaStatus'"
+                                                                       th:href="@{/PersonalAutorizado/validarArchivo/} + ${usuario.id} + '/actaStatus'"
                                                                        onclick="return confirm('&iquest;Est&aacute; seguro de validar este archivo?');">
                                                                     <img th:src="@{/images/validado.png}" width="55"
                                                                          height="55"></a></td>
                                                                 <td><a class="btn btn-danger"
-                                                                       th:href="@{/PersonalAutorizado/invalidarArchivo/} + ${usuario.usuario.id} + '/actaStatus'">
+                                                                       th:href="@{/PersonalAutorizado/invalidarArchivo/} + ${usuario.id} + '/actaStatus'">
                                                                     <img th:src="@{/images/noValidado.png}" width="55"
                                                                          height="55"></a></td>
                                                             </tr>
@@ -282,12 +282,12 @@
                                                                 <td th:if="${usuario.infoPersonal.pasaporteStatus == T(com.controldigital.app.models.entity.FileStatus).RED3}" th:text="'No es Legible'"></td>
                                                                 <td th:if="${usuario.infoPersonal.pasaporteStatus == T(com.controldigital.app.models.entity.FileStatus).RED4}" th:text="'No est&aacute; Apostillado'"></td>
                                                                 <td><a class="btn btn-success"
-                                                                       th:href="@{/PersonalAutorizado/validarArchivo/} + ${usuario.usuario.id} + '/pasaporteStatus'"
+                                                                       th:href="@{/PersonalAutorizado/validarArchivo/} + ${usuario.id} + '/pasaporteStatus'"
                                                                        onclick="return confirm('&iquest;Est&aacute; seguro de validar este archivo?');">
                                                                     <img th:src="@{/images/validado.png}" width="55"
                                                                          height="55"></a></td>
                                                                 <td><a class="btn btn-danger"
-                                                                       th:href="@{/PersonalAutorizado/invalidarArchivo/} + ${usuario.usuario.id} + '/pasaporteStatus'">
+                                                                       th:href="@{/PersonalAutorizado/invalidarArchivo/} + ${usuario.id} + '/pasaporteStatus'">
                                                                     <img th:src="@{/images/noValidado.png}" width="55"
                                                                          height="55"></a></td>
                                                             </tr>
@@ -306,12 +306,12 @@
                                                                 <td th:if="${usuario.infoPersonal.actaStatus == T(com.controldigital.app.models.entity.FileStatus).RED3}" th:text="'No es Legible'"></td>
                                                                 <td th:if="${usuario.infoPersonal.actaStatus == T(com.controldigital.app.models.entity.FileStatus).RED4}" th:text="'No est&aacute; Apostillado'"></td>
                                                                 <td><a class="btn btn-success"
-                                                                       th:href="@{/PersonalAutorizado/validarArchivo/} + ${usuario.usuario.id} + '/curpStatus'"
+                                                                       th:href="@{/PersonalAutorizado/validarArchivo/} + ${usuario.id} + '/curpStatus'"
                                                                        onclick="return confirm('&iquest;Est&aacute; seguro de validar este archivo?');">
                                                                     <img th:src="@{/images/validado.png}" width="55"
                                                                          height="55"></a></td>
                                                                 <td><a class="btn btn-danger"
-                                                                       th:href="@{/PersonalAutorizado/invalidarArchivo/} + ${usuario.usuario.id} + '/curpStatus'">
+                                                                       th:href="@{/PersonalAutorizado/invalidarArchivo/} + ${usuario.id} + '/curpStatus'">
                                                                     <img th:src="@{/images/noValidado.png}" width="55"
                                                                          height="55"></a></td>
                                                             </tr>
@@ -378,7 +378,7 @@
                                                     </div>
                                                     <br>
                                                     <div class="form-group row">
-                                                        <label class="col-sm-6 col-form-label">Instituci&oacute;
+                                                        <label class="col-sm-6 col-form-label">Instituci&oacute;n
                                                             de maestr&iacute;a</label>
                                                         <div class="col-sm-6">
                                                             <input type="text" class="form-control" th:field="${usuario.infoAcademica.institucionMaestria}" readonly />
@@ -507,12 +507,12 @@
                                                                 <div th:if="${usuario.infoAcademica.calificacionesLicenciaturaStatus == T(com.controldigital.app.models.entity.FileStatus).GREEN}" class="bulb">OK</div>
                                                             </div></td>
                                                             <td><a class="btn btn-success"
-                                                                   th:href="@{/PersonalAutorizado/validarArchivo/} + ${usuario.usuario.id} + '/calificacionesLicenciaturaStatus'"
+                                                                   th:href="@{/PersonalAutorizado/validarArchivo/} + ${usuario.id} + '/calificacionesLicenciaturaStatus'"
                                                                    onclick="return confirm('&iquest;Est&aacute; seguro de validar este archivo?');">
                                                                 <img th:src="@{/images/validado.png}" width="55"
                                                                      height="55"></a></td>
                                                             <td><a class="btn btn-danger"
-                                                                   th:href="@{/PersonalAutorizado/invalidarArchivo/} + ${usuario.usuario.id} + '/calificacionesLicenciaturaStatus'"
+                                                                   th:href="@{/PersonalAutorizado/invalidarArchivo/} + ${usuario.id} + '/calificacionesLicenciaturaStatus'"
                                                                    onclick="return confirm('&iquest;Est&aacute; seguro de invalidar este archivo?');">
                                                                 <img th:src="@{/images/noValidado.png}" width="55"
                                                                      height="55"></a></td>
@@ -527,12 +527,12 @@
                                                                 <div th:if="${usuario.infoAcademica.diplomaLicenciaturaStatus == T(com.controldigital.app.models.entity.FileStatus).GREEN}" class="bulb">OK</div>
                                                             </div></td>
                                                             <td><a class="btn btn-success"
-                                                                   th:href="@{/PersonalAutorizado/validarArchivo/} + ${usuario.usuario.id} + '/diplomaLicenciaturaStatus'"
+                                                                   th:href="@{/PersonalAutorizado/validarArchivo/} + ${usuario.id} + '/diplomaLicenciaturaStatus'"
                                                                    onclick="return confirm('&iquest;Est&aacute; seguro de validar este archivo?');">
                                                                 <img th:src="@{/images/validado.png}" width="55"
                                                                      height="55"></a></td>
                                                             <td><a class="btn btn-danger"
-                                                                   th:href="@{/PersonalAutorizado/invalidarArchivo/} + ${usuario.usuario.id} + '/diplomaLicenciaturaStatus'"
+                                                                   th:href="@{/PersonalAutorizado/invalidarArchivo/} + ${usuario.id} + '/diplomaLicenciaturaStatus'"
                                                                    onclick="return confirm('&iquest;Est&aacute; seguro de invalidar este archivo?');">
                                                                 <img th:src="@{/images/noValidado.png}" width="55"
                                                                      height="55"></a></td>
@@ -547,12 +547,12 @@
                                                                 <div th:if="${usuario.infoAcademica.cedulaLicenciaturaStatus == T(com.controldigital.app.models.entity.FileStatus).GREEN}" class="bulb">OK</div>
                                                             </div></td>
                                                             <td><a class="btn btn-success"
-                                                                   th:href="@{/PersonalAutorizado/validarArchivo/} + ${usuario.usuario.id} + '/cedulaLicenciaturaStatus'"
+                                                                   th:href="@{/PersonalAutorizado/validarArchivo/} + ${usuario.id} + '/cedulaLicenciaturaStatus'"
                                                                    onclick="return confirm('&iquest;Est&aacute; seguro de validar este archivo?');">
                                                                 <img th:src="@{/images/validado.png}" width="55"
                                                                      height="55"></a></td>
                                                             <td><a class="btn btn-danger"
-                                                                   th:href="@{/PersonalAutorizado/invalidarArchivo/} + ${usuario.usuario.id} + '/cedulaLicenciaturaStatus'"
+                                                                   th:href="@{/PersonalAutorizado/invalidarArchivo/} + ${usuario.id} + '/cedulaLicenciaturaStatus'"
                                                                    onclick="return confirm('&iquest;Est&aacute; seguro de invalidar este archivo?');">
                                                                 <img th:src="@{/images/noValidado.png}" width="55"
                                                                      height="55"></a></td>
@@ -567,12 +567,12 @@
                                                                 <div th:if="${usuario.infoAcademica.acreditacionInglesStatus == T(com.controldigital.app.models.entity.FileStatus).GREEN}" class="bulb">OK</div>
                                                             </div></td>
                                                             <td><a class="btn btn-success"
-                                                                   th:href="@{/PersonalAutorizado/validarArchivo/} + ${usuario.usuario.id} + '/acreditacionInglesStatus'"
+                                                                   th:href="@{/PersonalAutorizado/validarArchivo/} + ${usuario.id} + '/acreditacionInglesStatus'"
                                                                    onclick="return confirm('&iquest;Est&aacute; seguro de validar este archivo?');">
                                                                 <img th:src="@{/images/validado.png}" width="55"
                                                                      height="55"></a></td>
                                                             <td><a class="btn btn-danger"
-                                                                   th:href="@{/PersonalAutorizado/invalidarArchivo/} + ${usuario.usuario.id} + '/acreditacionInglesStatus'"
+                                                                   th:href="@{/PersonalAutorizado/invalidarArchivo/} + ${usuario.id} + '/acreditacionInglesStatus'"
                                                                    onclick="return confirm('&iquest;Est&aacute; seguro de invalidar este archivo?');">
                                                                 <img th:src="@{/images/noValidado.png}" width="55"
                                                                      height="55"></a></td>
@@ -587,12 +587,12 @@
                                                                 <div th:if="${usuario.infoAcademica.calificacionesMaestriaStatus == T(com.controldigital.app.models.entity.FileStatus).GREEN}" class="bulb">OK</div>
                                                             </div></td>
                                                             <td><a class="btn btn-success"
-                                                                   th:href="@{/PersonalAutorizado/validarArchivo/} + ${usuario.usuario.id} + '/calificacionesMaestriaStatus'"
+                                                                   th:href="@{/PersonalAutorizado/validarArchivo/} + ${usuario.id} + '/calificacionesMaestriaStatus'"
                                                                    onclick="return confirm('&iquest;Est&aacute; seguro de validar este archivo?');">
                                                                 <img th:src="@{/images/validado.png}" width="55"
                                                                      height="55"></a></td>
                                                             <td><a class="btn btn-danger"
-                                                                   th:href="@{/PersonalAutorizado/invalidarArchivo/} + ${usuario.usuario.id} + '/calificacionesMaestriaStatus'"
+                                                                   th:href="@{/PersonalAutorizado/invalidarArchivo/} + ${usuario.id} + '/calificacionesMaestriaStatus'"
                                                                    onclick="return confirm('&iquest;Est&aacute; seguro de invalidar este archivo?');">
                                                                 <img th:src="@{/images/noValidado.png}" width="55"
                                                                      height="55"></a></td>
@@ -607,12 +607,12 @@
                                                                 <div th:if="${usuario.infoAcademica.actaExamenMaestriaStatus == T(com.controldigital.app.models.entity.FileStatus).GREEN}" class="bulb">OK</div>
                                                             </div></td>
                                                             <td><a class="btn btn-success"
-                                                                   th:href="@{/PersonalAutorizado/validarArchivo/} + ${usuario.usuario.id} + '/actaExamenMaestriaStatus'"
+                                                                   th:href="@{/PersonalAutorizado/validarArchivo/} + ${usuario.id} + '/actaExamenMaestriaStatus'"
                                                                    onclick="return confirm('&iquest;Est&aacute; seguro de validar este archivo?');">
                                                                 <img th:src="@{/images/validado.png}" width="55"
                                                                      height="55"></a></td>
                                                             <td><a class="btn btn-danger"
-                                                                   th:href="@{/PersonalAutorizado/invalidarArchivo/} + ${usuario.usuario.id} + '/actaExamenMaestriaStatus'"
+                                                                   th:href="@{/PersonalAutorizado/invalidarArchivo/} + ${usuario.id} + '/actaExamenMaestriaStatus'"
                                                                    onclick="return confirm('&iquest;Est&aacute; seguro de invalidar este archivo?');">
                                                                 <img th:src="@{/images/noValidado.png}" width="55"
                                                                      height="55"></a></td>
@@ -627,12 +627,12 @@
                                                                 <div th:if="${usuario.infoAcademica.diplomaMaestriaStatus == T(com.controldigital.app.models.entity.FileStatus).GREEN}" class="bulb">OK</div>
                                                             </div></td>
                                                             <td><a class="btn btn-success"
-                                                                   th:href="@{/PersonalAutorizado/validarArchivo/} + ${usuario.usuario.id} + '/diplomaMaestriaStatus'"
+                                                                   th:href="@{/PersonalAutorizado/validarArchivo/} + ${usuario.id} + '/diplomaMaestriaStatus'"
                                                                    onclick="return confirm('&iquest;Est&aacute; seguro de validar este archivo?');">
                                                                 <img th:src="@{/images/validado.png}" width="55"
                                                                      height="55"></a></td>
                                                             <td><a class="btn btn-danger"
-                                                                   th:href="@{/PersonalAutorizado/invalidarArchivo/} + ${usuario.usuario.id} + '/diplomaMaestriaStatus'"
+                                                                   th:href="@{/PersonalAutorizado/invalidarArchivo/} + ${usuario.id} + '/diplomaMaestriaStatus'"
                                                                    onclick="return confirm('&iquest;Est&aacute; seguro de invalidar este archivo?');">
                                                                 <img th:src="@{/images/noValidado.png}" width="55"
                                                                      height="55"></a></td>
@@ -647,12 +647,12 @@
                                                                 <div th:if="${usuario.infoAcademica.cedulaMaestriaStatus == T(com.controldigital.app.models.entity.FileStatus).GREEN}" class="bulb">OK</div>
                                                             </div></td>
                                                             <td><a class="btn btn-success"
-                                                                   th:href="@{/PersonalAutorizado/validarArchivo/} + ${usuario.usuario.id} + '/cedulaMaestriaStatus'"
+                                                                   th:href="@{/PersonalAutorizado/validarArchivo/} + ${usuario.id} + '/cedulaMaestriaStatus'"
                                                                    onclick="return confirm('&iquest;Est&aacute; seguro de validar este archivo?');">
                                                                 <img th:src="@{/images/validado.png}" width="55"
                                                                      height="55"></a></td>
                                                             <td><a class="btn btn-danger"
-                                                                   th:href="@{/PersonalAutorizado/invalidarArchivo/} + ${usuario.usuario.id} + '/cedulaMaestriaStatus'"
+                                                                   th:href="@{/PersonalAutorizado/invalidarArchivo/} + ${usuario.id} + '/cedulaMaestriaStatus'"
                                                                    onclick="return confirm('&iquest;Est&aacute; seguro de invalidar este archivo?');">
                                                                 <img th:src="@{/images/noValidado.png}" width="55"
                                                                      height="55"></a></td>
@@ -829,7 +829,7 @@
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            <tr th:each="producto: ${usuario.usuario.productos}">
+                                            <tr th:each="producto: ${usuario.productos}">
                                                 <td th:text="${producto.nombreProducto}"></td>
                                                 <td th:text="${producto.lugarProducto}"></td>
                                                 <td th:text="${producto.inicioPeriodo + ' - ' + producto.terminoPeriodo}"></td>

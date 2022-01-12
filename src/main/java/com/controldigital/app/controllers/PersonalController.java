@@ -1,6 +1,7 @@
 package com.controldigital.app.controllers;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -14,6 +15,10 @@ import com.controldigital.app.service.IInfoPersonalService;
 import com.controldigital.app.service.IUploadFileService;
 import com.controldigital.app.service.InforPersonalService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -57,33 +62,34 @@ public class PersonalController {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
 		Usuario usuario = usuarioService.findByEmail(auth.getName());
-		
+		InfoPersonal infoPersonal = infoPersonalService.findInfoPersonalByUserId(usuario.getId());
+
+
 		List<String> opcionGenero = new ArrayList<>();
 		opcionGenero.add("Hombre");
 		opcionGenero.add("Mujer");
 		opcionGenero.add("Otro");
 		
 
-		((Model) model).addAttribute("usuario", usuario);
+		((Model) model).addAttribute("infoPersonal", infoPersonal);
 		((Model) model).addAttribute("opcionGenero", opcionGenero);
 		((Model) model).addAttribute("titulo", "Editar Datos");
 		return "Personal/EditarInformacionPersonal";
 	}
 
 	@PostMapping(value = "/EditarInformacionPersonal")
-	public String guardarDatos(@Valid Usuario usuario, BindingResult result, Model model,
+	public String guardarDatos(@Valid InfoPersonal infoPersonal, BindingResult result, Model model,
 							   @RequestParam("files") MultipartFile[] files) {
 		if (result.hasErrors()) {
 			model.addAttribute("titulo", "Editar Datos");
 			return "Personal/EditarInformacionPersonal";
 		}
 
-
-		if(usuario.getId() != null && usuario.getId() > 0){
+		if(infoPersonal.getId() != null && infoPersonal.getId() > 0){
 			for(int i = 0; i < files.length; i++){
 				if(!files[0].isEmpty()){
-					if(usuario.getInfoPersonal().getFotoActual() != null && usuario.getInfoPersonal().getFotoActual().length() > 0){
-						uploadFileService.delete(usuario.getInfoPersonal().getFotoActual());
+					if(infoPersonal.getFotoActual() != null && infoPersonal.getFotoActual().length() > 0){
+						uploadFileService.delete(infoPersonal.getFotoActual());
 					}
 					String uniqueFilename = null;
 					try {
@@ -91,18 +97,18 @@ public class PersonalController {
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
-					usuario.getInfoPersonal().setFotoActual(uniqueFilename);
+					infoPersonal.setFotoActual(uniqueFilename);
 
-					usuario.getInfoPersonal().setFotoStatus(FileStatus.YELLOW);
+					infoPersonal.setFotoStatus(FileStatus.YELLOW);
 				} else {
-					if(usuario.getInfoPersonal().getFotoActual() == null){
-						usuario.getInfoPersonal().setFotoActual("");
-						usuario.getInfoPersonal().setFotoStatus(FileStatus.RED1);
+					if(infoPersonal.getFotoActual() == null){
+						infoPersonal.setFotoActual("");
+						infoPersonal.setFotoStatus(FileStatus.RED1);
 					}
 				}
 				if(!files[1].isEmpty()){
-					if(usuario.getInfoPersonal().getActaNacimiento() != null && usuario.getInfoPersonal().getActaNacimiento().length() > 0){
-						uploadFileService.delete(usuario.getInfoPersonal().getActaNacimiento());
+					if(infoPersonal.getActaNacimiento() != null && infoPersonal.getActaNacimiento().length() > 0){
+						uploadFileService.delete(infoPersonal.getActaNacimiento());
 					}
 					String uniqueFilename = null;
 					try {
@@ -110,18 +116,18 @@ public class PersonalController {
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
-					usuario.getInfoPersonal().setActaNacimiento(uniqueFilename);
+					infoPersonal.setActaNacimiento(uniqueFilename);
 
-					usuario.getInfoPersonal().setActaStatus(FileStatus.YELLOW);
+					infoPersonal.setActaStatus(FileStatus.YELLOW);
 				} else {
-					if(usuario.getInfoPersonal().getActaNacimiento() == null){
-						usuario.getInfoPersonal().setActaNacimiento("");
-						usuario.getInfoPersonal().setActaStatus(FileStatus.RED1);
+					if(infoPersonal.getActaNacimiento() == null){
+						infoPersonal.setActaNacimiento("");
+						infoPersonal.setActaStatus(FileStatus.RED1);
 					}
 				}
 				if(!files[2].isEmpty()){
-					if(usuario.getInfoPersonal().getPasaporte() != null && usuario.getInfoPersonal().getPasaporte().length() > 0){
-						uploadFileService.delete(usuario.getInfoPersonal().getPasaporte());
+					if(infoPersonal.getPasaporte() != null && infoPersonal.getPasaporte().length() > 0){
+						uploadFileService.delete(infoPersonal.getPasaporte());
 					}
 					String uniqueFilename = null;
 					try {
@@ -129,18 +135,18 @@ public class PersonalController {
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
-					usuario.getInfoPersonal().setPasaporte(uniqueFilename);
+					infoPersonal.setPasaporte(uniqueFilename);
 
-					usuario.getInfoPersonal().setPasaporteStatus(FileStatus.YELLOW);
+					infoPersonal.setPasaporteStatus(FileStatus.YELLOW);
 				} else {
-					if(usuario.getInfoPersonal().getPasaporte() == null){
-						usuario.getInfoPersonal().setPasaporte("");
-						usuario.getInfoPersonal().setPasaporteStatus(FileStatus.RED1);
+					if(infoPersonal.getPasaporte() == null){
+						infoPersonal.setPasaporte("");
+						infoPersonal.setPasaporteStatus(FileStatus.RED1);
 					}
 				}
 				if(!files[3].isEmpty()){
-					if(usuario.getInfoPersonal().getCedulaCURP() != null && usuario.getInfoPersonal().getCedulaCURP().length() > 0){
-						uploadFileService.delete(usuario.getInfoPersonal().getCedulaCURP());
+					if(infoPersonal.getCedulaCURP() != null && infoPersonal.getCedulaCURP().length() > 0){
+						uploadFileService.delete(infoPersonal.getCedulaCURP());
 					}
 					String uniqueFilename = null;
 					try {
@@ -148,21 +154,66 @@ public class PersonalController {
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
-					usuario.getInfoPersonal().setCedulaCURP(uniqueFilename);
+					infoPersonal.setCedulaCURP(uniqueFilename);
 
-					usuario.getInfoPersonal().setCurpStatus(FileStatus.YELLOW);
+					infoPersonal.setCurpStatus(FileStatus.YELLOW);
 				} else {
-					if(usuario.getInfoPersonal().getCedulaCURP() == null){
-						usuario.getInfoPersonal().setCedulaCURP("");
-						usuario.getInfoPersonal().setCurpStatus(FileStatus.RED1);
+					if(infoPersonal.getCedulaCURP() == null){
+						infoPersonal.setCedulaCURP("");
+						infoPersonal.setCurpStatus(FileStatus.RED1);
 					}
 				}
 			}
 		}
 
-		usuarioService.save(usuario);
+		infoPersonalService.save(infoPersonal);
 
 		return "redirect:InformacionPersonal";
 	}
+
+	@GetMapping(value = "/descargarArchivo/{tipoArchivo}/{id}")
+	public ResponseEntity<Resource> descargarArchivo(@PathVariable String tipoArchivo, @PathVariable Long id, HttpServletRequest request) {
+
+		InfoPersonal infoPersonal = infoPersonalService.findInfoPersonalByUserId(id);
+
+		String filename = null;
+
+		if(tipoArchivo.equals("Foto")){
+			filename = infoPersonal.getFotoActual();
+		}
+		else if(tipoArchivo.equals("Acta")){
+			filename = infoPersonal.getActaNacimiento();
+		}
+		else if(tipoArchivo.equals("Pasaporte")){
+			filename = infoPersonal.getPasaporte();
+		}
+		else if(tipoArchivo.equals("Curp")){
+			filename = infoPersonal.getCedulaCURP();
+		}
+
+		Resource recurso = null;
+		try {
+			recurso = uploadFileService.load(filename);
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		}
+		String contentType = null;
+		try {
+			contentType = request.getServletContext().getMimeType(recurso.getFile().getAbsolutePath());
+		} catch (IOException ex) {
+			// logger.info("Could not determine file type.");
+		}
+		// Fallback to the default content type if type could not be determined
+		if (contentType == null) {
+
+			contentType = "application/octet-stream";
+
+		}
+		return ResponseEntity.ok().contentType(MediaType.parseMediaType(contentType))
+				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + recurso.getFilename() + "\"")
+				.body(recurso);
+
+	}
+
 
 }

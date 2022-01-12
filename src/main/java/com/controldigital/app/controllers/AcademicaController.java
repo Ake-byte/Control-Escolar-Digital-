@@ -1,6 +1,7 @@
 package com.controldigital.app.controllers;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -8,11 +9,14 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
-import com.controldigital.app.models.entity.FileStatus;
-import com.controldigital.app.models.entity.InfoAcademica;
+import com.controldigital.app.models.entity.*;
 import com.controldigital.app.service.IUploadFileService;
 import com.controldigital.app.service.InfoAcademicaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -20,8 +24,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import com.controldigital.app.models.entity.Role;
-import com.controldigital.app.models.entity.Usuario;
 import com.controldigital.app.service.IRoleService;
 import com.controldigital.app.service.IUsuarioService;
 import org.springframework.web.multipart.MultipartFile;
@@ -51,7 +53,7 @@ public class AcademicaController {
 
 		InfoAcademica usuarioInfoAcademica = infoAcademicaService.findInfoAcademicaByUserId(usuario.getId());
 		
-		model.addAttribute("usuario", usuarioInfoAcademica);
+		model.addAttribute("usuarioInfoAcademica", usuarioInfoAcademica);
 		model.addAttribute("titulo", "Datos de Usuario");
 		return "Academica/InformacionAcademica";
 	}
@@ -62,25 +64,27 @@ public class AcademicaController {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
 		Usuario usuario = usuarioService.findByEmail(auth.getName());
+
+		InfoAcademica infoAcademica = infoAcademicaService.findInfoAcademicaByUserId(usuario.getId());
 		
-		((Model) model).addAttribute("usuario", usuario);
-		((Model) model).addAttribute("titulo", "Editar Datos");
+		((Model) model).addAttribute("infoAcademica", infoAcademica);
+		((Model) model).addAttribute("titulo", "Editar Información Académica");
 		return "Academica/EditarInformacionAcademica";
 	}
 
 	@PostMapping(value = "/EditarInformacionAcademica")
-	public String guardarDatos(@Valid Usuario usuario, BindingResult result, Model model,
+	public String guardarDatos(@Valid InfoAcademica infoAcademica, BindingResult result, Model model,
 							   @RequestParam("files") MultipartFile[] files) {
 		if (result.hasErrors()) {
 			model.addAttribute("titulo", "Editar Datos");
 			return "EditarInformacionAcademica";
 		}
 
-		if(usuario.getId() != null && usuario.getId() > 0){
+		if(infoAcademica.getId() != null && infoAcademica.getId() > 0){
 			for(int i = 0; i < files.length; i++){
 				if(!files[0].isEmpty()){
-					if(usuario.getInfoAcademica().getCalificacionesLicenciatura() != null && usuario.getInfoAcademica().getCalificacionesLicenciatura().length() > 0){
-						uploadFileService.delete(usuario.getInfoAcademica().getCalificacionesLicenciatura());
+					if(infoAcademica.getCalificacionesLicenciatura() != null && infoAcademica.getCalificacionesLicenciatura().length() > 0){
+						uploadFileService.delete(infoAcademica.getCalificacionesLicenciatura());
 					}
 					String uniqueFilename = null;
 					try {
@@ -88,18 +92,18 @@ public class AcademicaController {
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
-					usuario.getInfoAcademica().setCalificacionesLicenciatura(uniqueFilename);
+					infoAcademica.setCalificacionesLicenciatura(uniqueFilename);
 
-					usuario.getInfoAcademica().setCalificacionesLicenciaturaStatus(FileStatus.YELLOW);
+					infoAcademica.setCalificacionesLicenciaturaStatus(FileStatus.YELLOW);
 				} else {
-					if(usuario.getInfoAcademica().getCalificacionesLicenciatura() == null){
-						usuario.getInfoAcademica().setCalificacionesLicenciatura("");
-						usuario.getInfoAcademica().setCalificacionesLicenciaturaStatus(FileStatus.RED1);
+					if(infoAcademica.getCalificacionesLicenciatura() == null){
+						infoAcademica.setCalificacionesLicenciatura("");
+						infoAcademica.setCalificacionesLicenciaturaStatus(FileStatus.RED1);
 					}
 				}
 				if(!files[1].isEmpty()){
-					if(usuario.getInfoAcademica().getDiplomaLicenciatura() != null && usuario.getInfoAcademica().getDiplomaLicenciatura().length() > 0){
-						uploadFileService.delete(usuario.getInfoAcademica().getDiplomaLicenciatura());
+					if(infoAcademica.getDiplomaLicenciatura() != null && infoAcademica.getDiplomaLicenciatura().length() > 0){
+						uploadFileService.delete(infoAcademica.getDiplomaLicenciatura());
 					}
 					String uniqueFilename = null;
 					try {
@@ -107,18 +111,18 @@ public class AcademicaController {
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
-					usuario.getInfoAcademica().setDiplomaLicenciatura(uniqueFilename);
+					infoAcademica.setDiplomaLicenciatura(uniqueFilename);
 
-					usuario.getInfoAcademica().setDiplomaLicenciaturaStatus(FileStatus.YELLOW);
+					infoAcademica.setDiplomaLicenciaturaStatus(FileStatus.YELLOW);
 				} else {
-					if(usuario.getInfoAcademica().getDiplomaLicenciatura() == null){
-						usuario.getInfoAcademica().setDiplomaLicenciatura("");
-						usuario.getInfoAcademica().setDiplomaLicenciaturaStatus(FileStatus.RED1);
+					if(infoAcademica.getDiplomaLicenciatura() == null){
+						infoAcademica.setDiplomaLicenciatura("");
+						infoAcademica.setDiplomaLicenciaturaStatus(FileStatus.RED1);
 					}
 				}
 				if(!files[2].isEmpty()){
-					if(usuario.getInfoAcademica().getCedulaLicenciatura() != null && usuario.getInfoAcademica().getCedulaLicenciatura().length() > 0){
-						uploadFileService.delete(usuario.getInfoAcademica().getCedulaLicenciatura());
+					if(infoAcademica.getCedulaLicenciatura() != null && infoAcademica.getCedulaLicenciatura().length() > 0){
+						uploadFileService.delete(infoAcademica.getCedulaLicenciatura());
 					}
 					String uniqueFilename = null;
 					try {
@@ -126,18 +130,18 @@ public class AcademicaController {
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
-					usuario.getInfoAcademica().setCedulaLicenciatura(uniqueFilename);
+					infoAcademica.setCedulaLicenciatura(uniqueFilename);
 
-					usuario.getInfoAcademica().setCedulaLicenciaturaStatus(FileStatus.YELLOW);
+					infoAcademica.setCedulaLicenciaturaStatus(FileStatus.YELLOW);
 				} else {
-					if(usuario.getInfoAcademica().getCedulaLicenciatura() == null){
-						usuario.getInfoAcademica().setCedulaLicenciatura("");
-						usuario.getInfoAcademica().setCedulaLicenciaturaStatus(FileStatus.RED1);
+					if(infoAcademica.getCedulaLicenciatura() == null){
+						infoAcademica.setCedulaLicenciatura("");
+						infoAcademica.setCedulaLicenciaturaStatus(FileStatus.RED1);
 					}
 				}
 				if(!files[3].isEmpty()){
-					if(usuario.getInfoAcademica().getAcreditacionIngles() != null && usuario.getInfoAcademica().getAcreditacionIngles().length() > 0){
-						uploadFileService.delete(usuario.getInfoAcademica().getAcreditacionIngles());
+					if(infoAcademica.getAcreditacionIngles() != null && infoAcademica.getAcreditacionIngles().length() > 0){
+						uploadFileService.delete(infoAcademica.getAcreditacionIngles());
 					}
 					String uniqueFilename = null;
 					try {
@@ -145,18 +149,18 @@ public class AcademicaController {
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
-					usuario.getInfoAcademica().setAcreditacionIngles(uniqueFilename);
+					infoAcademica.setAcreditacionIngles(uniqueFilename);
 
-					usuario.getInfoAcademica().setAcreditacionInglesStatus(FileStatus.YELLOW);
+					infoAcademica.setAcreditacionInglesStatus(FileStatus.YELLOW);
 				} else {
-					if(usuario.getInfoAcademica().getAcreditacionIngles() == null){
-						usuario.getInfoAcademica().setAcreditacionIngles("");
-						usuario.getInfoAcademica().setAcreditacionInglesStatus(FileStatus.RED1);
+					if(infoAcademica.getAcreditacionIngles() == null){
+						infoAcademica.setAcreditacionIngles("");
+						infoAcademica.setAcreditacionInglesStatus(FileStatus.RED1);
 					}
 				}
 				if(!files[4].isEmpty()){
-					if(usuario.getInfoAcademica().getCalificacionesMaestria() != null && usuario.getInfoAcademica().getCalificacionesMaestria().length() > 0){
-						uploadFileService.delete(usuario.getInfoAcademica().getCalificacionesMaestria());
+					if(infoAcademica.getCalificacionesMaestria() != null && infoAcademica.getCalificacionesMaestria().length() > 0){
+						uploadFileService.delete(infoAcademica.getCalificacionesMaestria());
 					}
 					String uniqueFilename = null;
 					try {
@@ -164,18 +168,18 @@ public class AcademicaController {
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
-					usuario.getInfoAcademica().setCalificacionesMaestria(uniqueFilename);
+					infoAcademica.setCalificacionesMaestria(uniqueFilename);
 
-					usuario.getInfoAcademica().setCalificacionesMaestriaStatus(FileStatus.YELLOW);
+					infoAcademica.setCalificacionesMaestriaStatus(FileStatus.YELLOW);
 				} else {
-					if(usuario.getInfoAcademica().getCalificacionesMaestria() == null){
-						usuario.getInfoAcademica().setCalificacionesMaestria("");
-						usuario.getInfoAcademica().setCalificacionesMaestriaStatus(FileStatus.RED1);
+					if(infoAcademica.getCalificacionesMaestria() == null){
+						infoAcademica.setCalificacionesMaestria("");
+						infoAcademica.setCalificacionesMaestriaStatus(FileStatus.RED1);
 					}
 				}
 				if(!files[5].isEmpty()){
-					if(usuario.getInfoAcademica().getActaExamenMaestria() != null && usuario.getInfoAcademica().getActaExamenMaestria().length() > 0){
-						uploadFileService.delete(usuario.getInfoAcademica().getActaExamenMaestria());
+					if(infoAcademica.getActaExamenMaestria() != null && infoAcademica.getActaExamenMaestria().length() > 0){
+						uploadFileService.delete(infoAcademica.getActaExamenMaestria());
 					}
 					String uniqueFilename = null;
 					try {
@@ -183,18 +187,18 @@ public class AcademicaController {
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
-					usuario.getInfoAcademica().setActaExamenMaestria(uniqueFilename);
+					infoAcademica.setActaExamenMaestria(uniqueFilename);
 
-					usuario.getInfoAcademica().setActaExamenMaestriaStatus(FileStatus.YELLOW);
+					infoAcademica.setActaExamenMaestriaStatus(FileStatus.YELLOW);
 				} else {
-					if(usuario.getInfoAcademica().getActaExamenMaestria() == null){
-						usuario.getInfoAcademica().setActaExamenMaestria("");
-						usuario.getInfoAcademica().setActaExamenMaestriaStatus(FileStatus.RED1);
+					if(infoAcademica.getActaExamenMaestria() == null){
+						infoAcademica.setActaExamenMaestria("");
+						infoAcademica.setActaExamenMaestriaStatus(FileStatus.RED1);
 					}
 				}
 				if(!files[6].isEmpty()){
-					if(usuario.getInfoAcademica().getDiplomaMaestria() != null && usuario.getInfoAcademica().getDiplomaMaestria().length() > 0){
-						uploadFileService.delete(usuario.getInfoAcademica().getDiplomaMaestria());
+					if(infoAcademica.getDiplomaMaestria() != null && infoAcademica.getDiplomaMaestria().length() > 0){
+						uploadFileService.delete(infoAcademica.getDiplomaMaestria());
 					}
 					String uniqueFilename = null;
 					try {
@@ -202,18 +206,18 @@ public class AcademicaController {
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
-					usuario.getInfoAcademica().setDiplomaMaestria(uniqueFilename);
+					infoAcademica.setDiplomaMaestria(uniqueFilename);
 
-					usuario.getInfoAcademica().setDiplomaMaestriaStatus(FileStatus.YELLOW);
+					infoAcademica.setDiplomaMaestriaStatus(FileStatus.YELLOW);
 				} else {
-					if(usuario.getInfoAcademica().getDiplomaMaestria() == null){
-						usuario.getInfoAcademica().setDiplomaMaestria("");
-						usuario.getInfoAcademica().setDiplomaMaestriaStatus(FileStatus.RED1);
+					if(infoAcademica.getDiplomaMaestria() == null){
+						infoAcademica.setDiplomaMaestria("");
+						infoAcademica.setDiplomaMaestriaStatus(FileStatus.RED1);
 					}
 				}
 				if(!files[7].isEmpty()){
-					if(usuario.getInfoAcademica().getCedulaMaestria() != null && usuario.getInfoAcademica().getCedulaMaestria().length() > 0){
-						uploadFileService.delete(usuario.getInfoAcademica().getCedulaMaestria());
+					if(infoAcademica.getCedulaMaestria() != null && infoAcademica.getCedulaMaestria().length() > 0){
+						uploadFileService.delete(infoAcademica.getCedulaMaestria());
 					}
 					String uniqueFilename = null;
 					try {
@@ -221,20 +225,76 @@ public class AcademicaController {
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
-					usuario.getInfoAcademica().setCedulaMaestria(uniqueFilename);
+					infoAcademica.setCedulaMaestria(uniqueFilename);
 
-					usuario.getInfoAcademica().setCedulaMaestriaStatus(FileStatus.YELLOW);
+					infoAcademica.setCedulaMaestriaStatus(FileStatus.YELLOW);
 				} else {
-					if(usuario.getInfoAcademica().getCedulaMaestria() == null){
-						usuario.getInfoAcademica().setCedulaMaestria("");
-						usuario.getInfoAcademica().setCedulaMaestriaStatus(FileStatus.RED1);
+					if(infoAcademica.getCedulaMaestria() == null){
+						infoAcademica.setCedulaMaestria("");
+						infoAcademica.setCedulaMaestriaStatus(FileStatus.RED1);
 					}
 				}
 			}
 		}
 
-		usuarioService.save(usuario);
+		infoAcademicaService.save(infoAcademica);
 
 		return "redirect:InformacionAcademica";
+	}
+
+	@GetMapping(value = "/descargarArchivo/{tipoArchivo}/{id}")
+	public ResponseEntity<Resource> descargarArchivo(@PathVariable String tipoArchivo, @PathVariable Long id, HttpServletRequest request) {
+
+		InfoAcademica infoAcademica = infoAcademicaService.findInfoAcademicaByUserId(id);
+
+		String filename = null;
+
+		if(tipoArchivo.equals("calificacionesLicenciatura")){
+			filename = infoAcademica.getCalificacionesLicenciatura();
+		}
+		else if(tipoArchivo.equals("diplomaLicenciatura")){
+			filename = infoAcademica.getDiplomaLicenciatura();
+		}
+		else if(tipoArchivo.equals("cedulaLicenciatura")){
+			filename = infoAcademica.getCedulaLicenciatura();
+		}
+		else if(tipoArchivo.equals("acreditacionIngles")){
+			filename = infoAcademica.getAcreditacionIngles();
+		}
+		else if(tipoArchivo.equals("calificacionesMaestria")){
+			filename = infoAcademica.getCalificacionesMaestria();
+		}
+		else if(tipoArchivo.equals("actaExamenMaestria")){
+			filename = infoAcademica.getActaExamenMaestria();
+		}
+		else if(tipoArchivo.equals("diplomaMaestria")){
+			filename = infoAcademica.getDiplomaMaestria();
+		}
+		else if(tipoArchivo.equals("cedulaMaestria")){
+			filename = infoAcademica.getCedulaMaestria();
+		}
+
+		Resource recurso = null;
+		try {
+			recurso = uploadFileService.load(filename);
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		}
+		String contentType = null;
+		try {
+			contentType = request.getServletContext().getMimeType(recurso.getFile().getAbsolutePath());
+		} catch (IOException ex) {
+			// logger.info("Could not determine file type.");
+		}
+		// Fallback to the default content type if type could not be determined
+		if (contentType == null) {
+
+			contentType = "application/octet-stream";
+
+		}
+		return ResponseEntity.ok().contentType(MediaType.parseMediaType(contentType))
+				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + recurso.getFilename() + "\"")
+				.body(recurso);
+
 	}
 }

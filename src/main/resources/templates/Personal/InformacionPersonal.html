@@ -35,7 +35,7 @@
 										</div>
 										<br>
 										<div sec:authorize="hasRole('ROLE_USER2')" class="form-group row">
-											<label for="nombre" class="col-sm-6 col-form-label">Estado</label>
+											<label class="col-sm-6 col-form-label">Estado</label>
 											<div class="col-sm-6">
 												<input th:field="${usuario.estadoNacimiento}" type="text"
 													class="form-control" readonly />
@@ -43,7 +43,7 @@
 										</div>
 										<br>
 										<div sec:authorize="hasRole('ROLE_USER2')" class="form-group row">
-											<label for="nombre" class="col-sm-6 col-form-label">Clave
+											<label class="col-sm-6 col-form-label">Clave
 												CURP</label>
 											<div class="col-sm-6">
 												<input th:field="${usuario.claveCURP}" type="text"
@@ -52,7 +52,7 @@
 										</div>
 										<br>
 										<div sec:authorize="hasRole('ROLE_USER2')" class="form-group row">
-											<label for="nombre" class="col-sm-6 col-form-label">Tel&eacute;fono
+											<label class="col-sm-6 col-form-label">Tel&eacute;fono
 												celular</label>
 											<div class="col-sm-6">
 												<input th:field="${usuario.telefonoCelular}" type="text"
@@ -61,7 +61,7 @@
 										</div>
 										<br>
 										<div sec:authorize="hasRole('ROLE_USER2')" class="form-group row">
-											<label for="nombre" class="col-sm-6 col-form-label">Direcci&oacute;n
+											<label class="col-sm-6 col-form-label">Direcci&oacute;n
 												(en CDMX)</label>
 											<div class="col-sm-6">
 												<input th:field="${usuario.direccionCDMX}" type="text"
@@ -75,7 +75,7 @@
 								<div class="card bg-light">
 									<div class="card-body">
 										<div class="form-group row">
-											<label for="nombre" class="col-sm-6 col-form-label">G&eacute;nero</label>
+											<label class="col-sm-6 col-form-label">G&eacute;nero</label>
 											<div class="col-sm-6">
 												<input type="text" th:field="${usuario.genero}"
 													class="form-control" readonly />
@@ -83,7 +83,7 @@
 										</div>
 										<br>
 										<div class="form-group row">
-											<label for="nombre" class="col-sm-6 col-form-label">Lengua
+											<label class="col-sm-6 col-form-label">Lengua
 												ind&iacute;gena</label>
 											<div class="placeholder col-6">
 												<input class="placeholder col-8" th:if="${usuario.lenguaIndigena == false || usuario.lenguaIndigena == null || usuario.lenguaIndigena == ''}" placeholder="No" readonly>
@@ -92,7 +92,7 @@
 										</div>
 										<br>
 										<div class="form-group row">
-											<label for="nombre" class="col-sm-6 col-form-label">Discapacidad</label>
+											<label class="col-sm-6 col-form-label">Discapacidad</label>
 											<div class="col-sm-6">
 												<input th:if="${usuario.discapacidad == false || usuario.discapacidad == null || usuario.discapacidad == ''}" placeholder="No" readonly>
 												<input th:unless="${usuario.discapacidad == false || usuario.discapacidad == null || usuario.discapacidad == ''}" th:placeholder="${usuario.nombreDiscapacidad}" readonly>
@@ -100,7 +100,7 @@
 										</div>
 										<br>
 										<div class="form-group row">
-											<label for="nombre" class="col-sm-6 col-form-label">Enfermedad
+											<label class="col-sm-6 col-form-label">Enfermedad
 												permanente</label>
 											<div class="col-sm-6">
 												<input th:if="${usuario.enfermedadPermanente == false || usuario.enfermedadPermanente == null || usuario.enfermedadPermanente == ''}" placeholder="No" readonly>
@@ -109,88 +109,99 @@
 										</div>
 										<br>
 										<div class="form-group row">
-											<label for="nombre" class="col-sm-6 col-form-label">Foto
+											<label class="col-sm-6 col-form-label">Foto
 												actual (fondo blanco)</label>
 											<div class="col-sm-6">
-												<input th:field="${usuario.fotoActual}" type="text"
-													class="form-control" readonly />
-											</div>
-
-										</div>
-										<div>
-											<div class="doc_status" th:if="${usuario.fotoStatus == T(com.controldigital.app.models.entity.FileStatus).RED1
+												<div class="doc_status" th:if="${usuario.fotoStatus == T(com.controldigital.app.models.entity.FileStatus).RED1
 																		   ||usuario.fotoStatus == T(com.controldigital.app.models.entity.FileStatus).RED2
 																		   ||usuario.fotoStatus == T(com.controldigital.app.models.entity.FileStatus).RED3
 																		   ||usuario.fotoStatus == T(com.controldigital.app.models.entity.FileStatus).RED4}">DOCUMENTO NO VALIDADO</div>
-											<div class="doc_status" th:if="${usuario.fotoStatus == T(com.controldigital.app.models.entity.FileStatus).RED1}">El usuario a&uacute;n no ha subido un documento</div>
-											<div class="doc_status" th:if="${usuario.fotoStatus == T(com.controldigital.app.models.entity.FileStatus).RED2}">No es el Documento</div>
-											<div class="doc_status" th:if="${usuario.fotoStatus == T(com.controldigital.app.models.entity.FileStatus).RED3}">No es Legble</div>
-											<div class="doc_status" th:if="${usuario.fotoStatus == T(com.controldigital.app.models.entity.FileStatus).RED4}">No est&aacute; Apostillado</div>
-											<div class="doc_status" th:if="${usuario.fotoStatus == T(com.controldigital.app.models.entity.FileStatus).YELLOW}">DOCUMENTO EN PROCESO DE VALIDACION</div>
-											<div class="doc_status" th:if="${usuario.fotoStatus == T(com.controldigital.app.models.entity.FileStatus).GREEN}">DOCUMENTO VALIDADO</div>
+												<div class="doc_status" th:if="${usuario.fotoStatus == T(com.controldigital.app.models.entity.FileStatus).RED1}">El usuario a&uacute;n no ha subido un documento.</div>
+												<div class="doc_status" th:if="${usuario.fotoStatus == T(com.controldigital.app.models.entity.FileStatus).RED2}">No es el Documento</div>
+												<div class="doc_status" th:if="${usuario.fotoStatus == T(com.controldigital.app.models.entity.FileStatus).RED3}">No es Legble</div>
+												<div class="doc_status" th:if="${usuario.fotoStatus == T(com.controldigital.app.models.entity.FileStatus).RED4}">No est&aacute; Apostillado</div>
+												<div class="doc_status" th:if="${usuario.fotoStatus == T(com.controldigital.app.models.entity.FileStatus).YELLOW}">DOCUMENTO EN PROCESO DE VALIDACION</div>
+												<div class="doc_status" th:if="${usuario.fotoStatus == T(com.controldigital.app.models.entity.FileStatus).GREEN}">DOCUMENTO VALIDADO</div>
+												<div th:if="${usuario.fotoActual == '' || usuario.fotoActual == null}" class="col-sm-10">
+													<p>Sube un documento.</p>
+												</div>
+												<div th:unless="${usuario.fotoActual == '' || usuario.fotoActual == null}" class="col-sm-10">
+													<a th:href="@{/Personal/descargarArchivo/} + 'Foto/' + ${usuario.id}"
+													   class="card-link" th:text="'Descargar'"></a>
+												</div>
+											</div>
 										</div>
 										<br>
 										<div class="form-group row">
-											<label for="nombre" class="col-sm-6 col-form-label">Acta
+											<label class="col-sm-6 col-form-label">Acta
 												de Nacimiento</label>
 											<div class="col-sm-6">
-												<input th:field="${usuario.actaNacimiento}" type="text"
-													class="form-control" readonly />
-											</div>
-										</div>
-										<div>
-											<div class="doc_status" th:if="${usuario.actaStatus == T(com.controldigital.app.models.entity.FileStatus).RED1
+												<div class="doc_status" th:if="${usuario.actaStatus == T(com.controldigital.app.models.entity.FileStatus).RED1
 																		   ||usuario.actaStatus == T(com.controldigital.app.models.entity.FileStatus).RED2
 																		   ||usuario.actaStatus == T(com.controldigital.app.models.entity.FileStatus).RED3
 																		   ||usuario.actaStatus == T(com.controldigital.app.models.entity.FileStatus).RED4}">DOCUMENTO NO VALIDADO</div>
-											<div class="doc_status" th:if="${usuario.actaStatus == T(com.controldigital.app.models.entity.FileStatus).RED1}">El usuario a&uacute;n no ha subido un documento</div>
-											<div class="doc_status" th:if="${usuario.actaStatus == T(com.controldigital.app.models.entity.FileStatus).RED2}">No es el Documento</div>
-											<div class="doc_status" th:if="${usuario.actaStatus == T(com.controldigital.app.models.entity.FileStatus).RED3}">No es Legble</div>
-											<div class="doc_status" th:if="${usuario.actaStatus == T(com.controldigital.app.models.entity.FileStatus).RED4}">No est&aacute; Apostillado</div>
-											<div class="doc_status" th:if="${usuario.actaStatus == T(com.controldigital.app.models.entity.FileStatus).YELLOW}">DOCUMENTO EN PROCESO DE VALIDACION</div>
-											<div class="doc_status" th:if="${usuario.actaStatus == T(com.controldigital.app.models.entity.FileStatus).GREEN}">DOCUMENTO VALIDADO</div>
+												<div class="doc_status" th:if="${usuario.actaStatus == T(com.controldigital.app.models.entity.FileStatus).RED1}">El usuario a&uacute;n no ha subido un documento.</div>
+												<div class="doc_status" th:if="${usuario.actaStatus == T(com.controldigital.app.models.entity.FileStatus).RED2}">No es el Documento</div>
+												<div class="doc_status" th:if="${usuario.actaStatus == T(com.controldigital.app.models.entity.FileStatus).RED3}">No es Legble</div>
+												<div class="doc_status" th:if="${usuario.actaStatus == T(com.controldigital.app.models.entity.FileStatus).RED4}">No est&aacute; Apostillado</div>
+												<div class="doc_status" th:if="${usuario.actaStatus == T(com.controldigital.app.models.entity.FileStatus).YELLOW}">DOCUMENTO EN PROCESO DE VALIDACION</div>
+												<div class="doc_status" th:if="${usuario.actaStatus == T(com.controldigital.app.models.entity.FileStatus).GREEN}">DOCUMENTO VALIDADO</div>
+												<div th:if="${usuario.actaNacimiento == '' || usuario.actaNacimiento == null}" class="col-sm-10">
+													<p>Sube un documento.</p>
+												</div>
+												<div th:unless="${usuario.actaNacimiento == '' || usuario.actaNacimiento == null}" class="col-sm-10">
+													<a th:href="@{/Personal/descargarArchivo/} + 'Acta/' + ${usuario.id}"
+													   class="card-link" th:text="'Descargar'"></a>
+												</div>
+											</div>
 										</div>
 										<br>
 										<div class="form-group row">
-											<label for="nombre" class="col-sm-6 col-form-label">Pasaporte
+											<label class="col-sm-6 col-form-label">Pasaporte
 												(ext) / INE(mex)</label>
 											<div class="col-sm-6">
-												<input th:field="${usuario.pasaporte}" type="text"
-													class="form-control" readonly />
-											</div>
-										</div>
-										<div>
-											<div class="doc_status" th:if="${usuario.pasaporteStatus == T(com.controldigital.app.models.entity.FileStatus).RED1
+												<div class="doc_status" th:if="${usuario.pasaporteStatus == T(com.controldigital.app.models.entity.FileStatus).RED1
 																		   ||usuario.pasaporteStatus == T(com.controldigital.app.models.entity.FileStatus).RED2
 																		   ||usuario.pasaporteStatus == T(com.controldigital.app.models.entity.FileStatus).RED3
 																		   ||usuario.pasaporteStatus == T(com.controldigital.app.models.entity.FileStatus).RED4}">DOCUMENTO NO VALIDADO</div>
-											<div class="doc_status" th:if="${usuario.pasaporteStatus == T(com.controldigital.app.models.entity.FileStatus).RED1}">El usuario a&uacute;n no ha subido un documento</div>
-											<div class="doc_status" th:if="${usuario.pasaporteStatus == T(com.controldigital.app.models.entity.FileStatus).RED2}">No es el Documento</div>
-											<div class="doc_status" th:if="${usuario.pasaporteStatus == T(com.controldigital.app.models.entity.FileStatus).RED3}">No es Legble</div>
-											<div class="doc_status" th:if="${usuario.pasaporteStatus == T(com.controldigital.app.models.entity.FileStatus).RED4}">No est&aacute; Apostillado</div>
-											<div class="doc_status" th:if="${usuario.pasaporteStatus == T(com.controldigital.app.models.entity.FileStatus).YELLOW}">DOCUMENTO EN PROCESO DE VALIDACION</div>
-											<div class="doc_status" th:if="${usuario.pasaporteStatus == T(com.controldigital.app.models.entity.FileStatus).GREEN}">DOCUMENTO VALIDADO</div>
+												<div class="doc_status" th:if="${usuario.pasaporteStatus == T(com.controldigital.app.models.entity.FileStatus).RED1}">El usuario a&uacute;n no ha subido un documento.</div>
+												<div class="doc_status" th:if="${usuario.pasaporteStatus == T(com.controldigital.app.models.entity.FileStatus).RED2}">No es el Documento</div>
+												<div class="doc_status" th:if="${usuario.pasaporteStatus == T(com.controldigital.app.models.entity.FileStatus).RED3}">No es Legble</div>
+												<div class="doc_status" th:if="${usuario.pasaporteStatus == T(com.controldigital.app.models.entity.FileStatus).RED4}">No est&aacute; Apostillado</div>
+												<div class="doc_status" th:if="${usuario.pasaporteStatus == T(com.controldigital.app.models.entity.FileStatus).YELLOW}">DOCUMENTO EN PROCESO DE VALIDACION</div>
+												<div class="doc_status" th:if="${usuario.pasaporteStatus == T(com.controldigital.app.models.entity.FileStatus).GREEN}">DOCUMENTO VALIDADO</div>
+												<div th:if="${usuario.pasaporte == '' || usuario.pasaporte == null}" class="col-sm-10">
+													<p>Sube un documento.</p>
+												</div>
+												<div th:unless="${usuario.pasaporte == '' || usuario.pasaporte == null}" class="col-sm-10">
+													<a th:href="@{/Personal/descargarArchivo/} + 'Pasaporte/' + ${usuario.id}"
+													   class="card-link" th:text="'Descargar'"></a>
+												</div>
+											</div>
 										</div>
 										<br>
 										<div class="form-group row">
-											<label for="nombre" class="col-sm-6 col-form-label">C&eacute;dula
+											<label class="col-sm-6 col-form-label">C&eacute;dula
 												CURP</label>
 											<div class="col-sm-6">
-												<input th:field="${usuario.cedulaCURP}" type="text"
-													   class="form-control" readonly />
-											</div>
-										</div>
-										<div>
-											<div class="doc_status" th:if="${usuario.curpStatus == T(com.controldigital.app.models.entity.FileStatus).RED1
+												<div class="doc_status" th:if="${usuario.curpStatus == T(com.controldigital.app.models.entity.FileStatus).RED1
 																		   ||usuario.curpStatus == T(com.controldigital.app.models.entity.FileStatus).RED2
 																		   ||usuario.curpStatus == T(com.controldigital.app.models.entity.FileStatus).RED3
 																		   ||usuario.curpStatus == T(com.controldigital.app.models.entity.FileStatus).RED4}">DOCUMENTO NO VALIDADO</div>
-											<div class="doc_status" th:if="${usuario.curpStatus == T(com.controldigital.app.models.entity.FileStatus).RED1}">El usuario a&uacute;n no ha subido un documento</div>
-											<div class="doc_status" th:if="${usuario.curpStatus == T(com.controldigital.app.models.entity.FileStatus).RED2}">No es el Documento</div>
-											<div class="doc_status" th:if="${usuario.curpStatus == T(com.controldigital.app.models.entity.FileStatus).RED3}">No es Legble</div>
-											<div class="doc_status" th:if="${usuario.curpStatus == T(com.controldigital.app.models.entity.FileStatus).RED4}">No est&aacute; Apostillado</div>
-											<div class="doc_status" th:if="${usuario.curpStatus == T(com.controldigital.app.models.entity.FileStatus).YELLOW}">DOCUMENTO EN PROCESO DE VALIDACION</div>
-											<div class="doc_status" th:if="${usuario.curpStatus == T(com.controldigital.app.models.entity.FileStatus).GREEN}">DOCUMENTO VALIDADO</div>
+												<div class="doc_status" th:if="${usuario.curpStatus == T(com.controldigital.app.models.entity.FileStatus).RED1}">El usuario a&uacute;n no ha subido un documento.</div>
+												<div class="doc_status" th:if="${usuario.curpStatus == T(com.controldigital.app.models.entity.FileStatus).RED2}">No es el Documento</div>
+												<div class="doc_status" th:if="${usuario.curpStatus == T(com.controldigital.app.models.entity.FileStatus).RED3}">No es Legble</div>
+												<div class="doc_status" th:if="${usuario.curpStatus == T(com.controldigital.app.models.entity.FileStatus).RED4}">No est&aacute; Apostillado</div>
+												<div class="doc_status" th:if="${usuario.curpStatus == T(com.controldigital.app.models.entity.FileStatus).YELLOW}">DOCUMENTO EN PROCESO DE VALIDACION</div>
+												<div class="doc_status" th:if="${usuario.curpStatus == T(com.controldigital.app.models.entity.FileStatus).GREEN}">DOCUMENTO VALIDADO</div>
+												<div th:if="${usuario.cedulaCURP == '' || usuario.cedulaCURP == null}" class="col-sm-10">
+													<p>Sube un documento.</p>
+												</div>
+												<div th:unless="${usuario.cedulaCURP == '' || usuario.cedulaCURP == null}" class="col-sm-10">
+													<a th:href="@{/Personal/descargarArchivo/} + 'Curp/' + ${usuario.id}"
+													   class="card-link" th:text="'Descargar'"></a>
+												</div>
+											</div>
 										</div>
 									</div>
 								</div>
