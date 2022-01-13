@@ -1,5 +1,7 @@
 package com.controldigital.app.controllers;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.time.*;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -9,12 +11,17 @@ import com.controldigital.app.service.*;
 import com.controldigital.app.util.Informes;
 import com.controldigital.app.util.MailSenderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
@@ -45,6 +52,12 @@ public class AdminController {
 
     @Autowired
     private ExpedienteService expedienteService;
+
+    @Autowired
+    private ISipService sipService;
+
+    @Autowired
+    private IUploadFileService uploadFileService;
 
     @GetMapping("/ListadoUsuarios")
     public String verUsuarios(Model model) {
@@ -397,4 +410,84 @@ public class AdminController {
     }
 */
 
+    @RequestMapping(value = "/formSIP/{id}")
+    public String agregarSip(@PathVariable(value = "id") Long id, Map<String, Object> model) {
+        Usuario usuario = null;
+
+        if (id > 0) {
+            usuario = usuarioService.findOne(id);
+            //model.put("usuario", usuario);
+        } else {
+            return "redirect:/PersonalAutorizado/ListadoUsuarios";
+        }
+
+        SIP sip = new SIP();
+        sip.setUsers(usuario);
+
+        model.put("titulo", "Agregar SIP");
+        model.put("sip", sip);
+        //model.put("idUsuario", usuario.getId());
+        return "PersonalAutorizado/formSIP";
+
+    }
+
+    @PostMapping(value = "/formSIP")
+    public String guardarrSip(@Valid SIP sip, BindingResult result, Model model,
+                              @RequestParam("file") MultipartFile file) {
+        Usuario usuario = sip.getUsers();
+
+        if(!file.isEmpty()){
+            if(sip.getArchivoSip() != null && sip.getArchivoSip().length() > 0){
+                uploadFileService.delete(sip.getArchivoSip());
+            }
+            String uniqueFilename = null;
+            try {
+                uniqueFilename = uploadFileService.copy(file);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            sip.setArchivoSip(uniqueFilename);
+        } else {
+            if(sip.getArchivoSip() == null){
+                sip.setArchivoSip("");
+            }
+        }
+
+        sipService.saveSip(sip);
+        sipService.saveUsuario(usuario);
+
+        return "PersonalAutorizado/ListadoUsuarios";
+
+    }
+
+    @GetMapping(value = "/descargarSip/{id}")
+    public ResponseEntity<Resource> descargarArchivo(@PathVariable Long id, HttpServletRequest request) {
+
+        SIP sip = sipService.findSipById(id);
+
+        String filename = sip.getArchivoSip();
+
+        Resource recurso = null;
+        try {
+            recurso = uploadFileService.load(filename);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        String contentType = null;
+        try {
+            contentType = request.getServletContext().getMimeType(recurso.getFile().getAbsolutePath());
+        } catch (IOException ex) {
+            // logger.info("Could not determine file type.");
+        }
+        // Fallback to the default content type if type could not be determined
+        if (contentType == null) {
+
+            contentType = "application/octet-stream";
+
+        }
+        return ResponseEntity.ok().contentType(MediaType.parseMediaType(contentType))
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + recurso.getFilename() + "\"")
+                .body(recurso);
+
+    }
 }

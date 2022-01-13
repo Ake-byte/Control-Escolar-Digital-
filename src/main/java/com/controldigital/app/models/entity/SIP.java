@@ -9,15 +9,15 @@ public class SIP implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_id")
+    @Column(name = "sip_id")
     private Long id;
 
-    private String numeroSip;
+    private String nombreSip;
 
     private String archivoSip;
 
-    @ManyToOne(optional=false)
-    @JoinColumn(name = "user_id", insertable=false, updatable=false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
     private Usuario users;
 
     public Usuario getUsers() {
@@ -36,12 +36,12 @@ public class SIP implements Serializable {
         this.id = id;
     }
 
-    public String getNumeroSip() {
-        return numeroSip;
+    public String getNombreSip() {
+        return nombreSip;
     }
 
-    public void setNumeroSip(String numeroSip) {
-        this.numeroSip = numeroSip;
+    public void setNombreSip(String nombreSip) {
+        this.nombreSip = nombreSip;
     }
 
     public String getArchivoSip() {

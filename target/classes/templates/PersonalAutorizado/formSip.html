@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<body>
+<header th:replace="layout/layout :: header"></header>
+<div class="container">
+    <div class="card bg-light mb-3" style="border-color: #4169E1">
+        <div class="card-header mb-3 text-white text-center"
+             style="background: #4169E1">
+            <h3 th:text="${titulo}"></h3>
+        </div>
+        <div class="container">
+            <form th:action="@{/PersonalAutorizado/formSIP}" th:object="${sip}" method="post" enctype="multipart/form-data">
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Nombre Formato SIP</label>
+                    <div class="col-sm-6">
+                        <select id="numeroSip" name="numeroSip"
+                                th:field="*{nombreSip}">
+                            <option value="1">SIP-0</option>
+                            <option value="2">SIP-1</option>
+                            <option value="3">SIP-2</option>
+                            <option value="4">SIP-4</option>
+                            <option value="5">SIP-5</option>
+                            <option value="6">SIP-6</option>
+                            <option value="7">SIP-8</option>
+                            <option value="8">SIP-13</option>
+                            <option value="9">SIP-14</option>
+                            <option value="10">SIP-15</option>
+                            <option value="11">SIP-17</option>
+                            <option value="12">SIP-19</option>
+                        </select>
+                    </div>
+                </div>
+                <br>
+                <div class="form-group row">
+                    <label class="col-sm-6 col-form-label">Archivo</label>
+                    <div class="col-sm-6">
+                        <input type="file" name="file" class="form-control" accept="pdf"/>
+                    </div>
+                </div>
+                <br>
+                <div class="form-group row">
+                    <div class="col-sm-1">
+                        <input type="submit" value="Guardar" class="btn btn-primary" />
+                    </div>
+                    <div class="col-sm-1">
+                        <a class="btn btn-danger"
+                           th:href="@{/PersonalAutorizado/listarRoles}"
+                           th:text="'Cancelar'"> </a>
+                    </div>
+                </div>
+                <br>
+                <input type="hidden" th:field="*{id}" />
+                <input type="hidden" th:field="*{users}" />
+
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+
+<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

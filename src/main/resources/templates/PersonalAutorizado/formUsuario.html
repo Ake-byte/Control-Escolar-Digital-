@@ -12,7 +12,7 @@
 				<div class="container">
 					<form th:action="@{/PersonalAutorizado/formUsuario}" th:object="${usuario}" method="post">
 						<div class="form-group row">
-							<label for="nombre" class="col-sm-2 col-form-label">Nombre</label>
+							<label class="col-sm-2 col-form-label">Nombre</label>
 							<div class="col-sm-6">
 								<input type="text" class="form-control" th:errorclass="'form-control alert-danger'"
 									th:field="*{nombre}" readonly/>
@@ -20,7 +20,7 @@
 						</div>
 						<br>
 						<div class="form-group row">
-							<label for="nombre" class="col-sm-2 col-form-label">Apellido Paterno</label>
+							<label class="col-sm-2 col-form-label">Apellido Paterno</label>
 							<div class="col-sm-6">
 								<input type="text" class="form-control" th:errorclass="'form-control alert-danger'"
 									th:field="*{apellidoPaterno}" readonly/>
@@ -28,7 +28,7 @@
 						</div>
 						<br>
 						<div class="form-group row">
-							<label for="nombre" class="col-sm-2 col-form-label">Apellido Materno</label>
+							<label class="col-sm-2 col-form-label">Apellido Materno</label>
 							<div class="col-sm-6">
 								<input type="text" class="form-control" th:errorclass="'form-control alert-danger'"
 									th:field="*{apellidoMaterno}" readonly/>
@@ -36,7 +36,7 @@
 						</div>
 						<br>
 						<div class="form-group row">
-							<label for="nombre" class="col-sm-2 col-form-label">Email</label>
+							<label class="col-sm-2 col-form-label">Email</label>
 							<div class="col-sm-6">
 								<input type="text" class="form-control" th:errorclass="'form-control alert-danger'"
 									th:field="*{email}" readonly/>

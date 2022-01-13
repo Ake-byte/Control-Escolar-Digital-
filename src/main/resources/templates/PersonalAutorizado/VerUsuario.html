@@ -31,13 +31,14 @@
                                 class="nav-link"
                                 id="productividadAlumno-tab" data-toggle="tab" href="#productividadAlumno"
                                 role="tab" aria-controls="productividadAlumno" aria-selected="false">
-                            Produdictivad del Alumno</a></li>
+                            Productividad del Alumno</a></li>
+
                     </ul>
                     <div class="card-body">
                         <div class="tab-content" id="myTabContent">
                             <div class="tab-pane fade show active" id="infoPersonalAlumno" role="tabpanel"
                                  aria-labelledby="infoPersonalAlumno-tab">
-                                <div class="card">
+                                <div class="card bg-light">
                                     <div class="card-body">
                                         <div class="form-group row">
                                             <label class="col-sm-6 col-form-label">Nombre(s):</label>
@@ -667,154 +668,154 @@
                             </div>
                             <div class="tab-pane fade" id="expedienteAlumno" role="tabpanel"
                                  aria-labelledby="expedienteAlumno">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="form-group row">
-                                            <label class="col-sm-6 col-form-label">
-                                                N&uacute;mero de Registro</label>
-                                            <div class="col-sm-6">
-                                                <input type="text" class="form-control" th:field="${usuario.expediente.numeroRegistro}" readonly />
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="card bg-light">
+                                            <div class="card-body">
+                                                <div class="form-group row">
+                                                    <label class="col-sm-6 col-form-label">
+                                                        N&uacute;mero de Registro</label>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" class="form-control" th:field="${usuario.expediente.numeroRegistro}" readonly />
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <div class="form-group row">
+                                                    <label class="col-sm-6 col-form-label">Grado
+                                                    </label>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" class="form-control" th:field="${usuario.expediente.grado}" readonly />
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <div class="form-group row">
+                                                    <label class="col-sm-6 col-form-label">Estatus Escolar
+                                                    </label>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" class="form-control" th:field="${usuario.expediente.estatusEscolar}" readonly />
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <div class="form-group row">
+                                                    <label class="col-sm-6 col-form-label">Semestre
+                                                    </label>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" class="form-control" th:field="${usuario.expediente.semestre}" readonly />
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <div class="form-group row">
+                                                    <label class="col-sm-6 col-form-label">CVU
+                                                        CONACYT </label>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" class="form-control" th:field="${usuario.expediente.cvuConacyt}" readonly />
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <div class="form-group row">
+                                                    <label class="col-sm-6 col-form-label">Con
+                                                        beca CONACYT? </label>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" class="form-control" th:field="${usuario.expediente.becaConacyt}" readonly />
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <div class="form-group row">
+                                                    <label class="col-sm-6 col-form-label">Asesor
+                                                        1 (CICATA):</label>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" class="form-control" th:field="${usuario.expediente.asesor1}" readonly />
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <div class="form-group row">
+                                                    <label class="col-sm-6 col-form-label">Asesor
+                                                        2:</label>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" class="form-control" th:field="${usuario.expediente.asesor2}" readonly />
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <div class="form-group row">
+                                                    <label class="col-sm-6 col-form-label">T&iacute;tulo
+                                                        de la tesis </label>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" class="form-control" th:field="${usuario.expediente.tituloTesis}" readonly />
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <div class="form-group row">
+                                                    <label class="col-sm-6 col-form-label">Comit&eacute;
+                                                        tutorial 1 </label>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" class="form-control" th:field="${usuario.expediente.comiteTutorial1}" readonly />
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <div class="form-group row">
+                                                    <label class="col-sm-6 col-form-label">Comit&eacute;
+                                                        tutorial 2 </label>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" class="form-control" th:field="${usuario.expediente.comiteTutorial2}" readonly />
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <div class="form-group row">
+                                                    <label class="col-sm-6 col-form-label">Comit&eacute;
+                                                        tutorial 3 </label>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" class="form-control" th:field="${usuario.expediente.comiteTutorial3}" readonly />
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <div class="form-group row">
+                                                    <label class="col-sm-6 col-form-label">Comit&eacute;
+                                                        tutorial 4 </label>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" class="form-control" th:field="${usuario.expediente.comiteTutorial4}" readonly />
+                                                    </div>
+                                                </div>
+                                                <br>
                                             </div>
                                         </div>
-                                        <br>
-                                        <div class="form-group row">
-                                            <label class="col-sm-6 col-form-label">Grado
-                                            </label>
-                                            <div class="col-sm-6">
-                                                <input type="text" class="form-control" th:field="${usuario.expediente.grado}" readonly />
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="card bg-light">
+                                            <div class="card-body">
+                                                <a class="btn btn-xs" id="editar"
+                                                   sec:authorize="hasRole('ROLE_ADMIN')"
+                                                   th:href="@{/PersonalAutorizado/formSIP/} + ${usuario.id}"><img
+                                                        th:src="@{/images/editarUsuario.png}" width="35" height="25"></a>
+                                                <table class="table table-striped">
+                                                    <thead>
+                                                    <tr>
+                                                        <th>N&uacute;mero SIP</th>
+                                                        <th>Formato SIP</th>
+                                                        <th>Editar</th>
+                                                        <th>Eliminar</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <tr th:each="sip: ${usuario.sips}">
+                                                        <td th:text="${sip.nombreSip}"></td>
+                                                        <td th:if="${sip.archivoSip == null || sip.archivoSip == ''}">No
+                                                            hay archivo</td>
+                                                        <td th:unless="${sip.archivoSip == null || sip.archivoSip == ''}"
+                                                                ><a th:href="@{/PersonalAutorizado/descargarSip/} + ${sip.id}"
+                                                                    class="card-link" th:text="'Descargar'"></a></td>
+                                                        <td>Editar</td>
+                                                        <td>Eliminar</td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
                                             </div>
                                         </div>
-                                        <br>
-                                        <div class="form-group row">
-                                            <label class="col-sm-6 col-form-label">Estatus Escolar
-                                            </label>
-                                            <div class="col-sm-6">
-                                                <input type="text" class="form-control" th:field="${usuario.expediente.estatusEscolar}" readonly />
-                                            </div>
-                                        </div>
-                                        <br>
-                                        <div class="form-group row">
-                                            <label class="col-sm-6 col-form-label">Semestre
-                                            </label>
-                                            <div class="col-sm-6">
-                                                <input type="text" class="form-control" th:field="${usuario.expediente.semestre}" readonly />
-                                            </div>
-                                        </div>
-                                        <br>
-                                        <div class="form-group row">
-                                            <label class="col-sm-6 col-form-label">CVU
-                                                CONACYT </label>
-                                            <div class="col-sm-6">
-                                                <input type="text" class="form-control" th:field="${usuario.expediente.cvuConacyt}" readonly />
-                                            </div>
-                                        </div>
-                                        <br>
-                                        <div class="form-group row">
-                                            <label class="col-sm-6 col-form-label">Con
-                                                beca CONACYT? </label>
-                                            <div class="col-sm-6">
-                                                <input type="text" class="form-control" th:field="${usuario.expediente.becaConacyt}" readonly />
-                                            </div>
-                                        </div>
-                                        <br>
-                                        <div class="form-group row">
-                                            <label class="col-sm-6 col-form-label">Asesor
-                                                1 (CICATA):</label>
-                                            <div class="col-sm-6">
-                                                <input type="text" class="form-control" th:field="${usuario.expediente.asesor1}" readonly />
-                                            </div>
-                                        </div>
-                                        <br>
-                                        <div class="form-group row">
-                                            <label class="col-sm-6 col-form-label">Asesor
-                                                2:</label>
-                                            <div class="col-sm-6">
-                                                <input type="text" class="form-control" th:field="${usuario.expediente.asesor2}" readonly />
-                                            </div>
-                                        </div>
-                                        <br>
-                                        <div class="form-group row">
-                                            <label class="col-sm-6 col-form-label">T&iacute;tulo
-                                                de la tesis </label>
-                                            <div class="col-sm-6">
-                                                <input type="text" class="form-control" th:field="${usuario.expediente.tituloTesis}" readonly />
-                                            </div>
-                                        </div>
-                                        <br>
-                                        <div class="form-group row">
-                                            <label class="col-sm-6 col-form-label">Comit&eacute;
-                                                tutorial 1 </label>
-                                            <div class="col-sm-6">
-                                                <input type="text" class="form-control" th:field="${usuario.expediente.comiteTutorial1}" readonly />
-                                            </div>
-                                        </div>
-                                        <br>
-                                        <div class="form-group row">
-                                            <label class="col-sm-6 col-form-label">Comit&eacute;
-                                                tutorial 2 </label>
-                                            <div class="col-sm-6">
-                                                <input type="text" class="form-control" th:field="${usuario.expediente.comiteTutorial2}" readonly />
-                                            </div>
-                                        </div>
-                                        <br>
-                                        <div class="form-group row">
-                                            <label class="col-sm-6 col-form-label">Comit&eacute;
-                                                tutorial 3 </label>
-                                            <div class="col-sm-6">
-                                                <input type="text" class="form-control" th:field="${usuario.expediente.comiteTutorial3}" readonly />
-                                            </div>
-                                        </div>
-                                        <br>
-                                        <div class="form-group row">
-                                            <label class="col-sm-6 col-form-label">Comit&eacute;
-                                                tutorial 4 </label>
-                                            <div class="col-sm-6">
-                                                <input type="text" class="form-control" th:field="${usuario.expediente.comiteTutorial4}" readonly />
-                                            </div>
-                                        </div>
-                                        <br>
-                                        <div class="form-group row">
-                                            <label class="col-sm-6 col-form-label">SIP-01
-                                            </label>
-                                            <div class="col-sm-6"></div>
-                                        </div>
-                                        <br>
-                                        <div class="form-group row">
-                                            <label class="col-sm-6 col-form-label">SIP-02
-                                            </label>
-                                            <div class="col-sm-6"></div>
-                                        </div>
-                                        <br>
-                                        <div class="form-group row">
-                                            <label class="col-sm-6 col-form-label">SIP-13
-                                            </label>
-                                            <div class="col-sm-6"></div>
-                                        </div>
-                                        <br>
-                                        <div class="form-group row">
-                                            <label class="col-sm-6 col-form-label">SIP-14
-                                            </label>
-                                            <div class="col-sm-6"></div>
-                                        </div>
-                                        <br>
-                                        <div class="form-group row">
-                                            <label class="col-sm-6 col-form-label">SIP-19
-                                            </label>
-                                            <div class="col-sm-6"></div>
-                                        </div>
-                                        <br>
-                                        <div class="form-group row">
-                                            <label class="col-sm-6 col-form-label">SIP-21
-                                            </label>
-                                            <div class="col-sm-6"></div>
-                                        </div>
-                                        <br>
                                     </div>
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="productividadAlumno" role="tabpanel"
                                  aria-labelledby="productividadAlumno">
-                                <div class="card">
+                                <div class="card bg-light">
                                     <div class="card-body">
                                         <table class="table table-striped">
                                             <thead>
@@ -840,6 +841,7 @@
                                                 <td
                                                         th:unless="${producto.archivoProducto == null || producto.archivoProducto == ''}"
                                                         th:text="${producto.archivoProducto}"></td>
+
                                             </tr>
                                             </tbody>
                                         </table>
