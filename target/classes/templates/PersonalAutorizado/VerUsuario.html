@@ -119,6 +119,7 @@
                                             </div>
                                         </div>
                                         <br>
+                                        <br>
                                         <div class="form-group row">
                                             <label  class="col-sm-6 col-form-label">G&eacute;nero</label>
                                             <div class="col-sm-6">
@@ -170,18 +171,24 @@
                                                         <div class="form-group row">
                                                             <label class="col-sm-4 col-form-label">Foto
                                                                 actual (fondo blanco)</label>
-                                                            <div class="col-sm-4">
-                                                                <input th:if="${usuario.infoPersonal.fotoActual == null || usuario.infoPersonal.fotoActual == ''}" placeholder="No hay archivo" readonly>
-                                                                <input th:unless="${usuario.infoPersonal.fotoActual == null || usuario.infoPersonal.fotoActual == ''}" th:placeholder="${usuario.infoPersonal.fotoActual}" readonly>
+                                                            <div th:if="${usuario.infoPersonal.fotoActual == '' || usuario.infoPersonal.fotoActual == null}" class="col-sm-4">
+                                                                <p>El usuario no ha subido el documento.</p>
+                                                            </div>
+                                                            <div th:unless="${usuario.infoPersonal.fotoActual == '' || usuario.infoPersonal.fotoActual == null}" class="col-sm-4">
+                                                                <a th:href="@{/PersonalAutorizado/descargarArchivo/} + 'Foto/' + ${usuario.id}"
+                                                                   class="card-link" th:text="'Descargar'"></a>
                                                             </div>
                                                         </div>
                                                         <br>
                                                         <div class="form-group row">
                                                             <label class="col-sm-4 col-form-label">Acta
                                                                 de Nacimiento</label>
-                                                            <div class="col-sm-4">
-                                                                <input th:if="${usuario.infoPersonal.actaNacimiento == null || usuario.infoPersonal.actaNacimiento == ''}" placeholder="No hay archivo" readonly>
-                                                                <input th:unless="${usuario.infoPersonal.actaNacimiento == null || usuario.infoPersonal.actaNacimiento == ''}" th:placeholder="${usuario.infoPersonal.actaNacimiento}" readonly>
+                                                            <div th:if="${usuario.infoPersonal.actaNacimiento == '' || usuario.infoPersonal.actaNacimiento == null}" class="col-sm-4">
+                                                                <p>El usuario no ha subido el documento.</p>
+                                                            </div>
+                                                            <div th:unless="${usuario.infoPersonal.actaNacimiento == '' || usuario.infoPersonal.actaNacimiento == null}" class="col-sm-4">
+                                                                <a th:href="@{/PersonalAutorizado/descargarArchivo/} + 'ActaNacimiento/' + ${usuario.id}"
+                                                                   class="card-link" th:text="'Descargar'"></a>
                                                             </div>
                                                         </div>
                                                         <br>
@@ -189,18 +196,24 @@
                                                         <div class="form-group row">
                                                             <label class="col-sm-4 col-form-label">Pasaporte
                                                                 (ext) / INE(mex)</label>
-                                                            <div class="col-sm-4">
-                                                                <input th:if="${usuario.infoPersonal.pasaporte == null || usuario.infoPersonal.pasaporte == ''}" placeholder="No hay archivo" readonly>
-                                                                <input th:unless="${usuario.infoPersonal.pasaporte == null || usuario.infoPersonal.pasaporte == ''}" th:placeholder="${usuario.infoPersonal.pasaporte}" readonly>
+                                                            <div th:if="${usuario.infoPersonal.pasaporte == '' || usuario.infoPersonal.pasaporte == null}" class="col-sm-4">
+                                                                <p>El usuario no ha subido el documento.</p>
+                                                            </div>
+                                                            <div th:unless="${usuario.infoPersonal.pasaporte == '' || usuario.infoPersonal.pasaporte == null}" class="col-sm-4">
+                                                                <a th:href="@{/PersonalAutorizado/descargarArchivo/} + 'Pasaporte/' + ${usuario.id}"
+                                                                   class="card-link" th:text="'Descargar'"></a>
                                                             </div>
                                                         </div>
                                                         <br>
                                                         <div class="form-group row">
                                                             <label class="col-sm-4 col-form-label">C&eacute;dula
                                                                 CURP</label>
-                                                            <div class="col-sm-4">
-                                                                <input th:if="${usuario.infoPersonal.cedulaCURP == null || usuario.infoPersonal.cedulaCURP == ''}" placeholder="No hay archivo" readonly>
-                                                                <input th:unless="${usuario.infoPersonal.cedulaCURP == null || usuario.infoPersonal.cedulaCURP == ''}" th:placeholder="${usuario.infoPersonal.cedulaCURP}" readonly>
+                                                            <div th:if="${usuario.infoPersonal.cedulaCURP == '' || usuario.infoPersonal.cedulaCURP == null}" class="col-sm-4">
+                                                                <p>El usuario no ha subido el documento.</p>
+                                                            </div>
+                                                            <div th:unless="${usuario.infoPersonal.cedulaCURP == '' || usuario.infoPersonal.cedulaCURP == null}" class="col-sm-4">
+                                                                <a th:href="@{/PersonalAutorizado/descargarArchivo/} + 'Curp/' + ${usuario.id}"
+                                                                   class="card-link" th:text="'Descargar'"></a>
                                                             </div>
                                                         </div>
                                                         <br>
@@ -213,10 +226,9 @@
                                                         <table>
                                                             <thead>
                                                             <tr>
-                                                                <td>Status</td>
+                                                                <td>Estatus</td>
                                                                 <td>Descripci&oacute;n</td>
-                                                                <td>Validar</td>
-                                                                <td>Invalidar</td>
+                                                                <td>Cambiar Estatus</td>
                                                             </tr>
                                                             </thead>
                                                             <tbody>
@@ -230,17 +242,13 @@
                                                                     <div th:if="${usuario.infoPersonal.fotoStatus == T(com.controldigital.app.models.entity.FileStatus).GREEN}" class="bulb">OK</div>
                                                                 </div></td>
                                                                 <td th:if="${usuario.infoPersonal.fotoStatus == T(com.controldigital.app.models.entity.FileStatus).GREEN}" th:text="'Validado'"></td>
+                                                                <td th:if="${usuario.infoPersonal.fotoStatus == T(com.controldigital.app.models.entity.FileStatus).YELLOW}" th:text="'Asigne un Estatus'"></td>
                                                                 <td th:if="${usuario.infoPersonal.fotoStatus == T(com.controldigital.app.models.entity.FileStatus).RED1}" th:text="'El usuario a&uacute;n no ha subido un documento'"></td>
                                                                 <td th:if="${usuario.infoPersonal.fotoStatus == T(com.controldigital.app.models.entity.FileStatus).RED2}" th:text="'No es el Documento'"></td>
                                                                 <td th:if="${usuario.infoPersonal.fotoStatus == T(com.controldigital.app.models.entity.FileStatus).RED3}" th:text="'No es Legible'"></td>
                                                                 <td th:if="${usuario.infoPersonal.fotoStatus == T(com.controldigital.app.models.entity.FileStatus).RED4}" th:text="'No est&aacute; Apostillado'"></td>
-                                                                <td><a class="btn btn-success"
-                                                                       th:href="@{/PersonalAutorizado/validarArchivo/} + ${usuario.id} + '/fotoStatus'"
-                                                                       onclick="return confirm('&iquest;Est&aacute; seguro de validar este archivo?');">
-                                                                    <img th:src="@{/images/validado.png}" width="55"
-                                                                         height="55"></a></td>
-                                                                <td><a class="btn btn-danger"
-                                                                       th:href="@{/PersonalAutorizado/invalidarArchivo/} + ${usuario.id} + '/fotoStatus'">
+                                                                <td><a class="btn btn-info"
+                                                                       th:href="@{/PersonalAutorizado/opcionValidarArchivo/} + ${usuario.id} + '/fotoStatus'">
                                                                     <img th:src="@{/images/noValidado.png}" width="55"
                                                                          height="55"></a></td>
                                                             </tr>
@@ -254,17 +262,13 @@
                                                                     <div th:if="${usuario.infoPersonal.actaStatus == T(com.controldigital.app.models.entity.FileStatus).GREEN}" class="bulb">OK</div>
                                                                 </div></td>
                                                                 <td th:if="${usuario.infoPersonal.actaStatus == T(com.controldigital.app.models.entity.FileStatus).GREEN}" th:text="'Validado'"></td>
+                                                                <td th:if="${usuario.infoPersonal.actaStatus == T(com.controldigital.app.models.entity.FileStatus).YELLOW}" th:text="'Asigne un Estatus'"></td>
                                                                 <td th:if="${usuario.infoPersonal.actaStatus == T(com.controldigital.app.models.entity.FileStatus).RED1}" th:text="'El usuario a&uacute;n no ha subido un documento'"></td>
                                                                 <td th:if="${usuario.infoPersonal.actaStatus == T(com.controldigital.app.models.entity.FileStatus).RED2}" th:text="'No es el Documento'"></td>
                                                                 <td th:if="${usuario.infoPersonal.actaStatus == T(com.controldigital.app.models.entity.FileStatus).RED3}" th:text="'No es Legible'"></td>
                                                                 <td th:if="${usuario.infoPersonal.actaStatus == T(com.controldigital.app.models.entity.FileStatus).RED4}" th:text="'No est&aacute; Apostillado'"></td>
-                                                                <td><a class="btn btn-success"
-                                                                       th:href="@{/PersonalAutorizado/validarArchivo/} + ${usuario.id} + '/actaStatus'"
-                                                                       onclick="return confirm('&iquest;Est&aacute; seguro de validar este archivo?');">
-                                                                    <img th:src="@{/images/validado.png}" width="55"
-                                                                         height="55"></a></td>
-                                                                <td><a class="btn btn-danger"
-                                                                       th:href="@{/PersonalAutorizado/invalidarArchivo/} + ${usuario.id} + '/actaStatus'">
+                                                                <td><a class="btn btn-info"
+                                                                       th:href="@{/PersonalAutorizado/opcionValidarArchivo/} + ${usuario.id} + '/actaStatus'">
                                                                     <img th:src="@{/images/noValidado.png}" width="55"
                                                                          height="55"></a></td>
                                                             </tr>
@@ -278,17 +282,13 @@
                                                                     <div th:if="${usuario.infoPersonal.pasaporteStatus == T(com.controldigital.app.models.entity.FileStatus).GREEN}" class="bulb">OK</div>
                                                                 </div></td>
                                                                 <td th:if="${usuario.infoPersonal.pasaporteStatus == T(com.controldigital.app.models.entity.FileStatus).GREEN}" th:text="'Validado'"></td>
+                                                                <td th:if="${usuario.infoPersonal.pasaporteStatus == T(com.controldigital.app.models.entity.FileStatus).YELLOW}" th:text="'Asigne un Estatus'"></td>
                                                                 <td th:if="${usuario.infoPersonal.pasaporteStatus == T(com.controldigital.app.models.entity.FileStatus).RED1}" th:text="'El usuario a&uacute;n no ha subido un documento'"></td>
                                                                 <td th:if="${usuario.infoPersonal.pasaporteStatus == T(com.controldigital.app.models.entity.FileStatus).RED2}" th:text="'No es el Documento'"></td>
                                                                 <td th:if="${usuario.infoPersonal.pasaporteStatus == T(com.controldigital.app.models.entity.FileStatus).RED3}" th:text="'No es Legible'"></td>
                                                                 <td th:if="${usuario.infoPersonal.pasaporteStatus == T(com.controldigital.app.models.entity.FileStatus).RED4}" th:text="'No est&aacute; Apostillado'"></td>
-                                                                <td><a class="btn btn-success"
-                                                                       th:href="@{/PersonalAutorizado/validarArchivo/} + ${usuario.id} + '/pasaporteStatus'"
-                                                                       onclick="return confirm('&iquest;Est&aacute; seguro de validar este archivo?');">
-                                                                    <img th:src="@{/images/validado.png}" width="55"
-                                                                         height="55"></a></td>
-                                                                <td><a class="btn btn-danger"
-                                                                       th:href="@{/PersonalAutorizado/invalidarArchivo/} + ${usuario.id} + '/pasaporteStatus'">
+                                                                <td><a class="btn btn-info"
+                                                                       th:href="@{/PersonalAutorizado/opcionValidarArchivo/} + ${usuario.id} + '/pasaporteStatus'">
                                                                     <img th:src="@{/images/noValidado.png}" width="55"
                                                                          height="55"></a></td>
                                                             </tr>
@@ -301,18 +301,14 @@
                                                                     <div th:if="${usuario.infoPersonal.curpStatus == T(com.controldigital.app.models.entity.FileStatus).YELLOW}" class="bulb">PROCESANDO</div>
                                                                     <div th:if="${usuario.infoPersonal.curpStatus == T(com.controldigital.app.models.entity.FileStatus).GREEN}" class="bulb">OK</div>
                                                                 </div></td>
-                                                                <td th:if="${usuario.infoPersonal.actaStatus == T(com.controldigital.app.models.entity.FileStatus).GREEN}" th:text="'Validado'"></td>
-                                                                <td th:if="${usuario.infoPersonal.actaStatus == T(com.controldigital.app.models.entity.FileStatus).RED1}" th:text="'El usuario a&uacute;n no ha subido un documento'"></td>
-                                                                <td th:if="${usuario.infoPersonal.actaStatus == T(com.controldigital.app.models.entity.FileStatus).RED2}" th:text="'No es el Documento'"></td>
-                                                                <td th:if="${usuario.infoPersonal.actaStatus == T(com.controldigital.app.models.entity.FileStatus).RED3}" th:text="'No es Legible'"></td>
-                                                                <td th:if="${usuario.infoPersonal.actaStatus == T(com.controldigital.app.models.entity.FileStatus).RED4}" th:text="'No est&aacute; Apostillado'"></td>
-                                                                <td><a class="btn btn-success"
-                                                                       th:href="@{/PersonalAutorizado/validarArchivo/} + ${usuario.id} + '/curpStatus'"
-                                                                       onclick="return confirm('&iquest;Est&aacute; seguro de validar este archivo?');">
-                                                                    <img th:src="@{/images/validado.png}" width="55"
-                                                                         height="55"></a></td>
-                                                                <td><a class="btn btn-danger"
-                                                                       th:href="@{/PersonalAutorizado/invalidarArchivo/} + ${usuario.id} + '/curpStatus'">
+                                                                <td th:if="${usuario.infoPersonal.curpStatus == T(com.controldigital.app.models.entity.FileStatus).GREEN}" th:text="'Validado'"></td>
+                                                                <td th:if="${usuario.infoPersonal.curpStatus == T(com.controldigital.app.models.entity.FileStatus).YELLOW}" th:text="'Asigne un Estatus'"></td>
+                                                                <td th:if="${usuario.infoPersonal.curpStatus == T(com.controldigital.app.models.entity.FileStatus).RED1}" th:text="'El usuario a&uacute;n no ha subido un documento'"></td>
+                                                                <td th:if="${usuario.infoPersonal.curpStatus == T(com.controldigital.app.models.entity.FileStatus).RED2}" th:text="'No es el Documento'"></td>
+                                                                <td th:if="${usuario.infoPersonal.curpStatus == T(com.controldigital.app.models.entity.FileStatus).RED3}" th:text="'No es Legible'"></td>
+                                                                <td th:if="${usuario.infoPersonal.curpStatus == T(com.controldigital.app.models.entity.FileStatus).RED4}" th:text="'No est&aacute; Apostillado'"></td>
+                                                                <td><a class="btn btn-info"
+                                                                       th:href="@{/PersonalAutorizado/opcionValidarArchivo/} + ${usuario.id} + '/curpStatus'">
                                                                     <img th:src="@{/images/noValidado.png}" width="55"
                                                                          height="55"></a></td>
                                                             </tr>
@@ -407,94 +403,118 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-sm-8">
+                                        <div class="col">
                                             <div class="card bg-light">
                                                 <div class="card-body">
                                                     <br>
                                                     <div class="form-group row">
                                                         <label class="col-sm-6 col-form-label">Calificaciones
                                                             de licenciatura</label>
-                                                        <div class="col-sm-6">
-                                                            <input th:if="${usuario.infoAcademica.calificacionesLicenciatura == null || usuario.infoAcademica.calificacionesLicenciatura == ''}" placeholder="No hay archivo" readonly>
-                                                            <input th:unless="${usuario.infoAcademica.calificacionesLicenciatura == null || usuario.infoAcademica.calificacionesLicenciatura == ''}" th:placeholder="${usuario.infoAcademica.calificacionesLicenciatura}" readonly>
+                                                        <div th:if="${usuario.infoAcademica.calificacionesLicenciatura == '' || usuario.infoAcademica.calificacionesLicenciatura == null}" class="col-sm-4">
+                                                            <p>El usuario no ha subido el documento.</p>
+                                                        </div>
+                                                        <div th:unless="${usuario.infoAcademica.calificacionesLicenciatura == '' || usuario.infoAcademica.calificacionesLicenciatura == null}" class="col-sm-4">
+                                                            <a th:href="@{/PersonalAutorizado/descargarArchivo/} + 'calificacionesLicenciatura/' + ${usuario.id}"
+                                                               class="card-link" th:text="'Descargar'"></a>
                                                         </div>
                                                     </div>
                                                     <br>
                                                     <div class="form-group row">
                                                         <label class="col-sm-6 col-form-label">Diploma
                                                             de licenciatura</label>
-                                                        <div class="col-sm-6">
-                                                            <input th:if="${usuario.infoAcademica.diplomaLicenciatura == null || usuario.infoAcademica.diplomaLicenciatura == ''}" placeholder="No hay archivo" readonly>
-                                                            <input th:unless="${usuario.infoAcademica.diplomaLicenciatura == null || usuario.infoAcademica.diplomaLicenciatura == ''}" th:placeholder="${usuario.infoAcademica.diplomaLicenciatura}" readonly>
+                                                        <div th:if="${usuario.infoAcademica.diplomaLicenciatura == '' || usuario.infoAcademica.diplomaLicenciatura == null}" class="col-sm-4">
+                                                            <p>El usuario no ha subido el documento.</p>
+                                                        </div>
+                                                        <div th:unless="${usuario.infoAcademica.diplomaLicenciatura == '' || usuario.infoAcademica.diplomaLicenciatura == null}" class="col-sm-4">
+                                                            <a th:href="@{/PersonalAutorizado/descargarArchivo/} + 'diplomaLicenciatura/' + ${usuario.id}"
+                                                               class="card-link" th:text="'Descargar'"></a>
                                                         </div>
                                                     </div>
                                                     <br>
                                                     <div class="form-group row">
                                                         <label class="col-sm-6 col-form-label">C&eacute;dula
                                                             profesional licenciatura</label>
-                                                        <div class="col-sm-6">
-                                                            <input th:if="${usuario.infoAcademica.cedulaLicenciatura == null || usuario.infoAcademica.cedulaLicenciatura == ''}" placeholder="No hay archivo" readonly>
-                                                            <input th:unless="${usuario.infoAcademica.cedulaLicenciatura == null || usuario.infoAcademica.cedulaLicenciatura == ''}" th:placeholder="${usuario.infoAcademica.cedulaLicenciatura}" readonly>
+                                                        <div th:if="${usuario.infoAcademica.cedulaLicenciatura == '' || usuario.infoAcademica.cedulaLicenciatura == null}" class="col-sm-4">
+                                                            <p>El usuario no ha subido el documento.</p>
+                                                        </div>
+                                                        <div th:unless="${usuario.infoAcademica.cedulaLicenciatura == '' || usuario.infoAcademica.cedulaLicenciatura == null}" class="col-sm-4">
+                                                            <a th:href="@{/PersonalAutorizado/descargarArchivo/} + 'cedulaLicenciatura/' + ${usuario.id}"
+                                                               class="card-link" th:text="'Descargar'"></a>
                                                         </div>
                                                     </div>
                                                     <br>
                                                     <div class="form-group row">
                                                         <label class="col-sm-6 col-form-label">Acreditaci&oacute;n
                                                             de ingl&eacute;s</label>
-                                                        <div class="col-sm-6">
-                                                            <input th:if="${usuario.infoAcademica.acreditacionIngles == null || usuario.infoAcademica.acreditacionIngles == ''}" placeholder="No hay archivo" readonly>
-                                                            <input th:unless="${usuario.infoAcademica.acreditacionIngles == null || usuario.infoAcademica.acreditacionIngles == ''}" th:placeholder="${usuario.infoAcademica.acreditacionIngles}" readonly>
+                                                        <div th:if="${usuario.infoAcademica.acreditacionIngles == '' || usuario.infoAcademica.acreditacionIngles == null}" class="col-sm-4">
+                                                            <p>El usuario no ha subido el documento.</p>
+                                                        </div>
+                                                        <div th:unless="${usuario.infoAcademica.acreditacionIngles == '' || usuario.infoAcademica.acreditacionIngles == null}" class="col-sm-4">
+                                                            <a th:href="@{/PersonalAutorizado/descargarArchivo/} + 'acreditacionIngles/' + ${usuario.id}"
+                                                               class="card-link" th:text="'Descargar'"></a>
                                                         </div>
                                                     </div>
                                                     <br>
                                                     <div class="form-group row">
                                                         <label class="col-sm-6 col-form-label">Calificaciones
                                                             de maestr&iacute;a</label>
-                                                        <div class="col-sm-6">
-                                                            <input th:if="${usuario.infoAcademica.calificacionesMaestria == null || usuario.infoAcademica.calificacionesMaestria == ''}" placeholder="No hay archivo" readonly>
-                                                            <input th:unless="${usuario.infoAcademica.calificacionesMaestria == null || usuario.infoAcademica.calificacionesMaestria == ''}" th:placeholder="${usuario.infoAcademica.calificacionesMaestria}" readonly>
+                                                        <div th:if="${usuario.infoAcademica.calificacionesMaestria == '' || usuario.infoAcademica.calificacionesMaestria == null}" class="col-sm-4">
+                                                            <p>El usuario no ha subido el documento.</p>
+                                                        </div>
+                                                        <div th:unless="${usuario.infoAcademica.calificacionesMaestria == '' || usuario.infoAcademica.calificacionesMaestria == null}" class="col-sm-4">
+                                                            <a th:href="@{/PersonalAutorizado/descargarArchivo/} + 'calificacionesMaestria/' + ${usuario.id}"
+                                                               class="card-link" th:text="'Descargar'"></a>
                                                         </div>
                                                     </div>
                                                     <br>
                                                     <div class="form-group row">
                                                         <label class="col-sm-6 col-form-label">Acta
                                                             de examen maestr&iacute;a</label>
-                                                        <div class="col-sm-6">
-                                                            <input th:if="${usuario.infoAcademica.actaExamenMaestria == null || usuario.infoAcademica.actaExamenMaestria == ''}" placeholder="No hay archivo" readonly>
-                                                            <input th:unless="${usuario.infoAcademica.actaExamenMaestria == null || usuario.infoAcademica.actaExamenMaestria == ''}" th:placeholder="${usuario.infoAcademica.actaExamenMaestria}" readonly>
+                                                        <div th:if="${usuario.infoAcademica.actaExamenMaestria == '' || usuario.infoAcademica.actaExamenMaestria == null}" class="col-sm-4">
+                                                            <p>El usuario no ha subido el documento.</p>
+                                                        </div>
+                                                        <div th:unless="${usuario.infoAcademica.actaExamenMaestria == '' || usuario.infoAcademica.actaExamenMaestria == null}" class="col-sm-4">
+                                                            <a th:href="@{/PersonalAutorizado/descargarArchivo/} + 'actaExamenMaestria/' + ${usuario.id}"
+                                                               class="card-link" th:text="'Descargar'"></a>
                                                         </div>
                                                     </div>
                                                     <br>
                                                     <div class="form-group row">
                                                         <label class="col-sm-6 col-form-label">Diploma
                                                             de maestr&iacute;a</label>
-                                                        <div class="col-sm-6">
-                                                            <input th:if="${usuario.infoAcademica.diplomaMaestria == null || usuario.infoAcademica.diplomaMaestria == ''}" placeholder="No hay archivo" readonly>
-                                                            <input th:unless="${usuario.infoAcademica.diplomaMaestria == null || usuario.infoAcademica.diplomaMaestria == ''}" th:placeholder="${usuario.infoAcademica.diplomaMaestria}" readonly>
+                                                        <div th:if="${usuario.infoAcademica.diplomaMaestria == '' || usuario.infoAcademica.diplomaMaestria == null}" class="col-sm-4">
+                                                            <p>El usuario no ha subido el documento.</p>
+                                                        </div>
+                                                        <div th:unless="${usuario.infoAcademica.diplomaMaestria == '' || usuario.infoAcademica.diplomaMaestria == null}" class="col-sm-4">
+                                                            <a th:href="@{/PersonalAutorizado/descargarArchivo/} + 'diplomaMaestria/' + ${usuario.id}"
+                                                               class="card-link" th:text="'Descargar'"></a>
                                                         </div>
                                                     </div>
                                                     <br>
                                                     <div class="form-group row">
                                                         <label class="col-sm-6 col-form-label">C&eacute;dula
                                                             profesional maestr&iacute;a</label>
-                                                        <div class="col-sm-6">
-                                                            <input th:if="${usuario.infoAcademica.cedulaMaestria == null || usuario.infoAcademica.cedulaMaestria == ''}" placeholder="No hay archivo" readonly>
-                                                            <input th:unless="${usuario.infoAcademica.cedulaMaestria == null || usuario.infoAcademica.cedulaMaestria == ''}" th:placeholder="${usuario.infoAcademica.cedulaMaestria}" readonly>
+                                                        <div th:if="${usuario.infoAcademica.cedulaMaestria == '' || usuario.infoAcademica.cedulaMaestria == null}" class="col-sm-4">
+                                                            <p>El usuario no ha subido el documento.</p>
+                                                        </div>
+                                                        <div th:unless="${usuario.infoAcademica.cedulaMaestria == '' || usuario.infoAcademica.cedulaMaestria == null}" class="col-sm-4">
+                                                            <a th:href="@{/PersonalAutorizado/descargarArchivo/} + 'cedulaMaestria/' + ${usuario.id}"
+                                                               class="card-link" th:text="'Descargar'"></a>
                                                         </div>
                                                     </div>
                                                     <br>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-sm-4">
+                                        <div class="col">
                                             <div class="card bg-light">
                                                 <div class="card-body">
                                                     <table>
                                                         <thead>
                                                         <tr>
-                                                            <td>Status</td>
-                                                            <td>Validar</td>
-                                                            <td>Invalidar</td>
+                                                            <td>Estatus</td>
+                                                            <td>Descripci&oacute;n</td>
+                                                            <td>Cambiar Status</td>
                                                         </tr>
                                                         </thead>
                                                         <tbody>
@@ -507,13 +527,14 @@
                                                                 <div th:if="${usuario.infoAcademica.calificacionesLicenciaturaStatus == T(com.controldigital.app.models.entity.FileStatus).YELLOW}" class="bulb">PROCESANDO</div>
                                                                 <div th:if="${usuario.infoAcademica.calificacionesLicenciaturaStatus == T(com.controldigital.app.models.entity.FileStatus).GREEN}" class="bulb">OK</div>
                                                             </div></td>
-                                                            <td><a class="btn btn-success"
-                                                                   th:href="@{/PersonalAutorizado/validarArchivo/} + ${usuario.id} + '/calificacionesLicenciaturaStatus'"
-                                                                   onclick="return confirm('&iquest;Est&aacute; seguro de validar este archivo?');">
-                                                                <img th:src="@{/images/validado.png}" width="55"
-                                                                     height="55"></a></td>
-                                                            <td><a class="btn btn-danger"
-                                                                   th:href="@{/PersonalAutorizado/invalidarArchivo/} + ${usuario.id} + '/calificacionesLicenciaturaStatus'"
+                                                            <td th:if="${usuario.infoAcademica.calificacionesLicenciaturaStatus == T(com.controldigital.app.models.entity.FileStatus).GREEN}" th:text="'Validado'"></td>
+                                                            <td th:if="${usuario.infoAcademica.calificacionesLicenciaturaStatus == T(com.controldigital.app.models.entity.FileStatus).YELLOW}" th:text="'Asigne un Estatus'"></td>
+                                                            <td th:if="${usuario.infoAcademica.calificacionesLicenciaturaStatus == T(com.controldigital.app.models.entity.FileStatus).RED1}" th:text="'El usuario a&uacute;n no ha subido un documento'"></td>
+                                                            <td th:if="${usuario.infoAcademica.calificacionesLicenciaturaStatus == T(com.controldigital.app.models.entity.FileStatus).RED2}" th:text="'No es el Documento'"></td>
+                                                            <td th:if="${usuario.infoAcademica.calificacionesLicenciaturaStatus == T(com.controldigital.app.models.entity.FileStatus).RED3}" th:text="'No es Legible'"></td>
+                                                            <td th:if="${usuario.infoAcademica.calificacionesLicenciaturaStatus == T(com.controldigital.app.models.entity.FileStatus).RED4}" th:text="'No est&aacute; Apostillado'"></td>
+                                                            <td><a class="btn btn-info"
+                                                                   th:href="@{/PersonalAutorizado/opcionValidarArchivo/} + ${usuario.id} + '/calificacionesLicenciaturaStatus'"
                                                                    onclick="return confirm('&iquest;Est&aacute; seguro de invalidar este archivo?');">
                                                                 <img th:src="@{/images/noValidado.png}" width="55"
                                                                      height="55"></a></td>
@@ -527,13 +548,14 @@
                                                                 <div th:if="${usuario.infoAcademica.diplomaLicenciaturaStatus == T(com.controldigital.app.models.entity.FileStatus).YELLOW}" class="bulb">PROCESANDO</div>
                                                                 <div th:if="${usuario.infoAcademica.diplomaLicenciaturaStatus == T(com.controldigital.app.models.entity.FileStatus).GREEN}" class="bulb">OK</div>
                                                             </div></td>
-                                                            <td><a class="btn btn-success"
-                                                                   th:href="@{/PersonalAutorizado/validarArchivo/} + ${usuario.id} + '/diplomaLicenciaturaStatus'"
-                                                                   onclick="return confirm('&iquest;Est&aacute; seguro de validar este archivo?');">
-                                                                <img th:src="@{/images/validado.png}" width="55"
-                                                                     height="55"></a></td>
-                                                            <td><a class="btn btn-danger"
-                                                                   th:href="@{/PersonalAutorizado/invalidarArchivo/} + ${usuario.id} + '/diplomaLicenciaturaStatus'"
+                                                            <td th:if="${usuario.infoAcademica.diplomaLicenciaturaStatus == T(com.controldigital.app.models.entity.FileStatus).GREEN}" th:text="'Validado'"></td>
+                                                            <td th:if="${usuario.infoAcademica.diplomaLicenciaturaStatus == T(com.controldigital.app.models.entity.FileStatus).YELLOW}" th:text="'Asigne un Estatus'"></td>
+                                                            <td th:if="${usuario.infoAcademica.diplomaLicenciaturaStatus == T(com.controldigital.app.models.entity.FileStatus).RED1}" th:text="'El usuario a&uacute;n no ha subido un documento'"></td>
+                                                            <td th:if="${usuario.infoAcademica.diplomaLicenciaturaStatus == T(com.controldigital.app.models.entity.FileStatus).RED2}" th:text="'No es el Documento'"></td>
+                                                            <td th:if="${usuario.infoAcademica.diplomaLicenciaturaStatus == T(com.controldigital.app.models.entity.FileStatus).RED3}" th:text="'No es Legible'"></td>
+                                                            <td th:if="${usuario.infoAcademica.diplomaLicenciaturaStatus == T(com.controldigital.app.models.entity.FileStatus).RED4}" th:text="'No est&aacute; Apostillado'"></td>
+                                                            <td><a class="btn btn-info"
+                                                                   th:href="@{/PersonalAutorizado/opcionValidarArchivo/} + ${usuario.id} + '/diplomaLicenciaturaStatus'"
                                                                    onclick="return confirm('&iquest;Est&aacute; seguro de invalidar este archivo?');">
                                                                 <img th:src="@{/images/noValidado.png}" width="55"
                                                                      height="55"></a></td>
@@ -547,13 +569,14 @@
                                                                 <div th:if="${usuario.infoAcademica.cedulaLicenciaturaStatus == T(com.controldigital.app.models.entity.FileStatus).YELLOW}" class="bulb">PROCESANDO</div>
                                                                 <div th:if="${usuario.infoAcademica.cedulaLicenciaturaStatus == T(com.controldigital.app.models.entity.FileStatus).GREEN}" class="bulb">OK</div>
                                                             </div></td>
-                                                            <td><a class="btn btn-success"
-                                                                   th:href="@{/PersonalAutorizado/validarArchivo/} + ${usuario.id} + '/cedulaLicenciaturaStatus'"
-                                                                   onclick="return confirm('&iquest;Est&aacute; seguro de validar este archivo?');">
-                                                                <img th:src="@{/images/validado.png}" width="55"
-                                                                     height="55"></a></td>
-                                                            <td><a class="btn btn-danger"
-                                                                   th:href="@{/PersonalAutorizado/invalidarArchivo/} + ${usuario.id} + '/cedulaLicenciaturaStatus'"
+                                                            <td th:if="${usuario.infoAcademica.cedulaLicenciaturaStatus == T(com.controldigital.app.models.entity.FileStatus).GREEN}" th:text="'Validado'"></td>
+                                                            <td th:if="${usuario.infoAcademica.cedulaLicenciaturaStatus == T(com.controldigital.app.models.entity.FileStatus).YELLOW}" th:text="'Asigne un Estatus'"></td>
+                                                            <td th:if="${usuario.infoAcademica.cedulaLicenciaturaStatus == T(com.controldigital.app.models.entity.FileStatus).RED1}" th:text="'El usuario a&uacute;n no ha subido un documento'"></td>
+                                                            <td th:if="${usuario.infoAcademica.cedulaLicenciaturaStatus == T(com.controldigital.app.models.entity.FileStatus).RED2}" th:text="'No es el Documento'"></td>
+                                                            <td th:if="${usuario.infoAcademica.cedulaLicenciaturaStatus == T(com.controldigital.app.models.entity.FileStatus).RED3}" th:text="'No es Legible'"></td>
+                                                            <td th:if="${usuario.infoAcademica.cedulaLicenciaturaStatus == T(com.controldigital.app.models.entity.FileStatus).RED4}" th:text="'No est&aacute; Apostillado'"></td>
+                                                            <td><a class="btn btn-info"
+                                                                   th:href="@{/PersonalAutorizado/opcionValidarArchivo/} + ${usuario.id} + '/cedulaLicenciaturaStatus'"
                                                                    onclick="return confirm('&iquest;Est&aacute; seguro de invalidar este archivo?');">
                                                                 <img th:src="@{/images/noValidado.png}" width="55"
                                                                      height="55"></a></td>
@@ -567,13 +590,14 @@
                                                                 <div th:if="${usuario.infoAcademica.acreditacionInglesStatus == T(com.controldigital.app.models.entity.FileStatus).YELLOW}" class="bulb">PROCESANDO</div>
                                                                 <div th:if="${usuario.infoAcademica.acreditacionInglesStatus == T(com.controldigital.app.models.entity.FileStatus).GREEN}" class="bulb">OK</div>
                                                             </div></td>
-                                                            <td><a class="btn btn-success"
-                                                                   th:href="@{/PersonalAutorizado/validarArchivo/} + ${usuario.id} + '/acreditacionInglesStatus'"
-                                                                   onclick="return confirm('&iquest;Est&aacute; seguro de validar este archivo?');">
-                                                                <img th:src="@{/images/validado.png}" width="55"
-                                                                     height="55"></a></td>
-                                                            <td><a class="btn btn-danger"
-                                                                   th:href="@{/PersonalAutorizado/invalidarArchivo/} + ${usuario.id} + '/acreditacionInglesStatus'"
+                                                            <td th:if="${usuario.infoAcademica.acreditacionInglesStatus == T(com.controldigital.app.models.entity.FileStatus).GREEN}" th:text="'Validado'"></td>
+                                                            <td th:if="${usuario.infoAcademica.acreditacionInglesStatus == T(com.controldigital.app.models.entity.FileStatus).YELLOW}" th:text="'Asigne un Estatus'"></td>
+                                                            <td th:if="${usuario.infoAcademica.acreditacionInglesStatus == T(com.controldigital.app.models.entity.FileStatus).RED1}" th:text="'El usuario a&uacute;n no ha subido un documento'"></td>
+                                                            <td th:if="${usuario.infoAcademica.acreditacionInglesStatus == T(com.controldigital.app.models.entity.FileStatus).RED2}" th:text="'No es el Documento'"></td>
+                                                            <td th:if="${usuario.infoAcademica.acreditacionInglesStatus == T(com.controldigital.app.models.entity.FileStatus).RED3}" th:text="'No es Legible'"></td>
+                                                            <td th:if="${usuario.infoAcademica.acreditacionInglesStatus == T(com.controldigital.app.models.entity.FileStatus).RED4}" th:text="'No est&aacute; Apostillado'"></td>
+                                                            <td><a class="btn btn-info"
+                                                                   th:href="@{/PersonalAutorizado/opcionValidarArchivo/} + ${usuario.id} + '/acreditacionInglesStatus'"
                                                                    onclick="return confirm('&iquest;Est&aacute; seguro de invalidar este archivo?');">
                                                                 <img th:src="@{/images/noValidado.png}" width="55"
                                                                      height="55"></a></td>
@@ -587,13 +611,14 @@
                                                                 <div th:if="${usuario.infoAcademica.calificacionesMaestriaStatus == T(com.controldigital.app.models.entity.FileStatus).YELLOW}" class="bulb">PROCESANDO</div>
                                                                 <div th:if="${usuario.infoAcademica.calificacionesMaestriaStatus == T(com.controldigital.app.models.entity.FileStatus).GREEN}" class="bulb">OK</div>
                                                             </div></td>
-                                                            <td><a class="btn btn-success"
-                                                                   th:href="@{/PersonalAutorizado/validarArchivo/} + ${usuario.id} + '/calificacionesMaestriaStatus'"
-                                                                   onclick="return confirm('&iquest;Est&aacute; seguro de validar este archivo?');">
-                                                                <img th:src="@{/images/validado.png}" width="55"
-                                                                     height="55"></a></td>
-                                                            <td><a class="btn btn-danger"
-                                                                   th:href="@{/PersonalAutorizado/invalidarArchivo/} + ${usuario.id} + '/calificacionesMaestriaStatus'"
+                                                            <td th:if="${usuario.infoAcademica.calificacionesMaestriaStatus == T(com.controldigital.app.models.entity.FileStatus).GREEN}" th:text="'Validado'"></td>
+                                                            <td th:if="${usuario.infoAcademica.calificacionesMaestriaStatus == T(com.controldigital.app.models.entity.FileStatus).YELLOW}" th:text="'Asigne un Estatus'"></td>
+                                                            <td th:if="${usuario.infoAcademica.calificacionesMaestriaStatus == T(com.controldigital.app.models.entity.FileStatus).RED1}" th:text="'El usuario a&uacute;n no ha subido un documento'"></td>
+                                                            <td th:if="${usuario.infoAcademica.calificacionesMaestriaStatus == T(com.controldigital.app.models.entity.FileStatus).RED2}" th:text="'No es el Documento'"></td>
+                                                            <td th:if="${usuario.infoAcademica.calificacionesMaestriaStatus == T(com.controldigital.app.models.entity.FileStatus).RED3}" th:text="'No es Legible'"></td>
+                                                            <td th:if="${usuario.infoAcademica.calificacionesMaestriaStatus == T(com.controldigital.app.models.entity.FileStatus).RED4}" th:text="'No est&aacute; Apostillado'"></td>
+                                                            <td><a class="btn btn-info"
+                                                                   th:href="@{/PersonalAutorizado/opcionValidarArchivo/} + ${usuario.id} + '/calificacionesMaestriaStatus'"
                                                                    onclick="return confirm('&iquest;Est&aacute; seguro de invalidar este archivo?');">
                                                                 <img th:src="@{/images/noValidado.png}" width="55"
                                                                      height="55"></a></td>
@@ -607,13 +632,14 @@
                                                                 <div th:if="${usuario.infoAcademica.actaExamenMaestriaStatus == T(com.controldigital.app.models.entity.FileStatus).YELLOW}" class="bulb">PROCESANDO</div>
                                                                 <div th:if="${usuario.infoAcademica.actaExamenMaestriaStatus == T(com.controldigital.app.models.entity.FileStatus).GREEN}" class="bulb">OK</div>
                                                             </div></td>
-                                                            <td><a class="btn btn-success"
-                                                                   th:href="@{/PersonalAutorizado/validarArchivo/} + ${usuario.id} + '/actaExamenMaestriaStatus'"
-                                                                   onclick="return confirm('&iquest;Est&aacute; seguro de validar este archivo?');">
-                                                                <img th:src="@{/images/validado.png}" width="55"
-                                                                     height="55"></a></td>
-                                                            <td><a class="btn btn-danger"
-                                                                   th:href="@{/PersonalAutorizado/invalidarArchivo/} + ${usuario.id} + '/actaExamenMaestriaStatus'"
+                                                            <td th:if="${usuario.infoAcademica.actaExamenMaestriaStatus == T(com.controldigital.app.models.entity.FileStatus).GREEN}" th:text="'Validado'"></td>
+                                                            <td th:if="${usuario.infoAcademica.actaExamenMaestriaStatus == T(com.controldigital.app.models.entity.FileStatus).YELLOW}" th:text="'Asigne un Estatus'"></td>
+                                                            <td th:if="${usuario.infoAcademica.actaExamenMaestriaStatus == T(com.controldigital.app.models.entity.FileStatus).RED1}" th:text="'El usuario a&uacute;n no ha subido un documento'"></td>
+                                                            <td th:if="${usuario.infoAcademica.actaExamenMaestriaStatus == T(com.controldigital.app.models.entity.FileStatus).RED2}" th:text="'No es el Documento'"></td>
+                                                            <td th:if="${usuario.infoAcademica.actaExamenMaestriaStatus == T(com.controldigital.app.models.entity.FileStatus).RED3}" th:text="'No es Legible'"></td>
+                                                            <td th:if="${usuario.infoAcademica.actaExamenMaestriaStatus == T(com.controldigital.app.models.entity.FileStatus).RED4}" th:text="'No est&aacute; Apostillado'"></td>
+                                                            <td><a class="btn btn-info"
+                                                                   th:href="@{/PersonalAutorizado/opcionValidarArchivo/} + ${usuario.id} + '/actaExamenMaestriaStatus'"
                                                                    onclick="return confirm('&iquest;Est&aacute; seguro de invalidar este archivo?');">
                                                                 <img th:src="@{/images/noValidado.png}" width="55"
                                                                      height="55"></a></td>
@@ -627,13 +653,14 @@
                                                                 <div th:if="${usuario.infoAcademica.diplomaMaestriaStatus == T(com.controldigital.app.models.entity.FileStatus).YELLOW}" class="bulb">PROCESANDO</div>
                                                                 <div th:if="${usuario.infoAcademica.diplomaMaestriaStatus == T(com.controldigital.app.models.entity.FileStatus).GREEN}" class="bulb">OK</div>
                                                             </div></td>
-                                                            <td><a class="btn btn-success"
-                                                                   th:href="@{/PersonalAutorizado/validarArchivo/} + ${usuario.id} + '/diplomaMaestriaStatus'"
-                                                                   onclick="return confirm('&iquest;Est&aacute; seguro de validar este archivo?');">
-                                                                <img th:src="@{/images/validado.png}" width="55"
-                                                                     height="55"></a></td>
-                                                            <td><a class="btn btn-danger"
-                                                                   th:href="@{/PersonalAutorizado/invalidarArchivo/} + ${usuario.id} + '/diplomaMaestriaStatus'"
+                                                            <td th:if="${usuario.infoAcademica.diplomaMaestriaStatus == T(com.controldigital.app.models.entity.FileStatus).GREEN}" th:text="'Validado'"></td>
+                                                            <td th:if="${usuario.infoAcademica.diplomaMaestriaStatus == T(com.controldigital.app.models.entity.FileStatus).YELLOW}" th:text="'Asigne un Estatus'"></td>
+                                                            <td th:if="${usuario.infoAcademica.diplomaMaestriaStatus == T(com.controldigital.app.models.entity.FileStatus).RED1}" th:text="'El usuario a&uacute;n no ha subido un documento'"></td>
+                                                            <td th:if="${usuario.infoAcademica.diplomaMaestriaStatus == T(com.controldigital.app.models.entity.FileStatus).RED2}" th:text="'No es el Documento'"></td>
+                                                            <td th:if="${usuario.infoAcademica.diplomaMaestriaStatus == T(com.controldigital.app.models.entity.FileStatus).RED3}" th:text="'No es Legible'"></td>
+                                                            <td th:if="${usuario.infoAcademica.diplomaMaestriaStatus == T(com.controldigital.app.models.entity.FileStatus).RED4}" th:text="'No est&aacute; Apostillado'"></td>
+                                                            <td><a class="btn btn-info"
+                                                                   th:href="@{/PersonalAutorizado/opcionValidarArchivo/} + ${usuario.id} + '/diplomaMaestriaStatus'"
                                                                    onclick="return confirm('&iquest;Est&aacute; seguro de invalidar este archivo?');">
                                                                 <img th:src="@{/images/noValidado.png}" width="55"
                                                                      height="55"></a></td>
@@ -647,13 +674,14 @@
                                                                 <div th:if="${usuario.infoAcademica.cedulaMaestriaStatus == T(com.controldigital.app.models.entity.FileStatus).YELLOW}" class="bulb">PROCESANDO</div>
                                                                 <div th:if="${usuario.infoAcademica.cedulaMaestriaStatus == T(com.controldigital.app.models.entity.FileStatus).GREEN}" class="bulb">OK</div>
                                                             </div></td>
-                                                            <td><a class="btn btn-success"
-                                                                   th:href="@{/PersonalAutorizado/validarArchivo/} + ${usuario.id} + '/cedulaMaestriaStatus'"
-                                                                   onclick="return confirm('&iquest;Est&aacute; seguro de validar este archivo?');">
-                                                                <img th:src="@{/images/validado.png}" width="55"
-                                                                     height="55"></a></td>
-                                                            <td><a class="btn btn-danger"
-                                                                   th:href="@{/PersonalAutorizado/invalidarArchivo/} + ${usuario.id} + '/cedulaMaestriaStatus'"
+                                                            <td th:if="${usuario.infoAcademica.cedulaMaestriaStatus == T(com.controldigital.app.models.entity.FileStatus).GREEN}" th:text="'Validado'"></td>
+                                                            <td th:if="${usuario.infoAcademica.cedulaMaestriaStatus == T(com.controldigital.app.models.entity.FileStatus).YELLOW}" th:text="'Asigne un Estatus'"></td>
+                                                            <td th:if="${usuario.infoAcademica.cedulaMaestriaStatus == T(com.controldigital.app.models.entity.FileStatus).RED1}" th:text="'El usuario a&uacute;n no ha subido un documento'"></td>
+                                                            <td th:if="${usuario.infoAcademica.cedulaMaestriaStatus == T(com.controldigital.app.models.entity.FileStatus).RED2}" th:text="'No es el Documento'"></td>
+                                                            <td th:if="${usuario.infoAcademica.cedulaMaestriaStatus == T(com.controldigital.app.models.entity.FileStatus).RED3}" th:text="'No es Legible'"></td>
+                                                            <td th:if="${usuario.infoAcademica.cedulaMaestriaStatus == T(com.controldigital.app.models.entity.FileStatus).RED4}" th:text="'No est&aacute; Apostillado'"></td>
+                                                            <td><a class="btn btn-info"
+                                                                   th:href="@{/PersonalAutorizado/opcionValidarArchivo/} + ${usuario.id} + '/cedulaMaestriaStatus'"
                                                                    onclick="return confirm('&iquest;Est&aacute; seguro de invalidar este archivo?');">
                                                                 <img th:src="@{/images/noValidado.png}" width="55"
                                                                      height="55"></a></td>

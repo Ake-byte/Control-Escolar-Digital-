@@ -272,48 +272,8 @@ public class AdminController {
     }
 
 
-    /*@GetMapping("/validarArchivo/{id}/{tipoArchivo}")
-    public String validarArchivo(@PathVariable(value = "id") Long id,
-                                 @PathVariable(value = "tipoArchivo") String tipoArchivo, Map<String, Object> model) {
-
-        Usuario usuario = null;
-        if (id != null && id > 0) {
-            usuario = usuarioService.findOne(id);
-        } else {
-            return "redirect:index";
-        }
-
-        switch (tipoArchivo) {
-            case "fotoStatus":
-                usuario.getInfoPersonal().setFotoStatus(FileStatus.GREEN);
-                usuario.getInfoPersonal().setFotoInvalidStatus(InvalidStatus.VALID);
-                break;
-
-            case "actaStatus":
-                usuario.getInfoPersonal().setActaStatus(FileStatus.GREEN);
-                usuario.getInfoPersonal().setActaInvalidStatus(InvalidStatus.VALID);
-                break;
-
-            case "pasaporteStatus":
-                usuario.getInfoPersonal().setPasaporteStatus(FileStatus.GREEN);
-                usuario.getInfoPersonal().setPasaporteInvalidStatus(InvalidStatus.VALID);
-                break;
-
-            case "curpStatus":
-                usuario.getInfoPersonal().setCurpStatus(FileStatus.GREEN);
-                usuario.getInfoPersonal().setCurpInvalidStatus(InvalidStatus.VALID);
-                break;
-
-            default:
-                break;
-        }
-
-        usuarioService.save(usuario);
-        return "redirect:/PersonalAutorizado/verUsuario/" + usuario.getId();
-    }
-*/
-    @GetMapping("/invalidarArchivo/{id}/{tipoArchivo}")
-    public String invalidarArchivo(@PathVariable(value = "id") Long id,
+    @GetMapping("/opcionValidarArchivo/{id}/{tipoArchivo}")
+    public String opcionValidarArchivo(@PathVariable(value = "id") Long id,
                                    @PathVariable(value = "tipoArchivo") String tipoArchivo, Model model) {
 
         Usuario usuario = null;
@@ -325,11 +285,11 @@ public class AdminController {
 
         model.addAttribute("usuario", usuario);
         model.addAttribute("tipoArchivo", tipoArchivo);
-        return "PersonalAutorizado/OpcionesInvalidarArchivo";
+        return "PersonalAutorizado/opcionValidarArchivo";
     }
 
-    /*@PostMapping(value = "invalidarArchivo")
-    public String guardarInvalidacion(HttpServletRequest request, HttpServletResponse response,
+    @PostMapping(value = "opcionValidarArchivo")
+    public String guardarOpcionValidarArchivo(HttpServletRequest request, HttpServletResponse response,
                                       @ModelAttribute("userId") Long userId,
                                       @ModelAttribute("opcion") String tipoInvalidacion,
                                       @ModelAttribute("tipoArchivo") String tipoArchivo, BindingResult result,
@@ -344,71 +304,214 @@ public class AdminController {
             case "fotoStatus":
                 switch (opcion) {
                     case "1":
-                        usuario.getInfoPersonal().setFotoInvalidStatus(InvalidStatus.DOC);
+                        usuario.getInfoPersonal().setFotoStatus(FileStatus.RED2);
                         break;
                     case "2":
-                        usuario.getInfoPersonal().setFotoInvalidStatus(InvalidStatus.LEG);
+                        usuario.getInfoPersonal().setFotoStatus(FileStatus.RED3);
                         break;
                     case "3":
-                        usuario.getInfoPersonal().setFotoInvalidStatus(InvalidStatus.APO);
+                        usuario.getInfoPersonal().setFotoStatus(FileStatus.RED4);
+                        break;
+                    case "4":
+                        usuario.getInfoPersonal().setFotoStatus(FileStatus.GREEN);
                         break;
                 }
-                usuario.getInfoPersonal().setFotoStatus(FileStatus.RED);
                 break;
 
             case "actaStatus":
                 switch (opcion) {
                     case "1":
-                        usuario.getInfoPersonal().setActaInvalidStatus(InvalidStatus.DOC);
+                        usuario.getInfoPersonal().setActaStatus(FileStatus.RED2);
                         break;
                     case "2":
-                        usuario.getInfoPersonal().setActaInvalidStatus(InvalidStatus.LEG);
+                        usuario.getInfoPersonal().setActaStatus(FileStatus.RED3);
                         break;
                     case "3":
-                        usuario.getInfoPersonal().setActaInvalidStatus(InvalidStatus.APO);
+                        usuario.getInfoPersonal().setActaStatus(FileStatus.RED4);
+                        break;
+                    case "4":
+                        usuario.getInfoPersonal().setActaStatus(FileStatus.GREEN);
                         break;
                 }
-                usuario.getInfoPersonal().setActaStatus(FileStatus.RED);
                 break;
 
             case "pasaporteStatus":
                 switch (opcion) {
                     case "1":
-                        usuario.getInfoPersonal().setPasaporteInvalidStatus(InvalidStatus.DOC);
+                        usuario.getInfoPersonal().setPasaporteStatus(FileStatus.RED2);
                         break;
                     case "2":
-                        usuario.getInfoPersonal().setPasaporteInvalidStatus(InvalidStatus.LEG);
+                        usuario.getInfoPersonal().setPasaporteStatus(FileStatus.RED3);
                         break;
                     case "3":
-                        usuario.getInfoPersonal().setPasaporteInvalidStatus(InvalidStatus.APO);
+                        usuario.getInfoPersonal().setPasaporteStatus(FileStatus.RED4);
+                        break;
+                    case "4":
+                        usuario.getInfoPersonal().setPasaporteStatus(FileStatus.GREEN);
                         break;
                 }
-                usuario.getInfoPersonal().setPasaporteStatus(FileStatus.RED);
                 break;
 
             case "curpStatus":
                 switch (opcion) {
                     case "1":
-                        usuario.getInfoPersonal().setCurpInvalidStatus(InvalidStatus.DOC);
+                        usuario.getInfoPersonal().setCurpStatus(FileStatus.RED2);
                         break;
                     case "2":
-                        usuario.getInfoPersonal().setCurpInvalidStatus(InvalidStatus.LEG);
+                        usuario.getInfoPersonal().setCurpStatus(FileStatus.RED3);
                         break;
                     case "3":
-                        usuario.getInfoPersonal().setCurpInvalidStatus(InvalidStatus.APO);
+                        usuario.getInfoPersonal().setCurpStatus(FileStatus.RED4);
+                        break;
+                    case "4":
+                        usuario.getInfoPersonal().setCurpStatus(FileStatus.GREEN);
                         break;
                 }
-                usuario.getInfoPersonal().setCurpStatus(FileStatus.RED);
+                break;
+
+            case "calificacionesLicenciaturaStatus":
+                switch (opcion) {
+                    case "1":
+                        usuario.getInfoAcademica().setCalificacionesLicenciaturaStatus(FileStatus.RED2);
+                        break;
+                    case "2":
+                        usuario.getInfoAcademica().setCalificacionesLicenciaturaStatus(FileStatus.RED3);
+                        break;
+                    case "3":
+                        usuario.getInfoAcademica().setCalificacionesLicenciaturaStatus(FileStatus.RED4);
+                        break;
+                    case "4":
+                        usuario.getInfoAcademica().setCalificacionesLicenciaturaStatus(FileStatus.GREEN);
+                        break;
+                }
+                break;
+
+            case "diplomaLicenciaturaStatus":
+                switch (opcion) {
+                    case "1":
+                        usuario.getInfoAcademica().setDiplomaLicenciaturaStatus(FileStatus.RED2);
+                        break;
+                    case "2":
+                        usuario.getInfoAcademica().setDiplomaLicenciaturaStatus(FileStatus.RED3);
+                        break;
+                    case "3":
+                        usuario.getInfoAcademica().setDiplomaLicenciaturaStatus(FileStatus.RED4);
+                        break;
+                    case "4":
+                        usuario.getInfoAcademica().setDiplomaLicenciaturaStatus(FileStatus.GREEN);
+                        break;
+                }
+                break;
+
+            case "cedulaLicenciaturaStatus":
+                switch (opcion) {
+                    case "1":
+                        usuario.getInfoAcademica().setCedulaLicenciaturaStatus(FileStatus.RED2);
+                        break;
+                    case "2":
+                        usuario.getInfoAcademica().setCedulaLicenciaturaStatus(FileStatus.RED3);
+                        break;
+                    case "3":
+                        usuario.getInfoAcademica().setCedulaLicenciaturaStatus(FileStatus.RED4);
+                        break;
+                    case "4":
+                        usuario.getInfoAcademica().setCedulaLicenciaturaStatus(FileStatus.GREEN);
+                        break;
+                }
+                break;
+
+            case "acreditacionInglesStatus":
+                switch (opcion) {
+                    case "1":
+                        usuario.getInfoAcademica().setAcreditacionInglesStatus(FileStatus.RED2);
+                        break;
+                    case "2":
+                        usuario.getInfoAcademica().setAcreditacionInglesStatus(FileStatus.RED3);
+                        break;
+                    case "3":
+                        usuario.getInfoAcademica().setAcreditacionInglesStatus(FileStatus.RED4);
+                        break;
+                    case "4":
+                        usuario.getInfoAcademica().setAcreditacionInglesStatus(FileStatus.GREEN);
+                        break;
+                }
+                break;
+
+            case "calificacionesMaestriaStatus":
+                switch (opcion) {
+                    case "1":
+                        usuario.getInfoAcademica().setCalificacionesMaestriaStatus(FileStatus.RED2);
+                        break;
+                    case "2":
+                        usuario.getInfoAcademica().setCalificacionesMaestriaStatus(FileStatus.RED3);
+                        break;
+                    case "3":
+                        usuario.getInfoAcademica().setCalificacionesMaestriaStatus(FileStatus.RED4);
+                        break;
+                    case "4":
+                        usuario.getInfoAcademica().setCalificacionesMaestriaStatus(FileStatus.GREEN);
+                        break;
+                }
+                break;
+
+            case "actaExamenMaestriaStatus":
+                switch (opcion) {
+                    case "1":
+                        usuario.getInfoAcademica().setActaExamenMaestriaStatus(FileStatus.RED2);
+                        break;
+                    case "2":
+                        usuario.getInfoAcademica().setActaExamenMaestriaStatus(FileStatus.RED3);
+                        break;
+                    case "3":
+                        usuario.getInfoAcademica().setActaExamenMaestriaStatus(FileStatus.RED4);
+                        break;
+                    case "4":
+                        usuario.getInfoAcademica().setActaExamenMaestriaStatus(FileStatus.GREEN);
+                        break;
+                }
+                break;
+
+            case "diplomaMaestriaStatus":
+                switch (opcion) {
+                    case "1":
+                        usuario.getInfoAcademica().setDiplomaMaestriaStatus(FileStatus.RED2);
+                        break;
+                    case "2":
+                        usuario.getInfoAcademica().setDiplomaMaestriaStatus(FileStatus.RED3);
+                        break;
+                    case "3":
+                        usuario.getInfoAcademica().setDiplomaMaestriaStatus(FileStatus.RED4);
+                        break;
+                    case "4":
+                        usuario.getInfoAcademica().setDiplomaMaestriaStatus(FileStatus.GREEN);
+                        break;
+                }
+                break;
+
+            case "cedulaMaestriaStatus":
+                switch (opcion) {
+                    case "1":
+                        usuario.getInfoAcademica().setCedulaMaestriaStatus(FileStatus.RED2);
+                        break;
+                    case "2":
+                        usuario.getInfoAcademica().setCedulaMaestriaStatus(FileStatus.RED3);
+                        break;
+                    case "3":
+                        usuario.getInfoAcademica().setCedulaMaestriaStatus(FileStatus.RED4);
+                        break;
+                    case "4":
+                        usuario.getInfoAcademica().setCedulaMaestriaStatus(FileStatus.GREEN);
+                        break;
+                }
                 break;
 
             default:
                 break;
         }
-        flash.addFlashAttribute("success", tA + " " + opcion);
+        //flash.addFlashAttribute("success", tA + " " + opcion);
         usuarioService.save(usuario);
         return "redirect:/PersonalAutorizado/verUsuario/" + usuario.getId();
     }
-*/
 
     @RequestMapping(value = "/formSIP/{id}")
     public String agregarSip(@PathVariable(value = "id") Long id, Map<String, Object> model) {

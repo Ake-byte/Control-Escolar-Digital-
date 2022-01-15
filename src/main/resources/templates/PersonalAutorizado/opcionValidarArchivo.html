@@ -12,9 +12,9 @@
             <div class="container">
                 <div class="card bg-light">
                     <div class="card-body">
-                        <form th:action="@{/PersonalAutorizado/invalidarArchivo}" method="post">
+                        <form th:action="@{/PersonalAutorizado/opcionValidarArchivo}" method="post">
                             <div class="form-group row">
-                                <label for="nombre" class="col-sm-4 col-form-label">Tipo
+                                <label class="col-sm-4 col-form-label">Tipo
                                     de Invalidaci&oacute;n</label>
                                 <div class="col-sm-8">
                                     <select id="opcion" name="opcion" required>
@@ -23,13 +23,14 @@
                                         <option value="1">No es el documento</option>
                                         <option value="2">No es legible</option>
                                         <option value="3">No est&aacute; apostillado</option>
+                                        <option value="4">Validar</option>
                                     </select>
                                 </div>
                             </div>
                             <br>
 
                             <div class="form-group row">
-                                <label for="nombre" class="col-sm-4 col-form-label">Guardar
+                                <label class="col-sm-4 col-form-label">Guardar
                                 </label>
                                 <div class="col-sm-6">
                                     <input type="submit" value="Guardar"

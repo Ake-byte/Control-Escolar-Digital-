@@ -68,17 +68,11 @@
 													class="form-control" readonly />
 											</div>
 										</div>
-									</div>
-								</div>
-							</div>
-							<div sec:authorize="hasRole('ROLE_USER2')" class="col-sm-6">
-								<div class="card bg-light">
-									<div class="card-body">
 										<div class="form-group row">
 											<label class="col-sm-6 col-form-label">G&eacute;nero</label>
 											<div class="col-sm-6">
 												<input type="text" th:field="${usuario.genero}"
-													class="form-control" readonly />
+													   class="form-control" readonly />
 											</div>
 										</div>
 										<br>
@@ -108,6 +102,12 @@
 											</div>
 										</div>
 										<br>
+									</div>
+								</div>
+							</div>
+							<div sec:authorize="hasRole('ROLE_USER2')" class="col-sm-6">
+								<div class="card bg-light">
+									<div class="card-body">
 										<div class="form-group row">
 											<label class="col-sm-6 col-form-label">Foto
 												actual (fondo blanco)</label>
