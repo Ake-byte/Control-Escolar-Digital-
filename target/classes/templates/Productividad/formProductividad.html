@@ -71,11 +71,14 @@
 								</div>
 								<br>
 								<div class="form-group row">
-									<label for="nombre" class="col-sm-4 col-form-label">Guardar
-									</label>
-									<div class="col-sm-6">
-										<input type="submit" value="Guardar Producto"
-											class="btn btn-primary" />
+									<div class="row">
+										<div class="col-sm-6">
+											<input type="submit" value="Guardar" class="btn-primary" />
+										</div>
+										<div class="col-sm-4">
+											<a class="btn btn-danger" th:href="@{/Productividad/ListadoProductividad}"
+											   th:text="'Cancelar'"> </a>
+										</div>
 									</div>
 								</div>
 								<br> <input type="hidden" th:field="*{id}" />

@@ -23,4 +23,9 @@ public class ExpedienteService implements IExpedienteService{
     public void save(Expediente expediente) {
         expedienteDAO.save(expediente);
     }
+
+    @Override
+    public void delete(Long id) {
+
+    }
 }

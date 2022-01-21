@@ -44,11 +44,11 @@
 											<td th:text="${producto.inicioPeriodo + ' - ' + producto.terminoPeriodo}"></td>
 											<td th:text="${producto.paisProducto}"></td>
 											<td
-												th:if="${producto.archivoProducto == null || producto.archivoProducto == ''}">No
-												hay archivo</td>
+												th:if="${producto.archivoProducto == null || producto.archivoProducto == ''}">Sube un documento</td>
 											<td
 												th:unless="${producto.archivoProducto == null || producto.archivoProducto == ''}"
-												th:text="${producto.archivoProducto}"></td>
+												><a th:href="@{/Productividad/descargarArchivo/} + ${producto.id}"
+													class="card-link" th:text="'Descargar'"></a></td>
 										</tr>
 									</tbody>
 								</table>

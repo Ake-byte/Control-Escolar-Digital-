@@ -65,31 +65,6 @@ public class AdminController {
         return "PersonalAutorizado/ListadoUsuarios";
     }
 
-    @GetMapping("/TramitesSIP")
-    public String tramitesSIP(Model model) {
-        model.addAttribute("titulo", "Trámites SIP");
-        return "PersonalAutorizado/TramitesSIP";
-    }
-
-    @GetMapping("/TramitesInternos")
-    public String tramitesInternos(Model model) {
-        model.addAttribute("titulo", "Trámites Internos");
-        return "PersonalAutorizado/TramitesInternos";
-    }
-
-    @GetMapping("/Expedientes")
-    public String expedientes(Model model) {
-        model.addAttribute("titulo", "Expedientes");
-        return "PersonalAutorizado/Expedientes";
-    }
-
-    @GetMapping("/ActasYNombramientos")
-    public String actasYNombramientos(Model model) {
-        model.addAttribute("titulo", "Actas y Nombramientos");
-        return "PersonalAutorizado/ActasYNombramientos";
-    }
-
-
     @GetMapping("/Informes")
     public String informes(Model model) {
 
@@ -179,23 +154,22 @@ public class AdminController {
     public String verAlumno(@PathVariable(value = "id") Long id, Model model) {
 
         Usuario usuario = null;
-        InfoPersonal usuarioInfoPersonal = null;
-        InfoAcademica usuarioInfoAcademica = null;
-        Expediente expediente = null;
-
-        UserDetails usuarioDetails = new UserDetails();
         if (id != null && id > 0) {
             usuario = usuarioService.findOne(id);
         } else {
             return "redirect:index";
         }
 
-
-
-
         model.addAttribute("usuario", usuario);
 
-        return "PersonalAutorizado/VerUsuario";
+        if(usuario.getRoles().getAuthority().equals("ROLE_USER1")){
+            return "PersonalAutorizado/VerUsuarioRegistrado";
+        }
+        else if(usuario.getRoles().getAuthority().equals("ROLE_USER2") || usuario.getRoles().getAuthority().equals("ROLE_USER4")){
+            return "PersonalAutorizado/VerUsuario";
+        }
+
+        return "PersonalAutorizado/ListadoUsuarios";
     }
 
     @RequestMapping(value = "/formUsuario/{id}")
@@ -240,17 +214,22 @@ public class AdminController {
             case "Usuario Registrado":
                 roles.setAuthorityName("Usuario Registrado");
                 roles.setAuthority("ROLE_USER1");
+                if(usuario.getEnabled().equals(false))
+                    usuario.setEnabled(true);
                 break;
 
             case "Alumno":
                 roles.setAuthorityName("Alumno");
                 roles.setAuthority("ROLE_USER2");
-                List<Usuario> usuarios = usuarioService.findall();
+                if(usuario.getEnabled().equals(false))
+                    usuario.setEnabled(true);
                 break;
 
             case "Personal Autorizado":
                 roles.setAuthorityName("Personal Autorizado");
                 roles.setAuthority("ROLE_ADMIN");
+                if(usuario.getEnabled().equals(false))
+                    usuario.setEnabled(true);
                 break;
 
             case "Usuario Inhabilitado":
@@ -593,4 +572,15 @@ public class AdminController {
                 .body(recurso);
 
     }
+
+    @RequestMapping(value = "/eliminarUsuario/{id}")
+    public String eliminar(@PathVariable(value = "id") Long id) {
+
+        if (id > 0) {
+            usuarioService.delete(id);
+        }
+
+        return "redirect:/PersonalAutorizado/ListadoUsuarios";
+    }
+
 }

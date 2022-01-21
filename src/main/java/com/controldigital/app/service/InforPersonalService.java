@@ -25,4 +25,10 @@ public class InforPersonalService implements IInfoPersonalService{
     public void save(InfoPersonal infoPersonal) {
         infoPersonalDAO.save(infoPersonal);
     }
+
+    @Override
+    @Transactional
+    public void delete(Long id) {
+        infoPersonalDAO.deleteById(id);
+    }
 }

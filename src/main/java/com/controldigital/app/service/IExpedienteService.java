@@ -6,4 +6,6 @@ public interface IExpedienteService {
     Expediente findExpedienteByUserId(Long id);
 
     public void save(Expediente expediente);
+
+    public void delete(Long id);
 }

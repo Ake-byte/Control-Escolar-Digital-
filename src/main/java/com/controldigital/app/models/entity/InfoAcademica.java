@@ -83,7 +83,7 @@ public class InfoAcademica implements Serializable {
     @Column(name = "cedula_maestria_status")
     private FileStatus cedulaMaestriaStatus;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "infoAcademica", fetch = FetchType.LAZY)
     @MapsId
     @JoinColumn(name = "user_id")
     private Usuario users;

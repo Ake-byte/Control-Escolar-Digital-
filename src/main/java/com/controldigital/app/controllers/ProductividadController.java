@@ -1,6 +1,7 @@
 package com.controldigital.app.controllers;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -8,7 +9,12 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
+import com.controldigital.app.models.entity.InfoPersonal;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -120,5 +126,36 @@ public class ProductividadController {
 		productoService.saveUsuario(usuario);
 
 		return "redirect:ListadoProductividad";
+	}
+
+	@GetMapping(value = "/descargarArchivo/{id}")
+	public ResponseEntity<Resource> descargarArchivo(@PathVariable Long id, HttpServletRequest request) {
+
+		Producto producto = productoService.findOne(id);
+
+		String filename = producto.getArchivoProducto();
+
+		Resource recurso = null;
+		try {
+			recurso = uploadFileService.load(filename);
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		}
+		String contentType = null;
+		try {
+			contentType = request.getServletContext().getMimeType(recurso.getFile().getAbsolutePath());
+		} catch (IOException ex) {
+			// logger.info("Could not determine file type.");
+		}
+		// Fallback to the default content type if type could not be determined
+		if (contentType == null) {
+
+			contentType = "application/octet-stream";
+
+		}
+		return ResponseEntity.ok().contentType(MediaType.parseMediaType(contentType))
+				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + recurso.getFilename() + "\"")
+				.body(recurso);
+
 	}
 }

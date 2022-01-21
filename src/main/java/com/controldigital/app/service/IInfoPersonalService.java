@@ -6,4 +6,6 @@ public interface IInfoPersonalService {
     InfoPersonal findInfoPersonalByUserId(Long id);
 
     public void save(InfoPersonal infoPersonal);
+
+    public void delete(Long id);
 }

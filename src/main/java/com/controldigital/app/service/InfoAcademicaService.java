@@ -22,4 +22,10 @@ public class InfoAcademicaService implements IInfoAcademicaService{
     public void save(InfoAcademica infoAcademica) {
         infoAcademicaDAO.save(infoAcademica);
     }
+
+    @Override
+    @Transactional
+    public void delete(Long id) {
+        infoAcademicaDAO.deleteById(id);
+    }
 }

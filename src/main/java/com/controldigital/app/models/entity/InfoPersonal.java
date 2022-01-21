@@ -78,7 +78,7 @@ public class InfoPersonal implements Serializable {
     @Column(name = "pasaporte_status")
     private FileStatus pasaporteStatus;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "infoPersonal", fetch = FetchType.LAZY)
     @MapsId
     @JoinColumn(name = "user_id")
     private Usuario users;

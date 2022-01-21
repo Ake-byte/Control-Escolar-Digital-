@@ -43,17 +43,29 @@
                             </div>
                             <br>
                             <div class="form-group row">
-                                <label class="col-sm-6 col-form-label">Correo
-                                    electr&oacute;nico</label>
+                                <label for="nombre" class="col-sm-2 col-form-label">Correo Electr&oacute;nico</label>
                                 <div class="col-sm-6">
-                                    <input type="text" class="form-control"
-                                           th:field="*{email}"/>
+                                    <a th:href="@{/Usuario/changeEmail/} + ${usuario.id}"
+                                       class="btn btn-primary btn-xs">Cambiar Correo Electr&oacute;nico</a>
                                 </div>
                             </div>
                             <br>
                             <div class="form-group row">
+                                <label for="nombre" class="col-sm-2 col-form-label">Contrase&ntilde;a</label>
                                 <div class="col-sm-6">
-                                    <input type="submit" value="Guardar" class="btn-primary" />
+                                    <a th:href="@{/Usuario/changePassword/} + ${usuario.id}"
+                                       class="btn btn-primary btn-xs">Cambiar Contrase&ntilde;a</a>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="form-group row">
+                                <div class="col-sm-2">
+                                    <input type="submit" value="Guardar" class="btn btn-primary" />
+                                </div>
+                                <div class="col-sm-2">
+                                    <a class="btn btn-danger"
+                                       th:href="@{/Sistema/InformacionSistema}"
+                                       th:text="'Cancelar'"> </a>
                                 </div>
                             </div>
                         </div>

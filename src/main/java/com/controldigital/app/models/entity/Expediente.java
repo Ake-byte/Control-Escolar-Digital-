@@ -41,7 +41,7 @@ public class Expediente implements Serializable {
 
     private String comiteTutorial4;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "expediente", fetch = FetchType.LAZY)
     @MapsId
     @JoinColumn(name = "user_id")
     private Usuario users;
