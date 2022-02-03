@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 
 import com.controldigital.app.models.entity.*;
 import com.controldigital.app.service.*;
+import com.controldigital.app.util.Fecha;
 import com.controldigital.app.util.Informes;
 import com.controldigital.app.util.MailSenderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
+import static com.controldigital.app.util.Fecha.convertDate;
+import static com.controldigital.app.util.Fecha.currentDate;
+
+/**
+ * Controlador que tiene como objetivo ejecutar todas las funcionalidades del usuario de tipo "Personal Autorizado"
+ */
 @Controller
 @RequestMapping("/PersonalAutorizado")
 public class AdminController {
@@ -59,12 +66,22 @@ public class AdminController {
     @Autowired
     private IUploadFileService uploadFileService;
 
+    /**
+     * Método que devuelve el listado de usuarios
+     * @param model Parámetro que recibe la vista
+     * @return /src/main/resources/templates/PersonalAutorizado/ListadoUsuarios.html
+     */
     @GetMapping("/ListadoUsuarios")
     public String verUsuarios(Model model) {
         model.addAttribute("titulo", "Permisos de Usuario");
         return "PersonalAutorizado/ListadoUsuarios";
     }
 
+    /**
+     * Método que devuleve la vista para generar informes/estadísticas de los alumnos registrados en la base de datos
+     * @param model
+     * @return /src/main/resources/templates/PersonalAutorizado/Informes.html
+     */
     @GetMapping("/Informes")
     public String informes(Model model) {
 
@@ -73,12 +90,8 @@ public class AdminController {
         Informes informe = new Informes();
 
 
-        Date input = new Date();
-        Instant instant = input.toInstant();
-        ZonedDateTime zdt = instant.atZone(ZoneId.systemDefault());
-        LocalDate date = zdt.toLocalDate();
+        LocalDate date = currentDate();
 
-        int year = date.getYear();
         List<String> edades = new ArrayList<>();
         List<String> semestre = new ArrayList<>();
 
@@ -104,12 +117,12 @@ public class AdminController {
         return "PersonalAutorizado/Informes";
     }
 
-    public static LocalDate convertDate(Date date) {
-        return Instant.ofEpochMilli(date.getTime())
-                .atZone(ZoneId.systemDefault())
-                .toLocalDate();
-    }
-
+    /**
+     * Método que retorna como resultado el informe con los campos solicitados por Personal Autorizado
+     * @param informes objeto de tipo Informe
+     * @param model
+     * @return /src/main/resources/templates/PersonalAutorizado/ResultadoInforme.html
+     */
     @PostMapping("/Informes")
     public String generarInforme(@Valid Informes informes, Model model) {
 
@@ -128,6 +141,11 @@ public class AdminController {
         return "PersonalAutorizado/ResultadoInforme";
     }
 
+    /**
+     * Método que permite que Personal Autorizado visualice a los usuarios de tipo "Alumno"
+     * @param model
+     * @return /src/main/resources/templates/PersonalAutorizado/verRol.html
+     */
     @GetMapping("/verAlumnos")
     public String verAlumnos(Model model) {
 
@@ -139,6 +157,11 @@ public class AdminController {
         return "PersonalAutorizado/verRol";
     }
 
+    /**
+     * Método que permite que Personal Autorizado visualice a los usuarios de tipo "Usuario Registrado"
+     * @param model
+     * @return /src/main/resources/templates/PersonalAutorizado/verRol.html
+     */
     @GetMapping("/verUsuariosRegistrados")
     public String verUsuariosRegistrados(Model model) {
 
@@ -150,6 +173,14 @@ public class AdminController {
         return "PersonalAutorizado/verRol";
     }
 
+    /**
+     * Método que permite que Personal Autorizado visualice a un usuario según sea su tipo de usuario en el sistema
+     * @param model
+     * @return Si el usuario es "Usuario Registrado", "Usuario Inhabilitado" o "Personal Autorizado":
+     *              /src/main/resources/templates/PersonalAutorizado/VerUsuario.html
+     *         Si el usuario es "Alumno":
+     *              /src/main/resources/templates/PersonalAutorizado/VerAlumno.html
+     */
     @GetMapping("/verUsuario/{id}")
     public String verAlumno(@PathVariable(value = "id") Long id, Model model) {
 
@@ -162,18 +193,24 @@ public class AdminController {
 
         model.addAttribute("usuario", usuario);
 
-        if(usuario.getRoles().getAuthority().equals("ROLE_USER1")){
-            return "PersonalAutorizado/VerUsuarioRegistrado";
+        if(usuario.getRoles().getAuthority().equals("ROLE_USER1") || usuario.getRoles().getAuthority().equals("ROLE_ADMIN")){
+            return "PersonalAutorizado/VerUsuario";
         }
         else if(usuario.getRoles().getAuthority().equals("ROLE_USER2") || usuario.getRoles().getAuthority().equals("ROLE_USER4")){
-            return "PersonalAutorizado/VerUsuario";
+            return "PersonalAutorizado/VerAlumno";
         }
 
         return "PersonalAutorizado/ListadoUsuarios";
     }
 
+    /**
+     * Método que muestra la vista para editar el permiso de un usuario.
+     * @param id Identificador único del usuario
+     * @param model
+     * @return /src/main/resources/templates/PersonalAutorizado/formUsuario.html
+     */
     @RequestMapping(value = "/formUsuario/{id}")
-    public String editar(@PathVariable(value = "id") Long id, Map<String, Object> model) {
+    public String editarPermisoUsuario(@PathVariable(value = "id") Long id, Map<String, Object> model) {
         Usuario usuario = null;
 
         if (id > 0) {
@@ -196,6 +233,15 @@ public class AdminController {
 
     }
 
+    /**
+     * Método que guarda el cambio de permiso realizado en "editarPermisoUsuario"
+     * @param usuario objeto del tipo Usuario
+     * @param result
+     * @param model
+     * @param status
+     * @return /src/main/resources/templates/PersonalAutorizado/ListadoUsuarios.html
+     * @throws Exception
+     */
     @PostMapping(value = "formUsuario")
     public String guardar(@Valid Usuario usuario, BindingResult result, Model model, SessionStatus status)
             throws Exception {
@@ -250,7 +296,14 @@ public class AdminController {
         return "redirect:/PersonalAutorizado/ListadoUsuarios";
     }
 
-
+    /**
+     * Método para validar el estatus de un archivo, ya sean de carácter personal o académicos;
+     * que haya subido un "Alumno" en el sistema
+     * @param id
+     * @param tipoArchivo
+     * @param model
+     * @return /src/main/resources/templates/PersonalAutorizado/opcionValidarArchivo.html
+     */
     @GetMapping("/opcionValidarArchivo/{id}/{tipoArchivo}")
     public String opcionValidarArchivo(@PathVariable(value = "id") Long id,
                                    @PathVariable(value = "tipoArchivo") String tipoArchivo, Model model) {
@@ -267,6 +320,19 @@ public class AdminController {
         return "PersonalAutorizado/opcionValidarArchivo";
     }
 
+    /**
+     * Método que guarda el estatus del archivo ingresado en "opcionValidarArchivo"
+     * @param request
+     * @param response
+     * @param userId
+     * @param tipoInvalidacion
+     * @param tipoArchivo
+     * @param result
+     * @param model
+     * @param flash
+     * @param status
+     * @return /src/main/resources/templates/PersonalAutorizado/verUsuario.html
+     */
     @PostMapping(value = "opcionValidarArchivo")
     public String guardarOpcionValidarArchivo(HttpServletRequest request, HttpServletResponse response,
                                       @ModelAttribute("userId") Long userId,
@@ -492,6 +558,12 @@ public class AdminController {
         return "redirect:/PersonalAutorizado/verUsuario/" + usuario.getId();
     }
 
+    /**
+     * Método que le permite a personal autorizado crear un nuevo formato SIP
+     * @param id
+     * @param model
+     * @return /src/main/resources/templates/PersonalAutorizado/formSIP.html
+     */
     @RequestMapping(value = "/formSIP/{id}")
     public String agregarSip(@PathVariable(value = "id") Long id, Map<String, Object> model) {
         Usuario usuario = null;
@@ -513,8 +585,61 @@ public class AdminController {
 
     }
 
+    @RequestMapping(value = "/formSIP2/{idSIP}/{idUsuario}")
+    public String editarSip(@PathVariable(value = "idUsuario") Long idUsuario,
+                            @PathVariable(value = "idSIP") Long idSip ,Map<String, Object> model) {
+        Usuario usuario = null;
+        SIP sip = null;
+        if (idUsuario > 0 && idSip > 0) {
+            usuario = usuarioService.findOne(idUsuario);
+            sip = sipService.findOne(idSip);
+            ((Model) model).addAttribute("titulo", "Agregar SIP");
+            ((Model) model).addAttribute("sip", sip);
+            return "PersonalAutorizado/formSIP2";
+        } else {
+            return "redirect:/PersonalAutorizado/ListadoUsuarios";
+        }
+    }
+
+    @PostMapping(value = "/formSIP2")
+    public String guardarSip2(@Valid SIP sip, BindingResult result, Model model,
+                             @RequestParam("file") MultipartFile file) {
+        Usuario usuario = sip.getUsers();
+
+        if(!file.isEmpty()){
+            if(sip.getArchivoSip() != null && sip.getArchivoSip().length() > 0){
+                uploadFileService.delete(sip.getArchivoSip());
+            }
+            String uniqueFilename = null;
+            try {
+                uniqueFilename = uploadFileService.copy(file);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            sip.setArchivoSip(uniqueFilename);
+        } else {
+            if(sip.getArchivoSip() == null){
+                sip.setArchivoSip("");
+            }
+        }
+
+        sipService.saveSip(sip);
+        sipService.saveUsuario(usuario);
+
+        return "PersonalAutorizado/ListadoUsuarios";
+
+    }
+
+    /**
+     * Método que guarda el formato SIP creado por el Personal Autorizado
+     * @param sip
+     * @param result
+     * @param model
+     * @param file
+     * @return /src/main/resources/templates/PersonalAutorizado/verUsuario.html
+     */
     @PostMapping(value = "/formSIP")
-    public String guardarrSip(@Valid SIP sip, BindingResult result, Model model,
+    public String guardarSip(@Valid SIP sip, BindingResult result, Model model,
                               @RequestParam("file") MultipartFile file) {
         Usuario usuario = sip.getUsers();
 
@@ -542,10 +667,16 @@ public class AdminController {
 
     }
 
+    /**
+     * Método que le permite al Personal Autorizado descargar el formato SIP de un "Alumno"
+     * @param id identificador único del formato SIP
+     * @param request
+     * @return
+     */
     @GetMapping(value = "/descargarSip/{id}")
     public ResponseEntity<Resource> descargarArchivo(@PathVariable Long id, HttpServletRequest request) {
 
-        SIP sip = sipService.findSipById(id);
+        SIP sip = sipService.findOne(id);
 
         String filename = sip.getArchivoSip();
 
@@ -573,8 +704,14 @@ public class AdminController {
 
     }
 
+    /**
+     * Método que elimina a un usuario del sistema definitivamente de la base de datos. Es decir, no quedan
+     * registros alguno de ese usuario dentro del sistema
+     * @param id
+     * @return /src/main/resources/templates/PersonalAutorizado/ListadoUsuarios.html
+     */
     @RequestMapping(value = "/eliminarUsuario/{id}")
-    public String eliminar(@PathVariable(value = "id") Long id) {
+    public String eliminarUsuario(@PathVariable(value = "id") Long id) {
 
         if (id > 0) {
             usuarioService.delete(id);
@@ -583,4 +720,13 @@ public class AdminController {
         return "redirect:/PersonalAutorizado/ListadoUsuarios";
     }
 
+    /*@RequestMapping(value = "/eliminarUsuario/{id}")
+    public String eliminarSIP(@PathVariable(value = "id") Long id) {
+
+        if (id > 0) {
+            usuarioService.delete(id);
+        }
+
+        return "redirect:/PersonalAutorizado/verUsuario";
+    }*/
 }

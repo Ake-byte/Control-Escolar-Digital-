@@ -11,6 +11,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import com.controldigital.app.auth.handler.LoginSuccessHandler;
 import com.controldigital.app.service.JpaUserDetailsService;
 
+/**
+ * Clase de configuración de seguridad en el sistema.
+ * Spring Security gestiona los accesos que tiene cada usuario así como sus roles .
+ */
 @EnableGlobalMethodSecurity(securedEnabled=true, prePostEnabled=true)
 @Configuration
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter{
@@ -23,7 +27,12 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter{
 	
 	@Autowired
 	private JpaUserDetailsService userDetailsService;
-	
+
+	/**
+	 * Método que indica el nombre del recurso y el nombre del usuario que tiene acceso a este.
+	 * @param http
+	 * @throws Exception
+	 */
 	protected void configure(HttpSecurity http) throws Exception {
 		
 		http.authorizeRequests().antMatchers("/css/**", "/js/**", "/register/**", "/layout/layout/**", "/newPassword/**", "/newPasswordForm/**").permitAll()
@@ -41,7 +50,12 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter{
 		.and()
 		.exceptionHandling().accessDeniedPage("/error_403");
 	}
-	
+
+	/**
+	 * Método que encripta la contraseña del usuario
+	 * @param builder
+	 * @throws Exception
+	 */
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder builder) throws Exception {
 		

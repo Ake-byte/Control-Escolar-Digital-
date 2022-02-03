@@ -6,7 +6,7 @@ INSERT INTO roles (user_id, authority, authority_name) VALUES(1, 'ROLE_ADMIN', '
 --ALUMNOS
 
 INSERT INTO users (nombre,apellido_paterno, apellido_materno, email, pwd, enabled) values('Alan','Franco','Ake','al.fr.ake@gmail.com','$2a$10$bGLQnSbjwAW1uV1whnRZbeoejiFRUIBB0zZN.bo/X6DyqEzXGnyQi',TRUE);
-INSERT INTO roles (user_id, authority, authority_name) VALUES(2, 'ROLE_USER2', 'Alumno');
+INSERT INTO roles (user_id, authority, authority_name) VALUES(2, 'ROLE_USER1', 'Uusario Registrado');
 INSERT INTO personal(user_id, fecha_nacimiento, clave_CURP, telefono_celular, genero, foto_status, acta_status, pasaporte_status, curp_status, pais_nacimiento,estado_nacimiento,lengua_indigena,discapacidad,enfermedad_permanente) VALUES(2,'1989-11-10','FAAA991110HMCRKL09', '5520657474','Hombre', 0,0,0,0, 'Spain','Ciudad de México',TRUE,TRUE,TRUE);
 INSERT INTO academica(user_id, calificaciones_licenciatura_status,diploma_licenciatura_status,cedula_licenciatura_status,acreditacion_ingles_status,calificaciones_maestria_status,acta_examen_maestria_status,diploma_maestria_status,cedula_maestria_status) VALUES(2, 0,0,0,0,0,0,0,0);
 INSERT INTO expediente(user_id, semestre, grado, estatus_escolar, beca_conacyt) VALUES(2,'A21', 'Maestría', 'Inscrito', TRUE);

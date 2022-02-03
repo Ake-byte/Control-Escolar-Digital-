@@ -30,6 +30,9 @@ import com.controldigital.app.models.entity.Usuario;
 import com.controldigital.app.service.IUsuarioService;
 import org.springframework.web.multipart.MultipartFile;
 
+/**
+ * Este controlador sirve para que el alumno acceda a su "Información Personal"
+ */
 @Controller
 @RequestMapping("/Personal")
 public class PersonalController {
@@ -43,6 +46,13 @@ public class PersonalController {
 	@Autowired
 	private IUploadFileService uploadFileService;
 
+	/**
+	 * Método que permite ver la información personal del usuario
+	 * @param model objeto que recibe la vista
+	 * @param authentication
+	 * @param request
+	 * @return /src/main/resources/templates/Personal/InformacionPersonal.html
+	 */
 	@GetMapping(value = "/InformacionPersonal")
 	public String verPerfil(Model model, Authentication authentication, HttpServletRequest request) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -52,10 +62,17 @@ public class PersonalController {
 		InfoPersonal usuarioInfoPersonal = infoPersonalService.findInfoPersonalByUserId(usuario.getId());
 
 		model.addAttribute("usuario", usuarioInfoPersonal);
-		model.addAttribute("titulo", "Datos Personales");
+		model.addAttribute("titulo", "Información Personal");
 		return "Personal/InformacionPersonal";
 	}
 
+	/**
+	 * Método que abre el formulario para editar/actualizar datos del usuario
+	 * @param model
+	 * @param authentication
+	 * @param request
+	 * @return /src/main/resources/templates/Personal/EditarInformacionPersonal.html
+	 */
 	@GetMapping(value = "/EditarInformacionPersonal")
 	public String editarDatos(Map<String, Object> model, Authentication authentication, HttpServletRequest request) {
 
@@ -77,6 +94,14 @@ public class PersonalController {
 		return "Personal/EditarInformacionPersonal";
 	}
 
+	/**
+	 * Método que guarda los datos que fueron insertados en el formulario "EditarInformaciónPersonal.html"
+	 * @param infoPersonal objeto del tipo InfoPersonal
+	 * @param result
+	 * @param model objeto que recibe la vista
+	 * @param files Arreglo de archivos de caracter personal del usuario
+	 * @return /src/main/resources/templates/Personal/InfoPersonal.html
+	 */
 	@PostMapping(value = "/EditarInformacionPersonal")
 	public String guardarDatos(@Valid InfoPersonal infoPersonal, BindingResult result, Model model,
 							   @RequestParam("files") MultipartFile[] files) {
@@ -171,6 +196,13 @@ public class PersonalController {
 		return "redirect:InformacionPersonal";
 	}
 
+	/**
+	 * Método que le permite al usuario descargar los archivos que tiene guardados en el sistema.
+	 * @param tipoArchivo parámetro que se refiere al archivo que el usuario solicitó descargar
+	 * @param id parámetro que indica el identificador único del usuraio
+	 * @param request
+	 * @return
+	 */
 	@GetMapping(value = "/descargarArchivo/{tipoArchivo}/{id}")
 	public ResponseEntity<Resource> descargarArchivo(@PathVariable String tipoArchivo, @PathVariable Long id, HttpServletRequest request) {
 

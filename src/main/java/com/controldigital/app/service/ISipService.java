@@ -9,5 +9,5 @@ public interface ISipService {
     public List<SIP> findUserSips(Long id);
     public void saveSip(SIP sip);
     public void saveUsuario(Usuario usuario);
-    public SIP findSipById(Long id);
+    public SIP findOne(Long id);
 }

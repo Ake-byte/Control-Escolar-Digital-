@@ -6,10 +6,16 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
+/**
+ * Entidad que mapea la tabla "personal" en la base de datos
+ */
 @Entity
 @Table(name = "personal")
 public class InfoPersonal implements Serializable {
 
+    /**
+     * Identificador único del campo personal
+     */
     @Id
     @Column(name = "user_personal_id")
     private Long id;
@@ -46,20 +52,35 @@ public class InfoPersonal implements Serializable {
     @Column(name = "direccion_CDMX")
     private String direccionCDMX;
 
+    /**
+     * Género del usuario, pueden ser:
+     * - Hombre
+     * - Mujer
+     * - Otro
+     */
     private String genero;
 
+    /**
+     * Campo booleano que indica si el usuario habla una lengua indígena
+     */
     @Column(name = "lengua_indigena")
     private Boolean lenguaIndigena;
 
     @Column(name = "nombre_lengua_indigena")
     private String nombreLenguaIndigena;
 
+    /**
+     * Campo booleano que indica si el usuario padece de una discapacidad
+     */
     @Column(name = "discapacidad")
     private Boolean discapacidad;
 
     @Column(name = "nombre_discapacidad")
     private String nombreDiscapacidad;
 
+    /**
+     * Campo booleano que indica si el usuario padece de una enfermedad permanente
+     */
     @Column(name = "enfermedad_permanente")
     private Boolean enfermedadPermanente;
 
@@ -78,6 +99,9 @@ public class InfoPersonal implements Serializable {
     @Column(name = "pasaporte_status")
     private FileStatus pasaporteStatus;
 
+    /**
+     * FK al campo PK "user_id" de la tabla users
+     */
     @OneToOne(mappedBy = "infoPersonal", fetch = FetchType.LAZY)
     @MapsId
     @JoinColumn(name = "user_id")
@@ -259,11 +283,11 @@ public class InfoPersonal implements Serializable {
         this.id = id;
     }
 
-    public Usuario getUsuario() {
+    public Usuario getUsers() {
         return users;
     }
 
-    public void setUsuario(Usuario usuario) {
+    public void setUsers(Usuario users) {
         this.users = users;
     }
 }

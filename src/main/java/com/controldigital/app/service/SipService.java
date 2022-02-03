@@ -38,7 +38,10 @@ public class SipService implements ISipService{
     }
 
     @Override
-    public SIP findSipById(Long id) {
+    @Transactional(readOnly=true)
+    public SIP findOne(Long id) {
         return sipDAO.findById(id).orElse(null);
     }
+
+
 }

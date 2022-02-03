@@ -13,12 +13,18 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+/**
+ * Entidad que mapea la tabla "roles" en la base de datos
+ */
 @Entity
 @Table(name="roles", uniqueConstraints= {@UniqueConstraint(columnNames = { "user_id", "authority" })})
 public class Role implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * Identificador único del role o permiso
+	 */
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "role_id")

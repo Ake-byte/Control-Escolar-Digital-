@@ -28,11 +28,13 @@ import com.controldigital.app.service.IRoleService;
 import com.controldigital.app.service.IUsuarioService;
 import org.springframework.web.multipart.MultipartFile;
 
-
+/**
+ * Este controlador sirve para que el alumno acceda a su "Información Académica"
+ */
 @Controller
 @RequestMapping("/Academica")
 public class AcademicaController {
-	
+
 	@Autowired
 	private IUsuarioService usuarioService;
 
@@ -41,12 +43,20 @@ public class AcademicaController {
 
 	@Autowired
 	private IUploadFileService uploadFileService;
-	
+
 	@Autowired
 	private IRoleService roleService;
-	
+
+	/**
+	 * Método que permite que el usuario acceda a datos de información académica
+	 * @param model Parámetro que recibe la vista
+	 *              /src/main/resources/templates/Academica/InformacionAcademica.html
+	 * @param authentication
+	 * @param request
+	 * @return
+	 */
 	@GetMapping(value = "/InformacionAcademica")
-	public String verPerfil(Model model, Authentication authentication, HttpServletRequest request) {
+	public String verInformacionAcademica(Model model, Authentication authentication, HttpServletRequest request) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
 		Usuario usuario = usuarioService.findByEmail(auth.getName());
@@ -57,9 +67,17 @@ public class AcademicaController {
 		model.addAttribute("titulo", "Datos de Usuario");
 		return "Academica/InformacionAcademica";
 	}
-	
+
+	/**
+	 * Método que permite que el usuario edite datos de información académica
+	 * @param model Parámetro que recibe la vista
+	 *              /src/main/resources/templates/Academica/EditarInformacionAcademica.html
+	 * @param authentication
+	 * @param request
+	 * @return
+	 */
 	@GetMapping(value = "/EditarInformacionAcademica/{id}")
-	public String editarDatos(Map<String, Object> model, Authentication authentication, HttpServletRequest request) {
+	public String editarInformacionAcademica(Map<String, Object> model, Authentication authentication, HttpServletRequest request) {
 
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
@@ -72,8 +90,16 @@ public class AcademicaController {
 		return "Academica/EditarInformacionAcademica";
 	}
 
+	/**
+	 * Método que guarda los datos que el usuario editó de información académica
+	 * @param infoAcademica se recibe el objeto de la clase InfoAcademica
+	 * @param result
+	 * @param model
+	 * @param files Arreglo de archivos correspondientes a la información académica del alumno.
+	 * @return
+	 */
 	@PostMapping(value = "/EditarInformacionAcademica")
-	public String guardarDatos(@Valid InfoAcademica infoAcademica, BindingResult result, Model model,
+	public String guardarInformacionAcademica(@Valid InfoAcademica infoAcademica, BindingResult result, Model model,
 							   @RequestParam("files") MultipartFile[] files) {
 		if (result.hasErrors()) {
 			model.addAttribute("titulo", "Editar Datos");
@@ -242,6 +268,13 @@ public class AcademicaController {
 		return "redirect:InformacionAcademica";
 	}
 
+	/**
+	 * Método que le permite al usuario descargar los archivos que tiene guardados en el sistema.
+	 * @param tipoArchivo parámetro que se refiere al archivo que el usuario solicitó descargar
+	 * @param id parámetro que indica el identificador único del usuraio
+	 * @param request
+	 * @return
+	 */
 	@GetMapping(value = "/descargarArchivo/{tipoArchivo}/{id}")
 	public ResponseEntity<Resource> descargarArchivo(@PathVariable String tipoArchivo, @PathVariable Long id, HttpServletRequest request) {
 

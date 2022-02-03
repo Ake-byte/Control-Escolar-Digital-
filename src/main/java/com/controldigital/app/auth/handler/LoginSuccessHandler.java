@@ -18,12 +18,24 @@ import org.springframework.web.servlet.support.SessionFlashMapManager;
 import com.controldigital.app.models.entity.Usuario;
 import com.controldigital.app.service.IUsuarioService;
 
+/**
+ * Clase que permite a los usuarios que cuenten con "Correo electrónico" y "Contraseña"
+ * registrados en la base de datos, accedan al sistema.
+ */
 @Component
 public class LoginSuccessHandler extends SimpleUrlAuthenticationSuccessHandler{
 
 	@Autowired
 	private IUsuarioService usuarioService;
-	
+
+	/**
+	 * Método que autoriza el acceso al sistema a los usuarios
+	 * @param request
+	 * @param response
+	 * @param authentication
+	 * @throws IOException
+	 * @throws ServletException
+	 */
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 			Authentication authentication) throws IOException, ServletException {
@@ -48,7 +60,11 @@ public class LoginSuccessHandler extends SimpleUrlAuthenticationSuccessHandler{
 			super.onAuthenticationSuccess(request, response, authentication);
 		}
 	}
-	
+
+	/**
+	 * Método que devuelve la vista "login" para los usuarios inhabilitados
+	 * @return /src/main/resources/templates/login.html
+	 */
 	public String usuarioInhabilitado() {
 		return "login";
 	}

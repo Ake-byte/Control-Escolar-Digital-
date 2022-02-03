@@ -10,7 +10,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import static com.controldigital.app.controllers.AdminController.convertDate;
+import static com.controldigital.app.util.Fecha.convertDate;
+
 
 @Service
 public class InformesService implements IInformesService{

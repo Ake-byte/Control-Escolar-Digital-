@@ -17,7 +17,7 @@
 					<li><a class="nav-link"
 						th:classappend="${#httpServletRequest.getRequestURI() == '/index' ? 'active':''}"
 						aria-current="page" th:href="@{/index}">Inicio</a></li>
-					<li sec:authorize="hasRole('ROLE_USER2')"><a class="nav-link"
+					<li sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_USER1','ROLE_USER2')"><a class="nav-link"
 					   th:classappend="${#httpServletRequest.getRequestURI() == '/Sistema/InformacionSistema' ? 'active':''}"
 					   th:href="@{/Sistema/InformacionSistema}">Informaci&oacute;n del Sistema</a>
 					</li>

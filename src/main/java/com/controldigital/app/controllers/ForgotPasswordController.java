@@ -23,6 +23,9 @@ import com.controldigital.app.util.MailSenderService;
 
 import net.bytebuddy.utility.RandomString;
 
+/**
+ * Controlador que tiene acciones para que el usuario encuentre su contraseña
+ */
 @Controller
 public class ForgotPasswordController {
 
@@ -35,16 +38,30 @@ public class ForgotPasswordController {
 	@Autowired(required = true)
 	private MailSenderService mailService;
 
-	
+	/**
+	 * Método que carga la vista para recuperar el acceso
+	 * @param model
+	 * @return
+	 */
 	@GetMapping(value = "/newPassword")
 	public String newPassword(Map<String, Object> model) {
-		// Usuario usuario = new Usuario();
 
-		// model.put("usuario", usuario);
 		model.put("titulo", "Recuperar Acceso");
 		return "newPassword";
 	}
 
+	/**
+	 * Método que crea el token para recuperar el acceso
+	 * @param request
+	 * @param response
+	 * @param email se solicita el correo electrónico del que se quiere recuperar la contraseña
+	 * @param result
+	 * @param model
+	 * @param flash mensaje que notifica al usuario si el email proporciaonado existe en el sistema
+	 * @param status
+	 * @return
+	 * @throws Exception
+	 */
 	@PostMapping(value = "/newPassword")
 	public String guardarNuevaPassword(HttpServletRequest request, HttpServletResponse response,
 			@ModelAttribute("email") String email, BindingResult result, Model model, RedirectAttributes flash,
@@ -76,6 +93,12 @@ public class ForgotPasswordController {
 		return "redirect:/login";
 	}
 
+	/**
+	 * Método que obti
+	 * @param token
+	 * @param model
+	 * @return
+	 */
 	@GetMapping(value = "/newPasswordForm")
 	public String newPasswordForm(@RequestParam(name = "token") String token, Map<String, Object> model) {
 
@@ -92,6 +115,18 @@ public class ForgotPasswordController {
 		return "newPasswordForm";
 	}
 
+	/**
+	 * Método que agrega la nueva contraseña
+	 * @param request
+	 * @param response
+	 * @param newPassword
+	 * @param token
+	 * @param result
+	 * @param model
+	 * @param flash
+	 * @param status
+	 * @return
+	 */
 	@PostMapping(value = "/newPasswordForm")
 	public String SaveNewPassword(HttpServletRequest request, HttpServletResponse response,
 			@ModelAttribute("password") String newPassword, @ModelAttribute("token") String token, BindingResult result,

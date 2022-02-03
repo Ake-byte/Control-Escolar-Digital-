@@ -11,6 +11,9 @@ import java.util.List;
 
 import javax.persistence.*;
 
+/**
+ * Entidad que mapea la tabla "users" en la base de datos
+ */
 @Entity
 @Table(name = "users")
 @Getter
@@ -19,51 +22,105 @@ public class Usuario implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    /**
+     * Identificador único del usuario
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
     private Long id;
 
+    /**
+     * Nombre de usuario
+     */
     @Column(name = "nombre")
     private String nombre;
 
+    /**
+     * Apellido paterno del usuario
+     */
     @Column(name = "apellido_paterno")
     private String apellidoPaterno;
 
+    /**
+     * Apellido materno del usuario
+     */
     @Column(name = "apellido_materno")
     private String apellidoMaterno;
 
+    /**
+     * Correo electrónico del usuario.
+     * Solo puede existir una cuenta de correo electrónico por usuario.
+     * No puede haber dos usuarios con la misma dirección de correo.
+     */
     @Column(name = "email", unique = true)
     private String email;
 
+    /**
+     * Contraseña o clave de acceso del usuario al sistema.
+     * Las contraseñas tienen una longitud máxima de 100 carectéres.
+     * Este tamañp es por el cifrado.
+     */
     @Column(name = "pwd", length = 100)
     private String password;
 
+    /**
+     * Campo booleano que indica si el usuario puede acceder al sistema o no.
+     * Por cada registro este valor de será "true",
+     * cuando personal autorizado cambie el permiso de un usario a "Usuario Deshabilitado"
+     * o cuando el usuario ya haya egresado, el valor cambiará a "false".
+     */
     private Boolean enabled;
 
+    /**
+     * Cuando el usuario olvida su contraseña, se crea un token único que corresponda a la petición
+     * solicitada por el usuario, esto con la finalidad de que no cualquiera cambie la contraseña.
+     */
     @Column(name = "reset_password_token")
     private String resetPasswordToken;
 
+    /**
+     * Relación uno a uno con la tabla "roles".
+     * Cada usuario solo debe tener un permiso en el sistema.
+     */
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
     private Role roles;
 
+    /**
+     * Relación uno a muchos con la tabla "productos".
+     * Un usuario tiene muchos productos.
+     */
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
     private List<Producto> productos;
 
+    /**
+     * Relación uno a muchos con la tabla "sips".
+     * Un usuario tiene muchos productos.
+     */
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
     private List<SIP> sips;
 
+    /**
+     * Relación uno a uno con la tabla "academica".
+     */
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
     private InfoAcademica infoAcademica;
 
+    /**
+     * Relación uno a uno con la tabla "personal".
+     */
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
     private InfoPersonal infoPersonal;
 
+    /**
+     * Relación uno a uno con la tabla "expediente".
+     * Cada usuario solo debe tener un permiso en el sistema.
+     */
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
     private Expediente expediente;

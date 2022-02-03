@@ -47,7 +47,7 @@ public class ProductividadController {
 	private IUploadFileService uploadFileService;
 
 	@GetMapping(value = "/ListadoProductividad")
-	public String verPerfil(Model model, Authentication authentication, HttpServletRequest request) {
+	public String verProductos(Model model, Authentication authentication, HttpServletRequest request) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
 		Usuario usuario = usuarioService.findByEmail(auth.getName());
@@ -78,7 +78,7 @@ public class ProductividadController {
 	}
 
 	@GetMapping(value = "/formProductividad/{id}")
-	public String editarDatos(@PathVariable(value = "id") Long idUsuario, Map<String, Object> model) {
+	public String editarProducto(@PathVariable(value = "id") Long idUsuario, Map<String, Object> model) {
 
 		Usuario usuario = usuarioService.findOne(idUsuario);
 

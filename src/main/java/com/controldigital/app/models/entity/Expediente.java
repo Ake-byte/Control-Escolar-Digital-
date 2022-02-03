@@ -3,44 +3,97 @@ package com.controldigital.app.models.entity;
 import javax.persistence.*;
 import java.io.Serializable;
 
+/**
+ * Entidad que mapea la tabla "expediente" en la base de datos
+ */
 @Entity
 @Table(name = "expediente")
 public class Expediente implements Serializable {
 
+    /**
+     * Identificador único del expediente
+     */
     @Id
     @Column(name = "user_expediente_id")
     private Long id;
 
+    /**
+     * Grado de estudios del alumno, ya sea:
+     * - Maestría
+     * - Doctorado
+     */
     @Column(name = "grado")
     private String grado;
 
+    /**
+     * Número de registro de los alumnos con las estructura:
+     * A/B Año de ingreso y serial de ingreso.
+     *
+     * Ejemplo:
+     * A21 _ _ _ _
+     */
     @Column(name = "numero_registro")
     private String numeroRegistro;
 
+    /**
+     * Semestre actual en el que está inscrito el alumno
+     */
     private String semestre;
 
+    /**
+     * Estatus del alumno, ya sea:
+     * - Inscrito
+     * - Egresado
+     */
     @Column(name = "estatus_escolar")
     private String estatusEscolar;
 
+    /**
+     * Campo booleano que indica si el alumno cuenta on beca Conacyt o no
+     */
     @Column(name = "beca_conacyt")
     private Boolean becaConacyt;
 
     private String cvuConacyt;
 
+    /**
+     * Asesor de tesis 1 del alumno
+     */
     private String asesor1;
 
+    /**
+     * Asesor de tesis 1 del alumno
+     */
     private String asesor2;
 
+    /**
+     * Título de la tesis del alumno
+     */
     private String tituloTesis;
 
+    /**
+     * Comité tutorial 1 del alumno
+     */
     private String comiteTutorial1;
 
+    /**
+     * Comité tutorial 2 del alumno
+     */
     private String comiteTutorial2;
 
+    /**
+     * Comité tutorial 3 del alumno
+     */
     private String comiteTutorial3;
 
+    /**
+     * Comité tutorial 4 del alumno
+     */
     private String comiteTutorial4;
 
+    /**
+     * FK al campo PK "user_id" de la tabla users
+     */
     @OneToOne(mappedBy = "expediente", fetch = FetchType.LAZY)
     @MapsId
     @JoinColumn(name = "user_id")
@@ -94,11 +147,11 @@ public class Expediente implements Serializable {
         this.becaConacyt = becaConacyt;
     }
 
-    public Usuario getUsuario() {
+    public Usuario getUsers() {
         return users;
     }
 
-    public void setUsuario(Usuario usuario) {
+    public void setUsers(Usuario users) {
         this.users = users;
     }
 

@@ -3,10 +3,16 @@ package com.controldigital.app.models.entity;
 import javax.persistence.*;
 import java.io.Serializable;
 
+/**
+ * Entidad que mapea la tabla "academica" en la base de datos
+ */
 @Entity
 @Table(name = "academica")
 public class InfoAcademica implements Serializable {
 
+    /**
+     * Identificador único del campo academica
+     */
     @Id
     @Column(name = "user_academica_id")
     private Long id;
@@ -83,16 +89,19 @@ public class InfoAcademica implements Serializable {
     @Column(name = "cedula_maestria_status")
     private FileStatus cedulaMaestriaStatus;
 
+    /**
+     * FK al campo PK "user_id" de la tabla users
+     */
     @OneToOne(mappedBy = "infoAcademica", fetch = FetchType.LAZY)
     @MapsId
     @JoinColumn(name = "user_id")
     private Usuario users;
 
-    public Usuario getUsuario() {
+    public Usuario getUsers() {
         return users;
     }
 
-    public void setUsuario(Usuario usuario) {
+    public void setUsers(Usuario usuario) {
         this.users = users;
     }
 

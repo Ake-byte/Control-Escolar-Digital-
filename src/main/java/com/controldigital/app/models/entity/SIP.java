@@ -3,10 +3,16 @@ package com.controldigital.app.models.entity;
 import javax.persistence.*;
 import java.io.Serializable;
 
+/**
+ * Entidad que mapea la tabla "sips" en la base de datos
+ */
 @Entity
 @Table(name = "sips")
 public class SIP implements Serializable {
 
+    /**
+     * Identificador único de un formato sip
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "sip_id")

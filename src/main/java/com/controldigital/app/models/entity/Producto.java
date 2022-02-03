@@ -7,10 +7,16 @@ import java.util.Date;
 
 import javax.persistence.*;
 
+/**
+ * Entidad que mapea la tabla "productos" en la base de datos
+ */
 @Entity
 @Table(name = "productos")
 public class Producto implements Serializable{
 
+	/**
+	 * Identificador único de un producto
+	 */
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "producto_id")

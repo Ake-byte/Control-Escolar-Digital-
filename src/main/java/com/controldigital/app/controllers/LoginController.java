@@ -29,7 +29,9 @@ import com.controldigital.app.service.IUsuarioService;
 import com.controldigital.app.util.MailSenderService;
 
 
-
+/**
+ * Controlador que gestiona el inicio de sesión de los usuarios
+ */
 @Controller
 public class LoginController {
 
@@ -45,6 +47,15 @@ public class LoginController {
 	@Autowired(required = true)
 	private MailSenderService mailService;
 
+	/**
+	 * Método que gestiona si un usuario accedió al sistema
+	 * @param error
+	 * @param logout
+	 * @param model
+	 * @param principal
+	 * @param flash
+	 * @return
+	 */
 	@GetMapping("/login")
 	public String login(@RequestParam(value = "error", required = false) String error,
 			@RequestParam(value = "logout", required = false) String logout, Model model, Principal principal,
@@ -68,6 +79,11 @@ public class LoginController {
 		return "login";
 	}
 
+	/**
+	 * Método que devuelve el formulario para el registro de un nuevo usuario
+	 * @param model
+	 * @return
+	 */
 	@GetMapping(value = "/register")
 	public String register(Map<String, Object> model) {
 		Usuario usuario = new Usuario();
@@ -77,6 +93,16 @@ public class LoginController {
 		return "register";
 	}
 
+	/**
+	 * Método que guarda los datos del nuevo registro
+	 * @param usuario
+	 * @param flash
+	 * @param result
+	 * @param model
+	 * @param status
+	 * @return
+	 * @throws Exception
+	 */
 	@PostMapping(value = "/register")
 	public String guardar(@Valid Usuario usuario, RedirectAttributes flash, BindingResult result, Model model,
 			SessionStatus status) throws Exception {
@@ -120,6 +146,10 @@ public class LoginController {
 		return "redirect:index";
 	}
 
+	/**
+	 * Método que regresa la vista de inicio
+	 * @return /src/main/resources/templates/index.html
+	 */
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public String index() {
 
