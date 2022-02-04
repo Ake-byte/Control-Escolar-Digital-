@@ -76,7 +76,7 @@ public class AcademicaController {
 	 * @param request
 	 * @return
 	 */
-	@GetMapping(value = "/EditarInformacionAcademica/{id}")
+	@GetMapping(value = "/EditarInformacionAcademica")
 	public String editarInformacionAcademica(Map<String, Object> model, Authentication authentication, HttpServletRequest request) {
 
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -103,7 +103,7 @@ public class AcademicaController {
 							   @RequestParam("files") MultipartFile[] files) {
 		if (result.hasErrors()) {
 			model.addAttribute("titulo", "Editar Datos");
-			return "EditarInformacionAcademica";
+			return "Academica/EditarInformacionAcademica";
 		}
 
 		if(infoAcademica.getId() != null && infoAcademica.getId() > 0){
