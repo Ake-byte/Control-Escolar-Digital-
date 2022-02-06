@@ -9,12 +9,13 @@ import java.time.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static com.controldigital.app.util.Fecha.convertDate;
 
 
 @Service
-public class InformesService implements IInformesService{
+public class InformesService implements IInformesService {
 
     @Autowired
     private UsuarioService usuarioService;
@@ -41,47 +42,27 @@ public class InformesService implements IInformesService{
     }
 
     private List<Usuario> opcionLenguaIndigena(List<Usuario> alumnos, Informes informes) {
-        List<Usuario> resultado = new ArrayList<>();
-
-        if(informes.getLenguaIndigena().equals("Si")){
-            for (Usuario u : alumnos) {
-                if (u.getInfoPersonal().getLenguaIndigena().equals(true))
-                    resultado.add(u);
-            }
-        }
-        else if(informes.getLenguaIndigena().equals("No")){
-            for (Usuario u : alumnos) {
-                if (u.getInfoPersonal().getLenguaIndigena().equals(false))
-                    resultado.add(u);
-            }
-        }
-        else if(informes.getLenguaIndigena().equals("Todo")){
+        if (informes.getLenguaIndigena().equals("Si")) {
+            return alumnos.stream()
+                    .filter(u -> u.getInfoPersonal().getLenguaIndigena().equals(true)).collect(Collectors.toList());
+        } else if (informes.getLenguaIndigena().equals("No")) {
+            return alumnos.stream()
+                    .filter(u -> u.getInfoPersonal().getLenguaIndigena().equals(false)).collect(Collectors.toList());
+        } else {
             return alumnos;
         }
-
-        return resultado;
     }
 
     private List<Usuario> opcionEnfermedadPermanente(List<Usuario> alumnos, Informes informes) {
-        List<Usuario> resultado = new ArrayList<>();
-
-        if(informes.getEnfermedadPermanente().equals("Si")){
-            for (Usuario u : alumnos) {
-                if (u.getInfoPersonal().getEnfermedadPermanente().equals(true))
-                    resultado.add(u);
-            }
-        }
-        else if(informes.getEnfermedadPermanente().equals("No")){
-            for (Usuario u : alumnos) {
-                if (u.getInfoPersonal().getEnfermedadPermanente().equals(false))
-                    resultado.add(u);
-            }
-        }
-        else if(informes.getEnfermedadPermanente().equals("Todo")){
+        if (informes.getEnfermedadPermanente().equals("Si")) {
+            return alumnos.stream()
+                    .filter(u -> u.getInfoPersonal().getEnfermedadPermanente().equals(true)).collect(Collectors.toList());
+        } else if (informes.getEnfermedadPermanente().equals("No")) {
+            return alumnos.stream()
+                    .filter(u -> u.getInfoPersonal().getEnfermedadPermanente().equals(false)).collect(Collectors.toList());
+        } else {
             return alumnos;
         }
-
-        return resultado;
     }
 
     private List<Usuario> opcionLugarNacimiento(List<Usuario> alumnos, Informes informes) {
@@ -90,23 +71,18 @@ public class InformesService implements IInformesService{
         List<String> estados = getEstados();
 
 
-            if(estados.contains(informes.getLugarNacimiento())){
+        if (estados.contains(informes.getLugarNacimiento())) {
+            return alumnos.stream()
+                    .filter(u -> u.getInfoPersonal().getEstadoNacimiento().equals(informes.getLugarNacimiento())).collect(Collectors.toList());
+        } else {
+            if (informes.getLugarNacimiento().equals("Extranjero")) {
                 for (Usuario u : alumnos) {
-                    if (u.getInfoPersonal().getEstadoNacimiento().equals(informes.getLugarNacimiento()))
-                        resultado.add(u);
-                }
-            }
-
-        else {
-            if(informes.getLugarNacimiento().equals("Extranjero")){
-                for (Usuario u : alumnos) {
-                    if(!estados.contains(informes.getLugarNacimiento())){
+                    if (!estados.contains(informes.getLugarNacimiento())) {
                         resultado.add(u);
                     }
                 }
                 return resultado;
-            }
-            else if(informes.getLugarNacimiento().equals("Todo")){
+            } else if (informes.getLugarNacimiento().equals("Todo")) {
                 return alumnos;
             }
         }
@@ -153,48 +129,29 @@ public class InformesService implements IInformesService{
         return estadosMex;
     }
 
-    public List<Usuario> opcionPosgrado(List<Usuario> alumnos, Informes informes){
-
-        List<Usuario> resultado = new ArrayList<>();
-
-
-        if(informes.getPosgrado().equals("Maestría")){
-            for (Usuario u : alumnos) {
-                if (u.getExpediente().getGrado().equals("Maestría"))
-                    resultado.add(u);
-            }
-        }
-        else if(informes.getPosgrado().equals("Doctorado")){
-            for (Usuario u : alumnos) {
-                if (u.getExpediente().getGrado().equals("Doctorado"))
-                    resultado.add(u);
-            }
-        }
-        else if(informes.getPosgrado().equals("Todo")){
+    public List<Usuario> opcionPosgrado(List<Usuario> alumnos, Informes informes) {
+        if (informes.getPosgrado().equals("Maestría")) {
+            return alumnos.stream()
+                    .filter(u -> u.getExpediente().getGrado().equals("Maestría")).collect(Collectors.toList());
+        } else if (informes.getPosgrado().equals("Doctorado")) {
+            return alumnos.stream()
+                    .filter(u -> u.getExpediente().getGrado().equals("Doctorado")).collect(Collectors.toList());
+        } else{
             return alumnos;
         }
-
-        return resultado;
     }
 
-    public List<Usuario> opcionSemestre(List<Usuario> alumnos, Informes informes){
+    public List<Usuario> opcionSemestre(List<Usuario> alumnos, Informes informes) {
 
-        List<Usuario> resultado = new ArrayList<>();
-
-        if(!informes.getSemestre().equals("Todo")){
-            for (Usuario u : alumnos) {
-                if (u.getExpediente().getSemestre().equals(informes.getSemestre()))
-                    resultado.add(u);
-            }
-        }
-        else {
+        if (!informes.getSemestre().equals("Todo")) {
+            return alumnos.stream()
+                    .filter(u -> u.getExpediente().getSemestre().equals(informes.getSemestre())).collect(Collectors.toList());
+        } else {
             return alumnos;
         }
-
-        return resultado;
     }
 
-    public List<Usuario> opcionEdades(List<Usuario> alumnos, Informes informes){
+    public List<Usuario> opcionEdades(List<Usuario> alumnos, Informes informes) {
 
         List<Usuario> resultado = new ArrayList<>();
 
@@ -203,131 +160,98 @@ public class InformesService implements IInformesService{
         ZonedDateTime zdt = instant.atZone(ZoneId.systemDefault());
         LocalDate date = zdt.toLocalDate();
 
-        if(!informes.getEdadMin().equals("Todo") && !informes.getEdadMax().equals("Todo")){
+        if (!informes.getEdadMin().equals("Todo") && !informes.getEdadMax().equals("Todo")) {
             for (Usuario u : alumnos) {
                 LocalDate birthday = convertDate(u.getInfoPersonal().getFechaNacimiento());
                 if (Period.between(birthday, date).getYears() >= Integer.valueOf(informes.getEdadMin())
                         && Period.between(birthday, date).getYears() <= Integer.valueOf(informes.getEdadMax()))
                     resultado.add(u);
             }
-        }
-        else {
+        } else {
             return alumnos;
         }
 
         return resultado;
     }
 
-    public List<Usuario> opcionGenero(List<Usuario> alumnos, Informes informes){
-        List<Usuario> resultado = new ArrayList<>();
-
-        if(informes.getGenero().equals("Hombre")){
-            for (Usuario u : alumnos) {
-                if (u.getInfoPersonal().getGenero().equals("Hombre"))
-                    resultado.add(u);
-            }
-        }
-        else if(informes.getGenero().equals("Mujer")){
-            for (Usuario u : alumnos) {
-                if (u.getInfoPersonal().getGenero().equals("Mujer"))
-                    resultado.add(u);
-            }
-        }
-        else if(informes.getGenero().equals("Otro")){
-            for (Usuario u : alumnos) {
-                if (u.getInfoPersonal().getGenero().equals("Otro"))
-                    resultado.add(u);
-            }
-        }
-        else if(informes.getGenero().equals("Todo")){
+    public List<Usuario> opcionGenero(List<Usuario> alumnos, Informes informes) {
+        if (informes.getGenero().equals("Hombre")) {
+            return alumnos.stream()
+                    .filter(u -> u.getInfoPersonal().getGenero().equals("Hombre")).collect(Collectors.toList());
+        } else if (informes.getGenero().equals("Mujer")) {
+            return alumnos.stream()
+                    .filter(u -> u.getInfoPersonal().getGenero().equals("Mujer")).collect(Collectors.toList());
+        } else if (informes.getGenero().equals("Otro")) {
+            return alumnos.stream()
+                    .filter(u -> u.getInfoPersonal().getGenero().equals("Otro")).collect(Collectors.toList());
+        } else {
             return alumnos;
         }
-
-        return resultado;
     }
 
-    public List<Usuario> opcionNacionalidad(List<Usuario> alumnos, Informes informes){
+    public List<Usuario> opcionNacionalidad(List<Usuario> alumnos, Informes informes) {
         List<Usuario> resultado = new ArrayList<>();
 
-        if(informes.getNacionalidad().equals("Mexicana")){
+        if (informes.getNacionalidad().equals("Mexicana")) {
             for (Usuario u : alumnos) {
                 if (u.getInfoPersonal().getPaisNacimiento().equals("Mexico"))
                     resultado.add(u);
             }
-        }
-        else if(informes.getNacionalidad().equals("Extranjera")){
+        } else if (informes.getNacionalidad().equals("Extranjera")) {
             for (Usuario u : alumnos) {
                 if (!u.getInfoPersonal().getPaisNacimiento().equals("Mexico"))
                     resultado.add(u);
             }
-        }
-        else if(informes.getNacionalidad().equals("Todo")){
+        } else if (informes.getNacionalidad().equals("Todo")) {
             return alumnos;
         }
 
         return resultado;
     }
 
-    public List<Usuario> opcionDiscapacidad(List<Usuario> alumnos, Informes informes){
+    public List<Usuario> opcionDiscapacidad(List<Usuario> alumnos, Informes informes) {
         List<Usuario> resultado = new ArrayList<>();
 
-        if(informes.getDiscapacidad().equals("Si")){
-            for (Usuario u : alumnos) {
-                if (u.getInfoPersonal().getDiscapacidad().equals(true))
-                    resultado.add(u);
-            }
+        if (informes.getDiscapacidad().equals("Si")) {
+            return alumnos.stream()
+                    .filter(u -> u.getInfoPersonal().getDiscapacidad().equals(true)).collect(Collectors.toList());
+        } else if (informes.getDiscapacidad().equals("No")) {
+            return alumnos.stream()
+                    .filter(u -> u.getInfoPersonal().getDiscapacidad().equals(false)).collect(Collectors.toList());
+        } else {
+            return alumnos;
         }
-        else if(informes.getDiscapacidad().equals("No")){
-            for (Usuario u : alumnos) {
-                if (u.getInfoPersonal().getDiscapacidad().equals(false))
-                    resultado.add(u);
-            }
-        }
-        else if(informes.getDiscapacidad().equals("Todo")){
+    }
+
+    public List<Usuario> opcionEstatus(List<Usuario> alumnos, Informes informes) {
+        List<Usuario> resultado = new ArrayList<>();
+
+        if (informes.getEstatus().equals("Inscritos")) {
+            return alumnos.stream()
+                    .filter(e -> e.getExpediente().getEstatusEscolar().equals("Inscrito")).collect(Collectors.toList());
+        } else if (informes.getEstatus().equals("Egresados")) {
+            return alumnos.stream()
+                    .filter(e -> e.getExpediente().getEstatusEscolar().equals("Egresado")).collect(Collectors.toList());
+        } else {
             return alumnos;
         }
 
-        return resultado;
     }
 
-    public List<Usuario> opcionEstatus(List<Usuario> alumnos, Informes informes){
+    public List<Usuario> opcionBecaConacyt(List<Usuario> alumnos, Informes informes) {
         List<Usuario> resultado = new ArrayList<>();
 
-        if(informes.getEstatus().equals("Inscritos")){
-            for (Usuario u : alumnos) {
-                if (u.getExpediente().getEstatusEscolar().equals("Inscrito"))
-                    resultado.add(u);
-            }
-        }
-        else if(informes.getEstatus().equals("Egresados")){
-            for (Usuario u : alumnos) {
-                if (u.getExpediente().getEstatusEscolar().equals("Egresado"))
-                    resultado.add(u);
-            }
-        }
-        else if(informes.getEstatus().equals("Todo")){
-            return alumnos;
-        }
-
-        return resultado;
-    }
-
-    public List<Usuario> opcionBecaConacyt(List<Usuario> alumnos, Informes informes){
-        List<Usuario> resultado = new ArrayList<>();
-
-        if(informes.getBecaConacyt().equals("Con Beca")){
+        if (informes.getBecaConacyt().equals("Con Beca")) {
             for (Usuario u : alumnos) {
                 if (u.getExpediente().getBecaConacyt().equals(true))
                     resultado.add(u);
             }
-        }
-        else if(informes.getBecaConacyt().equals("Sin Beca")){
+        } else if (informes.getBecaConacyt().equals("Sin Beca")) {
             for (Usuario u : alumnos) {
                 if (u.getExpediente().getBecaConacyt().equals(false))
                     resultado.add(u);
             }
-        }
-        else if(informes.getBecaConacyt().equals("Todo")){
+        } else if (informes.getBecaConacyt().equals("Todo")) {
             return alumnos;
         }
         return resultado;

@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 public class ExpedienteService implements IExpedienteService{
 
@@ -27,5 +29,10 @@ public class ExpedienteService implements IExpedienteService{
     @Override
     public void delete(Long id) {
 
+    }
+
+    @Override
+    public List<Expediente> findAll() {
+        return (List<Expediente>) expedienteDAO.findAll();
     }
 }

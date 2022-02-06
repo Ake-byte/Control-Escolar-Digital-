@@ -10,6 +10,9 @@ import java.io.Serializable;
 @Table(name = "expediente")
 public class Expediente implements Serializable {
 
+    @Column(name = "num_semestre")
+    private int numSemestre = 0;
+
     /**
      * Identificador único del expediente
      */
@@ -219,4 +222,11 @@ public class Expediente implements Serializable {
         this.comiteTutorial4 = comiteTutorial4;
     }
 
+    public int getNumSemestre() {
+        return numSemestre;
+    }
+
+    public void setNumSemestre(int numSemestre) {
+        this.numSemestre = numSemestre;
+    }
 }

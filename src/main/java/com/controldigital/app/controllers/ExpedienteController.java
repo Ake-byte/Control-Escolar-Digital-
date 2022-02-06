@@ -12,23 +12,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.controldigital.app.models.entity.Usuario;
 import com.controldigital.app.service.IUsuarioService;
 
-import java.time.LocalDate;
-import java.time.Month;
-import java.time.Period;
-import java.time.Year;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 import java.util.Map;
-
-import static com.controldigital.app.util.Fecha.*;
 
 /**
  * Esta clase sirve para acceder a datos del expediente de los alumnos
@@ -72,6 +62,10 @@ public class ExpedienteController {
 
 		Expediente usuarioExpediente = expedienteService.findExpedienteByUserId(usuario.getId());
 
+		if(usuarioExpediente.getNumeroRegistro().isEmpty()){
+			usuarioExpediente.setNumSemestre(1);
+		}
+
 		((Model) model).addAttribute("usuarioExpediente", usuarioExpediente);
 		((Model) model).addAttribute("titulo", "Editar Expediente");
 		return "Expediente/EditarExpediente";
@@ -84,52 +78,6 @@ public class ExpedienteController {
 			return "Personal/EditarInformacionSistema";
 		}
 
-		String semestreNumRegistro = expediente.getNumeroRegistro().substring(0,1);
-		int year = Integer.parseInt(expediente.getNumeroRegistro().substring(1,2) + expediente.getNumeroRegistro().substring(2,3)) + 2000;
-
-		String enrollDateString = String.valueOf(year);
-		Year enrollDate = Year.parse(enrollDateString);
-
-		LocalDate date = currentDate();
-
-		int numSemestres = Integer.parseInt(String.valueOf(date.getYear())) - year;
-
-		if(numSemestres == 0){
-			if(semestreNumRegistro.equals("A")){
-				if(mesesA().contains(date.getMonth())){
-					expediente.setSemestre("A" + String.valueOf(date.getYear()-2000));
-				}
-				else {
-					expediente.setSemestre("B" + String.valueOf(date.getYear()-2000));
-				}
-			}
-			else if(semestreNumRegistro.equals("B")){
-				if(mesesB().contains(date.getMonth())){
-					expediente.setSemestre("A" + String.valueOf(date.getYear()-2000));
-				}
-				else {
-					expediente.setSemestre("B" + String.valueOf(date.getYear()-2000));
-				}
-			}
-		}
-		else{
-			if(semestreNumRegistro.equals("A")){
-				if(mesesA().contains(date.getMonth())){
-					expediente.setSemestre("A" + String.valueOf(date.getYear()-2000));
-				}
-				else {
-					expediente.setSemestre("B" + String.valueOf(date.getYear()-2000));
-				}
-			}
-			else if(semestreNumRegistro.equals("B")){
-				if(mesesB().contains(date.getMonth())){
-					expediente.setSemestre("A" + String.valueOf(date.getYear()-2000));
-				}
-				else {
-					expediente.setSemestre("B" + String.valueOf(date.getYear()-2000));
-				}
-			}
-		}
 
 
 		expedienteService.save(expediente);

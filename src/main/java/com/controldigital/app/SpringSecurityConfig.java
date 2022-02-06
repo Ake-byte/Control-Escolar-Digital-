@@ -30,6 +30,8 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter{
 
 	/**
 	 * Método que indica el nombre del recurso y el nombre del usuario que tiene acceso a este.
+	 * Los recursos son las vistas en html que retornan los controladores y están ubicadas en;
+	 * 				/src/main/resources/templates/
 	 * @param http
 	 * @throws Exception
 	 */
