@@ -11,6 +11,7 @@ import com.controldigital.app.service.*;
 import com.controldigital.app.util.Fecha;
 import com.controldigital.app.util.Informes;
 import com.controldigital.app.util.MailSenderService;
+import com.controldigital.app.util.UserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
@@ -197,6 +198,18 @@ public class AdminController {
             return "PersonalAutorizado/VerUsuario";
         }
         else if(usuario.getRoles().getAuthority().equals("ROLE_USER2") || usuario.getRoles().getAuthority().equals("ROLE_USER4")){
+            UserDetails userDetails = new UserDetails();
+            InfoPersonal infoPersonal = inforPersonalService.findInfoPersonalByUserId(usuario.getId());
+            InfoAcademica infoAcademica = infoAcademicaService.findInfoAcademicaByUserId(usuario.getId());
+            Expediente expediente = expedienteService.findExpedienteByUserId(usuario.getId());
+
+            userDetails.setUsuario(usuario);
+            userDetails.setInfoPersonal(infoPersonal);
+            userDetails.setInfoAcademica(infoAcademica);
+            userDetails.setExpediente(expediente);
+
+            model.addAttribute("usuario", userDetails);
+
             return "PersonalAutorizado/VerAlumno";
         }
 
@@ -267,6 +280,7 @@ public class AdminController {
             case "Alumno":
                 roles.setAuthorityName("Alumno");
                 roles.setAuthority("ROLE_USER2");
+
                 if(usuario.getEnabled().equals(false))
                     usuario.setEnabled(true);
                 break;

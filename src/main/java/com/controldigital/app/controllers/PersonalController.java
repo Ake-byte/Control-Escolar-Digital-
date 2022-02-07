@@ -29,6 +29,7 @@ import org.springframework.web.bind.annotation.*;
 import com.controldigital.app.models.entity.Usuario;
 import com.controldigital.app.service.IUsuarioService;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  * Este controlador sirve para que el alumno acceda a su "Información Personal"
@@ -62,6 +63,7 @@ public class PersonalController {
 		InfoPersonal usuarioInfoPersonal = infoPersonalService.findInfoPersonalByUserId(usuario.getId());
 
 		model.addAttribute("usuario", usuarioInfoPersonal);
+		//model.addAttribute("usuario", usuario);
 		model.addAttribute("titulo", "Información Personal");
 		return "Personal/InformacionPersonal";
 	}
@@ -74,24 +76,34 @@ public class PersonalController {
 	 * @return /src/main/resources/templates/Personal/EditarInformacionPersonal.html
 	 */
 	@GetMapping(value = "/EditarInformacionPersonal")
-	public String editarDatos(Map<String, Object> model, Authentication authentication, HttpServletRequest request) {
+	public String editarDatos(Map<String, Object> model, Authentication authentication, HttpServletRequest request, RedirectAttributes flash) {
 
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
 		Usuario usuario = usuarioService.findByEmail(auth.getName());
-		InfoPersonal infoPersonal = infoPersonalService.findInfoPersonalByUserId(usuario.getId());
+
+		//if(usuario.getInfoPersonal() != null){
+			List<String> opcionGenero = new ArrayList<>();
+			opcionGenero.add("Hombre");
+			opcionGenero.add("Mujer");
+			opcionGenero.add("Otro");
+
+			InfoPersonal infoPersonal = infoPersonalService.findInfoPersonalByUserId(usuario.getId());
+
+			((Model) model).addAttribute("infoPersonal", infoPersonal);
+			((Model) model).addAttribute("opcionGenero", opcionGenero);
+			((Model) model).addAttribute("titulo", "Editar Datos");
+			return "Personal/EditarInformacionPersonal";
+		/*}
+		else{
+			flash.addFlashAttribute("error", "NO HAY INFOPERSONAL");
+			return "redirect:/Personal/InformacionPersonal";
+		}
+
+		 */
 
 
-		List<String> opcionGenero = new ArrayList<>();
-		opcionGenero.add("Hombre");
-		opcionGenero.add("Mujer");
-		opcionGenero.add("Otro");
-		
 
-		((Model) model).addAttribute("infoPersonal", infoPersonal);
-		((Model) model).addAttribute("opcionGenero", opcionGenero);
-		((Model) model).addAttribute("titulo", "Editar Datos");
-		return "Personal/EditarInformacionPersonal";
 	}
 
 	/**

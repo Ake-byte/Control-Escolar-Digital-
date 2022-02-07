@@ -17,7 +17,7 @@
 							<label class="col-sm-2 col-form-label">Nombre</label>
 							<div class="col-sm-6">
 								<input type="text" class="form-control" th:errorclass="'form-control alert-danger'"
-									th:field="*{nombre}" />
+									th:field="*{nombre}" required/>
 							</div>
 						</div>
 						<br>
@@ -25,7 +25,7 @@
 							<label class="col-sm-2 col-form-label">Apellido Paterno</label>
 							<div class="col-sm-6">
 								<input type="text" class="form-control" th:errorclass="'form-control alert-danger'"
-									th:field="*{apellidoPaterno}" />
+									th:field="*{apellidoPaterno}" required/>
 							</div>
 						</div>
 						<br>
@@ -33,7 +33,7 @@
 							<label class="col-sm-2 col-form-label">Apellido Materno</label>
 							<div class="col-sm-6">
 								<input type="text" class="form-control" th:errorclass="'form-control alert-danger'"
-									th:field="*{apellidoMaterno}" />
+									th:field="*{apellidoMaterno}" required/>
 							</div>
 						</div>
 						<br>
@@ -41,7 +41,7 @@
 							<label class="col-sm-2 col-form-label">Email</label>
 							<div class="col-sm-6">
 								<input type="email" class="form-control" th:errorclass="'form-control alert-danger'"
-									th:field="*{email}" />
+									th:field="*{email}" required/>
 							</div>
 						</div>
 						<br>
@@ -49,7 +49,7 @@
 							<label class="col-sm-2 col-form-label">Password</label>
 							<div class="col-sm-6">
 								<input type="password" class="form-control" th:errorclass="'form-control alert-danger'"
-									th:field="*{password}" />
+									th:field="*{password}" required/>
 							</div>
 						</div>
 						<br>

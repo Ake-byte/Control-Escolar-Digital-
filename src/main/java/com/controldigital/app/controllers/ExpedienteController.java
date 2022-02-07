@@ -62,10 +62,6 @@ public class ExpedienteController {
 
 		Expediente usuarioExpediente = expedienteService.findExpedienteByUserId(usuario.getId());
 
-		if(usuarioExpediente.getNumeroRegistro().isEmpty()){
-			usuarioExpediente.setNumSemestre(1);
-		}
-
 		((Model) model).addAttribute("usuarioExpediente", usuarioExpediente);
 		((Model) model).addAttribute("titulo", "Editar Expediente");
 		return "Expediente/EditarExpediente";

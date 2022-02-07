@@ -9,6 +9,8 @@ import javax.mail.MessagingException;
 import javax.mail.SendFailedException;
 import javax.validation.Valid;
 
+import com.controldigital.app.models.entity.*;
+import com.controldigital.app.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -22,10 +24,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.controldigital.app.models.entity.Role;
-import com.controldigital.app.models.entity.Usuario;
-import com.controldigital.app.service.IRoleService;
-import com.controldigital.app.service.IUsuarioService;
 import com.controldigital.app.util.MailSenderService;
 
 
@@ -35,126 +33,157 @@ import com.controldigital.app.util.MailSenderService;
 @Controller
 public class LoginController {
 
-	@Autowired
-	private IRoleService roleService;
+    @Autowired
+    private IRoleService roleService;
 
-	@Autowired
-	private BCryptPasswordEncoder passwordEncoder;
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
 
-	@Autowired
-	private IUsuarioService usuarioService;
+    @Autowired
+    private IUsuarioService usuarioService;
 
-	@Autowired(required = true)
-	private MailSenderService mailService;
+    @Autowired
+    private InforPersonalService inforPersonalService;
 
-	/**
-	 * Método que gestiona si un usuario accedió al sistema
-	 * @param error
-	 * @param logout
-	 * @param model
-	 * @param principal
-	 * @param flash
-	 * @return
-	 */
-	@GetMapping("/login")
-	public String login(@RequestParam(value = "error", required = false) String error,
-			@RequestParam(value = "logout", required = false) String logout, Model model, Principal principal,
-			RedirectAttributes flash) {
+    @Autowired
+    private InfoAcademicaService infoAcademicaService;
 
-		if (principal != null) {
-			flash.addFlashAttribute("info", "Ya ha iniciado sesión anteriormente");
-			return "redirect:/";
-		}
+    @Autowired
+    private ExpedienteService expedienteService;
 
-		if (error != null) {
-			model.addAttribute("error", "Error al iniciar sesión. El correo o la contraseña son incorrectos.");
-			//return "redirect:/login";
-		}
+    @Autowired(required = true)
+    private MailSenderService mailService;
 
-		if (logout != null) {
-			model.addAttribute("succes", "Has cerrado sesión con éxito");
-			// return "redirect:login";
-		}
+    /**
+     * Método que gestiona si un usuario accedió al sistema
+     *
+     * @param error
+     * @param logout
+     * @param model
+     * @param principal
+     * @param flash
+     * @return
+     */
+    @GetMapping("/login")
+    public String login(@RequestParam(value = "error", required = false) String error,
+                        @RequestParam(value = "logout", required = false) String logout, Model model, Principal principal,
+                        RedirectAttributes flash) {
 
-		return "login";
-	}
+        if (principal != null) {
+            flash.addFlashAttribute("info", "Ya ha iniciado sesión anteriormente");
+            return "redirect:/";
+        }
 
-	/**
-	 * Método que devuelve el formulario para el registro de un nuevo usuario
-	 * @param model
-	 * @return
-	 */
-	@GetMapping(value = "/register")
-	public String register(Map<String, Object> model) {
-		Usuario usuario = new Usuario();
+        if (error != null) {
+            model.addAttribute("error", "Error al iniciar sesión. El correo o la contraseña son incorrectos.");
+            //return "redirect:/login";
+        }
 
-		model.put("usuario", usuario);
-		model.put("titulo", "Registro de Usuario");
-		return "register";
-	}
+        if (logout != null) {
+            model.addAttribute("succes", "Has cerrado sesión con éxito");
+            // return "redirect:login";
+        }
 
-	/**
-	 * Método que guarda los datos del nuevo registro
-	 * @param usuario
-	 * @param flash
-	 * @param result
-	 * @param model
-	 * @param status
-	 * @return
-	 * @throws Exception
-	 */
-	@PostMapping(value = "/register")
-	public String guardar(@Valid Usuario usuario, RedirectAttributes flash, BindingResult result, Model model,
-			SessionStatus status) throws Exception {
+        return "login";
+    }
 
-		Usuario checarNuevoUsuario  = usuarioService.findByEmail(usuario.getEmail());
+    /**
+     * Método que devuelve el formulario para el registro de un nuevo usuario
+     *
+     * @param model
+     * @return
+     */
+    @GetMapping(value = "/register")
+    public String register(Map<String, Object> model) {
+        Usuario usuario = new Usuario();
 
-		if (checarNuevoUsuario != null) {
-			flash.addFlashAttribute("error", "Ya existe un usuario con esa dirección de correo electrónico.");
-			return "redirect:/register";
-		}
+        model.put("usuario", usuario);
+        model.put("titulo", "Registro de Usuario");
+        return "register";
+    }
 
-		if (result.hasErrors()) {
-			model.addAttribute("titulo", "Registro de Usuario");
-			return "register";
-		}
+    /**
+     * Método que guarda los datos del nuevo registro
+     *
+     * @param usuario
+     * @param flash
+     * @param result
+     * @param model
+     * @param status
+     * @return
+     * @throws Exception
+     */
+    @PostMapping(value = "/register")
+    public String guardar(@Valid Usuario usuario, RedirectAttributes flash, BindingResult result, Model model,
+                          SessionStatus status) throws Exception {
 
-		Role role = new Role();
+        Usuario checarNuevoUsuario = usuarioService.findByEmail(usuario.getEmail());
 
-		role.setAuthority("ROLE_USER1");
-		role.setUsers(usuario);
-		role.setAuthorityName("Usuario Registrado");
-		
-		usuario.setRoles(role);
-		usuario.setEnabled(true);
+        if (checarNuevoUsuario != null) {
+            flash.addFlashAttribute("error", "Ya existe un usuario con esa dirección de correo electrónico.");
+            return "redirect:/register";
+        }
 
-		String password = usuario.getPassword();
+        if (result.hasErrors()) {
+            model.addAttribute("titulo", "Registro de Usuario");
+            return "register";
+        }
 
-		String bcryptPassword = passwordEncoder.encode(password);
+        Role role = new Role();
+        InfoPersonal infoPersonal = new InfoPersonal();
+        InfoAcademica infoAcademica = new InfoAcademica();
+        Expediente expediente = new Expediente();
 
-		usuario.setPassword(bcryptPassword);
+        role.setUsers(usuario);
+        role.setAuthority("ROLE_USER1");
+        role.setAuthorityName("Usuario Registrado");
 
-		roleService.saveUsuario(usuario);
-		roleService.save(role);
+        infoPersonal.setUsers(usuario);
+        infoAcademica.setUsers(usuario);
+        expediente.setUsers(usuario);
 
-			mailService.sendEmail(usuario.getEmail(), "Bienvenido al sistema BD-LNCAE",
-					"Tu permiso actual es: Usuario Registrado", usuario);
+        usuario.setRoles(role);
+        usuario.setInfoPersonal(infoPersonal);
+        usuario.setInfoAcademica(infoAcademica);
+        usuario.setExpediente(expediente);
+
+        usuario.setEnabled(true);
+
+        String password = usuario.getPassword();
+
+        String bcryptPassword = passwordEncoder.encode(password);
+
+        usuario.setPassword(bcryptPassword);
+
+        roleService.saveUsuario(usuario);
+        roleService.save(role);
+
+        inforPersonalService.saveUsuario(usuario);
+        inforPersonalService.save(infoPersonal);
+        infoAcademicaService.saveUsuario(usuario);
+        infoAcademicaService.save(infoAcademica);
+        expedienteService.saveUsuario(usuario);
+        expedienteService.save(expediente);
+
+        mailService.sendEmail(usuario.getEmail(), "Bienvenido al sistema BD-LNCAE",
+                "Tu permiso actual es: Usuario Registrado", usuario);
 
 
-		status.setComplete();
+        status.setComplete();
 
-		return "redirect:index";
-	}
+        return "redirect:index";
+    }
 
-	/**
-	 * Método que regresa la vista de inicio
-	 * @return /src/main/resources/templates/index.html
-	 */
-	@RequestMapping(value = "/index", method = RequestMethod.GET)
-	public String index() {
+    /**
+     * Método que regresa la vista de inicio
+     *
+     * @return /src/main/resources/templates/index.html
+     */
+    @RequestMapping(value = "/index", method = RequestMethod.GET)
+    public String index() {
 
-		return "index";
-	}
+        return "index";
+    }
 
 
 }

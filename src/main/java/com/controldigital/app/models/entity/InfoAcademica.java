@@ -14,6 +14,7 @@ public class InfoAcademica implements Serializable {
      * Identificador único del campo academica
      */
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_academica_id")
     private Long id;
 
@@ -92,8 +93,7 @@ public class InfoAcademica implements Serializable {
     /**
      * FK al campo PK "user_id" de la tabla users
      */
-    @OneToOne(mappedBy = "infoAcademica", fetch = FetchType.LAZY)
-    @MapsId
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private Usuario users;
 
@@ -101,7 +101,7 @@ public class InfoAcademica implements Serializable {
         return users;
     }
 
-    public void setUsers(Usuario usuario) {
+    public void setUsers(Usuario users) {
         this.users = users;
     }
 

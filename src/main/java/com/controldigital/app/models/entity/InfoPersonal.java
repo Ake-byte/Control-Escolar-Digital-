@@ -17,6 +17,7 @@ public class InfoPersonal implements Serializable {
      * Identificador único del campo personal
      */
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_personal_id")
     private Long id;
 
@@ -102,8 +103,7 @@ public class InfoPersonal implements Serializable {
     /**
      * FK al campo PK "user_id" de la tabla users
      */
-    @OneToOne(mappedBy = "infoPersonal", fetch = FetchType.LAZY)
-    @MapsId
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private Usuario users;
 

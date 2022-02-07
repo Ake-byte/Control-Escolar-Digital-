@@ -44,7 +44,7 @@
                                             <label class="col-sm-6 col-form-label">Nombre(s):</label>
                                             <div class="col-sm-6">
                                                 <input type="text" class="form-control"
-                                                       th:field="${usuario.nombre}" readonly />
+                                                       th:field="${usuario.usuario.nombre}" readonly />
                                             </div>
                                         </div>
                                         <br>
@@ -53,7 +53,7 @@
                                                 Paterno:</label>
                                             <div class="col-sm-6">
                                                 <input type="text" class="form-control"
-                                                       th:field="${usuario.apellidoPaterno}" readonly />
+                                                       th:field="${usuario.usuario.apellidoPaterno}" readonly />
                                             </div>
                                         </div>
                                         <br>
@@ -62,7 +62,7 @@
                                                 Materno</label>
                                             <div class="col-sm-6">
                                                 <input type="text" class="form-control"
-                                                       th:field="${usuario.apellidoMaterno}" readonly />
+                                                       th:field="${usuario.usuario.apellidoMaterno}" readonly />
                                             </div>
                                         </div>
                                         <br>
@@ -159,7 +159,7 @@
                                                 electr&oacute;nico</label>
                                             <div class="col-sm-6">
                                                 <input type="text" class="form-control"
-                                                       th:field="${usuario.email}" readonly />
+                                                       th:field="${usuario.usuario.email}" readonly />
                                             </div>
                                         </div>
                                         <br>
@@ -175,7 +175,7 @@
                                                                 <p>El usuario no ha subido el documento.</p>
                                                             </div>
                                                             <div th:unless="${usuario.infoPersonal.fotoActual == '' || usuario.infoPersonal.fotoActual == null}" class="col-sm-4">
-                                                                <a th:href="@{/PersonalAutorizado/descargarArchivo/} + 'Foto/' + ${usuario.id}"
+                                                                <a th:href="@{/PersonalAutorizado/descargarArchivo/} + 'Foto/' + ${usuario.usuario.id}"
                                                                    class="card-link" th:text="'Descargar'"></a>
                                                             </div>
                                                         </div>
@@ -187,7 +187,7 @@
                                                                 <p>El usuario no ha subido el documento.</p>
                                                             </div>
                                                             <div th:unless="${usuario.infoPersonal.actaNacimiento == '' || usuario.infoPersonal.actaNacimiento == null}" class="col-sm-4">
-                                                                <a th:href="@{/PersonalAutorizado/descargarArchivo/} + 'ActaNacimiento/' + ${usuario.id}"
+                                                                <a th:href="@{/PersonalAutorizado/descargarArchivo/} + 'ActaNacimiento/' + ${usuario.usuario.id}"
                                                                    class="card-link" th:text="'Descargar'"></a>
                                                             </div>
                                                         </div>
@@ -200,7 +200,7 @@
                                                                 <p>El usuario no ha subido el documento.</p>
                                                             </div>
                                                             <div th:unless="${usuario.infoPersonal.pasaporte == '' || usuario.infoPersonal.pasaporte == null}" class="col-sm-4">
-                                                                <a th:href="@{/PersonalAutorizado/descargarArchivo/} + 'Pasaporte/' + ${usuario.id}"
+                                                                <a th:href="@{/PersonalAutorizado/descargarArchivo/} + 'Pasaporte/' + ${usuario.usuario.id}"
                                                                    class="card-link" th:text="'Descargar'"></a>
                                                             </div>
                                                         </div>
@@ -212,7 +212,7 @@
                                                                 <p>El usuario no ha subido el documento.</p>
                                                             </div>
                                                             <div th:unless="${usuario.infoPersonal.cedulaCURP == '' || usuario.infoPersonal.cedulaCURP == null}" class="col-sm-4">
-                                                                <a th:href="@{/PersonalAutorizado/descargarArchivo/} + 'Curp/' + ${usuario.id}"
+                                                                <a th:href="@{/PersonalAutorizado/descargarArchivo/} + 'Curp/' + ${usuario.usuario.id}"
                                                                    class="card-link" th:text="'Descargar'"></a>
                                                             </div>
                                                         </div>
@@ -248,7 +248,7 @@
                                                                 <td th:if="${usuario.infoPersonal.fotoStatus == T(com.controldigital.app.models.entity.FileStatus).RED3}" th:text="'No es Legible'"></td>
                                                                 <td th:if="${usuario.infoPersonal.fotoStatus == T(com.controldigital.app.models.entity.FileStatus).RED4}" th:text="'No est&aacute; Apostillado'"></td>
                                                                 <td><a class="btn btn-info"
-                                                                       th:href="@{/PersonalAutorizado/opcionValidarArchivo/} + ${usuario.id} + '/fotoStatus'">
+                                                                       th:href="@{/PersonalAutorizado/opcionValidarArchivo/} + ${usuario.usuario.id} + '/fotoStatus'">
                                                                     <img th:src="@{/images/noValidado.png}" width="55"
                                                                          height="55"></a></td>
                                                             </tr>
@@ -268,7 +268,7 @@
                                                                 <td th:if="${usuario.infoPersonal.actaStatus == T(com.controldigital.app.models.entity.FileStatus).RED3}" th:text="'No es Legible'"></td>
                                                                 <td th:if="${usuario.infoPersonal.actaStatus == T(com.controldigital.app.models.entity.FileStatus).RED4}" th:text="'No est&aacute; Apostillado'"></td>
                                                                 <td><a class="btn btn-info"
-                                                                       th:href="@{/PersonalAutorizado/opcionValidarArchivo/} + ${usuario.id} + '/actaStatus'">
+                                                                       th:href="@{/PersonalAutorizado/opcionValidarArchivo/} + ${usuario.usuario.id} + '/actaStatus'">
                                                                     <img th:src="@{/images/noValidado.png}" width="55"
                                                                          height="55"></a></td>
                                                             </tr>
@@ -288,7 +288,7 @@
                                                                 <td th:if="${usuario.infoPersonal.pasaporteStatus == T(com.controldigital.app.models.entity.FileStatus).RED3}" th:text="'No es Legible'"></td>
                                                                 <td th:if="${usuario.infoPersonal.pasaporteStatus == T(com.controldigital.app.models.entity.FileStatus).RED4}" th:text="'No est&aacute; Apostillado'"></td>
                                                                 <td><a class="btn btn-info"
-                                                                       th:href="@{/PersonalAutorizado/opcionValidarArchivo/} + ${usuario.id} + '/pasaporteStatus'">
+                                                                       th:href="@{/PersonalAutorizado/opcionValidarArchivo/} + ${usuario.usuario.id} + '/pasaporteStatus'">
                                                                     <img th:src="@{/images/noValidado.png}" width="55"
                                                                          height="55"></a></td>
                                                             </tr>
@@ -308,7 +308,7 @@
                                                                 <td th:if="${usuario.infoPersonal.curpStatus == T(com.controldigital.app.models.entity.FileStatus).RED3}" th:text="'No es Legible'"></td>
                                                                 <td th:if="${usuario.infoPersonal.curpStatus == T(com.controldigital.app.models.entity.FileStatus).RED4}" th:text="'No est&aacute; Apostillado'"></td>
                                                                 <td><a class="btn btn-info"
-                                                                       th:href="@{/PersonalAutorizado/opcionValidarArchivo/} + ${usuario.id} + '/curpStatus'">
+                                                                       th:href="@{/PersonalAutorizado/opcionValidarArchivo/} + ${usuario.usuario.id} + '/curpStatus'">
                                                                     <img th:src="@{/images/noValidado.png}" width="55"
                                                                          height="55"></a></td>
                                                             </tr>
@@ -414,7 +414,7 @@
                                                             <p>El usuario no ha subido el documento.</p>
                                                         </div>
                                                         <div th:unless="${usuario.infoAcademica.calificacionesLicenciatura == '' || usuario.infoAcademica.calificacionesLicenciatura == null}" class="col-sm-4">
-                                                            <a th:href="@{/PersonalAutorizado/descargarArchivo/} + 'calificacionesLicenciatura/' + ${usuario.id}"
+                                                            <a th:href="@{/PersonalAutorizado/descargarArchivo/} + 'calificacionesLicenciatura/' + ${usuario.usuario.id}"
                                                                class="card-link" th:text="'Descargar'"></a>
                                                         </div>
                                                     </div>
@@ -426,7 +426,7 @@
                                                             <p>El usuario no ha subido el documento.</p>
                                                         </div>
                                                         <div th:unless="${usuario.infoAcademica.diplomaLicenciatura == '' || usuario.infoAcademica.diplomaLicenciatura == null}" class="col-sm-4">
-                                                            <a th:href="@{/PersonalAutorizado/descargarArchivo/} + 'diplomaLicenciatura/' + ${usuario.id}"
+                                                            <a th:href="@{/PersonalAutorizado/descargarArchivo/} + 'diplomaLicenciatura/' + ${usuario.usuario.id}"
                                                                class="card-link" th:text="'Descargar'"></a>
                                                         </div>
                                                     </div>
@@ -438,7 +438,7 @@
                                                             <p>El usuario no ha subido el documento.</p>
                                                         </div>
                                                         <div th:unless="${usuario.infoAcademica.cedulaLicenciatura == '' || usuario.infoAcademica.cedulaLicenciatura == null}" class="col-sm-4">
-                                                            <a th:href="@{/PersonalAutorizado/descargarArchivo/} + 'cedulaLicenciatura/' + ${usuario.id}"
+                                                            <a th:href="@{/PersonalAutorizado/descargarArchivo/} + 'cedulaLicenciatura/' + ${usuario.usuario.id}"
                                                                class="card-link" th:text="'Descargar'"></a>
                                                         </div>
                                                     </div>
@@ -450,7 +450,7 @@
                                                             <p>El usuario no ha subido el documento.</p>
                                                         </div>
                                                         <div th:unless="${usuario.infoAcademica.acreditacionIngles == '' || usuario.infoAcademica.acreditacionIngles == null}" class="col-sm-4">
-                                                            <a th:href="@{/PersonalAutorizado/descargarArchivo/} + 'acreditacionIngles/' + ${usuario.id}"
+                                                            <a th:href="@{/PersonalAutorizado/descargarArchivo/} + 'acreditacionIngles/' + ${usuario.usuario.id}"
                                                                class="card-link" th:text="'Descargar'"></a>
                                                         </div>
                                                     </div>
@@ -462,7 +462,7 @@
                                                             <p>El usuario no ha subido el documento.</p>
                                                         </div>
                                                         <div th:unless="${usuario.infoAcademica.calificacionesMaestria == '' || usuario.infoAcademica.calificacionesMaestria == null}" class="col-sm-4">
-                                                            <a th:href="@{/PersonalAutorizado/descargarArchivo/} + 'calificacionesMaestria/' + ${usuario.id}"
+                                                            <a th:href="@{/PersonalAutorizado/descargarArchivo/} + 'calificacionesMaestria/' + ${usuario.usuario.id}"
                                                                class="card-link" th:text="'Descargar'"></a>
                                                         </div>
                                                     </div>
@@ -474,7 +474,7 @@
                                                             <p>El usuario no ha subido el documento.</p>
                                                         </div>
                                                         <div th:unless="${usuario.infoAcademica.actaExamenMaestria == '' || usuario.infoAcademica.actaExamenMaestria == null}" class="col-sm-4">
-                                                            <a th:href="@{/PersonalAutorizado/descargarArchivo/} + 'actaExamenMaestria/' + ${usuario.id}"
+                                                            <a th:href="@{/PersonalAutorizado/descargarArchivo/} + 'actaExamenMaestria/' + ${usuario.usuario.id}"
                                                                class="card-link" th:text="'Descargar'"></a>
                                                         </div>
                                                     </div>
@@ -486,7 +486,7 @@
                                                             <p>El usuario no ha subido el documento.</p>
                                                         </div>
                                                         <div th:unless="${usuario.infoAcademica.diplomaMaestria == '' || usuario.infoAcademica.diplomaMaestria == null}" class="col-sm-4">
-                                                            <a th:href="@{/PersonalAutorizado/descargarArchivo/} + 'diplomaMaestria/' + ${usuario.id}"
+                                                            <a th:href="@{/PersonalAutorizado/descargarArchivo/} + 'diplomaMaestria/' + ${usuario.usuario.id}"
                                                                class="card-link" th:text="'Descargar'"></a>
                                                         </div>
                                                     </div>
@@ -498,7 +498,7 @@
                                                             <p>El usuario no ha subido el documento.</p>
                                                         </div>
                                                         <div th:unless="${usuario.infoAcademica.cedulaMaestria == '' || usuario.infoAcademica.cedulaMaestria == null}" class="col-sm-4">
-                                                            <a th:href="@{/PersonalAutorizado/descargarArchivo/} + 'cedulaMaestria/' + ${usuario.id}"
+                                                            <a th:href="@{/PersonalAutorizado/descargarArchivo/} + 'cedulaMaestria/' + ${usuario.usuario.id}"
                                                                class="card-link" th:text="'Descargar'"></a>
                                                         </div>
                                                     </div>
@@ -534,7 +534,7 @@
                                                             <td th:if="${usuario.infoAcademica.calificacionesLicenciaturaStatus == T(com.controldigital.app.models.entity.FileStatus).RED3}" th:text="'No es Legible'"></td>
                                                             <td th:if="${usuario.infoAcademica.calificacionesLicenciaturaStatus == T(com.controldigital.app.models.entity.FileStatus).RED4}" th:text="'No est&aacute; Apostillado'"></td>
                                                             <td><a class="btn btn-info"
-                                                                   th:href="@{/PersonalAutorizado/opcionValidarArchivo/} + ${usuario.id} + '/calificacionesLicenciaturaStatus'"
+                                                                   th:href="@{/PersonalAutorizado/opcionValidarArchivo/} + ${usuario.usuario.id} + '/calificacionesLicenciaturaStatus'"
                                                                    onclick="return confirm('&iquest;Est&aacute; seguro de invalidar este archivo?');">
                                                                 <img th:src="@{/images/noValidado.png}" width="55"
                                                                      height="55"></a></td>
@@ -555,7 +555,7 @@
                                                             <td th:if="${usuario.infoAcademica.diplomaLicenciaturaStatus == T(com.controldigital.app.models.entity.FileStatus).RED3}" th:text="'No es Legible'"></td>
                                                             <td th:if="${usuario.infoAcademica.diplomaLicenciaturaStatus == T(com.controldigital.app.models.entity.FileStatus).RED4}" th:text="'No est&aacute; Apostillado'"></td>
                                                             <td><a class="btn btn-info"
-                                                                   th:href="@{/PersonalAutorizado/opcionValidarArchivo/} + ${usuario.id} + '/diplomaLicenciaturaStatus'"
+                                                                   th:href="@{/PersonalAutorizado/opcionValidarArchivo/} + ${usuario.usuario.id} + '/diplomaLicenciaturaStatus'"
                                                                    onclick="return confirm('&iquest;Est&aacute; seguro de invalidar este archivo?');">
                                                                 <img th:src="@{/images/noValidado.png}" width="55"
                                                                      height="55"></a></td>
@@ -576,7 +576,7 @@
                                                             <td th:if="${usuario.infoAcademica.cedulaLicenciaturaStatus == T(com.controldigital.app.models.entity.FileStatus).RED3}" th:text="'No es Legible'"></td>
                                                             <td th:if="${usuario.infoAcademica.cedulaLicenciaturaStatus == T(com.controldigital.app.models.entity.FileStatus).RED4}" th:text="'No est&aacute; Apostillado'"></td>
                                                             <td><a class="btn btn-info"
-                                                                   th:href="@{/PersonalAutorizado/opcionValidarArchivo/} + ${usuario.id} + '/cedulaLicenciaturaStatus'"
+                                                                   th:href="@{/PersonalAutorizado/opcionValidarArchivo/} + ${usuario.usuario.id} + '/cedulaLicenciaturaStatus'"
                                                                    onclick="return confirm('&iquest;Est&aacute; seguro de invalidar este archivo?');">
                                                                 <img th:src="@{/images/noValidado.png}" width="55"
                                                                      height="55"></a></td>
@@ -597,7 +597,7 @@
                                                             <td th:if="${usuario.infoAcademica.acreditacionInglesStatus == T(com.controldigital.app.models.entity.FileStatus).RED3}" th:text="'No es Legible'"></td>
                                                             <td th:if="${usuario.infoAcademica.acreditacionInglesStatus == T(com.controldigital.app.models.entity.FileStatus).RED4}" th:text="'No est&aacute; Apostillado'"></td>
                                                             <td><a class="btn btn-info"
-                                                                   th:href="@{/PersonalAutorizado/opcionValidarArchivo/} + ${usuario.id} + '/acreditacionInglesStatus'"
+                                                                   th:href="@{/PersonalAutorizado/opcionValidarArchivo/} + ${usuario.usuario.id} + '/acreditacionInglesStatus'"
                                                                    onclick="return confirm('&iquest;Est&aacute; seguro de invalidar este archivo?');">
                                                                 <img th:src="@{/images/noValidado.png}" width="55"
                                                                      height="55"></a></td>
@@ -618,7 +618,7 @@
                                                             <td th:if="${usuario.infoAcademica.calificacionesMaestriaStatus == T(com.controldigital.app.models.entity.FileStatus).RED3}" th:text="'No es Legible'"></td>
                                                             <td th:if="${usuario.infoAcademica.calificacionesMaestriaStatus == T(com.controldigital.app.models.entity.FileStatus).RED4}" th:text="'No est&aacute; Apostillado'"></td>
                                                             <td><a class="btn btn-info"
-                                                                   th:href="@{/PersonalAutorizado/opcionValidarArchivo/} + ${usuario.id} + '/calificacionesMaestriaStatus'"
+                                                                   th:href="@{/PersonalAutorizado/opcionValidarArchivo/} + ${usuario.usuario.id} + '/calificacionesMaestriaStatus'"
                                                                    onclick="return confirm('&iquest;Est&aacute; seguro de invalidar este archivo?');">
                                                                 <img th:src="@{/images/noValidado.png}" width="55"
                                                                      height="55"></a></td>
@@ -639,7 +639,7 @@
                                                             <td th:if="${usuario.infoAcademica.actaExamenMaestriaStatus == T(com.controldigital.app.models.entity.FileStatus).RED3}" th:text="'No es Legible'"></td>
                                                             <td th:if="${usuario.infoAcademica.actaExamenMaestriaStatus == T(com.controldigital.app.models.entity.FileStatus).RED4}" th:text="'No est&aacute; Apostillado'"></td>
                                                             <td><a class="btn btn-info"
-                                                                   th:href="@{/PersonalAutorizado/opcionValidarArchivo/} + ${usuario.id} + '/actaExamenMaestriaStatus'"
+                                                                   th:href="@{/PersonalAutorizado/opcionValidarArchivo/} + ${usuario.usuario.id} + '/actaExamenMaestriaStatus'"
                                                                    onclick="return confirm('&iquest;Est&aacute; seguro de invalidar este archivo?');">
                                                                 <img th:src="@{/images/noValidado.png}" width="55"
                                                                      height="55"></a></td>
@@ -660,7 +660,7 @@
                                                             <td th:if="${usuario.infoAcademica.diplomaMaestriaStatus == T(com.controldigital.app.models.entity.FileStatus).RED3}" th:text="'No es Legible'"></td>
                                                             <td th:if="${usuario.infoAcademica.diplomaMaestriaStatus == T(com.controldigital.app.models.entity.FileStatus).RED4}" th:text="'No est&aacute; Apostillado'"></td>
                                                             <td><a class="btn btn-info"
-                                                                   th:href="@{/PersonalAutorizado/opcionValidarArchivo/} + ${usuario.id} + '/diplomaMaestriaStatus'"
+                                                                   th:href="@{/PersonalAutorizado/opcionValidarArchivo/} + ${usuario.usuario.id} + '/diplomaMaestriaStatus'"
                                                                    onclick="return confirm('&iquest;Est&aacute; seguro de invalidar este archivo?');">
                                                                 <img th:src="@{/images/noValidado.png}" width="55"
                                                                      height="55"></a></td>
@@ -681,7 +681,7 @@
                                                             <td th:if="${usuario.infoAcademica.cedulaMaestriaStatus == T(com.controldigital.app.models.entity.FileStatus).RED3}" th:text="'No es Legible'"></td>
                                                             <td th:if="${usuario.infoAcademica.cedulaMaestriaStatus == T(com.controldigital.app.models.entity.FileStatus).RED4}" th:text="'No est&aacute; Apostillado'"></td>
                                                             <td><a class="btn btn-info"
-                                                                   th:href="@{/PersonalAutorizado/opcionValidarArchivo/} + ${usuario.id} + '/cedulaMaestriaStatus'"
+                                                                   th:href="@{/PersonalAutorizado/opcionValidarArchivo/} + ${usuario.usuario.id} + '/cedulaMaestriaStatus'"
                                                                    onclick="return confirm('&iquest;Est&aacute; seguro de invalidar este archivo?');">
                                                                 <img th:src="@{/images/noValidado.png}" width="55"
                                                                      height="55"></a></td>
@@ -812,7 +812,7 @@
                                             <div class="card-body">
                                                 <a class="btn btn-xs" id="editar"
                                                    sec:authorize="hasRole('ROLE_ADMIN')"
-                                                   th:href="@{/PersonalAutorizado/formSIP/} + ${usuario.id}"><img
+                                                   th:href="@{/PersonalAutorizado/formSIP/} + ${usuario.usuario.id}"><img
                                                         th:src="@{/images/editarUsuario.png}" width="35" height="25"></a>
                                                 <table class="table table-striped">
                                                     <thead>
@@ -824,7 +824,7 @@
                                                     </tr>
                                                     </thead>
                                                     <tbody>
-                                                    <tr th:each="sip: ${usuario.sips}">
+                                                    <tr th:each="sip: ${usuario.usuario.sips}">
                                                         <td th:text="${sip.nombreSip}"></td>
                                                         <td th:if="${sip.archivoSip == null || sip.archivoSip == ''}">No
                                                             hay archivo</td>
@@ -866,7 +866,7 @@
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            <tr th:each="producto: ${usuario.productos}">
+                                            <tr th:each="producto: ${usuario.usuario.productos}">
                                                 <td th:text="${producto.nombreProducto}"></td>
                                                 <td th:text="${producto.lugarProducto}"></td>
                                                 <td th:text="${producto.inicioPeriodo + ' - ' + producto.terminoPeriodo}"></td>

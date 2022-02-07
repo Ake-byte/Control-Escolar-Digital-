@@ -152,6 +152,9 @@ public class Usuario implements Serializable {
     public Usuario() {
         productos = new ArrayList<Producto>();
         sips = new ArrayList<SIP>();
+        //expediente = new Expediente();
+        //infoPersonal = new InfoPersonal();
+        //infoAcademica = new InfoAcademica();
     }
 
     public Role getRoles() {

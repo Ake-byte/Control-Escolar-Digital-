@@ -37,28 +37,32 @@ public class CambiarSemestre {
     //@Scheduled(cron="0 0 0 31 7 ?")
     @Scheduled(cron="0 0/2 * * * *")
     public void cambiarsemestreA(){
-        List<Expediente> expedientes = expedienteService.findAll();
-
-        List<Expediente> alumnosInscritos = expedientes.stream()
+        List<Expediente> alumnosInscritos = expedienteService.findAll().stream()
                 .filter(e -> e.getEstatusEscolar().equals("Inscrito")).collect(Collectors.toList());
 
         for(Expediente e: alumnosInscritos){
             e.setNumSemestre(e.getNumSemestre() + 1);
-
+            if(e.getGrado().equals("Maestría") && e.getNumSemestre() > 4)
+                e.setEstatusEscolar("Egresado");
+            if(e.getGrado().equals("Doctorado") && e.getNumSemestre() > 8)
+                e.setEstatusEscolar("Egresado");
             expedienteService.save(e);
-
         }
     }
 
     @Bean
     @Scheduled(cron="0 0 0 31 1 ?")
     public void cambiarsemestreB(){
-        List<Expediente> expedientes = expedienteService.findAll();
+        List<Expediente> alumnosInscritos = expedienteService.findAll().stream()
+                .filter(e -> e.getEstatusEscolar().equals("Inscrito")).collect(Collectors.toList());
 
-        for(Expediente e: expedientes){
+        for(Expediente e: alumnosInscritos){
             e.setNumSemestre(e.getNumSemestre() + 1);
+            if(e.getGrado().equals("Maestría") && e.getNumSemestre() > 4)
+                e.setEstatusEscolar("Egresado");
+            if(e.getGrado().equals("Doctorado") && e.getNumSemestre() > 8)
+                e.setEstatusEscolar("Egresado");
             expedienteService.save(e);
-
         }
     }
 }

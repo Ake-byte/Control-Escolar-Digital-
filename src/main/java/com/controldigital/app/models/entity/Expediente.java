@@ -17,6 +17,7 @@ public class Expediente implements Serializable {
      * Identificador único del expediente
      */
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_expediente_id")
     private Long id;
 
@@ -97,8 +98,7 @@ public class Expediente implements Serializable {
     /**
      * FK al campo PK "user_id" de la tabla users
      */
-    @OneToOne(mappedBy = "expediente", fetch = FetchType.LAZY)
-    @MapsId
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private Usuario users;
 
