@@ -1,7 +1,11 @@
 package com.controldigital.app.service;
 
+import com.controldigital.app.models.entity.Expediente;
+import com.controldigital.app.models.entity.InfoAcademica;
+import com.controldigital.app.models.entity.InfoPersonal;
 import com.controldigital.app.models.entity.Usuario;
 import com.controldigital.app.util.Informes;
+import com.controldigital.app.util.UserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,28 +24,54 @@ public class InformesService implements IInformesService {
     @Autowired
     private UsuarioService usuarioService;
 
+    @Autowired
+    private InforPersonalService inforPersonalService;
+
+    @Autowired
+    private InfoAcademicaService infoAcademicaService;
+
+    @Autowired
+    private ExpedienteService expedienteService;
+
     @Override
-    public List<Usuario> findAlumnosBy(Informes informes) {
+    public List<UserDetails> findAlumnosBy(Informes informes) {
 
         List<Usuario> alumnos = usuarioService.findUserByRole("ROLE_USER2");
-        List<Usuario> filterByPosgrado = opcionPosgrado(alumnos, informes);
-        List<Usuario> filterBySemestre = opcionSemestre(filterByPosgrado, informes);
-        List<Usuario> filterByEdad = opcionEdades(filterBySemestre, informes);
-        List<Usuario> filterByGenero = opcionGenero(filterByEdad, informes);
-        List<Usuario> filterByNacionalidad = opcionNacionalidad(filterByGenero, informes);
-        List<Usuario> filterByLugarNacimiento = opcionLugarNacimiento(filterByNacionalidad, informes);
-        List<Usuario> filterByLenguaIndigena = opcionLenguaIndigena(filterByLugarNacimiento, informes);
-        List<Usuario> filterByDiscapacidad = opcionDiscapacidad(filterByLenguaIndigena, informes);
-        List<Usuario> filterByEnfermedadPermanente = opcionEnfermedadPermanente(filterByDiscapacidad, informes);
-        List<Usuario> filterByEstatus = opcionEstatus(filterByEnfermedadPermanente, informes);
-        List<Usuario> filterByBeca = opcionBecaConacyt(filterByEstatus, informes);
 
-        List<Usuario> resultadoInforme = filterByBeca;
+        List<UserDetails> userDetailsList = new ArrayList<>();
+
+        for(Usuario u : alumnos){
+            UserDetails userDetails = new UserDetails();
+            InfoPersonal infoPersonal = inforPersonalService.findInfoPersonalByUserId(u.getId());
+            InfoAcademica infoAcademica = infoAcademicaService.findInfoAcademicaByUserId(u.getId());
+            Expediente expediente = expedienteService.findExpedienteByUserId(u.getId());
+
+            userDetails.setUsuario(u);
+            userDetails.setInfoPersonal(infoPersonal);
+            userDetails.setInfoAcademica(infoAcademica);
+            userDetails.setExpediente(expediente);
+
+            userDetailsList.add(userDetails);
+        }
+
+        List<UserDetails> filterByPosgrado = opcionPosgrado(userDetailsList, informes);
+        List<UserDetails> filterBySemestre = opcionSemestre(filterByPosgrado, informes);
+        List<UserDetails> filterByEdad = opcionEdades(filterBySemestre, informes);
+        List<UserDetails> filterByGenero = opcionGenero(filterByEdad, informes);
+        List<UserDetails> filterByNacionalidad = opcionNacionalidad(filterByGenero, informes);
+        List<UserDetails> filterByLugarNacimiento = opcionLugarNacimiento(filterByNacionalidad, informes);
+        List<UserDetails> filterByLenguaIndigena = opcionLenguaIndigena(filterByLugarNacimiento, informes);
+        List<UserDetails> filterByDiscapacidad = opcionDiscapacidad(filterByLenguaIndigena, informes);
+        List<UserDetails> filterByEnfermedadPermanente = opcionEnfermedadPermanente(filterByDiscapacidad, informes);
+        List<UserDetails> filterByEstatus = opcionEstatus(filterByEnfermedadPermanente, informes);
+        List<UserDetails> filterByBeca = opcionBecaConacyt(filterByEstatus, informes);
+
+        List<UserDetails> resultadoInforme = filterByBeca;
 
         return resultadoInforme;
     }
 
-    private List<Usuario> opcionLenguaIndigena(List<Usuario> alumnos, Informes informes) {
+    private List<UserDetails> opcionLenguaIndigena(List<UserDetails> alumnos, Informes informes) {
         if (informes.getLenguaIndigena().equals("Si")) {
             return alumnos.stream()
                     .filter(u -> u.getInfoPersonal().getLenguaIndigena().equals(true)).collect(Collectors.toList());
@@ -53,7 +83,7 @@ public class InformesService implements IInformesService {
         }
     }
 
-    private List<Usuario> opcionEnfermedadPermanente(List<Usuario> alumnos, Informes informes) {
+    private List<UserDetails> opcionEnfermedadPermanente(List<UserDetails> alumnos, Informes informes) {
         if (informes.getEnfermedadPermanente().equals("Si")) {
             return alumnos.stream()
                     .filter(u -> u.getInfoPersonal().getEnfermedadPermanente().equals(true)).collect(Collectors.toList());
@@ -65,8 +95,8 @@ public class InformesService implements IInformesService {
         }
     }
 
-    private List<Usuario> opcionLugarNacimiento(List<Usuario> alumnos, Informes informes) {
-        List<Usuario> resultado = new ArrayList<>();
+    private List<UserDetails> opcionLugarNacimiento(List<UserDetails> alumnos, Informes informes) {
+        List<UserDetails> resultado = new ArrayList<>();
 
         List<String> estados = getEstados();
 
@@ -76,7 +106,7 @@ public class InformesService implements IInformesService {
                     .filter(u -> u.getInfoPersonal().getEstadoNacimiento().equals(informes.getLugarNacimiento())).collect(Collectors.toList());
         } else {
             if (informes.getLugarNacimiento().equals("Extranjero")) {
-                for (Usuario u : alumnos) {
+                for (UserDetails u : alumnos) {
                     if (!estados.contains(informes.getLugarNacimiento())) {
                         resultado.add(u);
                     }
@@ -129,7 +159,7 @@ public class InformesService implements IInformesService {
         return estadosMex;
     }
 
-    public List<Usuario> opcionPosgrado(List<Usuario> alumnos, Informes informes) {
+    public List<UserDetails> opcionPosgrado(List<UserDetails> alumnos, Informes informes) {
         if (informes.getPosgrado().equals("Maestría")) {
             return alumnos.stream()
                     .filter(u -> u.getExpediente().getGrado().equals("Maestría")).collect(Collectors.toList());
@@ -141,7 +171,7 @@ public class InformesService implements IInformesService {
         }
     }
 
-    public List<Usuario> opcionSemestre(List<Usuario> alumnos, Informes informes) {
+    public List<UserDetails> opcionSemestre(List<UserDetails> alumnos, Informes informes) {
 
         if (!informes.getSemestre().equals("Todo")) {
             return alumnos.stream()
@@ -151,9 +181,9 @@ public class InformesService implements IInformesService {
         }
     }
 
-    public List<Usuario> opcionEdades(List<Usuario> alumnos, Informes informes) {
+    public List<UserDetails> opcionEdades(List<UserDetails> alumnos, Informes informes) {
 
-        List<Usuario> resultado = new ArrayList<>();
+        List<UserDetails> resultado = new ArrayList<>();
 
         Date input = new Date();
         Instant instant = input.toInstant();
@@ -161,7 +191,7 @@ public class InformesService implements IInformesService {
         LocalDate date = zdt.toLocalDate();
 
         if (!informes.getEdadMin().equals("Todo") && !informes.getEdadMax().equals("Todo")) {
-            for (Usuario u : alumnos) {
+            for (UserDetails u : alumnos) {
                 LocalDate birthday = convertDate(u.getInfoPersonal().getFechaNacimiento());
                 if (Period.between(birthday, date).getYears() >= Integer.valueOf(informes.getEdadMin())
                         && Period.between(birthday, date).getYears() <= Integer.valueOf(informes.getEdadMax()))
@@ -174,7 +204,7 @@ public class InformesService implements IInformesService {
         return resultado;
     }
 
-    public List<Usuario> opcionGenero(List<Usuario> alumnos, Informes informes) {
+    public List<UserDetails> opcionGenero(List<UserDetails> alumnos, Informes informes) {
         if (informes.getGenero().equals("Hombre")) {
             return alumnos.stream()
                     .filter(u -> u.getInfoPersonal().getGenero().equals("Hombre")).collect(Collectors.toList());
@@ -189,16 +219,16 @@ public class InformesService implements IInformesService {
         }
     }
 
-    public List<Usuario> opcionNacionalidad(List<Usuario> alumnos, Informes informes) {
-        List<Usuario> resultado = new ArrayList<>();
+    public List<UserDetails> opcionNacionalidad(List<UserDetails> alumnos, Informes informes) {
+        List<UserDetails> resultado = new ArrayList<>();
 
         if (informes.getNacionalidad().equals("Mexicana")) {
-            for (Usuario u : alumnos) {
+            for (UserDetails u : alumnos) {
                 if (u.getInfoPersonal().getPaisNacimiento().equals("Mexico"))
                     resultado.add(u);
             }
         } else if (informes.getNacionalidad().equals("Extranjera")) {
-            for (Usuario u : alumnos) {
+            for (UserDetails u : alumnos) {
                 if (!u.getInfoPersonal().getPaisNacimiento().equals("Mexico"))
                     resultado.add(u);
             }
@@ -209,8 +239,8 @@ public class InformesService implements IInformesService {
         return resultado;
     }
 
-    public List<Usuario> opcionDiscapacidad(List<Usuario> alumnos, Informes informes) {
-        List<Usuario> resultado = new ArrayList<>();
+    public List<UserDetails> opcionDiscapacidad(List<UserDetails> alumnos, Informes informes) {
+        List<UserDetails> resultado = new ArrayList<>();
 
         if (informes.getDiscapacidad().equals("Si")) {
             return alumnos.stream()
@@ -223,8 +253,8 @@ public class InformesService implements IInformesService {
         }
     }
 
-    public List<Usuario> opcionEstatus(List<Usuario> alumnos, Informes informes) {
-        List<Usuario> resultado = new ArrayList<>();
+    public List<UserDetails> opcionEstatus(List<UserDetails> alumnos, Informes informes) {
+        List<UserDetails> resultado = new ArrayList<>();
 
         if (informes.getEstatus().equals("Inscritos")) {
             return alumnos.stream()
@@ -238,16 +268,16 @@ public class InformesService implements IInformesService {
 
     }
 
-    public List<Usuario> opcionBecaConacyt(List<Usuario> alumnos, Informes informes) {
-        List<Usuario> resultado = new ArrayList<>();
+    public List<UserDetails> opcionBecaConacyt(List<UserDetails> alumnos, Informes informes) {
+        List<UserDetails> resultado = new ArrayList<>();
 
         if (informes.getBecaConacyt().equals("Con Beca")) {
-            for (Usuario u : alumnos) {
+            for (UserDetails u : alumnos) {
                 if (u.getExpediente().getBecaConacyt().equals(true))
                     resultado.add(u);
             }
         } else if (informes.getBecaConacyt().equals("Sin Beca")) {
-            for (Usuario u : alumnos) {
+            for (UserDetails u : alumnos) {
                 if (u.getExpediente().getBecaConacyt().equals(false))
                     resultado.add(u);
             }

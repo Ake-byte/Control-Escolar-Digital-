@@ -87,6 +87,21 @@ public class AdminController {
     public String informes(Model model) {
 
         List<Usuario> alumnos = usuarioService.findUserByRole("ROLE_USER2");
+        List<UserDetails> userDetailsList = new ArrayList<>();
+
+        for(Usuario u : alumnos){
+            UserDetails userDetails = new UserDetails();
+            InfoPersonal infoPersonal = inforPersonalService.findInfoPersonalByUserId(u.getId());
+            InfoAcademica infoAcademica = infoAcademicaService.findInfoAcademicaByUserId(u.getId());
+            Expediente expediente = expedienteService.findExpedienteByUserId(u.getId());
+
+            userDetails.setUsuario(u);
+            userDetails.setInfoPersonal(infoPersonal);
+            userDetails.setInfoAcademica(infoAcademica);
+            userDetails.setExpediente(expediente);
+
+            userDetailsList.add(userDetails);
+        }
 
         Informes informe = new Informes();
 
@@ -96,7 +111,7 @@ public class AdminController {
         List<String> edades = new ArrayList<>();
         List<String> semestre = new ArrayList<>();
 
-        for (Usuario u : alumnos) {
+        for (UserDetails u : userDetailsList) {
             LocalDate birthday = convertDate(u.getInfoPersonal().getFechaNacimiento());
 
             if (!edades.contains(String.valueOf(Period.between(birthday, date).getYears()))) {
