@@ -38,7 +38,7 @@ public class CambiarSemestre {
     @Scheduled(cron="0 0/2 * * * *")
     public void cambiarsemestreA(){
         List<Expediente> alumnosInscritos = expedienteService.findAll().stream()
-                .filter(e -> e.getEstatusEscolar().equals("Inscrito")).collect(Collectors.toList());
+                .filter(e -> e.getEstatusEscolar() != null && e.getEstatusEscolar().equals("Inscrito")).collect(Collectors.toList());
 
         for(Expediente e: alumnosInscritos){
             e.setNumSemestre(e.getNumSemestre() + 1);
@@ -54,7 +54,7 @@ public class CambiarSemestre {
     @Scheduled(cron="0 0 0 31 1 ?")
     public void cambiarsemestreB(){
         List<Expediente> alumnosInscritos = expedienteService.findAll().stream()
-                .filter(e -> e.getEstatusEscolar().equals("Inscrito")).collect(Collectors.toList());
+                .filter(e -> e.getEstatusEscolar() != null && e.getEstatusEscolar().equals("Inscrito")).collect(Collectors.toList());
 
         for(Expediente e: alumnosInscritos){
             e.setNumSemestre(e.getNumSemestre() + 1);

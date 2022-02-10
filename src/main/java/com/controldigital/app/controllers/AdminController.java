@@ -100,7 +100,9 @@ public class AdminController {
             userDetails.setInfoAcademica(infoAcademica);
             userDetails.setExpediente(expediente);
 
-            userDetailsList.add(userDetails);
+            if(infoPersonal.getFechaNacimiento() != null && expediente.getSemestre() != null) {
+                userDetailsList.add(userDetails);
+            }
         }
 
         Informes informe = new Informes();
@@ -112,15 +114,18 @@ public class AdminController {
         List<String> semestre = new ArrayList<>();
 
         for (UserDetails u : userDetailsList) {
-            LocalDate birthday = convertDate(u.getInfoPersonal().getFechaNacimiento());
 
-            if (!edades.contains(String.valueOf(Period.between(birthday, date).getYears()))) {
-                edades.add(String.valueOf(Period.between(birthday, date).getYears()));
-            }
 
-            if (!semestre.contains(u.getExpediente().getSemestre())) {
-                semestre.add(u.getExpediente().getSemestre());
-            }
+                LocalDate birthday = convertDate(u.getInfoPersonal().getFechaNacimiento());
+
+                if (!edades.contains(String.valueOf(Period.between(birthday, date).getYears()))) {
+                    edades.add(String.valueOf(Period.between(birthday, date).getYears()));
+                }
+
+                if (!semestre.contains(u.getExpediente().getSemestre())) {
+                    semestre.add(u.getExpediente().getSemestre());
+                }
+
         }
 
         edades.sort(Comparator.naturalOrder());

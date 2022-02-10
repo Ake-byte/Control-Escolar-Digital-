@@ -40,7 +40,7 @@ public class InformesService implements IInformesService {
 
         List<UserDetails> userDetailsList = new ArrayList<>();
 
-        for(Usuario u : alumnos){
+        for (Usuario u : alumnos) {
             UserDetails userDetails = new UserDetails();
             InfoPersonal infoPersonal = inforPersonalService.findInfoPersonalByUserId(u.getId());
             InfoAcademica infoAcademica = infoAcademicaService.findInfoAcademicaByUserId(u.getId());
@@ -51,7 +51,19 @@ public class InformesService implements IInformesService {
             userDetails.setInfoAcademica(infoAcademica);
             userDetails.setExpediente(expediente);
 
-            userDetailsList.add(userDetails);
+            if (infoPersonal.getFechaNacimiento() != null
+                    && infoPersonal.getGenero() != null
+                    && infoPersonal.getPaisNacimiento() != null
+                    && infoPersonal.getEstadoNacimiento() != null
+                    && infoPersonal.getLenguaIndigena() != null
+                    && infoPersonal.getEnfermedadPermanente() != null
+                    && expediente.getGrado() != null
+                    && expediente.getSemestre() != null
+                    && expediente.getEstatusEscolar() != null
+                    && expediente.getBecaConacyt() != null
+            ) {
+                userDetailsList.add(userDetails);
+            }
         }
 
         List<UserDetails> filterByPosgrado = opcionPosgrado(userDetailsList, informes);
@@ -166,7 +178,7 @@ public class InformesService implements IInformesService {
         } else if (informes.getPosgrado().equals("Doctorado")) {
             return alumnos.stream()
                     .filter(u -> u.getExpediente().getGrado().equals("Doctorado")).collect(Collectors.toList());
-        } else{
+        } else {
             return alumnos;
         }
     }
