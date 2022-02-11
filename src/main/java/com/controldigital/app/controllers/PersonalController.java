@@ -94,16 +94,6 @@ public class PersonalController {
 			((Model) model).addAttribute("opcionGenero", opcionGenero);
 			((Model) model).addAttribute("titulo", "Editar Datos");
 			return "Personal/EditarInformacionPersonal";
-		/*}
-		else{
-			flash.addFlashAttribute("error", "NO HAY INFOPERSONAL");
-			return "redirect:/Personal/InformacionPersonal";
-		}
-
-		 */
-
-
-
 	}
 
 	/**

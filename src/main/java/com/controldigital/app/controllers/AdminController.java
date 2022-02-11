@@ -162,6 +162,17 @@ public class AdminController {
         return "PersonalAutorizado/ResultadoInforme";
     }
 
+    @GetMapping("/verUsuariosInhabilitados")
+    public String verUsuariosInhabilitados(Model model) {
+
+        List<Role> alumnos = roleService.findUsuarioByRole("ROLE_USER2")
+                .stream().filter(a -> a.getUsers().getEnabled().equals(false)).collect(Collectors.toList());
+
+        model.addAttribute("titulo", "Alumnos");
+        model.addAttribute("usuario", alumnos);
+        return "PersonalAutorizado/verRol";
+    }
+
     /**
      * Método que permite que Personal Autorizado visualice a los usuarios de tipo "Alumno"
      * @param model
@@ -170,8 +181,8 @@ public class AdminController {
     @GetMapping("/verAlumnos")
     public String verAlumnos(Model model) {
 
-        List<Role> alumnos = roleService.findUsuarioByRole("ROLE_USER2");
-
+        List<Role> alumnos = roleService.findUsuarioByRole("ROLE_USER2")
+                .stream().filter(a -> a.getUsers().getEnabled().equals(true)).collect(Collectors.toList());
 
         model.addAttribute("titulo", "Alumnos");
         model.addAttribute("usuario", alumnos);
@@ -187,7 +198,6 @@ public class AdminController {
     public String verUsuariosRegistrados(Model model) {
 
         List<Role> usuariosR = roleService.findUsuarioByRole("ROLE_USER1");
-
 
         model.addAttribute("titulo", "Usuario Registrados");
         model.addAttribute("usuario", usuariosR);
@@ -217,7 +227,7 @@ public class AdminController {
         if(usuario.getRoles().getAuthority().equals("ROLE_USER1") || usuario.getRoles().getAuthority().equals("ROLE_ADMIN")){
             return "PersonalAutorizado/VerUsuario";
         }
-        else if(usuario.getRoles().getAuthority().equals("ROLE_USER2") || usuario.getRoles().getAuthority().equals("ROLE_USER4")){
+        else if(usuario.getRoles().getAuthority().equals("ROLE_USER2")){
             UserDetails userDetails = new UserDetails();
             InfoPersonal infoPersonal = inforPersonalService.findInfoPersonalByUserId(usuario.getId());
             InfoAcademica infoAcademica = infoAcademicaService.findInfoAcademicaByUserId(usuario.getId());
@@ -314,7 +324,6 @@ public class AdminController {
 
             case "Usuario Inhabilitado":
                 roles.setAuthorityName("Usuario Inhabilitado");
-                roles.setAuthority("ROLE_USER4");
                 usuario.setEnabled(false);
                 break;
 
@@ -375,6 +384,8 @@ public class AdminController {
                                       Model model, RedirectAttributes flash, SessionStatus status) {
 
         Usuario usuario = usuarioService.findOne(userId);
+        InfoPersonal infoPersonal = inforPersonalService.findInfoPersonalByUserId(usuario.getId());
+        InfoAcademica infoAcademica = infoAcademicaService.findInfoAcademicaByUserId(usuario.getId());
 
         String opcion = tipoInvalidacion;
         String tA = tipoArchivo;
@@ -383,16 +394,16 @@ public class AdminController {
             case "fotoStatus":
                 switch (opcion) {
                     case "1":
-                        usuario.getInfoPersonal().setFotoStatus(FileStatus.RED2);
+                        infoPersonal.setFotoStatus(FileStatus.RED2);
                         break;
                     case "2":
-                        usuario.getInfoPersonal().setFotoStatus(FileStatus.RED3);
+                        infoPersonal.setFotoStatus(FileStatus.RED3);
                         break;
                     case "3":
-                        usuario.getInfoPersonal().setFotoStatus(FileStatus.RED4);
+                        infoPersonal.setFotoStatus(FileStatus.RED4);
                         break;
                     case "4":
-                        usuario.getInfoPersonal().setFotoStatus(FileStatus.GREEN);
+                        infoPersonal.setFotoStatus(FileStatus.GREEN);
                         break;
                 }
                 break;
@@ -400,16 +411,16 @@ public class AdminController {
             case "actaStatus":
                 switch (opcion) {
                     case "1":
-                        usuario.getInfoPersonal().setActaStatus(FileStatus.RED2);
+                        infoPersonal.setActaStatus(FileStatus.RED2);
                         break;
                     case "2":
-                        usuario.getInfoPersonal().setActaStatus(FileStatus.RED3);
+                        infoPersonal.setActaStatus(FileStatus.RED3);
                         break;
                     case "3":
-                        usuario.getInfoPersonal().setActaStatus(FileStatus.RED4);
+                        infoPersonal.setActaStatus(FileStatus.RED4);
                         break;
                     case "4":
-                        usuario.getInfoPersonal().setActaStatus(FileStatus.GREEN);
+                        infoPersonal.setActaStatus(FileStatus.GREEN);
                         break;
                 }
                 break;
@@ -417,16 +428,16 @@ public class AdminController {
             case "pasaporteStatus":
                 switch (opcion) {
                     case "1":
-                        usuario.getInfoPersonal().setPasaporteStatus(FileStatus.RED2);
+                        infoPersonal.setPasaporteStatus(FileStatus.RED2);
                         break;
                     case "2":
-                        usuario.getInfoPersonal().setPasaporteStatus(FileStatus.RED3);
+                        infoPersonal.setPasaporteStatus(FileStatus.RED3);
                         break;
                     case "3":
-                        usuario.getInfoPersonal().setPasaporteStatus(FileStatus.RED4);
+                        infoPersonal.setPasaporteStatus(FileStatus.RED4);
                         break;
                     case "4":
-                        usuario.getInfoPersonal().setPasaporteStatus(FileStatus.GREEN);
+                        infoPersonal.setPasaporteStatus(FileStatus.GREEN);
                         break;
                 }
                 break;
@@ -434,16 +445,16 @@ public class AdminController {
             case "curpStatus":
                 switch (opcion) {
                     case "1":
-                        usuario.getInfoPersonal().setCurpStatus(FileStatus.RED2);
+                        infoPersonal.setCurpStatus(FileStatus.RED2);
                         break;
                     case "2":
-                        usuario.getInfoPersonal().setCurpStatus(FileStatus.RED3);
+                        infoPersonal.setCurpStatus(FileStatus.RED3);
                         break;
                     case "3":
-                        usuario.getInfoPersonal().setCurpStatus(FileStatus.RED4);
+                        infoPersonal.setCurpStatus(FileStatus.RED4);
                         break;
                     case "4":
-                        usuario.getInfoPersonal().setCurpStatus(FileStatus.GREEN);
+                        infoPersonal.setCurpStatus(FileStatus.GREEN);
                         break;
                 }
                 break;
@@ -451,16 +462,16 @@ public class AdminController {
             case "calificacionesLicenciaturaStatus":
                 switch (opcion) {
                     case "1":
-                        usuario.getInfoAcademica().setCalificacionesLicenciaturaStatus(FileStatus.RED2);
+                        infoAcademica.setCalificacionesLicenciaturaStatus(FileStatus.RED2);
                         break;
                     case "2":
-                        usuario.getInfoAcademica().setCalificacionesLicenciaturaStatus(FileStatus.RED3);
+                        infoAcademica.setCalificacionesLicenciaturaStatus(FileStatus.RED3);
                         break;
                     case "3":
-                        usuario.getInfoAcademica().setCalificacionesLicenciaturaStatus(FileStatus.RED4);
+                        infoAcademica.setCalificacionesLicenciaturaStatus(FileStatus.RED4);
                         break;
                     case "4":
-                        usuario.getInfoAcademica().setCalificacionesLicenciaturaStatus(FileStatus.GREEN);
+                        infoAcademica.setCalificacionesLicenciaturaStatus(FileStatus.GREEN);
                         break;
                 }
                 break;
@@ -468,16 +479,16 @@ public class AdminController {
             case "diplomaLicenciaturaStatus":
                 switch (opcion) {
                     case "1":
-                        usuario.getInfoAcademica().setDiplomaLicenciaturaStatus(FileStatus.RED2);
+                        infoAcademica.setDiplomaLicenciaturaStatus(FileStatus.RED2);
                         break;
                     case "2":
-                        usuario.getInfoAcademica().setDiplomaLicenciaturaStatus(FileStatus.RED3);
+                        infoAcademica.setDiplomaLicenciaturaStatus(FileStatus.RED3);
                         break;
                     case "3":
-                        usuario.getInfoAcademica().setDiplomaLicenciaturaStatus(FileStatus.RED4);
+                        infoAcademica.setDiplomaLicenciaturaStatus(FileStatus.RED4);
                         break;
                     case "4":
-                        usuario.getInfoAcademica().setDiplomaLicenciaturaStatus(FileStatus.GREEN);
+                        infoAcademica.setDiplomaLicenciaturaStatus(FileStatus.GREEN);
                         break;
                 }
                 break;
@@ -485,16 +496,16 @@ public class AdminController {
             case "cedulaLicenciaturaStatus":
                 switch (opcion) {
                     case "1":
-                        usuario.getInfoAcademica().setCedulaLicenciaturaStatus(FileStatus.RED2);
+                        infoAcademica.setCedulaLicenciaturaStatus(FileStatus.RED2);
                         break;
                     case "2":
-                        usuario.getInfoAcademica().setCedulaLicenciaturaStatus(FileStatus.RED3);
+                        infoAcademica.setCedulaLicenciaturaStatus(FileStatus.RED3);
                         break;
                     case "3":
-                        usuario.getInfoAcademica().setCedulaLicenciaturaStatus(FileStatus.RED4);
+                        infoAcademica.setCedulaLicenciaturaStatus(FileStatus.RED4);
                         break;
                     case "4":
-                        usuario.getInfoAcademica().setCedulaLicenciaturaStatus(FileStatus.GREEN);
+                        infoAcademica.setCedulaLicenciaturaStatus(FileStatus.GREEN);
                         break;
                 }
                 break;
@@ -502,16 +513,16 @@ public class AdminController {
             case "acreditacionInglesStatus":
                 switch (opcion) {
                     case "1":
-                        usuario.getInfoAcademica().setAcreditacionInglesStatus(FileStatus.RED2);
+                        infoAcademica.setAcreditacionInglesStatus(FileStatus.RED2);
                         break;
                     case "2":
-                        usuario.getInfoAcademica().setAcreditacionInglesStatus(FileStatus.RED3);
+                        infoAcademica.setAcreditacionInglesStatus(FileStatus.RED3);
                         break;
                     case "3":
-                        usuario.getInfoAcademica().setAcreditacionInglesStatus(FileStatus.RED4);
+                        infoAcademica.setAcreditacionInglesStatus(FileStatus.RED4);
                         break;
                     case "4":
-                        usuario.getInfoAcademica().setAcreditacionInglesStatus(FileStatus.GREEN);
+                        infoAcademica.setAcreditacionInglesStatus(FileStatus.GREEN);
                         break;
                 }
                 break;
@@ -519,16 +530,16 @@ public class AdminController {
             case "calificacionesMaestriaStatus":
                 switch (opcion) {
                     case "1":
-                        usuario.getInfoAcademica().setCalificacionesMaestriaStatus(FileStatus.RED2);
+                        infoAcademica.setCalificacionesMaestriaStatus(FileStatus.RED2);
                         break;
                     case "2":
-                        usuario.getInfoAcademica().setCalificacionesMaestriaStatus(FileStatus.RED3);
+                        infoAcademica.setCalificacionesMaestriaStatus(FileStatus.RED3);
                         break;
                     case "3":
-                        usuario.getInfoAcademica().setCalificacionesMaestriaStatus(FileStatus.RED4);
+                        infoAcademica.setCalificacionesMaestriaStatus(FileStatus.RED4);
                         break;
                     case "4":
-                        usuario.getInfoAcademica().setCalificacionesMaestriaStatus(FileStatus.GREEN);
+                        infoAcademica.setCalificacionesMaestriaStatus(FileStatus.GREEN);
                         break;
                 }
                 break;
@@ -536,16 +547,16 @@ public class AdminController {
             case "actaExamenMaestriaStatus":
                 switch (opcion) {
                     case "1":
-                        usuario.getInfoAcademica().setActaExamenMaestriaStatus(FileStatus.RED2);
+                        infoAcademica.setActaExamenMaestriaStatus(FileStatus.RED2);
                         break;
                     case "2":
-                        usuario.getInfoAcademica().setActaExamenMaestriaStatus(FileStatus.RED3);
+                        infoAcademica.setActaExamenMaestriaStatus(FileStatus.RED3);
                         break;
                     case "3":
-                        usuario.getInfoAcademica().setActaExamenMaestriaStatus(FileStatus.RED4);
+                        infoAcademica.setActaExamenMaestriaStatus(FileStatus.RED4);
                         break;
                     case "4":
-                        usuario.getInfoAcademica().setActaExamenMaestriaStatus(FileStatus.GREEN);
+                        infoAcademica.setActaExamenMaestriaStatus(FileStatus.GREEN);
                         break;
                 }
                 break;
@@ -553,16 +564,16 @@ public class AdminController {
             case "diplomaMaestriaStatus":
                 switch (opcion) {
                     case "1":
-                        usuario.getInfoAcademica().setDiplomaMaestriaStatus(FileStatus.RED2);
+                        infoAcademica.setDiplomaMaestriaStatus(FileStatus.RED2);
                         break;
                     case "2":
-                        usuario.getInfoAcademica().setDiplomaMaestriaStatus(FileStatus.RED3);
+                        infoAcademica.setDiplomaMaestriaStatus(FileStatus.RED3);
                         break;
                     case "3":
-                        usuario.getInfoAcademica().setDiplomaMaestriaStatus(FileStatus.RED4);
+                        infoAcademica.setDiplomaMaestriaStatus(FileStatus.RED4);
                         break;
                     case "4":
-                        usuario.getInfoAcademica().setDiplomaMaestriaStatus(FileStatus.GREEN);
+                        infoAcademica.setDiplomaMaestriaStatus(FileStatus.GREEN);
                         break;
                 }
                 break;
@@ -570,16 +581,16 @@ public class AdminController {
             case "cedulaMaestriaStatus":
                 switch (opcion) {
                     case "1":
-                        usuario.getInfoAcademica().setCedulaMaestriaStatus(FileStatus.RED2);
+                        infoAcademica.setCedulaMaestriaStatus(FileStatus.RED2);
                         break;
                     case "2":
-                        usuario.getInfoAcademica().setCedulaMaestriaStatus(FileStatus.RED3);
+                        infoAcademica.setCedulaMaestriaStatus(FileStatus.RED3);
                         break;
                     case "3":
-                        usuario.getInfoAcademica().setCedulaMaestriaStatus(FileStatus.RED4);
+                        infoAcademica.setCedulaMaestriaStatus(FileStatus.RED4);
                         break;
                     case "4":
-                        usuario.getInfoAcademica().setCedulaMaestriaStatus(FileStatus.GREEN);
+                        infoAcademica.setCedulaMaestriaStatus(FileStatus.GREEN);
                         break;
                 }
                 break;
