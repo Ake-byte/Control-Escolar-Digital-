@@ -78,12 +78,23 @@ public class ProductividadController {
 	}
 
 	@GetMapping(value = "/formProductividad/{id}")
-	public String editarProducto(@PathVariable(value = "id") Long idUsuario, Map<String, Object> model) {
+	public String editarProducto(@PathVariable(value = "id") Long idProducto, Map<String, Object> model) {
 
-		Usuario usuario = usuarioService.findOne(idUsuario);
+		List<String> opcionesProducto = new ArrayList<>();
 
-		((Model) model).addAttribute("usuario", usuario);
-		((Model) model).addAttribute("titulo", "Editar Datos");
+		opcionesProducto.add("Artículo");
+		opcionesProducto.add("Asistencia Congreso");
+		opcionesProducto.add("Capítulo de Libro");
+		opcionesProducto.add("Curso Externo");
+		opcionesProducto.add("Estancia");
+		opcionesProducto.add("Solicitud Patente");
+		opcionesProducto.add("Otro");
+
+		Producto producto = productoService.findOne(idProducto);
+
+		((Model) model).addAttribute("opcionesProducto", opcionesProducto);
+		((Model) model).addAttribute("producto", producto);
+		((Model) model).addAttribute("titulo", "Editar Producto");
 		return "Productividad/formProductividad";
 	}
 

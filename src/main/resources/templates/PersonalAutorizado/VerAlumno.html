@@ -861,8 +861,6 @@
                                                 <th>Periodo</th>
                                                 <th>Pa&iacute;s</th>
                                                 <th>Archivo</th>
-                                                <th>Editar</th>
-                                                <th>Eliminar</th>
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -876,8 +874,8 @@
                                                     hay archivo</td>
                                                 <td
                                                         th:unless="${producto.archivoProducto == null || producto.archivoProducto == ''}"
-                                                        th:text="${producto.archivoProducto}"></td>
-
+                                                ><a th:href="@{/PersonalAutorizado/descargarArchivoProducto/} + ${producto.id}"
+                                                    class="card-link" th:text="'Descargar'"></a></td>
                                             </tr>
                                             </tbody>
                                         </table>

@@ -49,6 +49,14 @@
 												th:unless="${producto.archivoProducto == null || producto.archivoProducto == ''}"
 												><a th:href="@{/Productividad/descargarArchivo/} + ${producto.id}"
 													class="card-link" th:text="'Descargar'"></a></td>
+											<td><a class="btn btn-xs" id="editar"
+												   th:href="@{/Productividad/formProductividad/} + ${producto.id}"><img
+													th:src="@{/images/editarUsuario.png}" width="35" height="25"></a></td>
+											<td><a class="btn btn-danger btn-xs"
+												   th:href="@{/Productividad/eliminarProducto/} + ${producto.id}"
+												   onclick="return confirm('&iquest;Est&aacute; seguro de eliminar este producto?');">
+												<img th:src="@{/images/eliminarU.png}" width="35" height="25">
+											</a></td>
 										</tr>
 									</tbody>
 								</table>

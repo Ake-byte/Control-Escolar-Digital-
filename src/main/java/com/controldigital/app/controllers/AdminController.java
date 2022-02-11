@@ -65,6 +65,9 @@ public class AdminController {
     private ISipService sipService;
 
     @Autowired
+    private IProductoService productoService;
+
+    @Autowired
     private IUploadFileService uploadFileService;
 
     /**
@@ -763,6 +766,37 @@ public class AdminController {
         }
 
         return "redirect:/PersonalAutorizado/ListadoUsuarios";
+    }
+
+    @GetMapping(value = "/descargarArchivoProducto/{id}")
+    public ResponseEntity<Resource> descargarArchivoProducto(@PathVariable Long id, HttpServletRequest request) {
+
+        Producto producto = productoService.findOne(id);
+
+        String filename = producto.getArchivoProducto();
+
+        Resource recurso = null;
+        try {
+            recurso = uploadFileService.load(filename);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        String contentType = null;
+        try {
+            contentType = request.getServletContext().getMimeType(recurso.getFile().getAbsolutePath());
+        } catch (IOException ex) {
+            // logger.info("Could not determine file type.");
+        }
+        // Fallback to the default content type if type could not be determined
+        if (contentType == null) {
+
+            contentType = "application/octet-stream";
+
+        }
+        return ResponseEntity.ok().contentType(MediaType.parseMediaType(contentType))
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + recurso.getFilename() + "\"")
+                .body(recurso);
+
     }
 
     /*@RequestMapping(value = "/eliminarUsuario/{id}")
