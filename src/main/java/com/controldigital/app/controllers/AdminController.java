@@ -156,11 +156,40 @@ public class AdminController {
 
         List<Usuario> alumnos = usuarioService.findUserByRole("ROLE_USER2");
 
-        int numUsuarios = informesService.findAlumnosBy(informes).size();
+        List<UserDetails> userDetailsList = new ArrayList<>();
+
+        for (Usuario u : alumnos) {
+            UserDetails userDetails = new UserDetails();
+            InfoPersonal infoPersonal = inforPersonalService.findInfoPersonalByUserId(u.getId());
+            InfoAcademica infoAcademica = infoAcademicaService.findInfoAcademicaByUserId(u.getId());
+            Expediente expediente = expedienteService.findExpedienteByUserId(u.getId());
+
+            userDetails.setUsuario(u);
+            userDetails.setInfoPersonal(infoPersonal);
+            userDetails.setInfoAcademica(infoAcademica);
+            userDetails.setExpediente(expediente);
+
+            if (userDetails.getInfoPersonal().getFechaNacimiento() != null
+                    || userDetails.getInfoPersonal().getGenero() != null
+                    || userDetails.getInfoPersonal().getPaisNacimiento() != null
+                    || userDetails.getInfoPersonal().getEstadoNacimiento() != null
+                    || userDetails.getInfoPersonal().getLenguaIndigena() != null
+                    || userDetails.getInfoPersonal().getEnfermedadPermanente() != null
+                    || userDetails.getExpediente().getGrado() != null
+                    || userDetails.getExpediente().getSemestre() != null
+                    || userDetails.getExpediente().getEstatusEscolar() != null
+                    || userDetails.getExpediente().getBecaConacyt() != null
+            ) {
+                userDetailsList.add(userDetails);
+            }
+        }
+
+
+        int numUsuarios = informesService.findAlumnosBy(informes, userDetailsList).size();
 
         model.addAttribute("informe", informes);
         model.addAttribute("numUsuarios", numUsuarios);
-        model.addAttribute("numTotal", alumnos.size() - numUsuarios);
+        model.addAttribute("numTotal", userDetailsList.size() - numUsuarios);
 
         return "PersonalAutorizado/ResultadoInforme";
     }

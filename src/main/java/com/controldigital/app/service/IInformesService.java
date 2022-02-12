@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface IInformesService {
 
-    public List<UserDetails> findAlumnosBy(Informes informes);
+    public List<UserDetails> findAlumnosBy(Informes informes, List<UserDetails> userDetailsList);
 }

@@ -34,37 +34,7 @@ public class InformesService implements IInformesService {
     private ExpedienteService expedienteService;
 
     @Override
-    public List<UserDetails> findAlumnosBy(Informes informes) {
-
-        List<Usuario> alumnos = usuarioService.findUserByRole("ROLE_USER2");
-
-        List<UserDetails> userDetailsList = new ArrayList<>();
-
-        for (Usuario u : alumnos) {
-            UserDetails userDetails = new UserDetails();
-            InfoPersonal infoPersonal = inforPersonalService.findInfoPersonalByUserId(u.getId());
-            InfoAcademica infoAcademica = infoAcademicaService.findInfoAcademicaByUserId(u.getId());
-            Expediente expediente = expedienteService.findExpedienteByUserId(u.getId());
-
-            userDetails.setUsuario(u);
-            userDetails.setInfoPersonal(infoPersonal);
-            userDetails.setInfoAcademica(infoAcademica);
-            userDetails.setExpediente(expediente);
-
-            if (infoPersonal.getFechaNacimiento() != null
-                    || infoPersonal.getGenero() != null
-                    || infoPersonal.getPaisNacimiento() != null
-                    || infoPersonal.getEstadoNacimiento() != null
-                    || infoPersonal.getLenguaIndigena() != null
-                    || infoPersonal.getEnfermedadPermanente() != null
-                    || expediente.getGrado() != null
-                    || expediente.getSemestre() != null
-                    || expediente.getEstatusEscolar() != null
-                    || expediente.getBecaConacyt() != null
-            ) {
-                userDetailsList.add(userDetails);
-            }
-        }
+    public List<UserDetails> findAlumnosBy(Informes informes, List<UserDetails> userDetailsList) {
 
         List<UserDetails> filterByPosgrado = opcionPosgrado(userDetailsList, informes);
         List<UserDetails> filterBySemestre = opcionSemestre(filterByPosgrado, informes);
