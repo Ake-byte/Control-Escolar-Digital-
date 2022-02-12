@@ -43,5 +43,10 @@ public class SipService implements ISipService{
         return sipDAO.findById(id).orElse(null);
     }
 
+    @Override
+    public void delete(Long id) {
+        sipDAO.deleteById(id);
+    }
+
 
 }

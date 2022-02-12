@@ -10,4 +10,5 @@ public interface ISipService {
     public void saveSip(SIP sip);
     public void saveUsuario(Usuario usuario);
     public SIP findOne(Long id);
+    public void delete(Long id);
 }

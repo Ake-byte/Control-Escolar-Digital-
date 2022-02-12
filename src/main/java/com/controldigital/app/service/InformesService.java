@@ -52,15 +52,15 @@ public class InformesService implements IInformesService {
             userDetails.setExpediente(expediente);
 
             if (infoPersonal.getFechaNacimiento() != null
-                    && infoPersonal.getGenero() != null
-                    && infoPersonal.getPaisNacimiento() != null
-                    && infoPersonal.getEstadoNacimiento() != null
-                    && infoPersonal.getLenguaIndigena() != null
-                    && infoPersonal.getEnfermedadPermanente() != null
-                    && expediente.getGrado() != null
-                    && expediente.getSemestre() != null
-                    && expediente.getEstatusEscolar() != null
-                    && expediente.getBecaConacyt() != null
+                    || infoPersonal.getGenero() != null
+                    || infoPersonal.getPaisNacimiento() != null
+                    || infoPersonal.getEstadoNacimiento() != null
+                    || infoPersonal.getLenguaIndigena() != null
+                    || infoPersonal.getEnfermedadPermanente() != null
+                    || expediente.getGrado() != null
+                    || expediente.getSemestre() != null
+                    || expediente.getEstatusEscolar() != null
+                    || expediente.getBecaConacyt() != null
             ) {
                 userDetailsList.add(userDetails);
             }

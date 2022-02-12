@@ -169,4 +169,14 @@ public class ProductividadController {
 				.body(recurso);
 
 	}
+
+	@RequestMapping(value = "/eliminarProducto/{id}")
+	public String eliminarProducto(@PathVariable(value = "id") Long id) {
+
+		if (id > 0) {
+			productoService.delete(id);
+		}
+
+		return "redirect:/Productividad/ListadoProductividad";
+	}
 }

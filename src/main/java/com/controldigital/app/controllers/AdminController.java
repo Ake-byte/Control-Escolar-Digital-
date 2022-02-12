@@ -674,7 +674,7 @@ public class AdminController {
         sipService.saveSip(sip);
         sipService.saveUsuario(usuario);
 
-        return "PersonalAutorizado/ListadoUsuarios";
+        return "redirect:/PersonalAutorizado/verUsuario/" + usuario.getId();
 
     }
 
@@ -711,7 +711,7 @@ public class AdminController {
         sipService.saveSip(sip);
         sipService.saveUsuario(usuario);
 
-        return "PersonalAutorizado/ListadoUsuarios";
+        return "redirect:/PersonalAutorizado/verUsuario/" + usuario.getId();
 
     }
 
@@ -799,13 +799,16 @@ public class AdminController {
 
     }
 
-    /*@RequestMapping(value = "/eliminarUsuario/{id}")
+    @RequestMapping(value = "/eliminarSIP/{id}")
     public String eliminarSIP(@PathVariable(value = "id") Long id) {
 
+        SIP sip = sipService.findOne(id);
+        Usuario usuario = usuarioService.findOne(sip.getUsers().getId());
+
         if (id > 0) {
-            usuarioService.delete(id);
+            sipService.delete(id);
         }
 
-        return "redirect:/PersonalAutorizado/verUsuario";
-    }*/
+        return "redirect:/PersonalAutorizado/verUsuario/" + usuario.getId();
+    }
 }
