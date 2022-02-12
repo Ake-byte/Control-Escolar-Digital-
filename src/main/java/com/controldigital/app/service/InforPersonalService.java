@@ -25,6 +25,12 @@ public class InforPersonalService implements IInfoPersonalService{
     }
 
     @Override
+    @Transactional(readOnly=true)
+    public InfoPersonal findOne(Long id) {
+        return infoPersonalDAO.findById(id).orElse(null);
+    }
+
+    @Override
     @Transactional
     public void save(InfoPersonal infoPersonal) {
         infoPersonalDAO.save(infoPersonal);

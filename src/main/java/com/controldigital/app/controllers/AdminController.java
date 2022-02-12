@@ -840,4 +840,104 @@ public class AdminController {
 
         return "redirect:/PersonalAutorizado/verUsuario/" + usuario.getId();
     }
+
+    @GetMapping(value = "/descargarArchivoInfoPersonal/{tipoArchivo}/{id}")
+    public ResponseEntity<Resource> descargarArchivoInfoPersonal(@PathVariable String tipoArchivo, @PathVariable Long id, HttpServletRequest request) {
+
+        InfoPersonal infoPersonal = inforPersonalService.findOne(id);
+
+        String filename = null;
+
+        if(tipoArchivo.equals("Foto")){
+            filename = infoPersonal.getFotoActual();
+        }
+        else if(tipoArchivo.equals("ActaNacimiento")){
+            filename = infoPersonal.getActaNacimiento();
+        }
+        else if(tipoArchivo.equals("Pasaporte")){
+            filename = infoPersonal.getPasaporte();
+        }
+        else if(tipoArchivo.equals("Curp")){
+            filename = infoPersonal.getCedulaCURP();
+        }
+
+        Resource recurso = null;
+        try {
+            recurso = uploadFileService.load(filename);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        String contentType = null;
+        try {
+            contentType = request.getServletContext().getMimeType(recurso.getFile().getAbsolutePath());
+        } catch (IOException ex) {
+            // logger.info("Could not determine file type.");
+        }
+        // Fallback to the default content type if type could not be determined
+        if (contentType == null) {
+
+            contentType = "application/octet-stream";
+
+        }
+        return ResponseEntity.ok().contentType(MediaType.parseMediaType(contentType))
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + recurso.getFilename() + "\"")
+                .body(recurso);
+
+    }
+
+    @GetMapping(value = "/descargarArchivoInfoAcademica/{tipoArchivo}/{id}")
+    public ResponseEntity<Resource> descargarArchivoInfoAcademica(@PathVariable String tipoArchivo, @PathVariable Long id, HttpServletRequest request) {
+
+        InfoAcademica infoAcademica = infoAcademicaService.findOne(id);
+
+        String filename = null;
+
+        if(tipoArchivo.equals("calificacionesLicenciatura")){
+            filename = infoAcademica.getCalificacionesLicenciatura();
+        }
+        else if(tipoArchivo.equals("diplomaLicenciatura")){
+            filename = infoAcademica.getDiplomaLicenciatura();
+        }
+        else if(tipoArchivo.equals("cedulaLicenciatura")){
+            filename = infoAcademica.getCedulaLicenciatura();
+        }
+        else if(tipoArchivo.equals("acreditacionIngles")){
+            filename = infoAcademica.getAcreditacionIngles();
+        }
+        else if(tipoArchivo.equals("calificacionesMaestria")){
+            filename = infoAcademica.getCalificacionesMaestria();
+        }
+        else if(tipoArchivo.equals("actaExamenMaestria")){
+            filename = infoAcademica.getActaExamenMaestria();
+        }
+        else if(tipoArchivo.equals("diplomaMaestria")){
+            filename = infoAcademica.getDiplomaMaestria();
+        }
+        else if(tipoArchivo.equals("cedulaMaestria")){
+            filename = infoAcademica.getCedulaMaestria();
+        }
+
+        Resource recurso = null;
+        try {
+            recurso = uploadFileService.load(filename);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        String contentType = null;
+        try {
+            contentType = request.getServletContext().getMimeType(recurso.getFile().getAbsolutePath());
+        } catch (IOException ex) {
+            // logger.info("Could not determine file type.");
+        }
+        // Fallback to the default content type if type could not be determined
+        if (contentType == null) {
+
+            contentType = "application/octet-stream";
+
+        }
+        return ResponseEntity.ok().contentType(MediaType.parseMediaType(contentType))
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + recurso.getFilename() + "\"")
+                .body(recurso);
+
+    }
 }

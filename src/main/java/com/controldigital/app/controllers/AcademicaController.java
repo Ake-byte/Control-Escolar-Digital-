@@ -278,7 +278,7 @@ public class AcademicaController {
 	@GetMapping(value = "/descargarArchivo/{tipoArchivo}/{id}")
 	public ResponseEntity<Resource> descargarArchivo(@PathVariable String tipoArchivo, @PathVariable Long id, HttpServletRequest request) {
 
-		InfoAcademica infoAcademica = infoAcademicaService.findInfoAcademicaByUserId(id);
+		InfoAcademica infoAcademica = infoAcademicaService.findOne(id);
 
 		String filename = null;
 

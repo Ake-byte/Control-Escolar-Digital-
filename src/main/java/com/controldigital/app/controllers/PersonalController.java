@@ -206,9 +206,9 @@ public class PersonalController {
 	 * @return
 	 */
 	@GetMapping(value = "/descargarArchivo/{tipoArchivo}/{id}")
-	public ResponseEntity<Resource> descargarArchivo(@PathVariable String tipoArchivo, @PathVariable Long id, HttpServletRequest request) {
+	public ResponseEntity<Resource> descargarArchivo(HttpServletRequest request, @PathVariable String tipoArchivo, @PathVariable Long id) {
 
-		InfoPersonal infoPersonal = infoPersonalService.findInfoPersonalByUserId(id);
+		InfoPersonal infoPersonal = infoPersonalService.findOne(id);
 
 		String filename = null;
 

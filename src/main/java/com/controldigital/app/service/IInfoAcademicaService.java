@@ -11,4 +11,6 @@ public interface IInfoAcademicaService {
     public void saveUsuario(Usuario usuario);
 
     public void delete(Long id);
+
+    public InfoAcademica findOne(Long id);
 }

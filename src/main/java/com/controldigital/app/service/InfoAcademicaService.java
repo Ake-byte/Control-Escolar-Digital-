@@ -40,4 +40,10 @@ public class InfoAcademicaService implements IInfoAcademicaService{
     public void delete(Long id) {
         infoAcademicaDAO.deleteById(id);
     }
+
+    @Override
+    @Transactional(readOnly=true)
+    public InfoAcademica findOne(Long id) {
+        return infoAcademicaDAO.findById(id).orElse(null);
+    }
 }

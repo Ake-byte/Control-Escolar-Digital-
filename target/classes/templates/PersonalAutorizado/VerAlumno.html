@@ -175,7 +175,7 @@
                                                                 <p>El usuario no ha subido el documento.</p>
                                                             </div>
                                                             <div th:unless="${usuario.infoPersonal.fotoActual == '' || usuario.infoPersonal.fotoActual == null}" class="col-sm-4">
-                                                                <a th:href="@{/PersonalAutorizado/descargarArchivo/} + 'Foto/' + ${usuario.usuario.id}"
+                                                                <a th:href="@{/PersonalAutorizado/descargarArchivoInfoPersonal/} + 'Foto/' + ${usuario.infoPersonal.id}"
                                                                    class="card-link" th:text="'Descargar'"></a>
                                                             </div>
                                                         </div>
@@ -187,7 +187,7 @@
                                                                 <p>El usuario no ha subido el documento.</p>
                                                             </div>
                                                             <div th:unless="${usuario.infoPersonal.actaNacimiento == '' || usuario.infoPersonal.actaNacimiento == null}" class="col-sm-4">
-                                                                <a th:href="@{/PersonalAutorizado/descargarArchivo/} + 'ActaNacimiento/' + ${usuario.usuario.id}"
+                                                                <a th:href="@{/PersonalAutorizado/descargarArchivoInfoPersonal/} + 'ActaNacimiento/' + ${usuario.infoPersonal.id}"
                                                                    class="card-link" th:text="'Descargar'"></a>
                                                             </div>
                                                         </div>
@@ -200,7 +200,7 @@
                                                                 <p>El usuario no ha subido el documento.</p>
                                                             </div>
                                                             <div th:unless="${usuario.infoPersonal.pasaporte == '' || usuario.infoPersonal.pasaporte == null}" class="col-sm-4">
-                                                                <a th:href="@{/PersonalAutorizado/descargarArchivo/} + 'Pasaporte/' + ${usuario.usuario.id}"
+                                                                <a th:href="@{/PersonalAutorizado/descargarArchivoInfoPersonal/} + 'Pasaporte/' + ${usuario.infoPersonal.id}"
                                                                    class="card-link" th:text="'Descargar'"></a>
                                                             </div>
                                                         </div>
@@ -212,7 +212,7 @@
                                                                 <p>El usuario no ha subido el documento.</p>
                                                             </div>
                                                             <div th:unless="${usuario.infoPersonal.cedulaCURP == '' || usuario.infoPersonal.cedulaCURP == null}" class="col-sm-4">
-                                                                <a th:href="@{/PersonalAutorizado/descargarArchivo/} + 'Curp/' + ${usuario.usuario.id}"
+                                                                <a th:href="@{/PersonalAutorizado/descargarArchivoInfoPersonal/} + 'Curp/' + ${usuario.infoPersonal.id}"
                                                                    class="card-link" th:text="'Descargar'"></a>
                                                             </div>
                                                         </div>
@@ -414,7 +414,7 @@
                                                             <p>El usuario no ha subido el documento.</p>
                                                         </div>
                                                         <div th:unless="${usuario.infoAcademica.calificacionesLicenciatura == '' || usuario.infoAcademica.calificacionesLicenciatura == null}" class="col-sm-4">
-                                                            <a th:href="@{/PersonalAutorizado/descargarArchivo/} + 'calificacionesLicenciatura/' + ${usuario.usuario.id}"
+                                                            <a th:href="@{/PersonalAutorizado/descargarArchivoInfoAcademica/} + 'calificacionesLicenciatura/' + ${usuario.infoAcademica.id}"
                                                                class="card-link" th:text="'Descargar'"></a>
                                                         </div>
                                                     </div>
@@ -426,7 +426,7 @@
                                                             <p>El usuario no ha subido el documento.</p>
                                                         </div>
                                                         <div th:unless="${usuario.infoAcademica.diplomaLicenciatura == '' || usuario.infoAcademica.diplomaLicenciatura == null}" class="col-sm-4">
-                                                            <a th:href="@{/PersonalAutorizado/descargarArchivo/} + 'diplomaLicenciatura/' + ${usuario.usuario.id}"
+                                                            <a th:href="@{/PersonalAutorizado/descargarArchivoInfoAcademica/} + 'diplomaLicenciatura/' + ${usuario.infoAcademica.id}"
                                                                class="card-link" th:text="'Descargar'"></a>
                                                         </div>
                                                     </div>
@@ -438,7 +438,7 @@
                                                             <p>El usuario no ha subido el documento.</p>
                                                         </div>
                                                         <div th:unless="${usuario.infoAcademica.cedulaLicenciatura == '' || usuario.infoAcademica.cedulaLicenciatura == null}" class="col-sm-4">
-                                                            <a th:href="@{/PersonalAutorizado/descargarArchivo/} + 'cedulaLicenciatura/' + ${usuario.usuario.id}"
+                                                            <a th:href="@{/PersonalAutorizado/descargarArchivoInfoAcademica/} + 'cedulaLicenciatura/' + ${usuario.infoAcademica.id}"
                                                                class="card-link" th:text="'Descargar'"></a>
                                                         </div>
                                                     </div>
@@ -450,7 +450,7 @@
                                                             <p>El usuario no ha subido el documento.</p>
                                                         </div>
                                                         <div th:unless="${usuario.infoAcademica.acreditacionIngles == '' || usuario.infoAcademica.acreditacionIngles == null}" class="col-sm-4">
-                                                            <a th:href="@{/PersonalAutorizado/descargarArchivo/} + 'acreditacionIngles/' + ${usuario.usuario.id}"
+                                                            <a th:href="@{/PersonalAutorizado/descargarArchivoInfoAcademica/} + 'acreditacionIngles/' + ${usuario.infoAcademica.id}"
                                                                class="card-link" th:text="'Descargar'"></a>
                                                         </div>
                                                     </div>
@@ -462,7 +462,7 @@
                                                             <p>El usuario no ha subido el documento.</p>
                                                         </div>
                                                         <div th:unless="${usuario.infoAcademica.calificacionesMaestria == '' || usuario.infoAcademica.calificacionesMaestria == null}" class="col-sm-4">
-                                                            <a th:href="@{/PersonalAutorizado/descargarArchivo/} + 'calificacionesMaestria/' + ${usuario.usuario.id}"
+                                                            <a th:href="@{/PersonalAutorizado/descargarArchivoInfoAcademica/} + 'calificacionesMaestria/' + ${usuario.infoAcademica.id}"
                                                                class="card-link" th:text="'Descargar'"></a>
                                                         </div>
                                                     </div>
@@ -474,7 +474,7 @@
                                                             <p>El usuario no ha subido el documento.</p>
                                                         </div>
                                                         <div th:unless="${usuario.infoAcademica.actaExamenMaestria == '' || usuario.infoAcademica.actaExamenMaestria == null}" class="col-sm-4">
-                                                            <a th:href="@{/PersonalAutorizado/descargarArchivo/} + 'actaExamenMaestria/' + ${usuario.usuario.id}"
+                                                            <a th:href="@{/PersonalAutorizado/descargarArchivoInfoAcademica/} + 'actaExamenMaestria/' + ${usuario.infoAcademica.id}"
                                                                class="card-link" th:text="'Descargar'"></a>
                                                         </div>
                                                     </div>
@@ -486,7 +486,7 @@
                                                             <p>El usuario no ha subido el documento.</p>
                                                         </div>
                                                         <div th:unless="${usuario.infoAcademica.diplomaMaestria == '' || usuario.infoAcademica.diplomaMaestria == null}" class="col-sm-4">
-                                                            <a th:href="@{/PersonalAutorizado/descargarArchivo/} + 'diplomaMaestria/' + ${usuario.usuario.id}"
+                                                            <a th:href="@{/PersonalAutorizado/descargarArchivoInfoAcademica/} + 'diplomaMaestria/' + ${usuario.infoAcademica.id}"
                                                                class="card-link" th:text="'Descargar'"></a>
                                                         </div>
                                                     </div>
@@ -498,7 +498,7 @@
                                                             <p>El usuario no ha subido el documento.</p>
                                                         </div>
                                                         <div th:unless="${usuario.infoAcademica.cedulaMaestria == '' || usuario.infoAcademica.cedulaMaestria == null}" class="col-sm-4">
-                                                            <a th:href="@{/PersonalAutorizado/descargarArchivo/} + 'cedulaMaestria/' + ${usuario.usuario.id}"
+                                                            <a th:href="@{/PersonalAutorizado/descargarArchivoInfoAcademica/} + 'cedulaMaestria/' + ${usuario.usuario.id}"
                                                                class="card-link" th:text="'Descargar'"></a>
                                                         </div>
                                                     </div>
