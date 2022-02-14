@@ -114,7 +114,7 @@ public class AdminController {
         LocalDate date = currentDate();
 
         List<String> edades = new ArrayList<>();
-        List<String> semestre = new ArrayList<>();
+        List<String> numeroRegistro = new ArrayList<>();
 
         for (UserDetails u : userDetailsList) {
 
@@ -125,8 +125,8 @@ public class AdminController {
                     edades.add(String.valueOf(Period.between(birthday, date).getYears()));
                 }
 
-                if (!semestre.contains(u.getExpediente().getSemestre())) {
-                    semestre.add(u.getExpediente().getSemestre());
+                if (!numeroRegistro.contains(u.getExpediente().getNumeroRegistro().substring(0,3))) {
+                    numeroRegistro.add(u.getExpediente().getNumeroRegistro().substring(0,3));
                 }
 
         }
@@ -135,7 +135,7 @@ public class AdminController {
 
         model.addAttribute("titulo", "Informes");
         model.addAttribute("edades", edades);
-        model.addAttribute("semestres", semestre);
+        model.addAttribute("semestres", numeroRegistro);
         model.addAttribute("informe", informe);
 
         return "PersonalAutorizado/Informes";
@@ -176,7 +176,7 @@ public class AdminController {
                     || userDetails.getInfoPersonal().getLenguaIndigena() != null
                     || userDetails.getInfoPersonal().getEnfermedadPermanente() != null
                     || userDetails.getExpediente().getGrado() != null
-                    || userDetails.getExpediente().getSemestre() != null
+                    || userDetails.getExpediente().getNumeroRegistro() != null
                     || userDetails.getExpediente().getEstatusEscolar() != null
                     || userDetails.getExpediente().getBecaConacyt() != null
             ) {

@@ -1,6 +1,7 @@
 package com.controldigital.app.controllers;
 
 import java.security.Principal;
+import java.time.Month;
 import java.util.List;
 import java.util.Map;
 
@@ -25,6 +26,9 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.controldigital.app.util.MailSenderService;
+
+import static com.controldigital.app.util.Fecha.*;
+import static com.controldigital.app.util.Fecha.currentDate;
 
 
 /**
@@ -139,8 +143,29 @@ public class LoginController {
         role.setAuthorityName("Usuario Registrado");
 
         infoPersonal.setUsers(usuario);
+        infoPersonal.setFotoStatus(FileStatus.RED1);
+        infoPersonal.setActaStatus(FileStatus.RED1);
+        infoPersonal.setCurpStatus(FileStatus.RED1);
+        infoPersonal.setPasaporteStatus(FileStatus.RED1);
+
         infoAcademica.setUsers(usuario);
+        infoAcademica.setCalificacionesLicenciaturaStatus(FileStatus.RED1);
+        infoAcademica.setDiplomaLicenciaturaStatus(FileStatus.RED1);
+        infoAcademica.setCedulaLicenciaturaStatus(FileStatus.RED1);
+        infoAcademica.setAcreditacionInglesStatus(FileStatus.RED1);
+        infoAcademica.setCalificacionesMaestriaStatus(FileStatus.RED1);
+        infoAcademica.setCedulaMaestriaStatus(FileStatus.RED1);
+        infoAcademica.setDiplomaMaestriaStatus(FileStatus.RED1);
+        infoAcademica.setActaExamenMaestriaStatus(FileStatus.RED1);
+
         expediente.setUsers(usuario);
+        Month mesActual = currentDate().getMonth();
+        if(mesesA().contains(mesActual)){
+            expediente.setSemestre("A" + String.valueOf(currentDate().getYear() - 2000));
+        }
+        else if(mesesB().contains(mesActual)){
+            expediente.setSemestre("B" + String.valueOf(currentDate().getYear() - 2000));
+        }
 
         usuario.setRoles(role);
         usuario.setInfoPersonal(infoPersonal);

@@ -50,7 +50,7 @@ public class CambiarSemestre {
                 if(e.getNumSemestre() > 4){
                     e.setEstatusEscolar("Egresado");
                 }else {
-                    e.setSemestre("A" + String.valueOf(2000 - date.getYear()));
+                    e.setSemestre("A" + String.valueOf(date.getYear() - 2000));
                 }
             }
 
@@ -58,7 +58,7 @@ public class CambiarSemestre {
                 if(e.getNumSemestre() > 8){
                     e.setEstatusEscolar("Egresado");
                 }else {
-                    e.setSemestre("A" + String.valueOf(2000 - date.getYear()));
+                    e.setSemestre("A" + String.valueOf(date.getYear() - 2000));
                 }
             }
 
@@ -78,7 +78,7 @@ public class CambiarSemestre {
                 if(e.getNumSemestre() > 4){
                     e.setEstatusEscolar("Egresado");
                 }else {
-                    e.setSemestre("B" + String.valueOf(2000 - date.getYear()));
+                    e.setSemestre("B" + String.valueOf(date.getYear() - 2000));
                 }
             }
 
@@ -86,7 +86,7 @@ public class CambiarSemestre {
                 if(e.getNumSemestre() > 8){
                     e.setEstatusEscolar("Egresado");
                 }else {
-                    e.setSemestre("B" + String.valueOf(2000 - date.getYear()));
+                    e.setSemestre("B" + String.valueOf(date.getYear() - 2000));
                 }
             }
             expedienteService.save(e);

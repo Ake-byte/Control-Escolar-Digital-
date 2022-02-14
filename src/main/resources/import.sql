@@ -9,19 +9,19 @@ INSERT INTO users (nombre,apellido_paterno, apellido_materno, email, pwd, enable
 INSERT INTO roles (user_id, authority, authority_name) VALUES(2, 'ROLE_USER2', 'Alumno');
 INSERT INTO personal(user_id, fecha_nacimiento, clave_CURP, telefono_celular, genero, foto_status, acta_status, pasaporte_status, curp_status, pais_nacimiento,estado_nacimiento,lengua_indigena,discapacidad,enfermedad_permanente) VALUES(2,'1989-11-10','FAAA991110HMCRKL09', '5520657474','Hombre', 0,0,0,0, 'Spain','Ciudad de México',TRUE,TRUE,TRUE);
 INSERT INTO academica(user_id, calificaciones_licenciatura_status,diploma_licenciatura_status,cedula_licenciatura_status,acreditacion_ingles_status,calificaciones_maestria_status,acta_examen_maestria_status,diploma_maestria_status,cedula_maestria_status) VALUES(2, 0,0,0,0,0,0,0,0);
-INSERT INTO expediente(user_id, semestre, grado, estatus_escolar, beca_conacyt, num_semestre) VALUES(2,'A21', 'Maestría', 'Inscrito', TRUE, 0);
+INSERT INTO expediente(user_id, semestre, grado, estatus_escolar, beca_conacyt, num_semestre, numero_registro) VALUES(2,'A21', 'Maestría', 'Inscrito', TRUE, 0, 'A211234');
 
 INSERT INTO users (nombre,apellido_paterno, apellido_materno, email, pwd, enabled) values('Edgar Ramón', 'Hernández', 'Martínez',	'edgar70fm@gmail.com', '$2a$10$hhq0CuTPkDoxxbFRvXMQLuBxKTjiip98PhsO3E/Hx66T1vFM4TIWe',TRUE);
 INSERT INTO roles (user_id, authority, authority_name) VALUES(3, 'ROLE_USER2', 'Alumno');
 INSERT INTO personal(user_id, fecha_nacimiento, clave_CURP, telefono_celular, genero, foto_status, acta_status, pasaporte_status, curp_status, pais_nacimiento,estado_nacimiento,lengua_indigena,discapacidad,enfermedad_permanente) VALUES(3,'1989-11-10','FAAA991110HMCRKL09', '5520657474','Hombre', 0,0,0,0, 'Mexico','Ciudad de México',TRUE,TRUE,TRUE);
 INSERT INTO academica(user_id, calificaciones_licenciatura_status,diploma_licenciatura_status,cedula_licenciatura_status,acreditacion_ingles_status,calificaciones_maestria_status,acta_examen_maestria_status,diploma_maestria_status,cedula_maestria_status) VALUES(3, 0,0,0,0,0,0,0,0);
-INSERT INTO expediente(user_id, semestre, grado, estatus_escolar, beca_conacyt, num_semestre) VALUES(3,'A21', 'Doctorado', 'Inscrito', TRUE, 0);
+INSERT INTO expediente(user_id, semestre, grado, estatus_escolar, beca_conacyt, num_semestre, numero_registro) VALUES(3,'A21', 'Doctorado', 'Inscrito', TRUE, 0, 'A211234');
 
 INSERT INTO users (nombre,apellido_paterno, apellido_materno, email, pwd, enabled) values('Guadalupe', 'Ramírez', 'Campos',	'lupita.folmt@gmail.com', '$2a$10$D/2qw9OOxfg2i/oeJwOkLOoglB9ohd8SbmhGyJtp0igNI3M4TgQAy',TRUE);
 INSERT INTO roles (user_id, authority, authority_name) VALUES(4, 'ROLE_USER2', 'Alumno');
 --INSERT INTO personal(user_id, fecha_nacimiento, clave_CURP, telefono_celular, genero, foto_status, acta_status, pasaporte_status, curp_status, pais_nacimiento,estado_nacimiento,lengua_indigena,discapacidad,enfermedad_permanente) VALUES(4,'1989-11-10','FAAA991110HMCRKL09', '5520657474','Mujer', 0,0,0,0, 'Mexico','Ciudad de México',FALSE,FALSE,FALSE);
 --INSERT INTO academica(user_id, calificaciones_licenciatura_status,diploma_licenciatura_status,cedula_licenciatura_status,acreditacion_ingles_status,calificaciones_maestria_status,acta_examen_maestria_status,diploma_maestria_status,cedula_maestria_status) VALUES(4, 0,0,0,0,0,0,0,0);
---INSERT INTO expediente(user_id, semestre, grado, estatus_escolar, beca_conacyt, num_semestre) VALUES(4,'A21', 'Maestría', 'Egresado', TRUE, 0);
+--INSERT INTO expediente(user_id, semestre, grado, estatus_escolar, beca_conacyt, num_semestre, numero_registro) VALUES(4,'A21', 'Maestría', 'Egresado', TRUE, 0, 'A221234');
 INSERT INTO personal(user_id) VALUES(4);
 INSERT INTO academica(user_id) VALUES(4);
 INSERT INTO expediente(user_id, num_semestre) VALUES(4, 0);
@@ -30,4 +30,4 @@ INSERT INTO users (nombre,apellido_paterno, apellido_materno, email, pwd, enable
 INSERT INTO roles (user_id, authority, authority_name) VALUES(5, 'ROLE_USER2', 'Alumno');
 INSERT INTO personal(user_id, fecha_nacimiento, clave_CURP, telefono_celular, genero, foto_status, acta_status, pasaporte_status, curp_status, pais_nacimiento,estado_nacimiento,lengua_indigena,discapacidad,enfermedad_permanente) VALUES(5,'1989-11-10','FAAA991110HMCRKL09', '5520657474','Hombre', 0,0,0,0, 'Mexico','Sonora',FALSE,FALSE,FALSE);
 INSERT INTO academica(user_id, calificaciones_licenciatura_status,diploma_licenciatura_status,cedula_licenciatura_status,acreditacion_ingles_status,calificaciones_maestria_status,acta_examen_maestria_status,diploma_maestria_status,cedula_maestria_status) VALUES(5, 0,0,0,0,0,0,0,0);
-INSERT INTO expediente(user_id, semestre, grado, estatus_escolar, beca_conacyt, num_semestre) VALUES(5,'A21', 'Maestría', 'Inscrito', TRUE, 0);
+INSERT INTO expediente(user_id, semestre, grado, estatus_escolar, beca_conacyt, num_semestre, numero_registro) VALUES(5,'A21', 'Maestría', 'Inscrito', TRUE, 0, 'B221234');

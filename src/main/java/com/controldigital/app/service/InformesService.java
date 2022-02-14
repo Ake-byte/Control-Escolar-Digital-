@@ -157,7 +157,7 @@ public class InformesService implements IInformesService {
 
         if (!informes.getSemestre().equals("Todo")) {
             return alumnos.stream()
-                    .filter(u -> u.getExpediente().getSemestre().equals(informes.getSemestre())).collect(Collectors.toList());
+                    .filter(u -> u.getExpediente().getNumeroRegistro().substring(0,3).equals(informes.getSemestre())).collect(Collectors.toList());
         } else {
             return alumnos;
         }
