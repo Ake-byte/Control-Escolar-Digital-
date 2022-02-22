@@ -83,7 +83,7 @@ public class Usuario implements Serializable {
      * Relación uno a uno con la tabla "roles".
      * Cada usuario solo debe tener un permiso en el sistema.
      */
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "users", cascade = CascadeType.ALL,  fetch = FetchType.LAZY)//orphanRemoval = true,
     @JoinColumn(name = "user_id")
     private Role roles;
 
@@ -91,29 +91,29 @@ public class Usuario implements Serializable {
      * Relación uno a muchos con la tabla "productos".
      * Un usuario tiene muchos productos.
      */
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id")
+    @OneToMany(mappedBy = "users",cascade = CascadeType.ALL)
+    //@JoinColumn(name = "user_id")
     private List<Producto> productos;
 
     /**
      * Relación uno a muchos con la tabla "sips".
      * Un usuario tiene muchos productos.
      */
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id")
+    @OneToMany(mappedBy = "users",cascade = CascadeType.ALL)
+    //@JoinColumn(name = "user_id")
     private List<SIP> sips;
 
     /**
      * Relación uno a uno con la tabla "academica".
      */
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "users", cascade = CascadeType.ALL,  fetch = FetchType.LAZY)//orphanRemoval = true,
     @JoinColumn(name = "user_id")
     private InfoAcademica infoAcademica;
 
     /**
      * Relación uno a uno con la tabla "personal".
      */
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "users", cascade = CascadeType.ALL,  fetch = FetchType.LAZY)//orphanRemoval = true,
     @JoinColumn(name = "user_id")
     private InfoPersonal infoPersonal;
 
@@ -121,7 +121,7 @@ public class Usuario implements Serializable {
      * Relación uno a uno con la tabla "expediente".
      * Cada usuario solo debe tener un permiso en el sistema.
      */
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "users", cascade = CascadeType.ALL,  fetch = FetchType.LAZY)//orphanRemoval = true,
     @JoinColumn(name = "user_id")
     private Expediente expediente;
 

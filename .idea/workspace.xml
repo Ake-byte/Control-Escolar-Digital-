@@ -23,10 +23,15 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/controldigital/app/CambiarSemestre.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/controldigital/app/CambiarSemestre.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/controldigital/app/controllers/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/controldigital/app/controllers/AdminController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/controldigital/app/controllers/ExpedienteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/controldigital/app/controllers/ExpedienteController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/controldigital/app/controllers/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/controldigital/app/controllers/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/controldigital/app/service/InformesService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/controldigital/app/service/InformesService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/import.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/import.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/Expediente/EditarExpediente.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/Expediente/EditarExpediente.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/controldigital/app/models/entity/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/controldigital/app/models/entity/Usuario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/ControlDigital.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/controldigital/app/CambiarSemestre.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/controldigital/app/CambiarSemestre.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/controldigital/app/controllers/AdminController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/controldigital/app/controllers/AdminController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/controldigital/app/controllers/ExpedienteController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/controldigital/app/controllers/ExpedienteController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/controldigital/app/models/entity/Usuario.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/controldigital/app/models/entity/Usuario.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/import.sql" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/import.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,7 +61,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/static/images" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../IBM Academia Microservicios/Proyecto Ejercicios/Ejercicio 1/producer" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
@@ -122,10 +127,6 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="361" y="71" width="814" height="728" key="#Intentions/0.0.1536.824@0.0.1536.824" timestamp="1638052528745" />
-    <state x="905" y="217" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1636335482430">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="905" y="217" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.824@0.0.1536.824" timestamp="1636335482430" />
     <state x="574" y="119" key="#com.intellij.ide.util.MemberChooser" timestamp="1644688276218">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -147,26 +148,30 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="516" y="121" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1536.824@0.0.1536.824" timestamp="1639879090632" />
-    <state width="1493" height="394" key="GridCell.Tab.0.bottom" timestamp="1644808223910">
+    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1645215313981">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1645215313981" />
+    <state width="1493" height="267" key="GridCell.Tab.0.bottom" timestamp="1645549116362">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1493" height="227" key="GridCell.Tab.0.bottom/0.0.1536.824/1920.0.1360.728@0.0.1536.824" timestamp="1641837752470" />
-    <state width="1493" height="394" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1644808223910" />
-    <state width="1493" height="394" key="GridCell.Tab.0.center" timestamp="1644808223910">
+    <state width="1493" height="267" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1645549116362" />
+    <state width="1493" height="267" key="GridCell.Tab.0.center" timestamp="1645549116362">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1493" height="227" key="GridCell.Tab.0.center/0.0.1536.824/1920.0.1360.728@0.0.1536.824" timestamp="1641837752469" />
-    <state width="1493" height="394" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1644808223910" />
-    <state width="1493" height="394" key="GridCell.Tab.0.left" timestamp="1644808223910">
+    <state width="1493" height="267" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1645549116362" />
+    <state width="1493" height="267" key="GridCell.Tab.0.left" timestamp="1645549116362">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1493" height="227" key="GridCell.Tab.0.left/0.0.1536.824/1920.0.1360.728@0.0.1536.824" timestamp="1641837752469" />
-    <state width="1493" height="394" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1644808223910" />
-    <state width="1493" height="394" key="GridCell.Tab.0.right" timestamp="1644808223910">
+    <state width="1493" height="267" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1645549116362" />
+    <state width="1493" height="267" key="GridCell.Tab.0.right" timestamp="1645549116362">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1493" height="227" key="GridCell.Tab.0.right/0.0.1536.824/1920.0.1360.728@0.0.1536.824" timestamp="1641837752469" />
-    <state width="1493" height="394" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1644808223910" />
+    <state width="1493" height="267" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1645549116362" />
     <state x="2409" y="278" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1639267045982">
       <screen x="1920" y="0" width="1360" height="728" />
     </state>

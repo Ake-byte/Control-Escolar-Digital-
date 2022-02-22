@@ -22,8 +22,8 @@ public class CambiarSemestre {
 
     /** La notación @Scheduled de Spring, permite automatizar tareas. En este sistema se utiliza para actualizar el semestre en curso de los alumnos inscritos.
      * Siendo las funciones:
-     *              -cambiarSemestreA de Julio a Diciembre
-     *              -cambiarSemestreB de Enero a Junio
+     *              -cambiarSemestreA de Enero a Junio
+     *              -cambiarSemestreB de Julio a Diciembre
      * El cambio se efectúa el día 31 del primer mes (Julio para el semestre A y Enero para el semestre B) a la medianoche.
      *
      * PARÁMETROS DE LA FUNCIÓN:
@@ -67,7 +67,7 @@ public class CambiarSemestre {
     }
 
     @Bean
-    @Scheduled(cron="0 0 0 31 7 ?")
+    @Scheduled(cron="0 0 0 31 12 ?")
     public void cambiarsemestreB(){
         List<Expediente> alumnosInscritos = expedienteService.findAll().stream()
                 .filter(e -> e.getEstatusEscolar() != null && e.getEstatusEscolar().equals("Inscrito")).collect(Collectors.toList());

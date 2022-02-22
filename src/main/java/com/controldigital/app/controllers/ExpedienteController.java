@@ -74,7 +74,10 @@ public class ExpedienteController {
 			return "Personal/EditarInformacionSistema";
 		}
 
-
+		/**
+		 * if _ _ _  numRegistro[1] + numRegistro[2] != Año Actual - 2000
+		 * 		ajustar cuenta de numSemestres y actualizar el campo en la BD
+		 */
 
 		expedienteService.save(expediente);
 

@@ -180,6 +180,8 @@ public class LoginController {
 
         usuario.setPassword(bcryptPassword);
 
+        usuarioService.save(usuario);
+
         roleService.saveUsuario(usuario);
         roleService.save(role);
 
@@ -189,6 +191,8 @@ public class LoginController {
         infoAcademicaService.save(infoAcademica);
         expedienteService.saveUsuario(usuario);
         expedienteService.save(expediente);
+
+
 
         mailService.sendEmail(usuario.getEmail(), "Bienvenido al sistema BD-LNCAE",
                 "Tu permiso actual es: Usuario Registrado", usuario);

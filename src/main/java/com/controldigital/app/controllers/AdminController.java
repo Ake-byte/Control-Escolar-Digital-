@@ -787,10 +787,19 @@ public class AdminController {
      * @param id
      * @return /src/main/resources/templates/PersonalAutorizado/ListadoUsuarios.html
      */
-    @RequestMapping(value = "/eliminarUsuario/{id}")
+    @GetMapping(value = "/eliminarUsuario/{id}")
     public String eliminarUsuario(@PathVariable(value = "id") Long id) {
 
         if (id > 0) {
+            Usuario usuario = usuarioService.findOne(id);
+            //InfoPersonal infoPersonal = inforPersonalService.findOne(usuario.getId());
+            //InfoAcademica infoAcademica = infoAcademicaService.findOne(usuario.getId());
+            //Expediente expediente = expedienteService.findExpedienteByUserId(usuario.getId());
+
+            //infoAcademicaService.delete(infoAcademica.getId());
+            //inforPersonalService.delete(infoPersonal.getId());
+
+            //expedienteService.delete(expediente.getId());
             usuarioService.delete(id);
         }
 
