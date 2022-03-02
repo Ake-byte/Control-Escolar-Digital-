@@ -18,7 +18,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.controldigital.app.models.entity.Usuario;
 import com.controldigital.app.service.IUsuarioService;
 
+import java.time.LocalDate;
 import java.util.Map;
+
+import static com.controldigital.app.util.Fecha.*;
 
 /**
  * Esta clase sirve para acceder a datos del expediente de los alumnos
@@ -74,10 +77,31 @@ public class ExpedienteController {
 			return "Personal/EditarInformacionSistema";
 		}
 
-		/**
-		 * if _ _ _  numRegistro[1] + numRegistro[2] != Año Actual - 2000
-		 * 		ajustar cuenta de numSemestres y actualizar el campo en la BD
-		 */
+		LocalDate date = currentDate();
+		Integer enrollYear = Integer.parseInt(expediente.getNumeroRegistro().substring(1,3)) + 2000;
+		if(enrollYear != date.getYear()){
+			if(expediente.getNumeroRegistro().charAt(0) == 'A'){
+				if(mesesA().contains(date.getMonth())){
+					expediente.setNumSemestre(((date.getYear() - enrollYear) * 2) + 1);
+				} else {
+					expediente.setNumSemestre(((date.getYear() - enrollYear) * 2));
+				}
+			} else {
+				if(mesesB().contains(date.getMonth())){
+					expediente.setNumSemestre(((date.getYear() - enrollYear) * 2) + 1);
+				} else {
+					expediente.setNumSemestre(((date.getYear() - enrollYear) * 2));
+				}
+			}
+		} else {
+			if(mesesA().contains(date.getMonth())){
+				expediente.setNumSemestre(1);
+			} else if(mesesB().contains(date.getMonth())){
+                expediente.setNumSemestre(1);
+            } else {
+				expediente.setNumSemestre(2);
+			}
+		}
 
 		expedienteService.save(expediente);
 

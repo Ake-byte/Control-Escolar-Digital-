@@ -40,12 +40,12 @@ public class Fecha {
 
         List<Month> meses = new ArrayList<>();
 
-        meses.add(Month.JULY);
-        meses.add(Month.AUGUST);
-        meses.add(Month.SEPTEMBER);
-        meses.add(Month.OCTOBER);
-        meses.add(Month.NOVEMBER);
-        meses.add(Month.DECEMBER);
+        meses.add(Month.JANUARY);
+        meses.add(Month.FEBRUARY);
+        meses.add(Month.MARCH);
+        meses.add(Month.APRIL);
+        meses.add(Month.MAY);
+        meses.add(Month.JUNE);
 
         return meses;
     }
@@ -54,12 +54,12 @@ public class Fecha {
 
         List<Month> meses = new ArrayList<>();
 
-        meses.add(Month.JANUARY);
-        meses.add(Month.FEBRUARY);
-        meses.add(Month.MARCH);
-        meses.add(Month.APRIL);
-        meses.add(Month.MAY);
-        meses.add(Month.JUNE);
+        meses.add(Month.JULY);
+        meses.add(Month.AUGUST);
+        meses.add(Month.SEPTEMBER);
+        meses.add(Month.OCTOBER);
+        meses.add(Month.NOVEMBER);
+        meses.add(Month.DECEMBER);
 
         return meses;
     }
