@@ -22,18 +22,6 @@
     <list default="true" id="2727a93c-061d-4542-b678-8d61c3de17d4" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/controldigital/app/controllers/ExpedienteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/controldigital/app/controllers/ExpedienteController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/controldigital/app/util/Fecha.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/controldigital/app/util/Fecha.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/import.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/import.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/PersonalAutorizado/formSip.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/PersonalAutorizado/formSip.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/PersonalAutorizado/formSip2.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/PersonalAutorizado/formSip2.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/PersonalAutorizado/formUsuario.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/PersonalAutorizado/formUsuario.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/controldigital/app/controllers/ExpedienteController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/controldigital/app/controllers/ExpedienteController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/controldigital/app/util/Fecha.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/controldigital/app/util/Fecha.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/import.sql" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/import.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/PersonalAutorizado/formSip.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/PersonalAutorizado/formSip.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/PersonalAutorizado/formSip2.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/PersonalAutorizado/formSip2.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/PersonalAutorizado/formUsuario.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/PersonalAutorizado/formUsuario.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

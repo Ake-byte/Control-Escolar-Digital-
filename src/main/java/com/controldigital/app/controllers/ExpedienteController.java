@@ -94,12 +94,10 @@ public class ExpedienteController {
 				}
 			}
 		} else {
-			if(mesesA().contains(date.getMonth())){
-				expediente.setNumSemestre(1);
-			} else if(mesesB().contains(date.getMonth())){
-                expediente.setNumSemestre(1);
-            } else {
+			if(expediente.getNumeroRegistro() == "1"){
 				expediente.setNumSemestre(2);
+            } else {
+			expediente.setNumSemestre(1);
 			}
 		}
 
