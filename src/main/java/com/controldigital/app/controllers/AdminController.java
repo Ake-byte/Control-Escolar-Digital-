@@ -8,12 +8,12 @@ import java.util.stream.Collectors;
 
 import com.controldigital.app.models.entity.*;
 import com.controldigital.app.service.*;
-import com.controldigital.app.util.Fecha;
-import com.controldigital.app.util.Informes;
-import com.controldigital.app.util.MailSenderService;
-import com.controldigital.app.util.UserDetails;
+import com.controldigital.app.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -117,8 +117,6 @@ public class AdminController {
         List<String> numeroRegistro = new ArrayList<>();
 
         for (UserDetails u : userDetailsList) {
-
-
                 LocalDate birthday = convertDate(u.getInfoPersonal().getFechaNacimiento());
 
                 if (!edades.contains(String.valueOf(Period.between(birthday, date).getYears()))) {
@@ -195,13 +193,15 @@ public class AdminController {
     }
 
     @GetMapping("/verUsuariosInhabilitados")
-    public String verUsuariosInhabilitados(Model model) {
+    public String verUsuariosInhabilitados(@RequestParam(name = "page", defaultValue = "0") int page, Model model) {
 
-        List<Role> alumnos = roleService.findUsuarioByRole("ROLE_USER2")
-                .stream().filter(a -> a.getUsers().getEnabled().equals(false)).collect(Collectors.toList());
+        Pageable pageRequest = PageRequest.of(page, 20);
+        Page<Role> usuarios = roleService.findUsuarioByRolePageDisabled("ROLE_USER2", pageRequest);
+        PageRender<Role> pageRender = new PageRender<Role>("/PersonalAutorizado/verInvestigadores", usuarios);
 
         model.addAttribute("titulo", "Alumnos");
-        model.addAttribute("usuario", alumnos);
+        model.addAttribute("usuario", usuarios);
+        model.addAttribute("page", pageRender);
         return "PersonalAutorizado/verRol";
     }
 
@@ -211,13 +211,15 @@ public class AdminController {
      * @return /src/main/resources/templates/PersonalAutorizado/verRol.html
      */
     @GetMapping("/verAlumnos")
-    public String verAlumnos(Model model) {
+    public String verAlumnos(@RequestParam(name = "page", defaultValue = "0") int page, Model model) {
 
-        List<Role> alumnos = roleService.findUsuarioByRole("ROLE_USER2")
-                .stream().filter(a -> a.getUsers().getEnabled().equals(true)).collect(Collectors.toList());
+        Pageable pageRequest = PageRequest.of(page, 20);
+        Page<Role> usuarios = roleService.findUsuarioByRolePage("ROLE_USER2", pageRequest);
+        PageRender<Role> pageRender = new PageRender<Role>("/PersonalAutorizado/verInvestigadores", usuarios);
 
         model.addAttribute("titulo", "Alumnos");
-        model.addAttribute("usuario", alumnos);
+        model.addAttribute("usuario", usuarios);
+        model.addAttribute("page", pageRender);
         return "PersonalAutorizado/verRol";
     }
 
@@ -227,12 +229,33 @@ public class AdminController {
      * @return /src/main/resources/templates/PersonalAutorizado/verRol.html
      */
     @GetMapping("/verUsuariosRegistrados")
-    public String verUsuariosRegistrados(Model model) {
+    public String verUsuariosRegistrados(@RequestParam(name = "page", defaultValue = "0") int page, Model model) {
 
-        List<Role> usuariosR = roleService.findUsuarioByRole("ROLE_USER1");
+        Pageable pageRequest = PageRequest.of(page, 20);
+        Page<Role> usuarios = roleService.findUsuarioByRolePage("ROLE_USER1", pageRequest);
+        PageRender<Role> pageRender = new PageRender<Role>("/PersonalAutorizado/verInvestigadores", usuarios);
 
-        model.addAttribute("titulo", "Usuario Registrados");
-        model.addAttribute("usuario", usuariosR);
+        model.addAttribute("titulo", "Alumnos");
+        model.addAttribute("usuario", usuarios);
+        model.addAttribute("page", pageRender);
+        return "PersonalAutorizado/verRol";
+    }
+
+    /**
+     * Método que permite que Personal Autorizado visualice a los usuarios de tipo "Usuario Registrado"
+     * @param model
+     * @return /src/main/resources/templates/PersonalAutorizado/verRol.html
+     */
+    @GetMapping("/verPersonalAutorizado")
+    public String verPersonalAutorizado(@RequestParam(name = "page", defaultValue = "0") int page, Model model) {
+
+        Pageable pageRequest = PageRequest.of(page, 20);
+        Page<Role> usuarios = roleService.findUsuarioByRolePage("ROLE_ADMIN", pageRequest);
+        PageRender<Role> pageRender = new PageRender<Role>("/PersonalAutorizado/verPersonalAutorizado", usuarios);
+
+        model.addAttribute("titulo", "Alumnos");
+        model.addAttribute("usuario", usuarios);
+        model.addAttribute("page", pageRender);
         return "PersonalAutorizado/verRol";
     }
 
@@ -792,14 +815,6 @@ public class AdminController {
 
         if (id > 0) {
             Usuario usuario = usuarioService.findOne(id);
-            //InfoPersonal infoPersonal = inforPersonalService.findOne(usuario.getId());
-            //InfoAcademica infoAcademica = infoAcademicaService.findOne(usuario.getId());
-            //Expediente expediente = expedienteService.findExpedienteByUserId(usuario.getId());
-
-            //infoAcademicaService.delete(infoAcademica.getId());
-            //inforPersonalService.delete(infoPersonal.getId());
-
-            //expedienteService.delete(expediente.getId());
             usuarioService.delete(id);
         }
 
