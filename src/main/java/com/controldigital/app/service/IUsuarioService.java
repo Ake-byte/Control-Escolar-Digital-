@@ -21,4 +21,5 @@ public interface IUsuarioService {
 
 	public List<Usuario> findUserByRole(String role);
 
+	public List<Usuario> findByNumRegistro(String term);
 }

@@ -24,6 +24,7 @@
 					aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 				</button>
+				<div sec:authorize="hasRole('ROLE_ADMIN')" th:replace="BusquedaNumeroRegistro :: header"></div>
 				<div class="collapse navbar-collapse" id="navbarNav">
 					<div sec:authorize="!isAuthenticated()">
 						<a class="btn btn-outline-primary" th:href="@{/login}">

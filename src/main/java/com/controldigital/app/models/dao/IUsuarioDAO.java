@@ -33,4 +33,13 @@ public interface IUsuarioDAO extends CrudRepository<Usuario, Long>{
 	 */
 	@Query("select u from Usuario u where u.roles.authority like ?1%")
 	public List<Usuario> findUserByRole(String role);
+
+	/**
+	 * Método que de acuerdo a los parámetros insertados, devuelve a los usuarios que coincidan con base en
+	 * el número de registro
+	 * @param term
+	 * @return
+	 */
+	@Query("select u from Usuario u where u.expediente.numeroRegistro LIKE %?1%")
+	public List<Usuario> findByNumRegistro(String term);
 }

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:fragment="head">
+    <meta charset="UTF-8" />
+    <title th:text="${titulo}"></title>
+    <link th:href="@{/css/jquery-ui.min.css}" rel="stylesheet" />
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+
+</head>
+<body>
+<header th:fragment="header">
+
+    <div sec:authorize="hasRole('ROLE_ADMIN')"
+         class="container" style="width: 38rem;">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <form th:action="@{/PersonalAutorizado/buscar}" th:object="${usuario}"
+                      method="GET">
+                    <div class="input-group mb-3">
+                        <input type="text" name="term" id="term" size="70"
+                               th:value="${term}" placeholder="Buscar" class="form-control" />
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" type="submit">Buscar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </nav>
+
+    </div>
+
+</header>
+</body>
+</html>

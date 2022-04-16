@@ -10,7 +10,7 @@ import com.controldigital.app.models.dao.IUsuarioDAO;
 import com.controldigital.app.models.entity.Usuario;
 
 @Service
-public class UsuarioService implements IUsuarioService{
+public class UsuarioService implements IUsuarioService {
 
 	@Autowired
 	private IUsuarioDAO usuarioDAO;
@@ -45,6 +45,12 @@ public class UsuarioService implements IUsuarioService{
 	@Transactional(readOnly=true)
 	public List<Usuario> findUserByRole(String role) {
 		return usuarioDAO.findUserByRole(role);
+	}
+
+	@Override
+	@Transactional(readOnly=true)
+	public List<Usuario> findByNumRegistro(String term) {
+		return usuarioDAO.findByNumRegistro(term);
 	}
 
 	@Override

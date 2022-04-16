@@ -83,7 +83,7 @@ public class Usuario implements Serializable {
      * Relación uno a uno con la tabla "roles".
      * Cada usuario solo debe tener un permiso en el sistema.
      */
-    @OneToOne(mappedBy = "users", cascade = CascadeType.ALL,  fetch = FetchType.LAZY)//orphanRemoval = true,
+    @OneToOne(mappedBy = "users", cascade = CascadeType.ALL,  fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private Role roles;
 
@@ -106,14 +106,14 @@ public class Usuario implements Serializable {
     /**
      * Relación uno a uno con la tabla "academica".
      */
-    @OneToOne(mappedBy = "users", cascade = CascadeType.ALL,  fetch = FetchType.LAZY)//orphanRemoval = true,
+    @OneToOne(mappedBy = "users", cascade = CascadeType.ALL,  fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private InfoAcademica infoAcademica;
 
     /**
      * Relación uno a uno con la tabla "personal".
      */
-    @OneToOne(mappedBy = "users", cascade = CascadeType.ALL,  fetch = FetchType.LAZY)//orphanRemoval = true,
+    @OneToOne(mappedBy = "users", cascade = CascadeType.ALL,  fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private InfoPersonal infoPersonal;
 
@@ -121,7 +121,7 @@ public class Usuario implements Serializable {
      * Relación uno a uno con la tabla "expediente".
      * Cada usuario solo debe tener un permiso en el sistema.
      */
-    @OneToOne(mappedBy = "users", cascade = CascadeType.ALL,  fetch = FetchType.LAZY)//orphanRemoval = true,
+    @OneToOne(mappedBy = "users", cascade = CascadeType.ALL,  fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private Expediente expediente;
 

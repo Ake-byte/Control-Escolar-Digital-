@@ -964,4 +964,25 @@ public class AdminController {
                 .body(recurso);
 
     }
+
+    @GetMapping("/buscar")
+    public String buscarUsuarioPorNumRegistro(HttpServletRequest request, HttpServletResponse response,
+            @ModelAttribute("term") String term, @ModelAttribute("usuario") Usuario usuario, Model model,
+            RedirectAttributes flash) {
+        if (term != null) {
+            List<Usuario> usuarios = usuarioService.findByNumRegistro(term);
+
+            if (usuarios.isEmpty()) {
+                flash.addFlashAttribute("error", "No se encontraron elementos que coincidieran con: '" + term + "'.");
+                return "redirect:/PersonalAutorizado/ListadoUsuarios";
+            }
+
+            model.addAttribute("titulo", "Búsqueda: " + term);
+            model.addAttribute("usuarios", usuarios);
+
+                return "PersonalAutorizado/ResultadosBusquedaNumRegistro";
+        }
+
+        return "redirect:/PersonalAutorizado/ListadoUsuarios";
+    }
 }

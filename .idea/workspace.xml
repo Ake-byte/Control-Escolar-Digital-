@@ -20,22 +20,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2727a93c-061d-4542-b678-8d61c3de17d4" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_devtools_2_5_4.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/BusquedaNumeroRegistro.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/PersonalAutorizado/ResultadosBusquedaNumRegistro.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/controldigital/app/controllers/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/controldigital/app/controllers/AdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/controldigital/app/models/dao/IRoleDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/controldigital/app/models/dao/IRoleDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/controldigital/app/service/IRoleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/controldigital/app/service/IRoleService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/controldigital/app/service/RoleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/controldigital/app/service/RoleService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/PersonalAutorizado/verRol.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/PersonalAutorizado/verRol.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/controldigital/app/models/dao/IUsuarioDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/controldigital/app/models/dao/IUsuarioDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/controldigital/app/models/entity/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/controldigital/app/models/entity/Usuario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/controldigital/app/service/IUsuarioService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/controldigital/app/service/IUsuarioService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/controldigital/app/service/UsuarioService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/controldigital/app/service/UsuarioService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/layout/layout.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/layout/layout.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/controldigital/app/controllers/AdminController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/controldigital/app/controllers/AdminController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/controldigital/app/controllers/ExpedienteController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/controldigital/app/controllers/ExpedienteController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/controldigital/app/models/dao/IRoleDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/controldigital/app/models/dao/IRoleDAO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/controldigital/app/service/IRoleService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/controldigital/app/service/IRoleService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/controldigital/app/service/RoleService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/controldigital/app/service/RoleService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/controldigital/app/util/Fecha.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/controldigital/app/util/Fecha.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/PersonalAutorizado/verRol.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/PersonalAutorizado/verRol.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/controldigital/app/models/dao/IUsuarioDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/controldigital/app/models/dao/IUsuarioDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/controldigital/app/service/IUsuarioService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/controldigital/app/service/IUsuarioService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/controldigital/app/service/UsuarioService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/controldigital/app/service/UsuarioService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/layout/layout.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/layout/layout.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,9 +44,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="HTML File" />
         <option value="Enum" />
         <option value="Class" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -71,6 +69,9 @@
     <property name="project.structure.side.proportion" value="0.0" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\alfak\Documents\Spring Curso Udemy\ControlDigital\src\main\resources\templates" />
+    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.controldigital.app" />
     </key>
@@ -129,11 +130,11 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="574" y="119" key="#com.intellij.ide.util.MemberChooser" timestamp="1650136034143">
+    <state x="574" y="119" key="#com.intellij.ide.util.MemberChooser" timestamp="1650150103222">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="574" y="119" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824/1920.0.1360.728@0.0.1536.824" timestamp="1641836341817" />
-    <state x="574" y="119" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1650136034143" />
+    <state x="574" y="119" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1650150103222" />
     <state x="574" y="119" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1644688276218" />
     <state x="551" y="281" width="433" height="267" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1644680109742">
       <screen x="0" y="0" width="1536" height="824" />
@@ -147,29 +148,29 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1646002720094" />
-    <state width="1493" height="368" key="GridCell.Tab.0.bottom" timestamp="1650138669667">
+    <state width="1493" height="316" key="GridCell.Tab.0.bottom" timestamp="1650151214680">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1493" height="227" key="GridCell.Tab.0.bottom/0.0.1536.824/1920.0.1360.728@0.0.1536.824" timestamp="1641837752470" />
-    <state width="1493" height="368" key="GridCell.Tab.0.bottom/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1650138669667" />
+    <state width="1493" height="316" key="GridCell.Tab.0.bottom/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1650151214680" />
     <state width="1493" height="321" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1650120266093" />
-    <state width="1493" height="368" key="GridCell.Tab.0.center" timestamp="1650138669667">
+    <state width="1493" height="316" key="GridCell.Tab.0.center" timestamp="1650151214680">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1493" height="227" key="GridCell.Tab.0.center/0.0.1536.824/1920.0.1360.728@0.0.1536.824" timestamp="1641837752469" />
-    <state width="1493" height="368" key="GridCell.Tab.0.center/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1650138669667" />
+    <state width="1493" height="316" key="GridCell.Tab.0.center/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1650151214680" />
     <state width="1493" height="321" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1650120266093" />
-    <state width="1493" height="368" key="GridCell.Tab.0.left" timestamp="1650138669667">
+    <state width="1493" height="316" key="GridCell.Tab.0.left" timestamp="1650151214680">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1493" height="227" key="GridCell.Tab.0.left/0.0.1536.824/1920.0.1360.728@0.0.1536.824" timestamp="1641837752469" />
-    <state width="1493" height="368" key="GridCell.Tab.0.left/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1650138669667" />
+    <state width="1493" height="316" key="GridCell.Tab.0.left/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1650151214680" />
     <state width="1493" height="321" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1650120266092" />
-    <state width="1493" height="368" key="GridCell.Tab.0.right" timestamp="1650138669667">
+    <state width="1493" height="316" key="GridCell.Tab.0.right" timestamp="1650151214680">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1493" height="227" key="GridCell.Tab.0.right/0.0.1536.824/1920.0.1360.728@0.0.1536.824" timestamp="1641837752469" />
-    <state width="1493" height="368" key="GridCell.Tab.0.right/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1650138669667" />
+    <state width="1493" height="316" key="GridCell.Tab.0.right/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1650151214680" />
     <state width="1493" height="321" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1650120266093" />
     <state x="761" y="-7" width="782" height="838" maximized="true" key="dock-window-1" timestamp="1642470990155">
       <screen x="0" y="0" width="1536" height="824" />
